@@ -1,0 +1,78 @@
+/* ========================================================================== */
+/* utils.css
+/* The Utility Layer (u_)
+/* Strictly single-purpose, layout-agnostic, and state-free.
+/* ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* ZERO STATE CONTRACTS
+/* Sets specificity to 0,0,0 with :where() pseudo-class.
+/* Strips UA styles but yields immediately to component classes.
+/* -------------------------------------------------------------------------- */
+
+:where(.u_reset_button) {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+:where(.u_reset_list) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ATOMIC BEHAVIORS
+/* -------------------------------------------------------------------------- */
+
+/* Accessibility: Hide visually, but keep for screen readers */
+.u_sr_only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Typography: Force single-line truncation with ellipsis */
+.u_truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 
+ * PWA TEXT SELECTION OPT-IN 
+ * Because the PWA root is unselectable, apply this to specific 
+ * user-generated content, IDs, or prose blocks that MUST be copyable.
+ */
+.u_selectable {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default; /* Restores context menu for copying */
+  cursor: text;
+}
+
+/* Interaction Physics: The Trigger
+ * Applies the mathematical scale/dim effect. 
+ * IMPORTANT: You MUST apply `transition: var(--transition-pressable)` 
+ * to your component for this to animate smoothly.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .u_pressable:active:not([aria-disabled='true']):not([data-loading='true']) {
+    transform: scale(0.97);
+    filter: brightness(0.95);
+  }
+}

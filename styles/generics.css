@@ -1,0 +1,71 @@
+/* ========================================================================== */
+/* generics.css
+/* Global UI Assets (g_)
+/* Nouns and objects that are too ubiquitous to require their own file.
+/* They follow standard BEAM rules and may possess state.
+/* ========================================================================== */
+
+/* VISUAL DIVIDER */
+.g_divider {
+  border: 0;
+  margin: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-base);
+  margin-block: var(--space-4);
+}
+
+.g_divider[data-variant='transparent'] {
+  background-color: transparent;
+}
+
+/* SIMPLE SPINNER */
+.g_spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--border-base);
+  border-radius: var(--radius-full);
+  border-top-color: var(--action-primary);
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ICON BOX (Wrapper for consistent external SVG sizing) */
+.g_icon_box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* TYPOGRAPHY BLOCK (Prose) */
+/* An encapsulation zone for unclassed HTML (e.g., Markdown/CMS output) */
+.g_prose {
+  color: var(--ink-main);
+  max-width: 65ch;
+}
+
+.g_prose p {
+  margin-bottom: var(--space-4);
+}
+
+.g_prose h1,
+.g_prose h2,
+.g_prose h3 {
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.g_prose a {
+  color: var(--action-primary);
+  text-decoration: underline;
+}

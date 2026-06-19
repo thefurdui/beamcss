@@ -1,0 +1,382 @@
+/* ========================================================================== */
+/* theme.css
+/* The Variable Radar System
+/* Hosts the 4-Layer Taxonomy (Foundations -> Themes -> Semantics).
+/* The global interface and routing engine. No CSS selectors allowed except :root
+/* and contextual theme modifiers (e.g., [data-theme="inverse"]).
+/* ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ========================================================= */
+  /* 1. FOUNDATIONS (The Raw Materials)                        */
+  /* Strictly prohibited in component files.                   */
+  /* ========================================================= */
+
+  /* PALETTE: Base */
+  --palette-white: oklch(1 0 0);
+  --palette-black: oklch(0 0 0);
+
+  /* PALETTE: Neutral Warm (Stone) */
+  --palette-stone-50: oklch(98.5% 0.001 106.423);
+  --palette-stone-100: oklch(97% 0.001 106.424);
+  --palette-stone-200: oklch(92.3% 0.003 48.717);
+  --palette-stone-300: oklch(86.9% 0.005 56.366);
+  --palette-stone-400: oklch(70.9% 0.01 56.259);
+  --palette-stone-500: oklch(55.3% 0.013 58.071);
+  --palette-stone-600: oklch(44.4% 0.011 73.639);
+  --palette-stone-700: oklch(37.4% 0.01 67.558);
+  --palette-stone-800: oklch(26.8% 0.007 34.298);
+  --palette-stone-900: oklch(21.6% 0.006 56.043);
+  --palette-stone-950: oklch(14.7% 0.004 49.25);
+
+  /* PALETTE: Brand & Status */
+  --palette-brand-base: oklch(0.72 0.22 23);
+  --palette-green-500: oklch(72.3% 0.219 149.579);
+  --palette-yellow-500: oklch(0.795 0.184 86.05);
+  --palette-red-500: oklch(0.637 0.237 25.33);
+
+  /* TYPEFACES */
+  --typeface-inter: 'Inter', sans-serif;
+  --typeface-outfit: 'Outfit Variable', sans-serif;
+  --typeface-azeret: 'Azeret Mono Variable', monospace;
+  --typeface-system: system-ui, -apple-system, sans-serif;
+  --typeface-emoji:
+    'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* ========================================================= */
+  /* 2. THEMES (The Contextual Switchboard)                    */
+  /* Maps foundations to contexts. Do not use in components.   */
+  /* ========================================================= */
+
+  /* LIGHT CONSTANTS */
+  --theme-light-bg-page: var(--palette-stone-50);
+  --theme-light-bg-surface: var(--palette-white);
+  --theme-light-bg-surface-hover: var(--palette-stone-100);
+  --theme-light-bg-overlay: var(--palette-white);
+
+  --theme-light-ink-main: var(--palette-stone-900);
+  --theme-light-ink-muted: var(--palette-stone-500);
+  --theme-light-ink-faint: var(--palette-stone-400);
+  --theme-light-ink-inverse: var(--palette-white);
+
+  --theme-light-border-base: var(--palette-stone-200);
+
+  --theme-light-action-neutral: var(--palette-stone-200);
+  --theme-light-action-neutral-hover: var(--palette-stone-300);
+  --theme-light-action-contrast: var(--palette-stone-900);
+  --theme-light-action-contrast-hover: var(--palette-stone-950);
+
+  --theme-light-shadow-close: 0 1px 1px 0 color-mix(in srgb, var(--palette-stone-950), transparent 90%);
+  --theme-light-shadow-base: 0 4px 6px -1px color-mix(in srgb, var(--palette-stone-950), transparent 85%);
+  --theme-light-shadow-far: 0 10px 15px -3px color-mix(in srgb, var(--palette-stone-950), transparent 80%);
+
+  --theme-light-intent-success-subtle: color-mix(in srgb, var(--palette-green-500), var(--palette-white) 85%);
+  --theme-light-intent-warning-subtle: color-mix(in srgb, var(--palette-yellow-500), var(--palette-white) 85%);
+  --theme-light-intent-critical-subtle: color-mix(in srgb, var(--palette-red-500), var(--palette-white) 85%);
+
+  --theme-light-mix-contrast: black;
+
+  /* DARK CONSTANTS */
+  --theme-dark-bg-page: var(--palette-stone-950);
+  --theme-dark-bg-surface: var(--palette-stone-900);
+  --theme-dark-bg-surface-hover: var(--palette-stone-800);
+  --theme-dark-bg-overlay: var(--palette-stone-800);
+
+  --theme-dark-ink-main: var(--palette-stone-100);
+  --theme-dark-ink-muted: var(--palette-stone-400);
+  --theme-dark-ink-faint: var(--palette-stone-600);
+  --theme-dark-ink-inverse: var(--palette-stone-900);
+
+  --theme-dark-border-base: var(--palette-stone-800);
+
+  --theme-dark-action-neutral: var(--palette-stone-800);
+  --theme-dark-action-neutral-hover: var(--palette-stone-700);
+  --theme-dark-action-contrast: var(--palette-stone-100);
+  --theme-dark-action-contrast-hover: var(--palette-stone-200);
+
+  --theme-dark-shadow-close: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --theme-dark-shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --theme-dark-shadow-far: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+
+  --theme-dark-intent-success-subtle: color-mix(in srgb, var(--palette-green-500), var(--palette-stone-900) 85%);
+  --theme-dark-intent-warning-subtle: color-mix(in srgb, var(--palette-yellow-500), var(--palette-stone-900) 85%);
+  --theme-dark-intent-critical-subtle: color-mix(in srgb, var(--palette-red-500), var(--palette-stone-900) 85%);
+
+  --theme-dark-mix-contrast: white;
+
+  /* ========================================================= */
+  /* 3. SEMANTICS (The Public Contract)                        */
+  /* USE THESE IN YOUR COMPONENTS. Defaults to Light Theme.    */
+  /* ========================================================= */
+
+  /* --------------------------------------------------------- */
+  /* 3A. STATIC SEMANTICS (Theme-Agnostic)                     */
+  /* Constants that bypass the theme switchboard.              */
+  /* --------------------------------------------------------- */
+
+  /* --- TYPOGRAPHY FAMILIES --- */
+  --font-body: var(--typeface-inter), var(--typeface-system), var(--typeface-emoji);
+  --font-heading: var(--typeface-outfit), var(--typeface-system), var(--typeface-emoji);
+  --font-mono: var(--typeface-azeret), var(--typeface-emoji);
+
+  /* --- FONT WEIGHTS --- */
+  --weight-light: 300; /* Large aesthetic display text or subtle metadata (Use with caution for accessibility) */
+  --weight-regular: 400; /* Standard reading prose and body copy */
+  --weight-medium: 500; /* Subtle emphasis, interactive text, and dense UI labels */
+  --weight-semibold: 600; /* Component titles, primary buttons, and table headers */
+  --weight-bold: 700; /* Standard page headings and critical numbers */
+  --weight-extrabold: 800; /* Punchy marketing headings and heavy structural emphasis */
+  --weight-black: 900; /* Maximum visual weight for massive hero text or brutalist accents */
+
+  /* --- SPACING (Weber-Fechner Law Scale) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- TYPOGRAPHY (Static Scale) --- */
+  --text-5xs: 0.25rem;
+  --text-4xs: 0.375rem;
+  --text-3xs: 0.5rem;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
+
+  /* --- LEADING (Line Height) --- */
+  --leading-none: 1;
+  --leading-tight: 1.2;
+  --leading-base: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* --- RADIUS --- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* --- OPACITY (Systemic States) --- */
+  /* Do not use for text colors. Use --ink-muted instead. */
+  --opacity-disabled: 0.5; /* For disabled buttons, inputs, and unavailable features */
+  --opacity-muted: 0.7; /* For secondary decorative images or background watermarks */
+
+  /* --- Z-INDEX STRATA --- */
+  --z-sink: -1;
+  --z-pinned: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+  --z-toast: 400;
+  --z-max: 9999;
+
+  /* --- DURATIONS --- */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* --- EASINGS & PHYSICS --- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: linear(0, 0.6 15%, 1.1 30%, 1 100%);
+
+  /* --- TRANSITIONS --- */
+  --transition-pressable:
+    transform var(--duration-fast) var(--ease-standard), filter var(--duration-fast) var(--ease-standard);
+
+  /* --- STATIC COLORS (Shared across themes) --- */
+  --border-focus: var(--palette-brand-base);
+  --brand-primary: var(--palette-brand-base);
+  --action-primary: var(--palette-brand-base);
+  --action-primary-hover: color-mix(in srgb, var(--palette-brand-base), black 15%);
+  --action-danger: var(--palette-red-500);
+  --action-danger-hover: color-mix(in srgb, var(--palette-red-500), black 10%);
+
+  --intent-success-base: var(--palette-green-500);
+  --intent-success-strong: color-mix(in srgb, var(--palette-green-500), black 40%);
+  --intent-warning-base: var(--palette-yellow-500);
+  --intent-warning-strong: color-mix(in srgb, var(--palette-yellow-500), black 40%);
+  --intent-critical-base: var(--palette-red-500);
+  --intent-critical-strong: color-mix(in srgb, var(--palette-red-500), black 40%);
+
+  --bg-scrim: color-mix(in srgb, var(--palette-stone-900), transparent 50%);
+
+  /* --- OPTICAL DIFFUSION (Blurs) --- */
+
+  /* Barely there. Use for softening text shadows or subtle glow effects, NEVER backdrops. */
+  --blur-faint: 2px;
+  /* Light diffusion. Ideal for small floating badges or secondary UI glass. */
+  --blur-soft: 4px;
+  /* The standard frosted glass. Dropdowns, sticky headers, and floating navbars. */
+  --blur-base: 8px;
+  /* Deep obscuration. Modals, bottom sheets, and focus blockouts. */
+  --blur-heavy: 16px;
+  /* OS-level isolation. Maximum depth of field for massive background graphics. */
+  --blur-dense: 24px;
+
+  /* --------------------------------------------------------- */
+  /* 3B. DYNAMIC SEMANTICS (Theme-Dependent)                   */
+  /* Pointers that route to the active theme switchboard.      */
+  /* Default: Light Theme.                                     */
+  /* --------------------------------------------------------- */
+  --bg-page: var(--theme-light-bg-page);
+  --bg-surface: var(--theme-light-bg-surface);
+  --bg-surface-hover: var(--theme-light-bg-surface-hover);
+  --bg-overlay: var(--theme-light-bg-overlay);
+
+  --ink-main: var(--theme-light-ink-main);
+  --ink-muted: var(--theme-light-ink-muted);
+  --ink-faint: var(--theme-light-ink-faint);
+  --ink-inverse: var(--theme-light-ink-inverse);
+
+  --border-base: var(--theme-light-border-base);
+
+  --action-neutral: var(--theme-light-action-neutral);
+  --action-neutral-hover: var(--theme-light-action-neutral-hover);
+  --action-contrast: var(--theme-light-action-contrast);
+  --action-contrast-hover: var(--theme-light-action-contrast-hover);
+
+  --shadow-close: var(--theme-light-shadow-close);
+  --shadow-base: var(--theme-light-shadow-base);
+  --shadow-far: var(--theme-light-shadow-far);
+
+  --intent-success-subtle: var(--theme-light-intent-success-subtle);
+  --intent-warning-subtle: var(--theme-light-intent-warning-subtle);
+  --intent-critical-subtle: var(--theme-light-intent-critical-subtle);
+
+  --mix-contrast: var(--theme-light-mix-contrast);
+}
+
+/* ========================================================= */
+/* GLOBAL DARK OVERRIDE                                      */
+/* ========================================================= */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-page: var(--theme-dark-bg-page);
+  --bg-surface: var(--theme-dark-bg-surface);
+  --bg-surface-hover: var(--theme-dark-bg-surface-hover);
+  --bg-overlay: var(--theme-dark-bg-overlay);
+
+  --ink-main: var(--theme-dark-ink-main);
+  --ink-muted: var(--theme-dark-ink-muted);
+  --ink-faint: var(--theme-dark-ink-faint);
+  --ink-inverse: var(--theme-dark-ink-inverse);
+
+  --border-base: var(--theme-dark-border-base);
+
+  --action-neutral: var(--theme-dark-action-neutral);
+  --action-neutral-hover: var(--theme-dark-action-neutral-hover);
+  --action-contrast: var(--theme-dark-action-contrast);
+  --action-contrast-hover: var(--theme-dark-action-contrast-hover);
+
+  --shadow-close: var(--theme-dark-shadow-close);
+  --shadow-base: var(--theme-dark-shadow-base);
+  --shadow-far: var(--theme-dark-shadow-far);
+
+  --intent-success-subtle: var(--theme-dark-intent-success-subtle);
+  --intent-warning-subtle: var(--theme-dark-intent-warning-subtle);
+  --intent-critical-subtle: var(--theme-dark-intent-critical-subtle);
+
+  --mix-contrast: var(--theme-dark-mix-contrast);
+}
+
+/* ========================================================= */
+/* THE CONTEXTUAL INVERSE ENGINE                             */
+/* ========================================================= */
+
+/* If global is Light Mode (or unspecified), Inverse becomes Dark */
+:root:not([data-theme='dark']) [data-theme='inverse'],
+[data-theme='light'] [data-theme='inverse'] {
+  color-scheme: dark;
+
+  --bg-page: var(--theme-dark-bg-page);
+  --bg-surface: var(--theme-dark-bg-surface);
+  --bg-surface-hover: var(--theme-dark-bg-surface-hover);
+  --bg-overlay: var(--theme-dark-bg-overlay);
+
+  --ink-main: var(--theme-dark-ink-main);
+  --ink-muted: var(--theme-dark-ink-muted);
+  --ink-faint: var(--theme-dark-ink-faint);
+  --ink-inverse: var(--theme-dark-ink-inverse);
+
+  --border-base: var(--theme-dark-border-base);
+
+  --action-neutral: var(--theme-dark-action-neutral);
+  --action-neutral-hover: var(--theme-dark-action-neutral-hover);
+  --action-contrast: var(--theme-dark-action-contrast);
+  --action-contrast-hover: var(--theme-dark-action-contrast-hover);
+
+  --shadow-close: var(--theme-dark-shadow-close);
+  --shadow-base: var(--theme-dark-shadow-base);
+  --shadow-far: var(--theme-dark-shadow-far);
+
+  --intent-success-subtle: var(--theme-dark-intent-success-subtle);
+  --intent-warning-subtle: var(--theme-dark-intent-warning-subtle);
+  --intent-critical-subtle: var(--theme-dark-intent-critical-subtle);
+
+  --mix-contrast: var(--theme-dark-mix-contrast);
+}
+
+/* If global is Dark Mode, Inverse becomes Light */
+[data-theme='dark'] [data-theme='inverse'] {
+  color-scheme: light;
+
+  --bg-page: var(--theme-light-bg-page);
+  --bg-surface: var(--theme-light-bg-surface);
+  --bg-surface-hover: var(--theme-light-bg-surface-hover);
+  --bg-overlay: var(--theme-light-bg-overlay);
+
+  --ink-main: var(--theme-light-ink-main);
+  --ink-muted: var(--theme-light-ink-muted);
+  --ink-faint: var(--theme-light-ink-faint);
+  --ink-inverse: var(--theme-light-ink-inverse);
+
+  --border-base: var(--theme-light-border-base);
+
+  --action-neutral: var(--theme-light-action-neutral);
+  --action-neutral-hover: var(--theme-light-action-neutral-hover);
+  --action-contrast: var(--theme-light-action-contrast);
+  --action-contrast-hover: var(--theme-light-action-contrast-hover);
+
+  --shadow-close: var(--theme-light-shadow-close);
+  --shadow-base: var(--theme-light-shadow-base);
+  --shadow-far: var(--theme-light-shadow-far);
+
+  --intent-success-subtle: var(--theme-light-intent-success-subtle);
+  --intent-warning-subtle: var(--theme-light-intent-warning-subtle);
+  --intent-critical-subtle: var(--theme-light-intent-critical-subtle);
+
+  --mix-contrast: var(--theme-light-mix-contrast);
+}
+
+/* ========================================================= */
+/* ACCESSIBILITY: REDUCED MOTION                             */
+/* ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}
