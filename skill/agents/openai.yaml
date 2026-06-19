@@ -1,0 +1,7 @@
+interface:
+  display_name: "BEAM CSS"
+  short_description: "Strict semantic CSS architecture"
+  default_prompt: "Use $beam to create a BEAM-compliant component with semantic tokens, data-attribute state, and fluid spacing."
+
+policy:
+  allow_implicit_invocation: true
