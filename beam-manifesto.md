@@ -1,279 +1,208 @@
-# BEAM Manifesto
+# The BEAM Manifesto (v2026)
 
-_Created on 2026-02-18_
+BEAM is a strict, opinionated, and browser-native CSS architecture designed for the modern era. It rejects the complexity of CSS-in-JS and the clutter of Atomic CSS in favor of distinct Component Identity, Editor Optimization (Cmd+D), and Semantic State.
 
-**BEAM** is a strict, opinionated, and browser-native CSS architecture designed for the modern era. It rejects the complexity of CSS-in-JS and the clutter of Atomic CSS in favor of distinct Component Identity, Editor Optimization (`Cmd+D`), and Semantic State.
+It stands for **Block, Element, Attribute, Module.**
 
-It stands for **Block**, **Element**, **Attribute**, **Module**.
+### 1. Core Philosophy
 
----
+- **Identity over Utility:** A component is named by what it is (`.user_card`), not what it looks like (`.bg-white.rounded.p-4`).
+- **Editor Optimized:** Naming conventions are specifically engineered to leverage Multi-Cursor selection (Cmd+D / Ctrl+D) in modern IDEs.
+- **Browser Native:** We use CSS Variables and Native Nesting. No heavy preprocessors (SASS/LESS) required.
+- **State Driven:** We do not use classes for state (e.g., `--active`). We use standard HTML Data Attributes.
 
-## 1. Core Philosophy
+### 2. The Prefix Taxonomy & Syntax
 
-1.  **Identity over Utility:** A component is named by _what it is_ (`.user_card`), not _what it looks like_ (`.bg-white.rounded.p-4`).
-2.  **Editor Optimized:** Naming conventions are specifically engineered to leverage Multi-Cursor selection (`Cmd+D` / `Ctrl+D`) in modern IDEs.
-3.  **Browser Native:** We use CSS Variables, Nesting, and `clamp()` calculations. No complex build steps required.
-4.  **State Driven:** We do not use classes for state (e.g., `--active`). We use Data Attributes.
+BEAM uses specific casing and prefixes to visually separate logical entities. This creates a Zero-Guesswork Namespace.
 
----
+**The Tetrad (4 Valid Class Types)**
 
-## 2. The Syntax (B.E.A.M.)
+- **snake_case (Block):** Component Identity. E.g., `.user_card`.
+- **l\_ (Layout):** Spatial geometry and rhythm. E.g., `.l_stack`.
+- **u\_ (Utility):** Zero-State Contracts & layout-agnostic atomic behaviors. E.g., `.u_reset_button`.
+- **g\_ (Generic):** Global UI assets. E.g., `.g_divider`.
 
-BEAM uses specific casing to visually separate logical entities.
+**B.E.A.M. Rules**
 
-### B — Block (`snake_case`)
+- **B — Block (snake_case):** The root component. It defines the namespace. Must use snake_case.
+- **E — Element (-snake_case):** A dependent child of the Block.
+  - Rule: Connected to the Block by a single hyphen (`-`).
+  - Rule: Words inside the element MUST be separated by an underscore (`_`). Hyphens are explicitly forbidden inside the element name.
+  - Rule: Always Flat. Never mirror HTML nesting in class names.
+  - `/* ✅ Correct */ .nav_bar-list_item { ... }`
+  - `/* ❌ Incorrect */ .nav_bar-list-item { ... }`
+- **A — Attribute ([data-state]):** Represents State or Variation. Replaces BEM Modifiers. Use standard HTML `data-` attributes.
+- **M — Module (File Structure):** One Block = One File. The CSS file must be co-located with the Component logic.
 
-The root component. It defines the "namespace."
+### 3. The Variable Radar System
 
-- **Rule:** Must use `snake_case`.
-- **Why:** Editors treat snake_case as a single word. Double-clicking selects the whole component name.
+CSS Variables are organized hierarchically. Their prefix tells you exactly where they live and what data type they hold. Numbered tiers are banned; variables are categorized by their functional responsibility.
 
-```css
-.nav_bar {
-  ...;
-}
-.submit_button {
-  ...;
-}
-```
+- `--palette-[name]` / `--typeface-[name]`: **Foundations.** The Raw Assets. (`theme.css`).
+- `--theme-[context]-[name]`: **Themes.** The Contextual Switchboard. (`theme.css`).
+- `--bg-`, `--ink-`, `--border-`, `--shadow-`, `--space-`, `--size-`, `--text-`, `--font-`: **Semantics.** The Public Contract. (`theme.css`).
+- `--c-[name]`: **Components.** Local Scope. Props or private variables. (Local `.css` or `.tsx`).
+- `--js-[name]`: **Dynamic Globals.** Injected by JavaScript at runtime.
 
-### E — Element (`kebab-case`)
+### The Color Taxonomy (The BEAM Firewall)
 
-A dependent child of the Block.
+You must never use arbitrary colors in Core UI. Colors must pass through the **4-Layer Taxonomy**. Semantic tokens must never point horizontally to other semantic tokens; they must strictly utilize the Double-Mapped Theme Engine.
 
-- **Rule:** Connected by a **single hyphen** (`-`).
-- **Rule:** **Always Flat.** Never mirror HTML nesting in class names.
-- **Why:** Double-clicking selects only the element name (e.g., `title`), making refactoring instant.
-
-```css
-/* ✅ Correct: Flat */
-.nav_bar-page_link { ... }
-
-/* ❌ Incorrect: Nested */
-.nav_bar-list-list_item-page_link { ... }
-```
-
-### A — Attribute (`[data-state]`)
-
-Represents State or Variation. Replaces BEM Modifiers.
-
-- **Rule:** Use standard HTML `data-` attributes.
-- **Why:** High visibility in DOM inspection and clear separation of "Identity" (Class) vs "State" (Attribute).
+**1. Foundations (The Raw Materials)**
+Raw hex/oklch codes. Never use these directly in UI components.
 
 ```css
-/* Styling the active state */
-.nav_bar-link[data-active='true'] {
-  color: var(--color-primary);
-}
-
-/* Styling a variant */
-.submit_button[data-variant='danger'] {
-  ...;
+:root {
+  --palette-stone-900: oklch(...);
+  --palette-green-500: oklch(...);
 }
 ```
 
-### M — Module (File Structure)
-
-One Block = One File.
-
-- **Rule:** The CSS file must be co-located with the Component logic.
-- **Rule:** The Block name must match the filename.
-
-```text
-/components
-  /UserProfile
-    ├── index.ts          # Exports
-    ├── UserProfile.tsx   # Markup & Logic
-    └── UserProfile.css   # Contains .user_profile
-```
-
----
-
-## 3. System Architecture
-
-BEAM requires a standardized "Physics" layer to ensure consistency across designers and developers.
-
-### Units
-
-| Unit    | Use Case                      | Reasoning                                              |
-| :------ | :---------------------------- | :----------------------------------------------------- |
-| **rem** | Layout, Text, Padding, Margin | Respects user browser settings and accessibility zoom. |
-| **px**  | Borders, Shadows, Blur        | Physical reality. Needs to be crisp, not scaled.       |
-| **em**  | Component Composition         | Scaling internals (e.g., icon size relative to text).  |
-
-### Responsiveness (Fluid Mobile-First)
-
-We do not use breakpoints for font sizes or standard margins. We use **Fluid Math**.
-
-- **Rule:** Use global fluid variables (`--space-4`, `--text-lg`) that automatically scale using `clamp()`.
-- **Media Queries:** Reserved strictly for **Layout Changes** (e.g., changing Flex direction from column to row).
-
-### The Variable Tiers
-
-Variables are organized in `theme.css`.
-
-1.  **Tier 1: Primitives (The Palette)**
-    - Raw values. _Never used directly in components._
-    - `--primitive-slate-900: #0f172a;`
-2.  **Tier 2: Semantic Tokens (The Contract)**
-    - Named after function. **Dark Mode is handled here.**
-    - `--bg-surface: var(--primitive-slate-50);`
-    - `--text-body: var(--primitive-slate-900);`
-3.  **Tier 3: Local Variables (The Component API)**
-    - Defined inside the component using the **Input/Default Pattern**.
-    - See Section 5.
-
----
-
-## 4. Layout Strategy
-
-BEAM enforces a strict separation between **Internal Layout** (Component) and **External Layout** (Glue).
-
-### The Global Layout Primitives (`layout.css`)
-
-Do not use `flex/grid` classes in HTML. Use these 3 primitives for composition.
-
-**1. The Stack (`.l_stack`)**
-Vertical arrangement.
+**2. Themes (The Contextual Switchboard)**
+This defines what "Light" or "Dark" actually means physically. Components MUST NEVER touch these. They exist solely to be routed.
 
 ```css
-.l_stack {
-  display: flex;
-  flex-direction: column;
-}
-.l_stack[data-gap='4'] {
-  gap: var(--space-4);
+:root {
+  --theme-light-bg-surface: var(--palette-white);
+  --theme-dark-bg-surface: var(--palette-stone-900);
 }
 ```
 
-**2. The Cluster (`.l_cluster`)**
-Horizontal arrangement (wrapping).
+**3. Semantics (The Public Contract)**
+The global interface and routing engine. This is the ONLY layer components are allowed to consume. This layer powers the **Contextual Inverse Engine**, allowing DOM nodes like `[data-theme="inverse"]` to seamlessly flip the Semantic pointer to the opposite Theme switchboard without altering component CSS.
+
+- **A. The Kernel (Strictly 16 Variables):** The minimalist baseline.
+  - Canvas: `--bg-page`, `--bg-surface`, `--bg-surface-hover`, `--bg-overlay`
+  - Ink: `--ink-main`, `--ink-muted`, `--ink-faint`, `--ink-inverse`
+  - Chrome: `--border-base`, `--border-focus`
+  - Interactive: `--action-primary`, `--action-primary-hover`, `--action-neutral`, `--action-neutral-hover`, `--action-danger`, `--action-danger-hover`
+- **B. The Extensions (Maximalist-Friendly):** Bespoke interactive colors required by the design system (e.g., `--action-contrast`). MUST include a hover state pair.
+- **C. Intents & Categories (Static UI):** Repeating static colors for status (`--intent-success-subtle`) or data visualization. Strictly limited to base, subtle, and strong.
+
+**4. Components (Local Scope & API)**
+Exceptions are handled locally using the `--c-` prefix.
 
 ```css
-.l_cluster {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.l_cluster[data-align='center'] {
-  align-items: center;
+.holiday_promo {
+  --c-magic-bg: #8a2be2; /* Quarantined locally. Never leaks to theme.css */
+  background: var(--c-magic-bg);
 }
 ```
 
-**3. The Grid (`.l_grid`)**
-Strict 2D layout.
+### Z-Index & Motion Physics
 
-```css
-.l_grid {
-  display: grid;
-}
-.l_grid[data-cols='2'] {
-  grid-template-columns: repeat(2, 1fr);
-}
-```
+**Z-Index Strata (The 6 Layers)**
+NEVER use random z-index numbers. Use the predefined Z-Index Strata. If you need to stack within a stratum, use `calc()` delta math.
+`--z-sink` (-1), `--z-pinned` (100), `--z-dropdown` (200), `--z-overlay` (300), `--z-toast` (400), `--z-max` (9999).
+_Example:_ `z-index: calc(var(--z-pinned) + 1);`
 
-### The Binary Rule ⚠️
+**Motion Tokens**
 
-**A generic Layout Class (`l_`) and a Block Class (`snake_case`) must NEVER exist on the same DOM element.**
+- Transitions: MUST use `var(--duration-*)` and `var(--ease-*)`.
+- Animations: CAN use magic numbers (`1.2s`, `linear`) for bespoke choreographies.
+- Composable Physics: Export transition chunks for safe utility composition: `--transition-pressable: transform var(--duration-fast) var(--ease-standard);`
 
-- **❌ Illegal:** `<div class="l_stack user_profile">`
-- **✅ Legal (Wrapper):**
-  ```html
-  <div class="l_stack">
-    <div class="user_profile">...</div>
-  </div>
-  ```
-- **✅ Legal (Intrinsic):** If the User Profile _is_ naturally a stack, write `display: flex; flex-direction: column;` inside `.user_profile` CSS.
+### 4. Spacing & Layout Strategy
 
----
+BEAM enforces a strict separation between Internal Layout (Component) and External Layout (Glue).
 
-## 5. JavaScript Integration
+**The Mass vs Void**
 
-BEAM treats CSS Variables as the Component API.
+- **Negative space (Void):** `margin`, `padding`, and `gap` MUST use numeric `--space-` tokens. We use the strict 4px grid (where 4 = 1rem).
+- **Positive space (Mass):** `width`, `height`, `top`, `left`, `transform` CANNOT use `--space-` tokens. Use raw `rem` or `px` values if the component has a bespoke physical shape
 
-### The Input/Default Pattern
+**The Global Layout Primitives (layout.css)**
+Do not use flex/grid utility classes. Compose via external spacing attributes.
 
-Inside your component CSS, define properties to accept inputs from JS, falling back to global tokens if undefined.
+- **Stack:** `.l_stack` (Vertical flexbox). E.g., `.l_stack[data-gap="4"]`
+- **Cluster:** `.l_cluster` (Horizontal wrapping flexbox).
+- **Grid:** `.l_grid` (Strict 2D grid).
+- **Container:** `.l_container` (Macro-page geometry and max-width bounds).
+-  **Switcher:** `.l_switcher` (Container-query driven flexbox). Switches from column to row based on parent width thresholds synced to Tailwind's scale (@xs to @3xl). E.g., `.l_switcher[data-threshold="md"].`
 
-```css
-/* UserProfile.css */
-.user_profile {
-  /* Syntax: var(--js-prop-name, var(--global-fallback)) */
-  background: var(--card-bg, var(--bg-surface));
-  padding: var(--card-padding, var(--space-4));
-}
-```
+**The Binary Rule ⚠️**
+A generic Layout Class (`l_`) and a Component Class (`snake_case`) MUST NEVER exist on the same DOM element.
 
-### Passing Values (React/Solid/Vue)
+- ❌ Illegal: `<div class="l_stack user_card">` (Creates Specificity Wars).
+- ✅ Legal (Wrapper): `<div class="l_stack"><div class="user_card">...</div></div>`
+- ✅ Legal (Coordinate Exception): A Component Block may apply `position: relative` to a direct child `.l_container` to establish a Z-axis anchor, provided it does not alter the container's display model.
 
-Pass style props as variables, not raw styles.
+### 5. PostCSS & Native Nesting Rules
+
+BEAM relies on Native CSS Nesting processed via PostCSS. Preprocessors (SASS/LESS) are banned.
+
+**Point-to-Point Fluid Math**
+Use the custom PostCSS `fluid()` function to interpolate between any two static numeric tokens.
+`.user_card { padding: fluid(var(--space-4), var(--space-8)); }`
+
+**The Ampersand Ban**
+You MUST NEVER use the ampersand (`&`) to concatenate class names. It breaks Cmd+D text search.
+
+- ❌ Illegal: `&-title { ... }`
+- ✅ Legal: `.user_card-title { ... }`
+
+**Allowed Nesting (Max 1 Level Deep)**
+
+- State: `&[data-state="loading"] { ... }`
+- Pseudo: `&:hover { ... }`
+- Queries: `@container (min-width: 30rem) { ... }` (Nested inside the selector).
+
+### 6. JavaScript Integration
+
+BEAM treats Component CSS Variables (`--c-`) as a type-safe Component API. Pass style props as variables, not raw inline styles.
 
 ```tsx
-// Type-safe interface
 interface Props {
   themeColor?: string
 }
 
 export const UserProfile = (props: Props) => {
   return (
-    <article
-      class="user_profile"
-      style={{ '--card-bg': props.themeColor }} // Passing data, not CSS
-    >
+    <article class="user_profile" style={{ '--c-card-bg': props.themeColor } as React.CSSProperties}>
       ...
     </article>
   )
 }
 ```
 
----
+### 7. The Global Stylesheet Setup
 
-## 6. Global Primitives & Icons
-
-### UI Primitives (`primitives.css`)
-
-Global blocks that are too simple to be components.
-
-- **.divider**: Horizontal lines.
-- **.spinner**: Loading states.
-- **.screen_reader_only**: Accessibility helpers.
-
-### Icons
-
-**Do not use font classes.**
-Use **Unplugin Icons** (or equivalent) to import SVG icons as Components.
-
-```tsx
-import IconCheck from '~icons/lucide/check'
-;<div class="submit_button-icon_box">
-  <IconCheck />
-</div>
-```
-
----
-
-## 7. Setup & Files
-
-To implement BEAM, your global style folder should look like this:
+To implement BEAM, your global style folder must look exactly like this. DO NOT duplicate these functionalities in component CSS.
 
 ```text
 /src/styles
-  ├── reset.css        # Browser normalization
-  ├── theme.css        # Tier 1 & Tier 2 Variables (Colors, Typography)
-  ├── layout.css       # l_stack, l_cluster, l_grid, l_spacer
-  └── primitives.css   # .divider, .container, etc.
+  ├── reset.css        # Browser normalization (No classes)
+  ├── theme.css        # Foundations, Themes, & Semantics (Colors, Grid, Typography)
+  ├── layout.css       # .l_ classes (Spatial Geometry)
+  ├── utils.css        # .u_ classes (Zero-state contracts, behaviors)
+  ├── generics.css     # .g_ classes (Global visual UI assets)
+  └── fonts.css        # @font-face declarations (Optional)
 ```
 
-### Quick Reference Rules
-
-1.  **Block:** `snake_case`. One per file.
-2.  **Element:** `kebab-case`. Flat nesting only.
-3.  **State:** Use `data-attribute`.
-4.  **Layout:** Use `l_` primitives for external spacing.
-5.  **Colors:** Never use Hex codes in components. Use Semantic Variables (`var(--text-body)`).
-6.  **Overrides:** Never use `!important`. Pass a variable via JS instead.
+- **Utilities (`utils.css`):** Use `:where()` for The Zero State Contract to strip UA styles without specificity wars. `:where(.u_reset_button) { ... }`
+- **Generics (`generics.css`):** Global blocks that are too simple to be components. (e.g., `.g_divider`, `.g_spinner`, `.g_prose`).
 
 ---
 
-**This is BEAM.**
-Structured. Scalable. Native.
+### References (Docs Sitemap)
+
+- Component Identity
+- Editor Optimization
+- Semantic State
+- Zero-Guesswork Namespace
+- The Prefix Taxonomy
+- The Variable Radar System
+- **The 4-Layer Taxonomy**
+- **The Contextual Inverse Engine**
+- The BEAM Firewall
+- Core UI Chrome (The 16 Variables)
+- BEAM Extensions Protocol
+- Z-Index Strata
+- Motion Tokens & Physics
+- Law of Rhythm vs Law of Object
+- The Binary Rule
+- Fluid Point-to-Point Interpolation
+- The Zero State Contract
+- Generics (UI Assets)
+
+
