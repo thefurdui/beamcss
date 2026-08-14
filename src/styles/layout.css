@@ -1,0 +1,344 @@
+/* ========================================================================== */
+/* layout.css
+/* Spatial Geometry & Glue (l_)
+/* Macro-layout primitives (Stack, Cluster, Grid, Container).
+/* PROTECTED BY THE BINARY RULE: Never mix an l_ class and a Component 
+/* (snake_case) class on the same DOM element. Compose via wrapping.
+/* ========================================================================== */
+
+/* THE STACK (Vertical Rhythm) */
+.l_stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.l_stack[data-align='center'] {
+  align-items: center;
+}
+.l_stack[data-align='start'] {
+  align-items: flex-start;
+}
+.l_stack[data-align='end'] {
+  align-items: flex-end;
+}
+.l_stack[data-justify='center'] {
+  justify-content: center;
+}
+.l_stack[data-justify='start'] {
+  justify-content: flex-start;
+}
+.l_stack[data-justify='between'] {
+  justify-content: space-between;
+}
+.l_stack[data-justify='end'] {
+  justify-content: flex-end;
+}
+
+/* THE CLUSTER (Horizontal Rhythm) */
+.l_cluster {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.l_cluster[data-nowrap] {
+  flex-wrap: nowrap;
+}
+.l_cluster[data-align='start'] {
+  align-items: flex-start;
+}
+.l_cluster[data-align='end'] {
+  align-items: flex-end;
+}
+.l_cluster[data-justify='center'] {
+  justify-content: center;
+}
+.l_cluster[data-justify='between'] {
+  justify-content: space-between;
+}
+.l_cluster[data-justify='end'] {
+  justify-content: flex-end;
+}
+.l_cluster[data-reverse] {
+  flex-direction: row-reverse;
+}
+
+/* THE GRID (2D Layout) */
+.l_grid {
+  display: grid;
+}
+.l_grid[data-cols='2'] {
+  grid-template-columns: repeat(2, 1fr);
+}
+.l_grid[data-cols='3'] {
+  grid-template-columns: repeat(3, 1fr);
+}
+.l_grid[data-cols='4'] {
+  grid-template-columns: repeat(4, 1fr);
+}
+/* Sidebar Pattern: 20rem sidebar + fluid content */
+.l_grid[data-layout='sidebar'] {
+  grid-template-columns: fit-content(20rem) 1fr;
+}
+/* "Auto-Fit" Pattern */
+.l_grid[data-cols='auto'] {
+  /* Default minimum: 16rem. Override with inline style if needed. */
+  --min-col-width: 16rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min-col-width)), 1fr));
+}
+
+/* THE SPACER (Flex Grow) */
+.l_spacer {
+  flex-grow: 1;
+}
+
+/* SHARED GAPS (Consumes Numeric Space Variables from theme.css) */
+[class^='l_'][data-gap='1'] {
+  gap: var(--space-1);
+} /* 4px */
+[class^='l_'][data-gap='2'] {
+  gap: var(--space-2);
+} /* 8px */
+[class^='l_'][data-gap='3'] {
+  gap: var(--space-3);
+} /* 12px */
+[class^='l_'][data-gap='4'] {
+  gap: var(--space-4);
+} /* 16px */
+[class^='l_'][data-gap='5'] {
+  gap: var(--space-5);
+} /* 20px */
+[class^='l_'][data-gap='6'] {
+  gap: var(--space-6);
+} /* 24px */
+[class^='l_'][data-gap='8'] {
+  gap: var(--space-8);
+} /* 32px */
+[class^='l_'][data-gap='10'] {
+  gap: var(--space-10);
+} /* 40px */
+[class^='l_'][data-gap='12'] {
+  gap: var(--space-12);
+} /* 48px */
+[class^='l_'][data-gap='16'] {
+  gap: var(--space-16);
+} /* 64px */
+[class^='l_'][data-gap='20'] {
+  gap: var(--space-20);
+} /* 80px */
+[class^='l_'][data-gap='24'] {
+  gap: var(--space-24);
+} /* 96px */
+
+/* THE CONTAINER (Macro Page Layout) */
+.l_container {
+  width: 100%;
+  /* Default max-width for standard landing pages */
+  max-width: 32rem;
+  margin-inline: auto;
+
+  /* Responsive macro padding: 16px mobile → 32px desktop */
+  padding-inline: fluid(var(--space-4), var(--space-8));
+}
+
+/* Container Variants (Because a blog post isn't a dashboard) */
+.l_container[data-size='prose'] {
+  max-width: 65ch; /* Optimal reading width for text */
+}
+
+.l_container[data-size='fluid'] {
+  max-width: 100%; /* Just provides the padding and centering */
+}
+
+.l_container[data-size='fluid'] .l_container {
+  padding-inline: 0;
+}
+
+/* 
+   THE SWITCHER 
+   Default: Stack (Vertical)
+   Action: Switches to Cluster (Horizontal) when container > threshold
+*/
+.l_switcher {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column; /* Start as Stack */
+}
+
+.l_switcher > * {
+  /* Optional: Make children full width when stacked */
+  width: 100%;
+}
+
+*:has(> .l_switcher) {
+  container-type: inline-size;
+}
+
+/* Switch to Row when space permits */
+/* Aligned to Tailwind @tailwindcss/container-queries defaults */
+/* https://tailwindcss.com/docs/responsive-design#container-size-reference */
+
+@container (min-width: 16rem) {
+  /* 256px */
+  .l_switcher[data-threshold='3xs'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='3xs'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 18rem) {
+  /* 288px */
+  .l_switcher[data-threshold='2xs'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='2xs'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 20rem) {
+  /* 320px */
+  .l_switcher[data-threshold='xs'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='xs'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 24rem) {
+  /* 384px */
+  .l_switcher[data-threshold='sm'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='sm'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 28rem) {
+  /* 448px */
+  .l_switcher[data-threshold='md'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='md'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 32rem) {
+  /* 512px */
+  .l_switcher[data-threshold='lg'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='lg'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 36rem) {
+  /* 576px */
+  .l_switcher[data-threshold='xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 42rem) {
+  /* 672px */
+  .l_switcher[data-threshold='2xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='2xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 48rem) {
+  /* 768px */
+  .l_switcher[data-threshold='3xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='3xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 56rem) {
+  /* 896px */
+  .l_switcher[data-threshold='4xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='4xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 64rem) {
+  /* 1024px */
+  .l_switcher[data-threshold='5xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='5xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 72rem) {
+  /* 1152px */
+  .l_switcher[data-threshold='6xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='6xl'] > * {
+    width: auto;
+  }
+}
+
+@container (min-width: 80rem) {
+  /* 1280px */
+  .l_switcher[data-threshold='7xl'] {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .l_switcher[data-threshold='7xl'] > * {
+    width: auto;
+  }
+}
+
+/* --- BREAKPOINTS --- */
+/* Aligned to Tailwind @tailwindcss/container-queries defaults */
+/* https://tailwindcss.com/docs/responsive-design#overview */
+@custom-media --viewport-sm (min-width: 40rem);
+@custom-media --viewport-md (min-width: 48rem);
+@custom-media --viewport-lg (min-width: 64rem);
+@custom-media --viewport-xl (min-width: 80rem);
+@custom-media --viewport-2xl (min-width: 96rem);

@@ -1,0 +1,58 @@
+/* ========================================================================== */
+/* reset.css
+/* Browser Normalization
+/* Bare metal only. Strictly zero classes, IDs, or variables.
+/* Levels the playing field across user agents before BEAM takes over.
+/* ========================================================================== */
+
+/* Use a more-intuitive box-sizing model. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+}
+
+/* Accessible line-height and default app font */
+body {
+  line-height: var(--leading-base);
+  font-family: var(--font-body);
+}
+
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Remove built-in form typography styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Create a root stacking context */
+.root_layout {
+  isolation: isolate;
+}
