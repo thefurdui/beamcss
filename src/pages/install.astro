@@ -31,7 +31,7 @@ const AGENTS = [
 ]
 
 const description =
-  'Install BEAM CSS: download the five global stylesheets, add the postcss-beam-fluid plugin, and drop the agent skill into Cursor, Claude Code or Codex.'
+  'Install BEAM CSS: download the five required global stylesheets, add the postcss-beam-fluid plugin, and drop the agent skill into Cursor, Claude Code or Codex.'
 ---
 
 <RootLayout title="Install — BEAM CSS" description={description}>
@@ -60,7 +60,7 @@ const description =
           <SectionHead
             index="01"
             eyebrow="The global layer"
-            title="Five files, and no sixth."
+            title="Five files you need, and one you might."
             lede="These are the exact stylesheets this website is wearing. Not a sanitised example — the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
           />
 
@@ -100,8 +100,10 @@ done`}
               <CodeBlock
                 file="Import them in this order"
                 lang="css"
-                code={`/* Order is load-bearing: resets before tokens,
-   tokens before anything that reads them. */
+                code={`/* Order is load-bearing: faces before anything
+   asks for them, resets before tokens, tokens
+   before anything that reads them. */
+@import './fonts.css'; /* optional */
 @import './reset.css';
 @import './theme.css';
 @import './layout.css';
@@ -110,6 +112,17 @@ done`}
               />
             </div>
           </div>
+
+          <CalloutBlock tone="note" title="The optional sixth file">
+            <p>
+              <code>fonts.css</code> holds <code>@font-face</code> and nothing else. It is not in the download because this
+              site's copy imports Fontsource packages you probably do not want, and a stylesheet that fails to resolve is
+              a worse gift than no stylesheet. Write your own — declaring the files is your job, and deciding what they <em
+                >mean</em
+              > is <code>theme.css</code>'s job via <code>--typeface-*</code>.
+            </p>
+            <p>On system fonts, skip it entirely. Five files is a complete BEAM setup.</p>
+          </CalloutBlock>
 
           <CalloutBlock tone="note" title="Now make them yours">
             <p>

@@ -72,12 +72,12 @@ const ANCESTORS = [
       'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, and <code>:where()</code> pins resets to zero.',
     ],
     keeps: [
-      'Ordered global layers — the five stylesheets are ITCSS with the arguing removed.',
+      'Ordered global layers — the global stylesheets are ITCSS with the arguing removed.',
       'Resets must not compete with components.',
     ],
     drops: [
       'The specificity graph as a thing humans maintain by hand.',
-      'Seven layers. Five files, fixed names, no debate.',
+      'Seven layers you assemble yourself. BEAM ships six fixed filenames, one of them optional.',
     ],
   },
   {
@@ -395,7 +395,7 @@ const description =
 
           <CalloutBlock tone="note" title="BEAM coexists">
             <p>
-              Nothing about BEAM requires deleting your current stylesheet. The five global files are additive, the
+              Nothing about BEAM requires deleting your current stylesheet. The global files are additive, the
               <code>l_*</code> primitives do not collide with utility names, and a BEAM component sitting next to a legacy
               one is fine. Convert on contact.
             </p>

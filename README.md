@@ -3,9 +3,10 @@
 The website for **BEAM** — Block, Element, Attribute, Module. A strict, browser-native CSS
 architecture.
 
-The site is also the reference implementation. The five stylesheets in `src/styles/` are the ones
-offered for download on `/install`, copied at build time so the documentation and the artifact cannot
-drift apart.
+The site is also the reference implementation. The five required stylesheets in `src/styles/` are the
+ones offered for download on `/install`, copied at build time so the documentation and the artifact
+cannot drift apart. `fonts.css` — BEAM's optional sixth file — stays out of that download because it
+imports Fontsource packages a fresh project will not have.
 
 ## Stack
 
@@ -20,7 +21,7 @@ drift apart.
 
 ```text
 src/
-  styles/            The five global files. Also shipped as the starter kit.
+  styles/            The global layer: five required files plus fonts.css.
   components/        One block per component, CSS co-located.
   layouts/           RootLayout: head, theme boot, skip link, chrome.
   pages/             /, /spec, /lineage, /install — each with co-located CSS.

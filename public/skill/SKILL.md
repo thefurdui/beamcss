@@ -220,18 +220,24 @@ composition _between_ things.
 
 ## File Ownership
 
+Five required files, plus `fonts.css` as an optional sixth. Listed in import order:
+
 ```text
 src/styles/
+  fonts.css      # @font-face only — optional, omit on system fonts
   reset.css      # Browser normalisation; no classes
   theme.css      # Foundations, themes, semantic tokens
   layout.css     # l_* spatial primitives
   utils.css      # u_* zero-state utilities
   generics.css   # g_* global visual objects
-  fonts.css      # @font-face only (optional)
 ```
 
 Component and page CSS owns exactly one block plus its elements. Never redefine a reset, a token, a
 layout primitive or a generic from a component file.
+
+`fonts.css` contains `@font-face` blocks and nothing else — no tokens, no classes, no `@import` of
+another stylesheet in the layer. Conversely, never put `@font-face` in `theme.css`: that file names
+typefaces through `--typeface-*`, it does not load them.
 
 ## Implementation Workflow
 
