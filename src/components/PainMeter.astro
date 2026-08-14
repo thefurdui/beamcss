@@ -1,0 +1,44 @@
+---
+import './PainMeter.css'
+
+interface PainItem {
+  label: string
+  /** Percentage of respondents who named this, 0-100. */
+  share: number
+  note?: string
+  /** Highlights the row BEAM is built to answer. */
+  solved?: boolean
+}
+
+interface Props {
+  question: string
+  respondents: string
+  items: PainItem[]
+}
+
+const { question, respondents, items } = Astro.props
+---
+
+<figure class="pain_meter">
+  <div class="l_stack" data-gap="6">
+    <figcaption class="pain_meter-question">
+      <span class="g_eyebrow">{question}</span>
+      <span class="pain_meter-respondents">{respondents} respondents</span>
+    </figcaption>
+
+    <ul class="u_reset_list pain_meter-list">
+      {
+        items.map((item) => (
+          <li class="pain_meter-row" data-solved={item.solved ? 'true' : undefined} style={`--c-share: ${item.share}`}>
+            <span class="pain_meter-label">{item.label}</span>
+            <span class="pain_meter-track">
+              <span class="pain_meter-fill"></span>
+            </span>
+            <span class="pain_meter-value u_tabular">{item.share}%</span>
+            {item.note && <span class="pain_meter-note">{item.note}</span>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</figure>

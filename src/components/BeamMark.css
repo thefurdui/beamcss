@@ -1,0 +1,80 @@
+/* ==========================================================================
+/* BeamMark — the identity glyph.
+/* A prism: undifferentiated light enters, four ordered rays leave.
+/* ========================================================================== */
+
+.beam_mark {
+  /* Hover travels down as data, not as a descendant selector. */
+  --c-spectrum-play: paused;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-main);
+}
+
+.beam_mark:hover {
+  --c-spectrum-play: running;
+}
+
+.beam_mark-glyph {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.beam_mark-prism {
+  stroke-width: 2;
+}
+
+.beam_mark-source {
+  stroke: var(--ink-faint);
+}
+
+.beam_mark-spectrum {
+  stroke: var(--brand-primary);
+}
+
+.beam_mark-wordmark {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-none);
+}
+
+/* Hovering the mark walks the spectrum, one ray at a time. */
+@media (prefers-reduced-motion: no-preference) {
+  .beam_mark-ray {
+    animation: beam_mark_pulse 1.2s var(--ease-standard) infinite;
+    animation-play-state: var(--c-spectrum-play);
+    animation-delay: calc(0.1s * var(--c-ray-index, 0));
+  }
+
+  .beam_mark-ray:nth-child(2) {
+    --c-ray-index: 1;
+  }
+
+  .beam_mark-ray:nth-child(3) {
+    --c-ray-index: 2;
+  }
+
+  .beam_mark-ray:nth-child(4) {
+    --c-ray-index: 3;
+  }
+}
+
+@keyframes beam_mark_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}

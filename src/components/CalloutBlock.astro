@@ -1,0 +1,26 @@
+---
+import './CalloutBlock.css'
+
+interface Props {
+  tone?: 'note' | 'law' | 'warn'
+  title: string
+}
+
+const { tone = 'note', title } = Astro.props
+
+const MARKS = { note: '·', law: '§', warn: '!' } as const
+---
+
+<aside class="callout_block" data-tone={tone}>
+  <div class="l_cluster" data-gap="4" data-align="start" data-nowrap>
+    <span class="callout_block-mark" aria-hidden="true">{MARKS[tone]}</span>
+    <div class="callout_block-body">
+      <div class="l_stack" data-gap="2">
+        <h3 class="callout_block-title">{title}</h3>
+        <div class="g_prose callout_block-prose">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,32 @@
+---
+import './SpecBlock.css'
+
+interface Props {
+  id: string
+  index: string
+  title: string
+  lede?: string
+}
+
+const { id, index, title, lede } = Astro.props
+---
+
+<section class="spec_block" id={id}>
+  <div class="l_stack" data-gap="6">
+    <header class="spec_block-header">
+      <div class="l_stack" data-gap="3">
+        <div class="l_cluster" data-gap="3" data-align="baseline">
+          <span class="spec_block-index u_tabular">{index}</span>
+          <h2 class="spec_block-title u_balance">{title}</h2>
+        </div>
+        {lede && <p class="spec_block-lede u_pretty">{lede}</p>}
+      </div>
+    </header>
+
+    <div class="spec_block-body">
+      <div class="l_stack" data-gap="6">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

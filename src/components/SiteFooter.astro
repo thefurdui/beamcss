@@ -1,0 +1,86 @@
+---
+import { SITE } from '../lib/site'
+import BeamMark from './BeamMark.astro'
+import './SiteFooter.css'
+
+const columns = [
+  {
+    title: 'Read',
+    links: [
+      { href: '/', label: 'The argument' },
+      { href: '/spec/', label: 'The specification' },
+      { href: '/lineage/', label: 'Where it came from' },
+    ],
+  },
+  {
+    title: 'Use',
+    links: [
+      { href: '/install/', label: 'Install BEAM' },
+      { href: '/install/#skill', label: 'Agent skill' },
+      { href: '/install/#plugin', label: 'postcss-beam-fluid' },
+    ],
+  },
+  {
+    title: 'Elsewhere',
+    links: [
+      { href: SITE.repo, label: 'GitHub', external: true },
+      { href: SITE.npm, label: 'npm', external: true },
+      { href: SITE.authorUrl, label: SITE.author, external: true },
+    ],
+  },
+]
+---
+
+<footer class="site_footer">
+  <div class="l_container" data-size="page">
+    <div class="l_stack" data-gap="12">
+      <div class="l_switcher" data-threshold="4xl" data-gap="10" data-align="start">
+        <div class="site_footer-brand">
+          <div class="l_stack" data-gap="4" data-align="start">
+            <BeamMark />
+            <p class="site_footer-blurb">
+              A strict, browser-native CSS architecture. Four class types, one file per component, state in attributes,
+              colour behind a firewall.
+            </p>
+            <span class="g_tag">v{SITE.version}</span>
+          </div>
+        </div>
+
+        <div class="site_footer-columns">
+          <div class="l_grid" data-cols="auto" data-min="xs" data-gap="8">
+            {
+              columns.map((column) => (
+                <div class="l_stack" data-gap="3">
+                  <h2 class="g_eyebrow">{column.title}</h2>
+                  <ul class="u_reset_list site_footer-link_list">
+                    {column.links.map((link) => (
+                      <li>
+                        <a
+                          class="site_footer-link"
+                          href={link.href}
+                          rel={'external' in link && link.external ? 'noreferrer noopener' : undefined}
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <hr class="g_divider" />
+
+      <div class="l_cluster" data-gap="4" data-justify="between">
+        <p class="site_footer-fine_print">
+          Built with BEAM. Every class on this page is a Block, an Element, a Layout, a Utility, or a Generic. Go on,
+          open the inspector.
+        </p>
+        <p class="site_footer-fine_print">MIT licensed</p>
+      </div>
+    </div>
+  </div>
+</footer>

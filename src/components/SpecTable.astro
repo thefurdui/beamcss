@@ -1,0 +1,42 @@
+---
+import './SpecTable.css'
+
+interface Props {
+  head: string[]
+  /** Cell contents. HTML is allowed so entries can contain <code>. */
+  rows: string[][]
+  caption?: string
+  /** Widens the first column for token names. */
+  lead?: 'auto' | 'wide'
+}
+
+const { head, rows, caption, lead = 'auto' } = Astro.props
+---
+
+<div class="spec_table" data-lead={lead}>
+  <div class="spec_table-scroll" tabindex="0" role="region" aria-label={caption ?? head.join(', ')}>
+    <table class="spec_table-grid">
+      {caption && <caption class="spec_table-caption">{caption}</caption>}
+      <thead>
+        <tr>
+          {head.map((cell) => <th class="spec_table-head_cell" scope="col" set:html={cell} />)}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr>
+              {row.map((cell, position) =>
+                position === 0 ? (
+                  <th class="spec_table-row_head" scope="row" set:html={cell} />
+                ) : (
+                  <td class="spec_table-cell" set:html={cell} />
+                ),
+              )}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+/* ==========================================================================
+/* Install page — the three artifacts.
+/* ========================================================================== */
+
+.install_page {
+  padding-block: fluid(var(--space-10), var(--space-20));
+}
+
+.install_page-masthead {
+  max-width: 46rem;
+  padding-block-end: fluid(var(--space-8), var(--space-12));
+}
+
+.install_page-title {
+  color: var(--ink-main);
+  font-family: var(--font-heading);
+  font-size: fluid(var(--text-5xl), var(--text-7xl));
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 1;
+}
+
+.install_page-lede {
+  color: var(--ink-muted);
+  font-size: fluid(var(--text-lg), var(--text-xl));
+  line-height: var(--leading-relaxed);
+}
+
+.install_page-section {
+  padding-block-start: fluid(var(--space-16), var(--space-32));
+}
+
+.install_page-prose {
+  max-width: 44rem;
+}
+
+/* ---------------------------------------------------------- FILE PILLS */
+
+.install_page-file_link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  transition: var(--transition-colors);
+}
+
+.install_page-file_link:hover {
+  border-color: var(--border-focus);
+  background: var(--bg-surface-hover);
+  color: var(--ink-main);
+}
+
+.install_page-file_name {
+  white-space: nowrap;
+}
+
+.install_page-file_hint {
+  color: var(--action-primary);
+}
+
+/* ----------------------------------------------------------- ARTIFACTS */
+
+.install_page-artifact {
+  display: block;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.install_page-artifact:hover {
+  border-color: var(--border-focus);
+  background: var(--bg-surface-hover);
+}
+
+.install_page-artifact_name {
+  color: var(--ink-main);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.install_page-artifact_note {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.install_page-artifact_size {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}

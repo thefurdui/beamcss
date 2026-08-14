@@ -1,0 +1,88 @@
+/* ==========================================================================
+/* FluidLab — drag a viewport, watch the interpolation.
+/* ========================================================================== */
+
+.fluid_lab {
+  padding: fluid(var(--space-5), var(--space-8));
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+}
+
+.fluid_lab-stage {
+  display: flex;
+  align-items: center;
+  min-height: 7rem;
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-page);
+  overflow: hidden;
+}
+
+.fluid_lab-specimen {
+  color: var(--ink-main);
+  font-family: var(--font-heading);
+  font-size: var(--c-specimen-size, 1.5rem);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+}
+
+.fluid_lab-control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.fluid_lab-slider {
+  width: 100%;
+  height: 1.25rem;
+  accent-color: var(--action-primary);
+  cursor: ew-resize;
+}
+
+.fluid_lab-readout {
+  --c-readout-ink: var(--ink-muted);
+
+  color: var(--c-readout-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.fluid_lab-readout[data-fluid-state='interpolating'] {
+  --c-readout-ink: var(--action-primary);
+}
+
+.fluid_lab-flag {
+  color: color-mix(in srgb, var(--c-readout-ink), transparent 35%);
+}
+
+.fluid_lab-ledger {
+  display: grid;
+  gap: var(--space-3);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--border-base);
+}
+
+.fluid_lab-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+
+.fluid_lab-term {
+  min-width: 5rem;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.fluid_lab-definition {
+  color: var(--ink-main);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}

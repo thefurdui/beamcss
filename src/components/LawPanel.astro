@@ -1,0 +1,33 @@
+---
+import './LawPanel.css'
+
+interface Props {
+  letter: string
+  name: string
+  syntax: string
+  id?: string
+}
+
+const { letter, name, syntax, id } = Astro.props
+---
+
+<article class="law_panel" id={id}>
+  <div class="l_switcher" data-threshold="3xl" data-gap="8" data-align="start">
+    <div class="law_panel-heading">
+      <div class="l_stack" data-gap="4" data-align="start">
+        <span class="law_panel-letter" aria-hidden="true">{letter}</span>
+        <h3 class="law_panel-name">{name}</h3>
+        <code class="law_panel-syntax">{syntax}</code>
+      </div>
+    </div>
+
+    <div class="law_panel-body">
+      <div class="l_stack" data-gap="6">
+        <div class="g_prose">
+          <slot />
+        </div>
+        <slot name="code" />
+      </div>
+    </div>
+  </div>
+</article>

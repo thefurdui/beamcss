@@ -1,0 +1,35 @@
+/* ==========================================================================
+/* SpecBlock — one numbered clause of the specification.
+/* ========================================================================== */
+
+.spec_block {
+  padding-block-start: fluid(var(--space-10), var(--space-16));
+  scroll-margin-block-start: var(--space-20);
+}
+
+.spec_block-index {
+  color: var(--action-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.spec_block-title {
+  color: var(--ink-main);
+  font-family: var(--font-heading);
+  font-size: fluid(var(--text-3xl), var(--text-5xl));
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+
+.spec_block-lede {
+  max-width: 44rem;
+  color: var(--ink-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.spec_block-body {
+  max-width: 52rem;
+}

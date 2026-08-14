@@ -1,0 +1,104 @@
+---
+import './FluidLab.css'
+
+/*
+  Mirrors the real compile of:
+    font-size: fluid(var(--text-2xl), var(--text-6xl));
+  with the project defaults of 40rem / 80rem.
+*/
+const MIN_REM = 1.5
+const MAX_REM = 3.75
+const MIN_VIEWPORT_REM = 40
+const MAX_VIEWPORT_REM = 80
+
+const slope = (MAX_REM - MIN_REM) / (MAX_VIEWPORT_REM - MIN_VIEWPORT_REM)
+const intercept = MIN_REM - slope * MIN_VIEWPORT_REM
+const compiled = `clamp(${MIN_REM}rem, ${intercept}rem + ${slope * 100}vw, ${MAX_REM}rem)`
+---
+
+<div
+  class="fluid_lab"
+  data-beam-fluid-lab
+  data-min={MIN_REM}
+  data-max={MAX_REM}
+  data-slope={slope}
+  data-intercept={intercept}
+>
+  <div class="l_stack" data-gap="6">
+    <div class="fluid_lab-stage">
+      <p class="fluid_lab-specimen" data-fluid-specimen>Refraction</p>
+    </div>
+
+    <div class="l_stack" data-gap="3">
+      <label class="fluid_lab-control">
+        <span class="g_eyebrow">Viewport width</span>
+        <input
+          class="fluid_lab-slider"
+          type="range"
+          min="320"
+          max="1600"
+          step="4"
+          value="768"
+          data-fluid-slider
+          aria-label="Simulated viewport width in pixels"
+        />
+      </label>
+
+      <div class="l_cluster" data-gap="4" data-justify="between">
+        <span class="fluid_lab-readout u_tabular">
+          <span data-fluid-viewport>768</span>px viewport
+        </span>
+        <span class="fluid_lab-readout u_tabular" data-fluid-state="clamped">
+          <span data-fluid-size>1.5</span>rem <span class="fluid_lab-flag" data-fluid-flag>clamped at minimum</span>
+        </span>
+      </div>
+    </div>
+
+    <dl class="fluid_lab-ledger">
+      <div class="fluid_lab-entry">
+        <dt class="fluid_lab-term">You write</dt>
+        <dd class="fluid_lab-definition">fluid(var(--text-2xl), var(--text-6xl))</dd>
+      </div>
+      <div class="fluid_lab-entry">
+        <dt class="fluid_lab-term">You ship</dt>
+        <dd class="fluid_lab-definition">{compiled}</dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<script>
+  for (const lab of document.querySelectorAll<HTMLElement>('[data-beam-fluid-lab]')) {
+    const slider = lab.querySelector<HTMLInputElement>('[data-fluid-slider]')
+    const specimen = lab.querySelector<HTMLElement>('[data-fluid-specimen]')
+    const viewportOut = lab.querySelector<HTMLElement>('[data-fluid-viewport]')
+    const sizeOut = lab.querySelector<HTMLElement>('[data-fluid-size]')
+    const flag = lab.querySelector<HTMLElement>('[data-fluid-flag]')
+    const readout = lab.querySelector<HTMLElement>('[data-fluid-state]')
+
+    if (!slider || !specimen || !viewportOut || !sizeOut || !flag || !readout) continue
+
+    const min = Number(lab.dataset.min)
+    const max = Number(lab.dataset.max)
+    const slope = Number(lab.dataset.slope)
+    const intercept = Number(lab.dataset.intercept)
+
+    const render = () => {
+      const viewportPx = Number(slider.value)
+      const preferred = intercept + slope * (viewportPx / 16)
+      const size = Math.min(max, Math.max(min, preferred))
+
+      const state = preferred <= min ? 'floor' : preferred >= max ? 'ceiling' : 'interpolating'
+
+      specimen.style.setProperty('--c-specimen-size', `${size}rem`)
+      viewportOut.textContent = String(viewportPx)
+      sizeOut.textContent = size.toFixed(3).replace(/\.?0+$/, '')
+      readout.dataset.fluidState = state
+      flag.textContent =
+        state === 'floor' ? 'holding the floor' : state === 'ceiling' ? 'holding the ceiling' : 'interpolating'
+    }
+
+    slider.addEventListener('input', render)
+    render()
+  }
+</script>

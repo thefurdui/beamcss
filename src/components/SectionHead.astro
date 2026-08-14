@@ -1,0 +1,26 @@
+---
+import './SectionHead.css'
+
+interface Props {
+  index?: string
+  eyebrow: string
+  title: string
+  lede?: string
+  align?: 'start' | 'center'
+}
+
+const { index, eyebrow, title, lede, align = 'start' } = Astro.props
+---
+
+<header class="section_head" data-align={align}>
+  <div class="l_stack" data-gap="5" data-align={align}>
+    <div class="l_cluster" data-gap="3">
+      {index && <span class="section_head-index">{index}</span>}
+      <span class="g_eyebrow">{eyebrow}</span>
+    </div>
+
+      <h2 class="section_head-title u_balance">{title}</h2>
+
+    {lede && <p class="section_head-lede u_pretty">{lede}</p>}
+  </div>
+</header>

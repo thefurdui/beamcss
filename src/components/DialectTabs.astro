@@ -1,0 +1,101 @@
+---
+import CodeBlock from './CodeBlock.astro'
+import type { Language } from '../lib/highlight'
+import './DialectTabs.css'
+
+interface Sample {
+  file: string
+  lang: Language
+  code: string
+}
+
+interface Dialect {
+  id: string
+  label: string
+  verdict: string
+  samples: Sample[]
+}
+
+interface Props {
+  dialects: Dialect[]
+  label: string
+}
+
+const { dialects, label } = Astro.props
+---
+
+<div class="dialect_tabs" data-beam-tabs>
+  <div class="l_stack" data-gap="5">
+    <div class="dialect_tabs-rail" role="tablist" aria-label={label}>
+      {
+        dialects.map((dialect, position) => (
+          <button
+            class="u_reset_button dialect_tabs-tab"
+            type="button"
+            role="tab"
+            id={`tab-${dialect.id}`}
+            aria-controls={`panel-${dialect.id}`}
+            aria-selected={position === 0 ? 'true' : 'false'}
+            tabindex={position === 0 ? 0 : -1}
+          >
+            {dialect.label}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      dialects.map((dialect, position) => (
+        <div
+          class="dialect_tabs-panel"
+          role="tabpanel"
+          id={`panel-${dialect.id}`}
+          aria-labelledby={`tab-${dialect.id}`}
+          hidden={position !== 0}
+          tabindex="0"
+        >
+          <div class="l_stack" data-gap="4">
+            <p class="dialect_tabs-verdict" set:html={dialect.verdict} />
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              {dialect.samples.map((sample) => (
+                <CodeBlock file={sample.file} lang={sample.lang} code={sample.code} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const group of document.querySelectorAll<HTMLElement>('[data-beam-tabs]')) {
+    const tabs = [...group.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+
+    const select = (next: number, focus = true) => {
+      tabs.forEach((tab, position) => {
+        const active = position === next
+        const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '')
+
+        tab.setAttribute('aria-selected', String(active))
+        tab.tabIndex = active ? 0 : -1
+        if (panel) panel.hidden = !active
+      })
+
+      if (focus) tabs[next].focus()
+    }
+
+    tabs.forEach((tab, position) => {
+      tab.addEventListener('click', () => select(position, false))
+
+      tab.addEventListener('keydown', (event) => {
+        const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0
+
+        if (step === 0) return
+
+        event.preventDefault()
+        select((position + step + tabs.length) % tabs.length)
+      })
+    })
+  }
+</script>

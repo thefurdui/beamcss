@@ -1,0 +1,32 @@
+---
+import { highlight, LANGUAGE_LABELS, type Language } from '../lib/highlight'
+import './CodeBlock.css'
+
+interface Props {
+  /** Filename shown in the chrome. Falls back to the language label. */
+  file?: string
+  lang?: Language
+  /** Marks the sample as something not to copy. */
+  tone?: 'neutral' | 'wrong' | 'right'
+  /** Hides the chrome bar entirely for inline snippets. */
+  bare?: boolean
+  code: string
+}
+
+const { file, lang = 'text', tone = 'neutral', bare = false, code } = Astro.props
+
+const label = file ?? LANGUAGE_LABELS[lang]
+const html = highlight(code, lang)
+---
+
+<figure class="code_block" data-tone={tone}>
+  {
+    !bare && (
+      <figcaption class="code_block-chrome">
+        <span class="code_block-file">{label}</span>
+        <span class="code_block-lang">{LANGUAGE_LABELS[lang]}</span>
+      </figcaption>
+    )
+  }
+  <pre class="code_block-pre"><code class="code_block-code" set:html={html} /></pre>
+</figure>

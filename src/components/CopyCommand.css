@@ -1,0 +1,79 @@
+/* ==========================================================================
+/* CopyCommand — a shell line you can take with you.
+/* ========================================================================== */
+
+.copy_command {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.copy_command-label {
+  padding-inline-start: var(--space-1);
+}
+
+.copy_command-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+}
+
+.copy_command-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  color: var(--ink-main);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+}
+
+.copy_command-prompt {
+  color: var(--action-primary);
+  user-select: none;
+}
+
+.copy_command-button {
+  --c-idle-display: inline;
+  --c-done-display: none;
+
+  flex-shrink: 0;
+  margin-inline-start: auto;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  transition: var(--transition-colors);
+}
+
+.copy_command-button:hover {
+  background: var(--bg-surface-hover);
+  color: var(--ink-main);
+}
+
+.copy_command-button[data-state='done'] {
+  --c-idle-display: none;
+  --c-done-display: inline;
+
+  color: var(--intent-success-strong);
+}
+
+.copy_command-button_text[data-when='idle'] {
+  display: var(--c-idle-display);
+}
+
+.copy_command-button_text[data-when='done'] {
+  display: var(--c-done-display);
+}

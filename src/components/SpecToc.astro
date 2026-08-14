@@ -1,0 +1,35 @@
+---
+import './SpecToc.css'
+
+interface Entry {
+  id: string
+  label: string
+}
+
+interface Props {
+  groups: { title: string; entries: Entry[] }[]
+}
+
+const { groups } = Astro.props
+---
+
+<nav class="spec_toc" aria-label="On this page">
+  <div class="l_stack" data-gap="6">
+    {
+      groups.map((group) => (
+        <div class="l_stack" data-gap="3">
+          <h2 class="g_eyebrow">{group.title}</h2>
+          <ul class="u_reset_list spec_toc-list">
+            {group.entries.map((entry) => (
+              <li>
+                <a class="spec_toc-link" href={`#${entry.id}`}>
+                  {entry.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</nav>

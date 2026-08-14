@@ -1,0 +1,119 @@
+/*
+ * BEAM CSS — utils.css
+ * https://beamcss.dev/spec/
+ *
+ * Part of the five-file global layer. Import in this order:
+ *   reset.css → theme.css → layout.css → utils.css → generics.css
+ *
+ * theme.css and layout.css contain fluid() calls. Install the build-time
+ * plugin, or replace each call with a static value:
+ *   npm install --save-dev postcss-beam-fluid
+ */
+
+/* ========================================================================== */
+/* utils.css
+/* The Utility Layer (u_)
+/* Strictly single-purpose, layout-agnostic, and state-free.
+/* ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* ZERO STATE CONTRACTS
+/* Sets specificity to 0,0,0 with :where() pseudo-class.
+/* Strips UA styles but yields immediately to component classes.
+/* -------------------------------------------------------------------------- */
+
+:where(.u_reset_button) {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+:where(.u_reset_list) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+:where(.u_reset_input) {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ATOMIC BEHAVIORS
+/* -------------------------------------------------------------------------- */
+
+/* Accessibility: Hide visually, but keep for screen readers */
+.u_sr_only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Typography: Force single-line truncation with ellipsis */
+.u_truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.u_nowrap {
+  white-space: nowrap;
+}
+
+/* Typography: Even out ragged line lengths in short headings */
+.u_balance {
+  text-wrap: balance;
+}
+
+/* Typography: Prevent orphans in running prose */
+.u_pretty {
+  text-wrap: pretty;
+}
+
+/* Typography: Lock digit widths so tables and counters stop shifting */
+.u_tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * PWA TEXT SELECTION OPT-IN
+ * Because the PWA root is unselectable, apply this to specific
+ * user-generated content, IDs, or prose blocks that MUST be copyable.
+ */
+.u_selectable {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default; /* Restores context menu for copying */
+  cursor: text;
+}
+
+/* Interaction Physics: The Trigger
+ * Applies the mathematical scale/dim effect.
+ * IMPORTANT: You MUST apply `transition: var(--transition-pressable)`
+ * to your component for this to animate smoothly.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .u_pressable:active:not([aria-disabled='true']):not([data-loading='true']) {
+    transform: scale(0.97);
+    filter: brightness(0.95);
+  }
+}

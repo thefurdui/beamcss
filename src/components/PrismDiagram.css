@@ -1,0 +1,151 @@
+/* ==========================================================================
+/* PrismDiagram — the hero graphic.
+/* Every path is normalised with pathLength="1", so one dashoffset keyframe
+/* draws lines of wildly different lengths at the same rate.
+/* ========================================================================== */
+
+.prism_diagram {
+  width: 100%;
+}
+
+.prism_diagram-canvas {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.prism_diagram-source {
+  stroke: var(--ink-faint);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+}
+
+/* The travelling highlight that keeps the diagram alive after it has drawn. */
+.prism_diagram-pulse {
+  stroke: var(--ink-main);
+  stroke-width: 1.5;
+  stroke-dasharray: 0.08 0.92;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.prism_diagram-prism {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  fill: color-mix(in srgb, var(--brand-primary), transparent 96%);
+}
+
+.prism_diagram-spectrum {
+  stroke: var(--brand-primary);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--brand-glow), transparent 55%));
+}
+
+.prism_diagram-ray {
+  stroke-dasharray: 1;
+  opacity: var(--c-ray-opacity, 1);
+}
+
+.prism_diagram-ray:nth-child(1) {
+  --c-ray-opacity: 1;
+  --c-ray-index: 0;
+}
+
+.prism_diagram-ray:nth-child(2) {
+  --c-ray-opacity: 0.8;
+  --c-ray-index: 1;
+}
+
+.prism_diagram-ray:nth-child(3) {
+  --c-ray-opacity: 0.62;
+  --c-ray-index: 2;
+}
+
+.prism_diagram-ray:nth-child(4) {
+  --c-ray-opacity: 0.44;
+  --c-ray-index: 3;
+}
+
+.prism_diagram-node {
+  fill: var(--brand-primary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* CHOREOGRAPHY
+/* Bespoke timings, per the motion rules: named animations may use magic
+/* numbers, transitions may not.
+/* -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .prism_diagram-source {
+    animation: prism_draw 0.7s var(--ease-enter) both;
+  }
+
+  .prism_diagram-prism {
+    animation: prism_draw 0.9s var(--ease-standard) 0.45s both;
+  }
+
+  .prism_diagram-ray {
+    animation: prism_draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(1s + 0.12s * var(--c-ray-index, 0));
+  }
+
+  .prism_diagram-node {
+    animation: prism_ignite 0.5s var(--ease-spring) 0.95s both;
+  }
+
+  .prism_diagram-pulse {
+    animation: prism_travel 4.5s linear 2.4s infinite;
+  }
+}
+
+/* Reduced motion: no draw-on, no travelling pulse, just the finished diagram. */
+@media (prefers-reduced-motion: reduce) {
+  .prism_diagram-source,
+  .prism_diagram-prism,
+  .prism_diagram-ray {
+    stroke-dasharray: none;
+  }
+}
+
+@keyframes prism_draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes prism_ignite {
+  from {
+    r: 0;
+    opacity: 0;
+  }
+  to {
+    r: 2.5;
+    opacity: 1;
+  }
+}
+
+@keyframes prism_travel {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  55% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  70%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,33 @@
+/* ==========================================================================
+/* ThemeToggle — flips the one attribute the whole switchboard listens to.
+/* ========================================================================== */
+
+.theme_toggle {
+  /* Hover travels down as data, not as a descendant selector. */
+  --c-dial-turn: 0deg;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  color: var(--ink-muted);
+  transition:
+    var(--transition-colors),
+    var(--transition-pressable);
+}
+
+.theme_toggle:hover {
+  --c-dial-turn: 180deg;
+
+  background: var(--bg-surface-hover);
+  color: var(--ink-main);
+}
+
+.theme_toggle-dial {
+  width: 1.125rem;
+  height: 1.125rem;
+  transform: rotate(var(--c-dial-turn));
+  transition: transform var(--duration-base) var(--ease-spring);
+}

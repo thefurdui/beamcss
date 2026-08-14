@@ -1,0 +1,46 @@
+/* ==========================================================================
+/* Spec page — the normative reference.
+/* ========================================================================== */
+
+.spec_page {
+  padding-block: fluid(var(--space-10), var(--space-20));
+}
+
+.spec_page-masthead {
+  max-width: 44rem;
+  padding-block-end: fluid(var(--space-10), var(--space-16));
+}
+
+.spec_page-title {
+  color: var(--ink-main);
+  font-family: var(--font-heading);
+  font-size: fluid(var(--text-5xl), var(--text-8xl));
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 0.95;
+}
+
+.spec_page-lede {
+  color: var(--ink-muted);
+  font-size: fluid(var(--text-lg), var(--text-xl));
+  line-height: var(--leading-relaxed);
+}
+
+.spec_page-aside {
+  min-width: 0;
+}
+
+.spec_page-content {
+  min-width: 0;
+}
+
+/*
+ * Below the sidebar breakpoint the grid collapses to one column and the index
+ * becomes a plain list above the content.
+ */
+@media (max-width: 63.999rem) {
+  .spec_page-aside {
+    padding-block-end: var(--space-8);
+    border-block-end: 1px solid var(--border-base);
+  }
+}

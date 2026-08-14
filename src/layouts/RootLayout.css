@@ -1,0 +1,60 @@
+/* ==========================================================================
+/* RootLayout — the document shell.
+/* Owns the page canvas, the root stacking context, and the background texture.
+/* ========================================================================== */
+
+.root_layout {
+  --c-grid-size: 4rem;
+  --c-grid-line: color-mix(in srgb, var(--ink-main), transparent 94%);
+
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-page);
+  color: var(--ink-main);
+  font-size: var(--text-base);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * A hairline engineering grid, faded out toward the bottom.
+ * Fixed and inert: it never intercepts a pointer and never scrolls.
+ */
+.root_layout-texture {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sink);
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--c-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--c-grid-line) 1px, transparent 1px);
+  background-size: var(--c-grid-size) var(--c-grid-size);
+  mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, black, transparent 75%);
+}
+
+.root_layout-main {
+  flex-grow: 1;
+}
+
+.root_layout-skip_link {
+  position: fixed;
+  /* Mass: an offset from the viewport edge, not shared rhythm. */
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: var(--z-max);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-overlay);
+  color: var(--ink-main);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-far);
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) var(--ease-enter);
+}
+
+.root_layout-skip_link:focus-visible {
+  transform: translateY(0);
+}

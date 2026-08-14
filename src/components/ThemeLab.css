@@ -1,0 +1,66 @@
+/* ==========================================================================
+/* ThemeLab — the Contextual Inverse Engine, live.
+/* Nothing below reads a theme name. Every colour is a Layer 3 semantic, which
+/* is why three different contexts need zero extra CSS.
+/* ========================================================================== */
+
+.theme_lab-cell {
+  padding: var(--space-4);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  background: var(--bg-page);
+}
+
+.theme_lab-card {
+  padding: var(--space-5);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-close);
+}
+
+.theme_lab-card_title {
+  color: var(--ink-main);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+}
+
+.theme_lab-card_body {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+.theme_lab-chip {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-full);
+  background: var(--action-neutral);
+  color: var(--ink-main);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-base);
+}
+
+.theme_lab-chip[data-emphasis='strong'] {
+  border-color: transparent;
+  background: var(--action-primary);
+  color: var(--ink-inverse);
+}
+
+.theme_lab-label {
+  display: block;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.theme_lab-hint {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}

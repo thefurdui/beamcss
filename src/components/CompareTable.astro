@@ -1,0 +1,62 @@
+---
+import './CompareTable.css'
+
+type Verdict = 'good' | 'mixed' | 'bad'
+
+interface Cell {
+  text: string
+  verdict: Verdict
+}
+
+interface Row {
+  concern: string
+  cells: Cell[]
+}
+
+interface Props {
+  caption: string
+  columns: string[]
+  rows: Row[]
+}
+
+const { caption, columns, rows } = Astro.props
+---
+
+<div class="compare_table">
+  <div class="compare_table-scroll" tabindex="0" role="region" aria-label={caption}>
+    <table class="compare_table-grid">
+      <caption class="u_sr_only">{caption}</caption>
+      <thead>
+        <tr>
+          <th class="compare_table-corner" scope="col">Concern</th>
+          {
+            columns.map((column) => (
+              <th class="compare_table-column_head" scope="col" data-self={column === 'BEAM' ? 'true' : undefined}>
+                {column}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr class="compare_table-row">
+              <th class="compare_table-row_head" scope="row">
+                {row.concern}
+              </th>
+              {row.cells.map((cell, position) => (
+                <td
+                  class="compare_table-cell"
+                  data-verdict={cell.verdict}
+                  data-self={columns[position] === 'BEAM' ? 'true' : undefined}
+                  set:html={cell.text}
+                />
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+---
+import './CopyCommand.css'
+
+interface Props {
+  command: string
+  label?: string
+}
+
+const { command, label } = Astro.props
+---
+
+<div class="copy_command">
+  {label && <span class="g_eyebrow copy_command-label">{label}</span>}
+  <div class="copy_command-row">
+    <code class="copy_command-text">
+      <span class="copy_command-prompt" aria-hidden="true">$</span>
+      {command}
+    </code>
+    <button
+      class="u_reset_button copy_command-button"
+      type="button"
+      data-beam-copy={command}
+      data-state="idle"
+      aria-label={`Copy: ${command}`}
+    >
+      <span class="copy_command-button_text" data-when="idle">Copy</span>
+      <span class="copy_command-button_text" data-when="done">Copied</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-beam-copy]')) {
+    let reset: ReturnType<typeof setTimeout>
+
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.beamCopy ?? '')
+        button.dataset.state = 'done'
+        clearTimeout(reset)
+        reset = setTimeout(() => {
+          button.dataset.state = 'idle'
+        }, 1600)
+      } catch {
+        button.dataset.state = 'idle'
+      }
+    })
+  }
+</script>

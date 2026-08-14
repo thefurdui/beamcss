@@ -1,0 +1,44 @@
+---
+import './ThemeLab.css'
+
+const columns = [
+  { theme: 'light', label: 'data-theme="light"', note: 'Pinned light' },
+  { theme: 'dark', label: 'data-theme="dark"', note: 'Pinned dark' },
+  { theme: 'inverse', label: 'data-theme="inverse"', note: 'Opposite of the page' },
+] as const
+---
+
+<div class="theme_lab">
+  <div class="l_stack" data-gap="5">
+    <div class="l_grid" data-cols="auto" data-min="sm" data-gap="4">
+      {
+        columns.map((column) => (
+          <div class="theme_lab-cell" data-theme={column.theme}>
+            <div class="l_stack" data-gap="4">
+              <article class="theme_lab-card">
+                <div class="l_stack" data-gap="3">
+                  <h3 class="theme_lab-card_title">Refraction</h3>
+                  <p class="theme_lab-card_body">
+                    Same markup. Same stylesheet. Not one conditional colour in the component.
+                  </p>
+                  <div class="l_cluster" data-gap="2">
+                    <span class="theme_lab-chip" data-emphasis="strong">
+                      Primary
+                    </span>
+                    <span class="theme_lab-chip">Neutral</span>
+                  </div>
+                </div>
+              </article>
+              <code class="theme_lab-label">{column.label}</code>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="theme_lab-hint">
+      Flip the theme in the header. The first two columns hold their ground; the third flips with you, because
+      <code class="g_code">inverse</code> resolves against whatever context it lands in.
+    </p>
+  </div>
+</div>

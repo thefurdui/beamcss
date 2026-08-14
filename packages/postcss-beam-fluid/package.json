@@ -1,0 +1,39 @@
+{
+  "name": "postcss-beam-fluid",
+  "version": "1.0.0",
+  "description": "PostCSS plugin for BEAM CSS: point-to-point fluid interpolation between two design tokens via fluid(min, max).",
+  "keywords": [
+    "postcss",
+    "postcss-plugin",
+    "beam",
+    "beamcss",
+    "fluid",
+    "clamp",
+    "responsive",
+    "design-tokens",
+    "css-variables"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6"
+  }
+}

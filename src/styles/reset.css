@@ -1,7 +1,7 @@
 /* ========================================================================== */
 /* reset.css
 /* Browser Normalization
-/* Bare metal only. Strictly zero classes, IDs, or variables.
+/* Bare metal only. Strictly zero classes or IDs.
 /* Levels the playing field across user agents before BEAM takes over.
 /* ========================================================================== */
 
@@ -17,10 +17,19 @@
   margin: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 /* Accessible line-height and default app font */
 body {
+  min-height: 100dvh;
   line-height: var(--leading-base);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Improve media defaults */
@@ -39,6 +48,22 @@ button,
 textarea,
 select {
   font: inherit;
+  color: inherit;
+}
+
+/*
+ * Headings carry no inherited size or weight.
+ * In BEAM the component owns typography, so an <h3> promoted to <h2> for
+ * document outline reasons must never change how it looks.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 /* Avoid text overflows */
@@ -52,7 +77,27 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* Create a root stacking context */
-.root_layout {
-  isolation: isolate;
+/* Links are unstyled nouns until a component says otherwise. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* A visible, consistent keyboard ring everywhere, without opting out of :focus. */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-primary), transparent 75%);
+}
+
+/*
+ * Fragment targets clear the sticky header.
+ * Uses [id] rather than a class because it must hold for every anchorable node
+ * in the document, including ones no component styles.
+ */
+[id] {
+  scroll-margin-block-start: var(--space-24);
 }

@@ -1,8 +1,8 @@
 /* ========================================================================== */
 /* layout.css
 /* Spatial Geometry & Glue (l_)
-/* Macro-layout primitives (Stack, Cluster, Grid, Container).
-/* PROTECTED BY THE BINARY RULE: Never mix an l_ class and a Component 
+/* Macro-layout primitives (Stack, Cluster, Grid, Container, Switcher).
+/* PROTECTED BY THE BINARY RULE: Never mix an l_ class and a Component
 /* (snake_case) class on the same DOM element. Compose via wrapping.
 /* ========================================================================== */
 
@@ -20,6 +20,9 @@
 }
 .l_stack[data-align='end'] {
   align-items: flex-end;
+}
+.l_stack[data-align='stretch'] {
+  align-items: stretch;
 }
 .l_stack[data-justify='center'] {
   justify-content: center;
@@ -50,6 +53,12 @@
 .l_cluster[data-align='end'] {
   align-items: flex-end;
 }
+.l_cluster[data-align='baseline'] {
+  align-items: baseline;
+}
+.l_cluster[data-justify='start'] {
+  justify-content: flex-start;
+}
 .l_cluster[data-justify='center'] {
   justify-content: center;
 }
@@ -68,23 +77,47 @@
   display: grid;
 }
 .l_grid[data-cols='2'] {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .l_grid[data-cols='3'] {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .l_grid[data-cols='4'] {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-/* Sidebar Pattern: 20rem sidebar + fluid content */
+/*
+   Sidebar Pattern: stacked on small screens, 20rem rail + fluid content once
+   there is room. A sidebar that refuses to collapse is not a layout primitive,
+   it is a bug with an attribute.
+*/
 .l_grid[data-layout='sidebar'] {
-  grid-template-columns: fit-content(20rem) 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
-/* "Auto-Fit" Pattern */
+
+@media (min-width: 64rem) {
+  .l_grid[data-layout='sidebar'] {
+    grid-template-columns: fit-content(20rem) minmax(0, 1fr);
+  }
+}
+/* "Auto-Fit" Pattern. Tune the floor with data-min instead of an inline style. */
 .l_grid[data-cols='auto'] {
-  /* Default minimum: 16rem. Override with inline style if needed. */
-  --min-col-width: 16rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min-col-width)), 1fr));
+  --c-min-col-width: 16rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--c-min-col-width)), 1fr));
+}
+.l_grid[data-min='xs'] {
+  --c-min-col-width: 10rem;
+}
+.l_grid[data-min='sm'] {
+  --c-min-col-width: 13rem;
+}
+.l_grid[data-min='md'] {
+  --c-min-col-width: 16rem;
+}
+.l_grid[data-min='lg'] {
+  --c-min-col-width: 20rem;
+}
+.l_grid[data-min='xl'] {
+  --c-min-col-width: 26rem;
 }
 
 /* THE SPACER (Flex Grow) */
@@ -92,43 +125,67 @@
   flex-grow: 1;
 }
 
-/* SHARED GAPS (Consumes Numeric Space Variables from theme.css) */
-[class^='l_'][data-gap='1'] {
-  gap: var(--space-1);
-} /* 4px */
-[class^='l_'][data-gap='2'] {
-  gap: var(--space-2);
-} /* 8px */
-[class^='l_'][data-gap='3'] {
-  gap: var(--space-3);
-} /* 12px */
-[class^='l_'][data-gap='4'] {
-  gap: var(--space-4);
-} /* 16px */
-[class^='l_'][data-gap='5'] {
-  gap: var(--space-5);
-} /* 20px */
-[class^='l_'][data-gap='6'] {
-  gap: var(--space-6);
-} /* 24px */
-[class^='l_'][data-gap='8'] {
-  gap: var(--space-8);
-} /* 32px */
-[class^='l_'][data-gap='10'] {
-  gap: var(--space-10);
-} /* 40px */
-[class^='l_'][data-gap='12'] {
-  gap: var(--space-12);
-} /* 48px */
-[class^='l_'][data-gap='16'] {
-  gap: var(--space-16);
-} /* 64px */
-[class^='l_'][data-gap='20'] {
-  gap: var(--space-20);
-} /* 80px */
-[class^='l_'][data-gap='24'] {
-  gap: var(--space-24);
-} /* 96px */
+/*
+   SHARED GAPS (Consumes Numeric Space Variables from theme.css)
+   Matched with :is() rather than [class^='l_'] so a primitive still receives
+   its gap when a utility class is listed first in the class attribute.
+*/
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='0'] {
+  gap: 0;
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='1'] {
+  gap: var(--space-1); /* 4px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='2'] {
+  gap: var(--space-2); /* 8px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='3'] {
+  gap: var(--space-3); /* 12px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='4'] {
+  gap: var(--space-4); /* 16px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='5'] {
+  gap: var(--space-5); /* 20px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='6'] {
+  gap: var(--space-6); /* 24px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='8'] {
+  gap: var(--space-8); /* 32px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='10'] {
+  gap: var(--space-10); /* 40px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='12'] {
+  gap: var(--space-12); /* 48px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='16'] {
+  gap: var(--space-16); /* 64px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='20'] {
+  gap: var(--space-20); /* 80px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='24'] {
+  gap: var(--space-24); /* 96px */
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='32'] {
+  gap: var(--space-32); /* 128px */
+}
+
+/* Fluid gaps: interpolate between two steps of the same scale. */
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='fluid-sm'] {
+  gap: fluid(var(--space-4), var(--space-6));
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='fluid-md'] {
+  gap: fluid(var(--space-6), var(--space-10));
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='fluid-lg'] {
+  gap: fluid(var(--space-10), var(--space-20));
+}
+:is(.l_stack, .l_cluster, .l_grid, .l_switcher)[data-gap='fluid-xl'] {
+  gap: fluid(var(--space-16), var(--space-32));
+}
 
 /* THE CONTAINER (Macro Page Layout) */
 .l_container {
@@ -146,6 +203,18 @@
   max-width: 65ch; /* Optimal reading width for text */
 }
 
+.l_container[data-size='narrow'] {
+  max-width: 44rem;
+}
+
+.l_container[data-size='page'] {
+  max-width: 72rem;
+}
+
+.l_container[data-size='wide'] {
+  max-width: 88rem;
+}
+
 .l_container[data-size='fluid'] {
   max-width: 100%; /* Just provides the padding and centering */
 }
@@ -154,10 +223,14 @@
   padding-inline: 0;
 }
 
-/* 
-   THE SWITCHER 
+/*
+   THE SWITCHER
    Default: Stack (Vertical)
    Action: Switches to Cluster (Horizontal) when container > threshold
+
+   Cross-axis alignment is owned exclusively by data-align, in both directions.
+   The direction switch below must not touch align-items, or an author's
+   data-align would lose a specificity tie to a rule they cannot see.
 */
 .l_switcher {
   container-type: inline-size;
@@ -165,13 +238,29 @@
   flex-direction: column; /* Start as Stack */
 }
 
-.l_switcher > * {
-  /* Optional: Make children full width when stacked */
+:where(.l_switcher) > * {
+  /* Full width while stacked; released to content width once switched. */
   width: 100%;
 }
 
 *:has(> .l_switcher) {
   container-type: inline-size;
+}
+
+.l_switcher[data-align='start'] {
+  align-items: flex-start;
+}
+
+.l_switcher[data-align='center'] {
+  align-items: center;
+}
+
+.l_switcher[data-align='end'] {
+  align-items: flex-end;
+}
+
+.l_switcher[data-align='stretch'] {
+  align-items: stretch;
 }
 
 /* Switch to Row when space permits */
@@ -182,10 +271,9 @@
   /* 256px */
   .l_switcher[data-threshold='3xs'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='3xs'] > * {
+  :where(.l_switcher[data-threshold='3xs']) > * {
     width: auto;
   }
 }
@@ -194,10 +282,9 @@
   /* 288px */
   .l_switcher[data-threshold='2xs'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='2xs'] > * {
+  :where(.l_switcher[data-threshold='2xs']) > * {
     width: auto;
   }
 }
@@ -206,10 +293,9 @@
   /* 320px */
   .l_switcher[data-threshold='xs'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='xs'] > * {
+  :where(.l_switcher[data-threshold='xs']) > * {
     width: auto;
   }
 }
@@ -218,10 +304,9 @@
   /* 384px */
   .l_switcher[data-threshold='sm'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='sm'] > * {
+  :where(.l_switcher[data-threshold='sm']) > * {
     width: auto;
   }
 }
@@ -230,10 +315,9 @@
   /* 448px */
   .l_switcher[data-threshold='md'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='md'] > * {
+  :where(.l_switcher[data-threshold='md']) > * {
     width: auto;
   }
 }
@@ -242,10 +326,9 @@
   /* 512px */
   .l_switcher[data-threshold='lg'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='lg'] > * {
+  :where(.l_switcher[data-threshold='lg']) > * {
     width: auto;
   }
 }
@@ -254,10 +337,9 @@
   /* 576px */
   .l_switcher[data-threshold='xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='xl'] > * {
+  :where(.l_switcher[data-threshold='xl']) > * {
     width: auto;
   }
 }
@@ -266,10 +348,9 @@
   /* 672px */
   .l_switcher[data-threshold='2xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='2xl'] > * {
+  :where(.l_switcher[data-threshold='2xl']) > * {
     width: auto;
   }
 }
@@ -278,10 +359,9 @@
   /* 768px */
   .l_switcher[data-threshold='3xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='3xl'] > * {
+  :where(.l_switcher[data-threshold='3xl']) > * {
     width: auto;
   }
 }
@@ -290,10 +370,9 @@
   /* 896px */
   .l_switcher[data-threshold='4xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='4xl'] > * {
+  :where(.l_switcher[data-threshold='4xl']) > * {
     width: auto;
   }
 }
@@ -302,10 +381,9 @@
   /* 1024px */
   .l_switcher[data-threshold='5xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='5xl'] > * {
+  :where(.l_switcher[data-threshold='5xl']) > * {
     width: auto;
   }
 }
@@ -314,10 +392,9 @@
   /* 1152px */
   .l_switcher[data-threshold='6xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='6xl'] > * {
+  :where(.l_switcher[data-threshold='6xl']) > * {
     width: auto;
   }
 }
@@ -326,19 +403,22 @@
   /* 1280px */
   .l_switcher[data-threshold='7xl'] {
     flex-direction: row;
-    align-items: center;
   }
 
-  .l_switcher[data-threshold='7xl'] > * {
+  :where(.l_switcher[data-threshold='7xl']) > * {
     width: auto;
   }
 }
 
-/* --- BREAKPOINTS --- */
-/* Aligned to Tailwind @tailwindcss/container-queries defaults */
-/* https://tailwindcss.com/docs/responsive-design#overview */
-@custom-media --viewport-sm (min-width: 40rem);
-@custom-media --viewport-md (min-width: 48rem);
-@custom-media --viewport-lg (min-width: 64rem);
-@custom-media --viewport-xl (min-width: 80rem);
-@custom-media --viewport-2xl (min-width: 96rem);
+/* --------------------------------------------------------------------------
+   VIEWPORT BREAKPOINTS
+   Container queries handle component-level responsiveness, so viewport media
+   queries are reserved for genuinely page-level shifts (chrome, navigation).
+   Written literally rather than via @custom-media, which no browser ships.
+
+     sm   40rem   640px
+     md   48rem   768px
+     lg   64rem   1024px
+     xl   80rem   1280px
+     2xl  96rem   1536px
+   -------------------------------------------------------------------------- */

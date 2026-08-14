@@ -1,0 +1,54 @@
+---
+import './LineageCard.css'
+
+interface Props {
+  year: string
+  name: string
+  author: string
+  body: string[]
+  keeps: string[]
+  drops: string[]
+}
+
+const { year, name, author, body, keeps, drops } = Astro.props
+---
+
+<article class="lineage_card">
+  <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
+    <header class="lineage_card-marker">
+      <div class="l_stack" data-gap="2" data-align="start">
+        <span class="lineage_card-year u_tabular">{year}</span>
+        <h2 class="lineage_card-name">{name}</h2>
+        <span class="lineage_card-author">{author}</span>
+      </div>
+    </header>
+
+    <div class="lineage_card-detail">
+      <div class="l_stack" data-gap="6">
+        <div class="g_prose lineage_card-prose">
+          {body.map((paragraph) => <p set:html={paragraph} />)}
+        </div>
+
+        <div class="l_grid" data-cols="auto" data-min="sm" data-gap="4">
+          <div class="lineage_card-verdict" data-kind="keeps">
+            <div class="l_stack" data-gap="3">
+              <h3 class="g_eyebrow" data-tone="accent">BEAM keeps</h3>
+              <ul class="u_reset_list lineage_card-list">
+                {keeps.map((item) => <li class="lineage_card-item" set:html={item} />)}
+              </ul>
+            </div>
+          </div>
+
+          <div class="lineage_card-verdict" data-kind="drops">
+            <div class="l_stack" data-gap="3">
+              <h3 class="g_eyebrow">BEAM drops</h3>
+              <ul class="u_reset_list lineage_card-list">
+                {drops.map((item) => <li class="lineage_card-item" set:html={item} />)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

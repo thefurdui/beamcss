@@ -1,0 +1,44 @@
+---
+import './ThemeToggle.css'
+---
+
+{/*
+  One glyph, no theme-conditional CSS.
+  A sun/moon swap would force this component to branch on an ancestor's theme
+  attribute, which is exactly the duplication the switchboard exists to kill.
+  A contrast dial means the same markup is correct in every theme.
+*/}
+<button
+  class="u_reset_button theme_toggle"
+  type="button"
+  title="Toggle colour theme"
+  aria-label="Toggle colour theme"
+  data-beam-theme-toggle
+>
+  <span class="g_icon_box theme_toggle-dial">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle class="theme_toggle-ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"
+      ></circle>
+      <path class="theme_toggle-fill" d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor"></path>
+    </svg>
+  </span>
+</button>
+
+<script>
+  const STORAGE_KEY = 'beam-theme'
+
+  for (const toggle of document.querySelectorAll('[data-beam-theme-toggle]')) {
+    toggle.addEventListener('click', () => {
+      const root = document.documentElement
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
+
+      root.dataset.theme = next
+
+      try {
+        localStorage.setItem(STORAGE_KEY, next)
+      } catch {
+        /* Storage is a nicety, not a requirement. */
+      }
+    })
+  }
+</script>

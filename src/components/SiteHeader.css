@@ -1,0 +1,72 @@
+/* ==========================================================================
+/* SiteHeader — sticky page chrome.
+/* ========================================================================== */
+
+.site_header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-pinned);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--border-base);
+  background: color-mix(in srgb, var(--bg-page), transparent 20%);
+  backdrop-filter: blur(var(--blur-base));
+}
+
+.site_header-home {
+  border-radius: var(--radius-sm);
+  transition: var(--transition-colors);
+}
+
+.site_header-home:hover {
+  color: var(--action-primary);
+}
+
+.site_header-nav_list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.site_header-nav_link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-tight);
+  transition: var(--transition-colors);
+}
+
+.site_header-nav_link:hover {
+  background: var(--bg-surface-hover);
+  color: var(--ink-main);
+}
+
+.site_header-nav_link[aria-current='page'] {
+  color: var(--ink-main);
+  font-weight: var(--weight-medium);
+}
+
+.site_header-icon_link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  color: var(--ink-muted);
+  transition: var(--transition-colors);
+}
+
+.site_header-icon_link:hover {
+  background: var(--bg-surface-hover);
+  color: var(--ink-main);
+}
+
+/* Reclaim the wordmark's width before the nav has to wrap. */
+@media (max-width: 30rem) {
+  .site_header-nav_link {
+    padding-inline: var(--space-2);
+  }
+}
