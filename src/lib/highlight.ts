@@ -10,7 +10,7 @@
  * like every other component.
  */
 
-export type Language = 'css' | 'html' | 'tsx' | 'bash' | 'json' | 'text'
+export type Language = 'css' | 'html' | 'tsx' | 'lua' | 'bash' | 'json' | 'text'
 
 type TokenName =
   | 'comment'
@@ -534,6 +534,128 @@ function tokenizeBash(source: string): Piece[] {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Lua
+/* -------------------------------------------------------------------------- */
+
+const LUA_KEYWORDS = new Set([
+  'and',
+  'break',
+  'do',
+  'else',
+  'elseif',
+  'end',
+  'false',
+  'for',
+  'function',
+  'goto',
+  'if',
+  'in',
+  'local',
+  'nil',
+  'not',
+  'or',
+  'repeat',
+  'return',
+  'then',
+  'true',
+  'until',
+  'while',
+])
+
+const LUA_BLOCK_COMMENT = /--\[\[[\s\S]*?(?:\]\]|$)/y
+const LUA_LINE_COMMENT = /--[^\n]*/y
+const LUA_LONG_STRING = /\[\[[\s\S]*?(?:\]\]|$)/y
+const LUA_IDENTIFIER = /[_a-zA-Z]\w*/y
+const LUA_PUNCTUATION = /\.\.\.?|[-+*/%^#=~<>(){}[\];:,.]/y
+
+/**
+ * True when the last meaningful token was `.` or `:`, meaning the identifier
+ * about to be read is a table field. Walking emitted pieces rather than raw
+ * characters keeps a comment ending in a full stop from looking like access.
+ */
+function followsAccessor(pieces: Piece[]): boolean {
+  for (let index = pieces.length - 1; index >= 0; index -= 1) {
+    const piece = pieces[index]
+    if (piece.token === null && /^\s+$/.test(piece.text)) continue
+
+    return piece.token === 'punctuation' && (piece.text === '.' || piece.text === ':')
+  }
+
+  return false
+}
+
+function tokenizeLua(source: string): Piece[] {
+  const pieces: Piece[] = []
+  let index = 0
+
+  const push = (token: TokenName | null, text: string) => {
+    pieces.push({ token, text })
+    index += text.length
+  }
+
+  while (index < source.length) {
+    const space = at(WHITESPACE, source, index)
+    if (space) {
+      push(null, space)
+      continue
+    }
+
+    /* Block comments first: `--[[` also matches the line comment pattern. */
+    const blockComment = at(LUA_BLOCK_COMMENT, source, index)
+    if (blockComment) {
+      push('comment', blockComment)
+      continue
+    }
+
+    const lineComment = at(LUA_LINE_COMMENT, source, index)
+    if (lineComment) {
+      push('comment', lineComment)
+      continue
+    }
+
+    const longString = at(LUA_LONG_STRING, source, index)
+    if (longString) {
+      push('string', longString)
+      continue
+    }
+
+    const quoted = at(QUOTED, source, index)
+    if (quoted) {
+      push('string', quoted)
+      continue
+    }
+
+    const number = at(NUMBER, source, index)
+    if (number) {
+      push('number', number)
+      continue
+    }
+
+    const identifier = at(LUA_IDENTIFIER, source, index)
+    if (identifier) {
+      const isCall = /^\s*[({"']/.test(source.slice(index + identifier.length))
+
+      if (LUA_KEYWORDS.has(identifier)) push('keyword', identifier)
+      else if (isCall) push('function', identifier)
+      else if (followsAccessor(pieces)) push('property', identifier)
+      else push('variable', identifier)
+
+      continue
+    }
+
+    const punctuation = at(LUA_PUNCTUATION, source, index)
+    if (punctuation) {
+      push('punctuation', punctuation)
+      continue
+    }
+
+    push(null, source[index])
+  }
+
+  return pieces
+}
+
+/* -------------------------------------------------------------------------- */
 /* JSON
 /* -------------------------------------------------------------------------- */
 
@@ -592,6 +714,7 @@ const TOKENIZERS: Record<Language, (source: string) => Piece[]> = {
   css: tokenizeCss,
   html: tokenizeHtml,
   tsx: tokenizeTsx,
+  lua: tokenizeLua,
   bash: tokenizeBash,
   json: tokenizeJson,
   text: (source) => [{ token: null, text: source }],
@@ -626,6 +749,7 @@ export const LANGUAGE_LABELS: Record<Language, string> = {
   css: 'CSS',
   html: 'HTML',
   tsx: 'TSX',
+  lua: 'Lua',
   bash: 'Shell',
   json: 'JSON',
   text: 'Text',

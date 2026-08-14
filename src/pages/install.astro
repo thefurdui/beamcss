@@ -307,25 +307,38 @@ done`}
             index="04"
             eyebrow="Ergonomics"
             title="Two minutes of editor setup."
-            lede="BEAM's naming was chosen for the cursor, so it is worth checking that your cursor agrees. Both of these are already correct by default in most setups — verify rather than assume."
+            lede="One setting matters, and it is the same idea in every editor: a BEAM class is one word, so teach your editor that the hyphen is part of it. Neovim gets this right in CSS and wrong everywhere your markup lives."
           />
 
           <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
             <CodeBlock
-              file="Neovim — snake_case is one word"
-              lang="tsx"
-              code={`-- Underscore must be a keyword character, or
--- diw eats half of user_card. Default is correct
--- for css/scss; check your ftplugin overrides.
-vim.opt.iskeyword:append('_')`}
+              file="init.lua — Neovim"
+              lang="lua"
+              code={`-- The css ftplugin already does iskeyword+=-, so
+-- user_card-main_title is one word in a stylesheet.
+-- The filetypes holding your markup do not, and
+-- there * grabs 'user_card' and drops the element.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'html',
+    'scss',
+    'javascriptreact',
+    'typescriptreact',
+    'svelte',
+    'vue',
+  },
+  callback = function()
+    vim.opt_local.iskeyword:append('-')
+  end,
+})`}
             />
 
             <CodeBlock
-              file="VS Code — same idea"
+              file="settings.json — VS Code"
               lang="json"
               code={JSON.stringify(
                 {
-                  'editor.wordSeparators': String.raw`\`~!@#%^&*()=+[{]}\\|;:'\",.<>/?`,
+                  'editor.wordSeparators': String.raw`\`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?`,
                 },
                 null,
                 2,
@@ -335,15 +348,32 @@ vim.opt.iskeyword:append('_')`}
 
           <div class="g_prose install_page-prose">
             <p>
-              Note what is <em>not</em> in that separator list: the underscore. Remove it and
-              <code>double-click</code> selects <code>user_card</code> whole, while
-              <code>user_card-main_title</code> splits cleanly at the hyphen into the block and the part. That is not an accident
-              of the naming scheme — it is the reason for it.
+              Both edits do one thing: remove the hyphen from the set of characters that end a word. The underscore is
+              already absent from both defaults, so <code>user_card</code> was never the problem —
+              <code>user_card-main_title</code> was, because the seam between block and element is exactly where your editor
+              wanted to stop.
             </p>
             <p>
-              For linting, BEAM does not ship a Stylelint plugin, because the two rules worth automating are already
-              expressible with <code>selector-class-pattern</code> and a grep in CI. Anything more elaborate tends to fight
-              you.
+              Fix it and the full name becomes a single object you can grab. Double-click selects all of it.
+              <span class="g_kbd">*</span> in Neovim searches for all of it, which is what makes
+              <span class="g_kbd">c</span><span class="g_kbd">g</span><span class="g_kbd">n</span> then
+              <span class="g_kbd">.</span> a complete rename, and
+              <span class="g_kbd">⌘</span><span class="g_kbd">D</span> a complete multi-select. This is the entire payoff
+              of the no-concatenation rule, and it is the only editor setting BEAM will ever ask you for.
+            </p>
+            <p>
+              There is a real trade-off here, so choose rather than drift. Leave the hyphen as a separator and
+              <code>ciw</code> renames the block or the element independently, which is lovely — but
+              <span class="g_kbd">*</span> can then only ever search one half, and a whole-name search costs a visual selection
+              or typing it out. Add the hyphen and you get the reverse. Whole-name operations are the ones you do across files,
+              so that is the default worth having, but a codebase that renames elements constantly might reasonably decide
+              otherwise.
+            </p>
+            <p>
+              Beyond that, there is nothing to install. The names are plain strings, so <code>:grep</code>, the quickfix
+              list, Telescope, <code>rg</code> and your language server's symbol list all already understand your stylesheet.
+              For linting, BEAM does not ship a Stylelint plugin, because the rules worth automating are expressible with
+              <code>selector-class-pattern</code> and a grep in CI. Anything more elaborate tends to fight you.
             </p>
           </div>
 

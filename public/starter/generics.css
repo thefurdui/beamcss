@@ -145,6 +145,12 @@
   white-space: nowrap;
 }
 
+/* Keystroke runs read as one gesture, so the gap is the generic's job rather
+   than a whitespace text node the formatter is free to move. */
+.g_kbd + .g_kbd {
+  margin-inline-start: var(--space-1);
+}
+
 /* INLINE CODE */
 .g_code {
   padding: var(--space-1);

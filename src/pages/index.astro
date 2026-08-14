@@ -576,8 +576,19 @@ const description =
               characters.
             </p>
             <p>
-              In the second version, one search finds the markup and the style. <span class="g_kbd">⌘</span>
-              <span class="g_kbd">D</span> selects every occurrence. Rename it once, correctly, everywhere.
+              In the second version, one search finds the markup and the style, and every tool that operates on strings
+              suddenly works. In VS Code or Cursor, <span class="g_kbd">⌘</span><span class="g_kbd">D</span> keeps selecting
+              occurrences until you have all of them. In Neovim, <span class="g_kbd">*</span> puts the name in the search
+              register, <span class="g_kbd">c</span><span class="g_kbd">g</span><span class="g_kbd">n</span>
+              changes the next match, and <span class="g_kbd">.</span> repeats that for the rest of the file. Rename it once,
+              correctly, everywhere.
+            </p>
+            <p>
+              Notice that the Vim flow is not a shortcut for the same idea — it is the idea. <span class="g_kbd">*</span
+              >
+              searches for the word under the cursor, so it cannot search for a name the file does not contain. Write
+              <code>&amp;-title</code> and the keystroke has nothing to grab. The convention is what makes the tooling possible,
+              in either editor.
             </p>
             <p>
               BEM understood half of this and then made the names longer.
