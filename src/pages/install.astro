@@ -11,7 +11,10 @@ import './install.css'
 
 const STARTER_FILES = [
   { file: 'reset.css', owns: 'Browser normalisation. No classes, by rule.' },
-  { file: 'theme.css', owns: 'All three token layers. The only file that knows a colour.' },
+  {
+    file: 'theme.css',
+    owns: 'All three token layers. The only file that knows a colour.',
+  },
   { file: 'layout.css', owns: 'The l_* primitives.' },
   { file: 'utils.css', owns: 'The u_* zero-state behaviours.' },
   { file: 'generics.css', owns: 'The g_* global visual objects.' },
@@ -21,7 +24,10 @@ const AGENTS = [
   { tool: 'Cursor', path: '.cursor/skills/beam-css/' },
   { tool: 'Claude Code', path: '.claude/skills/beam-css/' },
   { tool: 'Codex', path: '.codex/skills/beam-css/' },
-  { tool: 'Anything else', path: 'Point it at the three files, or paste SKILL.md into your system prompt.' },
+  {
+    tool: 'Anything else',
+    path: 'Point it at the three files, or paste SKILL.md into your system prompt.',
+  },
 ]
 
 const description =
@@ -71,7 +77,9 @@ const description =
                   STARTER_FILES.map((entry) => (
                     <a class="install_page-file_link" href={`/starter/${entry.file}`} download>
                       <span class="install_page-file_name">{entry.file}</span>
-                      <span class="install_page-file_hint" aria-hidden="true">↓</span>
+                      <span class="install_page-file_hint" aria-hidden="true">
+                        ↓
+                      </span>
                     </a>
                   ))
                 }
@@ -105,10 +113,10 @@ done`}
 
           <CalloutBlock tone="note" title="Now make them yours">
             <p>
-              The palette in <code>theme.css</code> is a warm neutral stone ramp and a refracted vermilion. Yours will
-              be different. Change the <code>--palette-*</code> values, adjust the two
-              <code>--theme-*</code> blocks to taste, and leave Layer 3 alone — that is the contract every component
-              you ever write is going to read.
+              The palette in <code>theme.css</code> is a warm neutral stone ramp and a refracted vermilion. Yours will be
+              different. Change the <code>--palette-*</code> values, adjust the two
+              <code>--theme-*</code> blocks to taste, and leave Layer 3 alone — that is the contract every component you ever
+              write is going to read.
             </p>
           </CalloutBlock>
         </div>
@@ -202,11 +210,7 @@ export default {
             </p>
           </div>
 
-          <CodeBlock
-            file="Trust, then verify"
-            lang="bash"
-            code={`pnpm build && ! rg -q "fluid\\(" dist`}
-          />
+          <CodeBlock file="Trust, then verify" lang="bash" code={`pnpm build && ! rg -q "fluid\\(" dist`} />
         </div>
       </section>
 
@@ -246,7 +250,8 @@ export default {
                 <div class="l_cluster" data-gap="4" data-justify="between" data-nowrap>
                   <span class="l_stack" data-gap="1">
                     <span class="install_page-artifact_name">examples.md</span>
-                    <span class="install_page-artifact_note">Compliant components, plus the wrong version of each.</span>
+                    <span class="install_page-artifact_note">Compliant components, plus the wrong version of each.</span
+                    >
                   </span>
                   <span class="install_page-artifact_size u_tabular">9 KB</span>
                 </div>
@@ -275,8 +280,8 @@ done`}
           <CalloutBlock tone="law" title="Commit the skill">
             <p>
               Put it in the repository, not in your home directory. A convention that only exists on one machine is a
-              preference; a convention in <code>.cursor/skills/</code> is something every contributor and every agent
-              inherits on clone. This is the cheapest architectural decision on the page.
+              preference; a convention in <code>.cursor/skills/</code> is something every contributor and every agent inherits
+              on clone. This is the cheapest architectural decision on the page.
             </p>
           </CalloutBlock>
         </div>
@@ -305,9 +310,13 @@ vim.opt.iskeyword:append('_')`}
             <CodeBlock
               file="VS Code — same idea"
               lang="json"
-              code={`{
-  "editor.wordSeparators": "\`~!@#%^&*()=+[{]}\\\\|;:'\\",.<>/?"
-}`}
+              code={JSON.stringify(
+                {
+                  'editor.wordSeparators': String.raw`\`~!@#%^&*()=+[{]}\\|;:'\",.<>/?`,
+                },
+                null,
+                2,
+              )}
             />
           </div>
 
@@ -315,13 +324,13 @@ vim.opt.iskeyword:append('_')`}
             <p>
               Note what is <em>not</em> in that separator list: the underscore. Remove it and
               <code>double-click</code> selects <code>user_card</code> whole, while
-              <code>user_card-main_title</code> splits cleanly at the hyphen into the block and the part. That is not an
-              accident of the naming scheme — it is the reason for it.
+              <code>user_card-main_title</code> splits cleanly at the hyphen into the block and the part. That is not an accident
+              of the naming scheme — it is the reason for it.
             </p>
             <p>
               For linting, BEAM does not ship a Stylelint plugin, because the two rules worth automating are already
-              expressible with <code>selector-class-pattern</code> and a grep in CI. Anything more elaborate tends to
-              fight you.
+              expressible with <code>selector-class-pattern</code> and a grep in CI. Anything more elaborate tends to fight
+              you.
             </p>
           </div>
 
@@ -408,9 +417,9 @@ vim.opt.iskeyword:append('_')`}
 
           <div class="g_prose install_page-prose">
             <p>
-              Read it once more and notice what is absent. No colour. No breakpoint. No <code>dark:</code> anything. No
-              margin reaching out to push a neighbour around. The card describes itself and nothing else, which is why
-              you can drop it into a sidebar, a modal or an inverted footer and it will simply behave.
+              Read it once more and notice what is absent. No colour. No breakpoint. No <code>dark:</code> anything. No margin
+              reaching out to push a neighbour around. The card describes itself and nothing else, which is why you can drop
+              it into a sidebar, a modal or an inverted footer and it will simply behave.
             </p>
           </div>
 

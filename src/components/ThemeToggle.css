@@ -13,9 +13,7 @@
   height: 2.25rem;
   border-radius: var(--radius-sm);
   color: var(--ink-muted);
-  transition:
-    var(--transition-colors),
-    var(--transition-pressable);
+  transition: var(--transition-colors), var(--transition-pressable);
 }
 
 .theme_toggle:hover {

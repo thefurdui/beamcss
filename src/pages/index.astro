@@ -15,10 +15,30 @@ import { SITE, SURVEY } from '../lib/site'
 import './index.css'
 
 const TETRAD = [
-  { letter: 'B', name: 'Block', syntax: '.user_card', gloss: 'Identity, in snake_case.' },
-  { letter: 'E', name: 'Element', syntax: '.user_card-title', gloss: 'A part, joined by one hyphen.' },
-  { letter: 'A', name: 'Attribute', syntax: '[data-state]', gloss: 'State, as data.' },
-  { letter: 'M', name: 'Module', syntax: 'UserCard.css', gloss: 'One block, one file.' },
+  {
+    letter: 'B',
+    name: 'Block',
+    syntax: '.user_card',
+    gloss: 'Identity, in snake_case.',
+  },
+  {
+    letter: 'E',
+    name: 'Element',
+    syntax: '.user_card-title',
+    gloss: 'A part, joined by one hyphen.',
+  },
+  {
+    letter: 'A',
+    name: 'Attribute',
+    syntax: '[data-state]',
+    gloss: 'State, as data.',
+  },
+  {
+    letter: 'M',
+    name: 'Module',
+    syntax: 'UserCard.css',
+    gloss: 'One block, one file.',
+  },
 ]
 
 const LINEAGE = [
@@ -217,8 +237,8 @@ const description =
 
             <p class="hero_section-lede u_pretty">
               BEAM is a strict, browser-native CSS architecture. Four kinds of class. One file per component. State in
-              <code class="g_code">data-*</code> attributes. Colour behind a firewall. No preprocessor, no runtime, and
-              no <code class="g_code">div</code> wearing fourteen classes.
+              <code class="g_code">data-*</code> attributes. Colour behind a firewall. No preprocessor, no runtime, and no
+              <code class="g_code">div</code> wearing fourteen classes.
             </p>
 
             <div class="l_cluster" data-gap="3">
@@ -275,10 +295,23 @@ const description =
             question="Top pain points — colour"
             respondents="573"
             items={[
-              { label: 'Accessibility', share: 27, note: 'Contrast, by hand, forever.' },
-              { label: 'Theming', share: 24, note: 'Named cause: duplicated theme definitions.', solved: true },
+              {
+                label: 'Accessibility',
+                share: 27,
+                note: 'Contrast, by hand, forever.',
+              },
+              {
+                label: 'Theming',
+                share: 24,
+                note: 'Named cause: duplicated theme definitions.',
+                solved: true,
+              },
               { label: 'Cognitive overload', share: 17 },
-              { label: 'Custom properties', share: 7, note: 'The tool meant to fix the above.' },
+              {
+                label: 'Custom properties',
+                share: 7,
+                note: 'The tool meant to fix the above.',
+              },
             ]}
           />
 
@@ -286,9 +319,19 @@ const description =
             question="Top pain points — CSS in general"
             respondents="398"
             items={[
-              { label: 'Cognitive overload', share: 22, note: 'The number one complaint, overall.', solved: true },
+              {
+                label: 'Cognitive overload',
+                share: 22,
+                note: 'The number one complaint, overall.',
+                solved: true,
+              },
               { label: 'Tooling', share: 13 },
-              { label: 'Maintenance', share: 9, note: 'Up 18 places from last year.', solved: true },
+              {
+                label: 'Maintenance',
+                share: 9,
+                note: 'Up 18 places from last year.',
+                solved: true,
+              },
               { label: 'Cascade management', share: 5 },
             ]}
           />
@@ -300,7 +343,9 @@ const description =
               “Supporting light/dark mode is difficult; developers struggle to work with system preferences, manual
               theme selection, and duplicated theme definitions.”
             </p>
-            <p class="home_section-quote_text">“Managing colour palettes, tokens, variables and design-system scales is hard.”</p>
+            <p class="home_section-quote_text">
+              “Managing colour palettes, tokens, variables and design-system scales is hard.”
+            </p>
             <footer class="home_section-quote_source">
               State of CSS {SURVEY.year} — colour pain points, summarised from free-form answers
             </footer>
@@ -312,9 +357,8 @@ const description =
               Nobody said custom properties don't work. Nobody is waiting on a browser.
             </p>
             <p>
-              <strong>Duplicated theme definitions.</strong> Palettes and scales that are “hard to manage.” Cognitive
-              overload as the single most-mentioned pain point in the entire survey. Maintenance climbing eighteen
-              places in one year.
+              <strong>Duplicated theme definitions.</strong> Palettes and scales that are “hard to manage.” Cognitive overload
+              as the single most-mentioned pain point in the entire survey. Maintenance climbing eighteen places in one year.
             </p>
             <p>
               None of that is a language problem. All of it is an architecture problem — the part of this you actually
@@ -393,12 +437,13 @@ const description =
             </p>
             <p>
               That reads like taste until the design changes. The moment “white” becomes “white in light mode and
-              stone-900 in dark mode,” a class called <code>bg-white</code> is a lie — and it is a lie in forty files at
-              once. <code>.user_card</code> was never going to be wrong, because a card is still a card.
+              stone-900 in dark mode,” a class called <code>bg-white</code> is a lie — and it is a lie in forty files at once.
+              <code>.user_card</code> was never going to be wrong, because a card is still a card.
             </p>
             <p>
-              Why snake_case? Because <code>user_card</code> is one double-click and <code>user-card</code> is two. You
-              will select this token thousands of times over the life of the project. Optimise for the thousands.
+              Why snake_case? Because <code>user_card</code> is one double-click and
+              <code>user-card</code> is two. You will select this token thousands of times over the life of the project. Optimise
+              for the thousands.
             </p>
             <CodeBlock
               slot="code"
@@ -440,15 +485,14 @@ const description =
 
           <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
             <p>
-              This is the rule people argue about, and it is the one that pays off fastest.
+              This is the rule people argue about, and it is the one that pays off fastest.&nbsp;
               <strong>State is not a class. State is data.</strong>
             </p>
             <p>
               Count the dialects you have shipped: <code>is-active</code>, <code>--active</code>,
               <code>.button--loading</code>, <code>.open</code>, <code>.js-open</code>. Five codebases, five
               conventions, and not one of them can be queried, typed, or read at a glance in devtools. Meanwhile the
-              platform has had a first-class answer since 2008, and <code>aria-*</code> has been using it the whole
-              time.
+              platform has had a first-class answer since 2008, and <code>aria-*</code> has been using it the whole time.
             </p>
             <p>
               You also stop concatenating class strings in JavaScript, which is where roughly half of all UI state bugs
@@ -471,8 +515,8 @@ const description =
             </p>
             <p>
               Delete the component, delete the stylesheet. No orphan rules. No “is anything still using this?” No
-              four-thousand-line <code>components.css</code> that everyone appends to and nobody removes from. The file
-              tree becomes an index of your UI.
+              four-thousand-line <code>components.css</code> that everyone appends to and nobody removes from. The file tree
+              becomes an index of your UI.
             </p>
             <CodeBlock
               slot="code"
@@ -525,10 +569,11 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              In the first version, the string <code>user_card-title</code> exists nowhere. Not in the stylesheet, not
-              in your editor's search, not in <code>rg</code>, not in your language server's index, not in the context
-              window of whatever model you asked to rename it. You created a class that is invisible to every tool you
-              own, and you saved eleven characters.
+              In the first version, the string <code>user_card-title</code> exists nowhere. Not in the stylesheet, not in
+              your editor's search, not in
+              <code>rg</code>, not in your language server's index, not in the context window of whatever model you
+              asked to rename it. You created a class that is invisible to every tool you own, and you saved eleven
+              characters.
             </p>
             <p>
               In the second version, one search finds the markup and the style. <span class="g_kbd">⌘</span>
@@ -536,8 +581,8 @@ const description =
             </p>
             <p>
               BEM understood half of this and then made the names longer.
-              <code>.block__element--modifier</code> costs four extra characters per name and a mental parse every time
-              you read one — and <code>&amp;__element</code> has exactly the same invisibility problem.
+              <code>.block__element--modifier</code> costs four extra characters per name and a mental parse every time you
+              read one — and <code>&amp;__element</code> has exactly the same invisibility problem.
             </p>
           </div>
 
@@ -618,13 +663,14 @@ const description =
 
         <CalloutBlock tone="warn" title="The trap: semantic tokens pointing sideways">
           <p>
-            <code>--button-bg: var(--bg-surface)</code> looks tidy and quietly destroys the system. That token now has
-            no theme of its own; it inherits whatever <code>--bg-surface</code> resolved to, so you can never give the
-            button a different treatment in dark mode without special-casing the component.
+            <code>--button-bg: var(--bg-surface)</code> looks tidy and quietly destroys the system. That token now has no
+            theme of its own; it inherits whatever
+            <code>--bg-surface</code> resolved to, so you can never give the button a different treatment in dark mode without
+            special-casing the component.
           </p>
           <p>
-            Semantics point <em>down</em> into the theme switchboard, never <em>sideways</em> at each other. If a
-            component genuinely needs its own colour, quarantine it locally as
+            Semantics point <em>down</em> into the theme switchboard, never <em>sideways</em> at each other. If a component
+            genuinely needs its own colour, quarantine it locally as
             <code>--c-*</code> and keep it out of <code>theme.css</code>.
           </p>
         </CalloutBlock>
@@ -646,18 +692,19 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              <strong>Void</strong> is negative space — <code>margin</code>, <code>padding</code>, <code>gap</code>.
-              It is rhythm, it is shared across the entire product, and it must come from the
+              <strong>Void</strong> is negative space — <code>margin</code>, <code>padding</code>, <code>gap</code>. It
+              is rhythm, it is shared across the entire product, and it must come from the
               <code>--space-*</code> scale.
             </p>
             <p>
               <strong>Mass</strong> is the physical shape of one object — <code>width</code>, <code>height</code>,
-              <code>inset</code>, <code>translate</code> distances. The avatar is <code>3rem</code> because the avatar
-              is 3rem. It is not <code>--space-12</code>; that is a numerical coincidence, and coincidences drift.
+              <code>inset</code>, <code>translate</code> distances. The avatar is
+              <code>3rem</code> because the avatar is 3rem. It is not <code>--space-12</code>; that is a numerical
+              coincidence, and coincidences drift.
             </p>
             <p>
-              When somebody tightens the vertical rhythm by nudging <code>--space-12</code> from 3rem to 2.75rem, your
-              avatar should not quietly become an oval.
+              When somebody tightens the vertical rhythm by nudging <code>--space-12</code> from 3rem to 2.75rem, your avatar
+              should not quietly become an oval.
             </p>
           </div>
 
@@ -682,9 +729,9 @@ const description =
         <CalloutBlock tone="law" title="The Binary Rule">
           <p>
             A layout class and a component class must never share a DOM element. Geometry goes on a wrapper; the
-            component owns only itself. The moment <code>.l_stack</code> and <code>.user_card</code> land on the same
-            node, you are one specificity argument away from <code>!important</code>, and the card can no longer be
-            moved without breaking its surroundings.
+            component owns only itself. The moment <code>.l_stack</code> and <code>.user_card</code> land on the same node,
+            you are one specificity argument away from <code>!important</code>, and the card can no longer be moved
+            without breaking its surroundings.
           </p>
         </CalloutBlock>
 
@@ -743,13 +790,13 @@ const description =
         <div class="g_prose home_section-prose">
           <p>
             Nobody reads the first one. Nobody audits it. Nobody notices when the second
-            <code>2.25rem</code> drifts out of sync with the first, so it gets copied once and then quietly stops
-            matching the type scale it was derived from.
+            <code>2.25rem</code> drifts out of sync with the first, so it gets copied once and then quietly stops matching
+            the type scale it was derived from.
           </p>
           <p>
-            <code>fluid()</code> resolves both tokens at build time and emits a plain <code>clamp()</code> — two bounds
-            and a pre-computed slope. No multiplication, no division, no runtime, nothing left for the browser to do.
-            Drag the viewport below and watch it work.
+            <code>fluid()</code> resolves both tokens at build time and emits a plain
+            <code>clamp()</code> — two bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing
+            left for the browser to do. Drag the viewport below and watch it work.
           </p>
         </div>
 
@@ -788,8 +835,8 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              <strong>There is no ground truth to generate against.</strong> A model writing Go has a compiler. Writing
-              SQL, a schema. Writing TypeScript, types. Writing CSS, it has vibes.
+              <strong>There is no ground truth to generate against.</strong> A model writing Go has a compiler. Writing SQL,
+              a schema. Writing TypeScript, types. Writing CSS, it has vibes.
             </p>
             <p>
               Ask five senior engineers to name and structure a card component and you will get five answers, all
@@ -804,7 +851,9 @@ const description =
                 The class name is derivable from the filename. <code>UserCard.tsx</code> becomes
                 <code>.user_card</code>. No judgement call.
               </li>
-              <li>The file location is derivable from the block. One block, one file, co-located. No judgement call.</li>
+              <li>
+                The file location is derivable from the block. One block, one file, co-located. No judgement call.
+              </li>
               <li>Colour has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
               <li>State has exactly one legal form. If it is a class, it is wrong.</li>
               <li>Layout has exactly one legal home. If it shares an element with a block, it is wrong.</li>
@@ -838,8 +887,8 @@ Ampersand        banned for name building`}
             />
             <CalloutBlock tone="note" title="Ship the rules with the repo">
               <p>
-                The full ruleset is packaged as an agent skill — one folder your assistant reads before it writes a
-                line of CSS. Same rules for you and for it.
+                The full ruleset is packaged as an agent skill — one folder your assistant reads before it writes a line
+                of CSS. Same rules for you and for it.
               </p>
             </CalloutBlock>
             <div class="l_cluster" data-gap="3">
@@ -897,16 +946,15 @@ Ampersand        banned for name building`}
             <h3 class="objection_card-title">“Will it stop me writing bad CSS?”</h3>
             <p class="objection_card-body">
               No. Nothing will. What it does is make bad CSS <em>visible</em> — a raw hex code, a state class, an
-              <code class="g_code">l_</code> class riding a block. You stop arguing about taste and start pointing at
-              rules.
+              <code class="g_code">l_</code> class riding a block. You stop arguing about taste and start pointing at rules.
             </p>
           </div>
           <div class="objection_card">
             <h3 class="objection_card-title">“Is this just BEM with extra steps?”</h3>
             <p class="objection_card-body">
-              It is BEM with fewer steps, plus the two things BEM never had: state that lives in attributes, and a
-              theme engine that stops colour from being copy-pasted. If you already run disciplined BEM, migration is
-              mostly a find-and-replace.
+              It is BEM with fewer steps, plus the two things BEM never had: state that lives in attributes, and a theme
+              engine that stops colour from being copy-pasted. If you already run disciplined BEM, migration is mostly a
+              find-and-replace.
             </p>
           </div>
         </div>

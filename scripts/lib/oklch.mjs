@@ -34,8 +34,7 @@ export function oklchToLinearRgb({ l, c, h }) {
   ].map((channel) => Math.min(1, Math.max(0, channel)))
 }
 
-const encodeGamma = (channel) =>
-  channel <= 0.0031308 ? 12.92 * channel : 1.055 * channel ** (1 / 2.4) - 0.055
+const encodeGamma = (channel) => (channel <= 0.0031308 ? 12.92 * channel : 1.055 * channel ** (1 / 2.4) - 0.055)
 
 /** Hex string, for consumers that cannot evaluate oklch() themselves. */
 export function oklchToHex(input) {

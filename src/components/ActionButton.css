@@ -18,9 +18,7 @@
   font-weight: var(--weight-medium);
   line-height: var(--leading-none);
   white-space: nowrap;
-  transition:
-    var(--transition-colors),
-    var(--transition-pressable);
+  transition: var(--transition-colors), var(--transition-pressable);
 }
 
 .action_button[data-tone='contrast'] {

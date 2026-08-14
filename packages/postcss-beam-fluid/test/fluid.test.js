@@ -71,7 +71,10 @@ describe('fluid()', () => {
 
   it('reads viewport defaults from options', () => {
     assert.equal(
-      declValue('a { gap: fluid(1rem, 2rem); }', { minViewport: '20rem', maxViewport: '60rem' }),
+      declValue('a { gap: fluid(1rem, 2rem); }', {
+        minViewport: '20rem',
+        maxViewport: '60rem',
+      }),
       'clamp(1rem, 0.5rem + 2.5vw, 2rem)',
     )
   })
@@ -108,7 +111,9 @@ describe('fluid()', () => {
 
   it('accepts inline tokens passed through options', () => {
     assert.equal(
-      declValue('a { gap: fluid(var(--injected), 2rem); }', { tokens: { injected: '1rem' } }),
+      declValue('a { gap: fluid(var(--injected), 2rem); }', {
+        tokens: { injected: '1rem' },
+      }),
       'clamp(1rem, 2.5vw, 2rem)',
     )
   })
@@ -163,7 +168,12 @@ describe('fluid() failure modes', () => {
   })
 
   it('throws on an unclosed call', () => {
-    const options = { minViewport: '40rem', maxViewport: '80rem', rootFontSize: 16, sources: [] }
+    const options = {
+      minViewport: '40rem',
+      maxViewport: '80rem',
+      rootFontSize: 16,
+      sources: [],
+    }
     assert.throws(() => expandFluid('fluid(1rem, 2rem', options), /Unclosed/)
   })
 })

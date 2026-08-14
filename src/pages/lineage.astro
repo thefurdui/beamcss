@@ -208,7 +208,10 @@ const MATRIX_ROWS = [
       { text: 'Required', verdict: 'mixed' as const },
       { text: 'Required', verdict: 'mixed' as const },
       { text: 'Optional', verdict: 'good' as const },
-      { text: 'Optional — only for <code>fluid()</code>', verdict: 'good' as const },
+      {
+        text: 'Optional — only for <code>fluid()</code>',
+        verdict: 'good' as const,
+      },
     ],
   },
   {
@@ -339,9 +342,9 @@ const description =
                 <div class="g_prose lineage_page-claim_body">
                   <p>
                     Every previous convention optimised for reading. BEAM optimises for <em>editing</em>:
-                    <code>snake_case</code> so one double-click takes the whole token, a single hyphen so the
-                    relationship is unambiguous, and an outright ban on building names with the ampersand so that every
-                    class in your HTML exists as a real string in your repository.
+                    <code>snake_case</code> so one double-click takes the whole token, a single hyphen so the relationship
+                    is unambiguous, and an outright ban on building names with the ampersand so that every class in your HTML
+                    exists as a real string in your repository.
                   </p>
                   <p>
                     It sounds like a micro-optimisation. It is the difference between a codebase you can refactor with
@@ -393,8 +396,8 @@ const description =
           <CalloutBlock tone="note" title="BEAM coexists">
             <p>
               Nothing about BEAM requires deleting your current stylesheet. The five global files are additive, the
-              <code>l_*</code> primitives do not collide with utility names, and a BEAM component sitting next to a
-              legacy one is fine. Convert on contact.
+              <code>l_*</code> primitives do not collide with utility names, and a BEAM component sitting next to a legacy
+              one is fine. Convert on contact.
             </p>
           </CalloutBlock>
         </div>

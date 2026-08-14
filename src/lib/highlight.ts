@@ -614,7 +614,9 @@ export function highlight(source: string, language: Language = 'text', tokenClas
 
   return tokenize(code)
     .map(({ token, text }) =>
-      token === null ? escapeHtml(text) : `<span class="${tokenClass}" data-token="${token}">${escapeHtml(text)}</span>`,
+      token === null
+        ? escapeHtml(text)
+        : `<span class="${tokenClass}" data-token="${token}">${escapeHtml(text)}</span>`,
     )
     .join('')
 }

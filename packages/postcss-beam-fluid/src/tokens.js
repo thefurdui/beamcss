@@ -60,7 +60,10 @@ function splitVar(input) {
     if (char === '(') depth += 1
     else if (char === ')') depth -= 1
     else if (char === ',' && depth === 0) {
-      return { name: inner.slice(0, i).trim(), fallback: inner.slice(i + 1).trim() }
+      return {
+        name: inner.slice(0, i).trim(),
+        fallback: inner.slice(i + 1).trim(),
+      }
     }
   }
 

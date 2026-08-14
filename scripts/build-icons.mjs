@@ -19,7 +19,11 @@ import { hex } from './lib/oklch.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
-const mark = ({ prism, spectrum, background }) => `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32" fill="none">
+const mark = ({
+  prism,
+  spectrum,
+  background,
+}) => `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32" fill="none">
   ${background ? `<rect width="32" height="32" fill="${background}" />` : ''}
   <path d="M15 4 27.5 26H2.5Z" stroke="${prism}" stroke-width="2.6" stroke-linejoin="round" />
   <path d="M1 16H8" stroke="${prism}" stroke-width="2.6" stroke-linecap="round" />

@@ -19,32 +19,32 @@ around component identity, flat editor-searchable selectors, `data-*` state, and
 
 ## Non-Negotiable Rules
 
-| Do not write | Required replacement |
-| --- | --- |
-| Atomic classes like `flex`, `mt-4`, `bg-white` | BEAM classes plus semantic tokens |
-| SASS/LESS syntax like `@mixin`, `@extend` | Native CSS processed by the project toolchain |
-| `&-element` selector concatenation | Full selector: `.block_name-element_name` |
-| Visual inline styles | CSS classes; inline `style` only for `--c-*` custom properties |
-| Raw colours in component CSS | Layer 3 semantic tokens, or local `--c-*` quarantine |
-| State classes like `.is-active`, `.button--active` | HTML `data-*` attributes |
-| `--palette-*` / `--theme-*` in component CSS | Layer 3 semantic tokens only |
-| Random `z-index` numbers | `--z-*` strata plus `calc()` deltas |
-| Hand-written responsive `clamp()` formulas | `fluid(min, max)` |
-| `l_*` and a block class on the same element | Wrapper composition |
-| `--space-*` on `width`, `height`, `inset` | Raw `rem` or `px` |
-| Literal durations or easings in a `transition` | `--duration-*` and `--ease-*` |
+| Do not write                                       | Required replacement                                           |
+| -------------------------------------------------- | -------------------------------------------------------------- |
+| Atomic classes like `flex`, `mt-4`, `bg-white`     | BEAM classes plus semantic tokens                              |
+| SASS/LESS syntax like `@mixin`, `@extend`          | Native CSS processed by the project toolchain                  |
+| `&-element` selector concatenation                 | Full selector: `.block_name-element_name`                      |
+| Visual inline styles                               | CSS classes; inline `style` only for `--c-*` custom properties |
+| Raw colours in component CSS                       | Layer 3 semantic tokens, or local `--c-*` quarantine           |
+| State classes like `.is-active`, `.button--active` | HTML `data-*` attributes                                       |
+| `--palette-*` / `--theme-*` in component CSS       | Layer 3 semantic tokens only                                   |
+| Random `z-index` numbers                           | `--z-*` strata plus `calc()` deltas                            |
+| Hand-written responsive `clamp()` formulas         | `fluid(min, max)`                                              |
+| `l_*` and a block class on the same element        | Wrapper composition                                            |
+| `--space-*` on `width`, `height`, `inset`          | Raw `rem` or `px`                                              |
+| Literal durations or easings in a `transition`     | `--duration-*` and `--ease-*`                                  |
 
 ## Class Taxonomy
 
 Every class must fit one of these five buckets. A class that fits none of them is a bug.
 
-| Class type | Syntax | Owns | Example |
-| --- | --- | --- | --- |
-| Block | `snake_case` | Component or page identity | `.user_card` |
-| Element | `block_name-element_name` | A dependent part of exactly one block | `.user_card-main_title` |
-| Layout | `l_*` | Spatial geometry and rhythm only | `.l_stack` |
-| Utility | `u_*` | Single-purpose, state-free behaviour | `.u_reset_button` |
-| Generic | `g_*` | Global visual object too small for a component file | `.g_divider` |
+| Class type | Syntax                    | Owns                                                | Example                 |
+| ---------- | ------------------------- | --------------------------------------------------- | ----------------------- |
+| Block      | `snake_case`              | Component or page identity                          | `.user_card`            |
+| Element    | `block_name-element_name` | A dependent part of exactly one block               | `.user_card-main_title` |
+| Layout     | `l_*`                     | Spatial geometry and rhythm only                    | `.l_stack`              |
+| Utility    | `u_*`                     | Single-purpose, state-free behaviour                | `.u_reset_button`       |
+| Generic    | `g_*`                     | Global visual object too small for a component file | `.g_divider`            |
 
 ### Naming
 
@@ -53,7 +53,7 @@ Every class must fit one of these five buckets. A class that fits none of them i
 - For framework route files with generic names (`index.astro`, `page.tsx`), use the route's semantic
   identity: `.home_page`, `.settings_page`. Keep route CSS co-located.
 - Join a block to its element with exactly one hyphen. Use underscores between words inside either
-  half. The hyphen therefore means one thing in the whole codebase: *belongs to*.
+  half. The hyphen therefore means one thing in the whole codebase: _belongs to_.
 - Element names are flat. They never encode DOM depth, and selectors never nest to reach them.
 
 ```css
@@ -96,13 +96,13 @@ State and variation live in HTML attributes. There are no state classes in BEAM.
 }
 ```
 
-| Attribute | Use for |
-| --- | --- |
-| `data-state` | Mutually exclusive lifecycle: `idle`, `loading`, `error` |
-| `data-variant` | A named visual treatment chosen by the caller |
-| `data-size` | Discrete size steps |
-| `data-*` flags | Independent booleans, written as `"true"` or omitted entirely |
-| `aria-*` | Anything the accessibility tree already models — style `aria-expanded`, `aria-disabled`, `aria-current` directly rather than mirroring them into `data-*` |
+| Attribute      | Use for                                                                                                                                                   |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data-state`   | Mutually exclusive lifecycle: `idle`, `loading`, `error`                                                                                                  |
+| `data-variant` | A named visual treatment chosen by the caller                                                                                                             |
+| `data-size`    | Discrete size steps                                                                                                                                       |
+| `data-*` flags | Independent booleans, written as `"true"` or omitted entirely                                                                                             |
+| `aria-*`       | Anything the accessibility tree already models — style `aria-expanded`, `aria-disabled`, `aria-current` directly rather than mirroring them into `data-*` |
 
 Write `data-featured="true"` or omit the attribute. Never `data-featured="false"`, because
 `[data-featured]` would then match both states.
@@ -141,12 +141,12 @@ a stacking anchor, provided it does not touch the container's display model.
 
 Components consume **Layer 3 semantics**. Never skip layers.
 
-| Layer | Prefix | Declared in | Component access |
-| --- | --- | --- | --- |
-| 1 Foundations | `--palette-*`, `--typeface-*` | `theme.css` | Never |
-| 2 Themes | `--theme-light-*`, `--theme-dark-*` | `theme.css` | Never |
-| 3 Semantics | `--bg-*`, `--ink-*`, `--border-*`, `--action-*`, `--space-*`, `--text-*`, `--font-*`, `--radius-*`, `--z-*`, `--duration-*`, `--ease-*` | `theme.css` | Yes — the public contract |
-| 4 Component | `--c-*` | local CSS, or inline as a prop | Local API only |
+| Layer         | Prefix                                                                                                                                  | Declared in                    | Component access          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------- |
+| 1 Foundations | `--palette-*`, `--typeface-*`                                                                                                           | `theme.css`                    | Never                     |
+| 2 Themes      | `--theme-light-*`, `--theme-dark-*`                                                                                                     | `theme.css`                    | Never                     |
+| 3 Semantics   | `--bg-*`, `--ink-*`, `--border-*`, `--action-*`, `--space-*`, `--text-*`, `--font-*`, `--radius-*`, `--z-*`, `--duration-*`, `--ease-*` | `theme.css`                    | Yes — the public contract |
+| 4 Component   | `--c-*`                                                                                                                                 | local CSS, or inline as a prop | Local API only            |
 
 Semantics point **down** at the theme switchboard, never **sideways** at another semantic.
 `--button-bg: var(--bg-surface)` creates a token with no theme of its own.
@@ -202,7 +202,7 @@ utility classes are not part of BEAM.
 
 Layout classes own display, direction, columns, wrapping and gap. Blocks own visuals and internals.
 A component may still lay out its own children inside its own stylesheet — the primitives are for
-composition *between* things.
+composition _between_ things.
 
 ## CSS Authoring
 
@@ -248,20 +248,20 @@ layout primitive or a generic from a component file.
 
 Each line is mechanical. If a check needs an opinion, it is written wrong.
 
-| Check | Fails when |
-| --- | --- |
-| Taxonomy | A class is not a block, element, `l_`, `u_` or `g_` |
-| Naming | A hyphen appears inside an element name, or a selector mirrors DOM depth |
-| State | A state or variant is a class instead of an attribute |
-| Binary Rule | An `l_*` class shares an element with a block |
-| Firewall | A component references a raw colour, a `--palette-*` or a `--theme-*` |
-| Void | `margin`, `padding` or `gap` uses a raw length |
-| Mass | `width`, `height` or `inset` uses a `--space-*` token |
-| Nesting | An ampersand builds a name, or nesting goes deeper than one level |
-| Motion | A transition uses a literal duration or easing curve |
-| Z-index | A number appears where a stratum token belongs |
-| Inline styles | The `style` attribute sets anything other than a custom property |
-| Build | A raw `fluid(` survives into the output |
+| Check         | Fails when                                                               |
+| ------------- | ------------------------------------------------------------------------ |
+| Taxonomy      | A class is not a block, element, `l_`, `u_` or `g_`                      |
+| Naming        | A hyphen appears inside an element name, or a selector mirrors DOM depth |
+| State         | A state or variant is a class instead of an attribute                    |
+| Binary Rule   | An `l_*` class shares an element with a block                            |
+| Firewall      | A component references a raw colour, a `--palette-*` or a `--theme-*`    |
+| Void          | `margin`, `padding` or `gap` uses a raw length                           |
+| Mass          | `width`, `height` or `inset` uses a `--space-*` token                    |
+| Nesting       | An ampersand builds a name, or nesting goes deeper than one level        |
+| Motion        | A transition uses a literal duration or easing curve                     |
+| Z-index       | A number appears where a stratum token belongs                           |
+| Inline styles | The `style` attribute sets anything other than a custom property         |
+| Build         | A raw `fluid(` survives into the output                                  |
 
 ## References
 

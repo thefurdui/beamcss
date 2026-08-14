@@ -32,7 +32,7 @@ const { question, respondents, items } = Astro.props
           <li class="pain_meter-row" data-solved={item.solved ? 'true' : undefined} style={`--c-share: ${item.share}`}>
             <span class="pain_meter-label">{item.label}</span>
             <span class="pain_meter-track">
-              <span class="pain_meter-fill"></span>
+              <span class="pain_meter-fill" />
             </span>
             <span class="pain_meter-value u_tabular">{item.share}%</span>
             {item.note && <span class="pain_meter-note">{item.note}</span>}

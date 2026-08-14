@@ -47,16 +47,16 @@ scripts/
 
 ## Commands
 
-| Command | Does |
-| --- | --- |
-| `pnpm dev` | Dev server. Syncs the starter kit first. |
-| `pnpm build` | Static build to `dist/`. |
-| `pnpm verify` | Everything: plugin tests, contrast audit, build, post-build guards, link check. |
-| `pnpm test` | The `postcss-beam-fluid` suite. |
-| `pnpm contrast` | Prints the real WCAG ratio for every semantic pair. |
-| `pnpm links` | Checks internal links and fragments in `dist/`. |
-| `pnpm og` | Regenerates `public/og.png`. |
-| `pnpm icons` | Regenerates the favicon and touch icons. |
+| Command         | Does                                                                            |
+| --------------- | ------------------------------------------------------------------------------- |
+| `pnpm dev`      | Dev server. Syncs the starter kit first.                                        |
+| `pnpm build`    | Static build to `dist/`.                                                        |
+| `pnpm verify`   | Everything: plugin tests, contrast audit, build, post-build guards, link check. |
+| `pnpm test`     | The `postcss-beam-fluid` suite.                                                 |
+| `pnpm contrast` | Prints the real WCAG ratio for every semantic pair.                             |
+| `pnpm links`    | Checks internal links and fragments in `dist/`.                                 |
+| `pnpm og`       | Regenerates `public/og.png`.                                                    |
+| `pnpm icons`    | Regenerates the favicon and touch icons.                                        |
 
 Run the dev server in background mode when working with an agent:
 

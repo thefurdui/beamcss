@@ -30,14 +30,14 @@ const anchors = new Map()
 const markup = new Map()
 
 for (const page of pages) {
-  const route = `/${page.slice(dist.length + 1).replace(/index\.html$/, '').replace(/\.html$/, '')}`
+  const route = `/${page
+    .slice(dist.length + 1)
+    .replace(/index\.html$/, '')
+    .replace(/\.html$/, '')}`
   const html = await readFile(page, 'utf8')
 
   markup.set(route, html)
-  anchors.set(
-    route,
-    new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1])),
-  )
+  anchors.set(route, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1])))
 }
 
 const exists = async (path) =>

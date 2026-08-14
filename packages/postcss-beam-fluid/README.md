@@ -71,14 +71,14 @@ letter-spacing: fluid(0.04rem, 0rem);
 
 ## Options
 
-| Option | Default | Purpose |
-| --- | --- | --- |
-| `minViewport` | `'40rem'` | Viewport width at which the minimum is reached. |
-| `maxViewport` | `'80rem'` | Viewport width at which the maximum is reached. |
-| `tokenFiles` | `[]` | Stylesheets to harvest custom properties from. Relative to `cwd`. |
-| `tokens` | `{}` | Inline token map, e.g. `{ '--space-4': '1rem' }`. Useful in tests. |
-| `rootFontSize` | `16` | px value of `1rem`. Used to reconcile px bounds with rem viewports. |
-| `cwd` | `process.cwd()` | Base directory for relative `tokenFiles`. |
+| Option         | Default         | Purpose                                                             |
+| -------------- | --------------- | ------------------------------------------------------------------- |
+| `minViewport`  | `'40rem'`       | Viewport width at which the minimum is reached.                     |
+| `maxViewport`  | `'80rem'`       | Viewport width at which the maximum is reached.                     |
+| `tokenFiles`   | `[]`            | Stylesheets to harvest custom properties from. Relative to `cwd`.   |
+| `tokens`       | `{}`            | Inline token map, e.g. `{ '--space-4': '1rem' }`. Useful in tests.  |
+| `rootFontSize` | `16`            | px value of `1rem`. Used to reconcile px bounds with rem viewports. |
+| `cwd`          | `process.cwd()` | Base directory for relative `tokenFiles`.                           |
 
 Resolution order is: custom properties declared in the file being processed, then `tokens`, then `tokenFiles`.
 

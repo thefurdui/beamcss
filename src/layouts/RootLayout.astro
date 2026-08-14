@@ -55,11 +55,13 @@ const socialImage = new URL('/og.png', Astro.site).href
     <meta name="twitter:image" content={socialImage} />
     <meta name="generator" content={Astro.generator} />
 
-    {/*
+    {
+      /*
       Resolve the theme before the first paint.
       The whole point of the switchboard is that one attribute on <html> swings
       every semantic token, so this script is the entire theming runtime.
-    */}
+    */
+    }
     <script is:inline>
       ;(() => {
         try {

@@ -321,7 +321,7 @@ Prefer the attribute the platform already exposes. Do not mirror it into `data-*
 
 ## Component-Owned Internal Layout
 
-`l_*` primitives compose *between* things. A component may still lay out its own parts in its own
+`l_*` primitives compose _between_ things. A component may still lay out its own parts in its own
 stylesheet — that is not a Binary Rule violation, because no layout class is involved.
 
 ```css
@@ -360,7 +360,7 @@ stylesheet — that is not a Binary Rule violation, because no layout class is i
 
 ```html
 <!-- Wrong -->
-<div class="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-md">
+<div class="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-md"></div>
 ```
 
 ```html
@@ -394,34 +394,37 @@ stylesheet — that is not a Binary Rule violation, because no layout class is i
 /* Wrong */
 .user_card {
   .user_card-header {
-    .user_card-title {}
+    .user_card-title {
+    }
   }
 }
 ```
 
 ```css
 /* Correct */
-.user_card-header {}
-.user_card-title {}
+.user_card-header {
+}
+.user_card-title {
+}
 ```
 
 ### State Classes
 
 ```html
 <!-- Wrong -->
-<button class="nav_button is-active">
+<button class="nav_button is-active"></button>
 ```
 
 ```html
 <!-- Correct -->
-<button class="nav_button" data-state="active">
+<button class="nav_button" data-state="active"></button>
 ```
 
 ### Binary Rule Violation
 
 ```html
 <!-- Wrong -->
-<article class="l_stack promo_card">
+<article class="l_stack promo_card"></article>
 ```
 
 ```html

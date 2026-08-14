@@ -62,7 +62,9 @@ function toLength(raw, sources, role) {
   const resolved = resolveValue(raw, sources)
 
   if (resolved === null) {
-    fail(`Cannot resolve ${role} "${raw}". Add the token to a file listed in \`tokenFiles\`, or pass it via \`tokens\`.`)
+    fail(
+      `Cannot resolve ${role} "${raw}". Add the token to a file listed in \`tokenFiles\`, or pass it via \`tokens\`.`,
+    )
   }
 
   const length = parseLength(resolved)
@@ -93,7 +95,9 @@ function buildClamp(rawArgs, options) {
   const { sources, rootFontSize } = options
 
   if (rawArgs.length !== 2 && rawArgs.length !== 4) {
-    fail(`${FN}() takes 2 or 4 arguments — ${FN}(min, max) or ${FN}(min, max, minViewport, maxViewport). Got ${rawArgs.length}.`)
+    fail(
+      `${FN}() takes 2 or 4 arguments — ${FN}(min, max) or ${FN}(min, max, minViewport, maxViewport). Got ${rawArgs.length}.`,
+    )
   }
 
   const min = toLength(rawArgs[0], sources, 'minimum')
