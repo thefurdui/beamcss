@@ -1,4 +1,6 @@
 ---
+import dial from './assets/dial.svg?raw'
+import RawSvg from '../RawSvg/RawSvg.astro'
 import './ThemeToggle.css'
 ---
 
@@ -18,11 +20,7 @@ import './ThemeToggle.css'
   data-beam-theme-toggle
 >
   <span class="g_icon_box theme_toggle-dial">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle class="theme_toggle-ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"
-      ></circle>
-      <path class="theme_toggle-fill" d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor"></path>
-    </svg>
+    <RawSvg content={dial} aria-hidden="true" />
   </span>
 </button>
 

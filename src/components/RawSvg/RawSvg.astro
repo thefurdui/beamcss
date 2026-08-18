@@ -1,0 +1,28 @@
+---
+interface Props extends astroHTML.JSX.SVGAttributes {
+  /** Raw SVG string from './icon.svg?raw'` */
+  content: string
+}
+
+const { content, ...attrs } = Astro.props
+
+// Extract the source SVG even when an XML declaration precedes it.
+const sourceSvgMatch = content.match(/<svg\b([^>]*)>([\s\S]*?)<\/svg>\s*$/)
+const sourceAttrsStr = sourceSvgMatch?.[1] ?? ''
+const innerHTML = sourceSvgMatch?.[2] ?? content
+
+// Parse source attributes into a Record
+const sourceAttrs: Record<string, string> = {}
+const attrRegex = /(\w[\w-]*)="([^"]*)"/g
+let m: RegExpExecArray | null
+while ((m = attrRegex.exec(sourceAttrsStr)) !== null) {
+  // Skip xmlns - not needed for inline SVG
+  if (m[1] !== 'xmlns') {
+    sourceAttrs[m[1]] = m[2]
+  }
+}
+
+const merged = { ...sourceAttrs, ...attrs }
+---
+
+<svg {...merged} set:html={innerHTML} />
