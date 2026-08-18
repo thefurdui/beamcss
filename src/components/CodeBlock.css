@@ -1,6 +1,6 @@
 /* ==========================================================================
 /* CodeBlock – syntax highlighting without a single inline style.
-/* Colour arrives through the --syntax-* semantics, so code re-themes with
+/* Color arrives through the --syntax-* semantics, so code re-themes with
 /* everything else. See src/lib/highlight.ts for the tokenizer.
 /* ========================================================================== */
 
@@ -69,7 +69,7 @@
 
 /* -------------------------------------------------------------------------- */
 /* TOKENS
-/* Four colours, total. A code sample is meant to be read, not decoded.
+/* Four colors, total. A code sample is meant to be read, not decoded.
 /* -------------------------------------------------------------------------- */
 
 .code_block-token[data-token='comment'] {

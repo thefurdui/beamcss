@@ -10,7 +10,7 @@ interface Props {
 const { label = true, class: className } = Astro.props
 ---
 
-<span class:list={['beam_mark', className]} data-labelled={label ? 'true' : undefined}>
+<span class:list={['beam_mark', className]} data-labeled={label ? 'true' : undefined}>
   <svg class="beam_mark-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true">
     <path class="beam_mark-source" d="M0 17H9.2"></path>
     <path class="beam_mark-prism" d="M15 4 L27 26 H3 Z"></path>

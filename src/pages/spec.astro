@@ -24,7 +24,7 @@ const TOC = [
     title: 'Variables',
     entries: [
       { id: 'radar', label: 'The variable radar' },
-      { id: 'firewall', label: 'The colour firewall' },
+      { id: 'firewall', label: 'The color firewall' },
       { id: 'kernel', label: 'The kernel' },
       { id: 'inverse', label: 'Contextual inverse' },
     ],
@@ -50,7 +50,7 @@ const TOC = [
 ]
 
 const description =
-  'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer colour firewall, layout primitives, mass versus void, nesting limits, and fluid interpolation.'
+  'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer color firewall, layout primitives, mass versus void, nesting limits, and fluid interpolation.'
 ---
 
 <RootLayout title="Specification – BEAM CSS" description={description}>
@@ -93,12 +93,12 @@ const description =
                   'A component is named for what it is (<code>.user_card</code>), never for what it looks like (<code>.bg-white.rounded.p-4</code>). Appearance changes; identity does not.',
                 ],
                 [
-                  'Editor optimised',
+                  'Editor optimized',
                   'Naming is chosen so that one double-click selects a whole token and one search finds every use. Nothing may exist only after string concatenation.',
                 ],
                 [
                   'Browser native',
-                  'Custom properties, native nesting, container queries. No SASS, no LESS, no CSS-in-JS runtime. PostCSS is permitted for build-time maths only.',
+                  'Custom properties, native nesting, container queries. No SASS, no LESS, no CSS-in-JS runtime. PostCSS is permitted for build-time math only.',
                 ],
                 [
                   'State driven',
@@ -113,7 +113,7 @@ const description =
             id="taxonomy"
             index="02"
             title="Class taxonomy"
-            lede="Five kinds of class exist. A class that fits none of them is a bug. This is the whole namespace, and it is deliberately small enough to recognise at a glance."
+            lede="Five kinds of class exist. A class that fits none of them is a bug. This is the whole namespace, and it is deliberately small enough to recognize at a glance."
           >
             <SpecTable
               head={['Type', 'Syntax', 'Owns', 'Example']}
@@ -126,7 +126,7 @@ const description =
                   '<code>.user_card-main_title</code>',
                 ],
                 ['Layout', '<code>l_*</code>', 'Spatial geometry and rhythm only', '<code>.l_stack</code>'],
-                ['Utility', '<code>u_*</code>', 'Single-purpose, state-free behaviour', '<code>.u_reset_button</code>'],
+                ['Utility', '<code>u_*</code>', 'Single-purpose, state-free behavior', '<code>.u_reset_button</code>'],
                 [
                   'Generic',
                   '<code>g_*</code>',
@@ -273,10 +273,10 @@ const description =
               lang="text"
               code={`styles/            listed in import order
   fonts.css       @font-face only – optional
-  reset.css       browser normalisation, no classes
+  reset.css       browser normalization, no classes
   theme.css       foundations, themes, semantics
   layout.css      l_* spatial primitives
-  utils.css       u_* zero-state behaviours
+  utils.css       u_* zero-state behaviors
   generics.css    g_* global visual objects
 
 components/
@@ -351,8 +351,8 @@ components/
           <SpecBlock
             id="firewall"
             index="07"
-            title="The colour firewall"
-            lede="Colour passes through four layers, in one direction. This is the rule that makes theming free rather than merely possible."
+            title="The color firewall"
+            lede="Color passes through four layers, in one direction. This is the rule that makes theming free rather than merely possible."
           >
             <CodeBlock
               file="theme.css"
@@ -392,7 +392,7 @@ components/
             />
 
             <div class="g_prose">
-              <p>The firewall has three rules and they are worth memorising:</p>
+              <p>The firewall has three rules and they are worth memorizing:</p>
               <ul>
                 <li>Components read Layer 3 only. Reaching into Layers 1 or 2 is always a bug.</li>
                 <li>
@@ -412,7 +412,7 @@ components/
             id="kernel"
             index="08"
             title="The kernel"
-            lede="Sixteen semantic colours cover a complete interface. Start here, extend only when a real design decision forces it."
+            lede="Sixteen semantic colors cover a complete interface. Start here, extend only when a real design decision forces it."
           >
             <SpecTable
               head={['Group', 'Tokens']}
@@ -435,12 +435,12 @@ components/
 
             <div class="g_prose">
               <p>
-                <strong>Extensions</strong> are bespoke interactive colours the design system genuinely needs – this site
+                <strong>Extensions</strong> are bespoke interactive colors the design system genuinely needs – this site
                 adds <code>--action-contrast</code>. Every interactive extension must ship with a matching
-                <code>-hover</code> pair; a colour you can click needs a colour that says you clicked it.
+                <code>-hover</code> pair; a color you can click needs a color that says you clicked it.
               </p>
               <p>
-                <strong>Intents</strong> are static status colours, limited to three weights:
+                <strong>Intents</strong> are static status colors, limited to three weights:
                 <code>base</code>, <code>subtle</code>, <code>strong</code>. Enough for a badge, a banner and a chart.
                 Not enough to reinvent the palette.
               </p>
@@ -551,7 +551,7 @@ components/
           >
             <SpecTable
               lead="wide"
-              head={['Primitive', 'Behaviour', 'Attributes']}
+              head={['Primitive', 'Behavior', 'Attributes']}
               rows={[
                 [
                   '<code>.l_stack</code>',
@@ -728,7 +728,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
 
             <div class="g_prose">
               <p>
-                Stack inside a stratum with delta maths – <code>calc(var(--z-overlay) + 1)</code> – so the relationship is
+                Stack inside a stratum with delta math – <code>calc(var(--z-overlay) + 1)</code> – so the relationship is
                 visible in the value rather than implied by two numbers being near each other.
               </p>
               <p>
@@ -802,8 +802,8 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
                 ['State', 'A state or variant is expressed as a class instead of an attribute.'],
                 ['Binary Rule', 'An <code>l_*</code> class shares an element with a block.'],
                 [
-                  'Colour firewall',
-                  'A component references a raw colour, a <code>--palette-*</code> or a <code>--theme-*</code>.',
+                  'Color firewall',
+                  'A component references a raw color, a <code>--palette-*</code> or a <code>--theme-*</code>.',
                 ],
                 ['Void', '<code>margin</code>, <code>padding</code> or <code>gap</code> uses a raw length.'],
                 [
@@ -821,7 +821,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
             <CalloutBlock tone="note" title="Hand it to the machine">
               <p>
                 This checklist is the reason BEAM works well with coding agents: every line is checkable without
-                judgement. The packaged skill contains exactly these rules, so your assistant reviews its own diff
+                judgment. The packaged skill contains exactly these rules, so your assistant reviews its own diff
                 against the same list you would.
               </p>
             </CalloutBlock>

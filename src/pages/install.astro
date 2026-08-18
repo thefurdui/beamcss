@@ -10,13 +10,13 @@ import { SITE } from '../lib/site'
 import './install.css'
 
 const STARTER_FILES = [
-  { file: 'reset.css', owns: 'Browser normalisation. No classes, by rule.' },
+  { file: 'reset.css', owns: 'Browser normalization. No classes, by rule.' },
   {
     file: 'theme.css',
-    owns: 'All three token layers. The only file that knows a colour.',
+    owns: 'All three token layers. The only file that knows a color.',
   },
   { file: 'layout.css', owns: 'The l_* primitives.' },
-  { file: 'utils.css', owns: 'The u_* zero-state behaviours.' },
+  { file: 'utils.css', owns: 'The u_* zero-state behaviors.' },
   { file: 'generics.css', owns: 'The g_* global visual objects.' },
 ]
 
@@ -61,7 +61,7 @@ const description =
             index="01"
             eyebrow="The global layer"
             title="Five files you need, and one you might."
-            lede="These are the exact stylesheets this website is wearing. Not a sanitised example – the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
+            lede="These are the exact stylesheets this website is wearing. Not a sanitized example – the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="8">
@@ -208,7 +208,7 @@ export default {
               [
                 '<code>precision</code>',
                 '<code>4</code>',
-                'Decimal places in the emitted maths. Four is plenty; more is noise.',
+                'Decimal places in the emitted math. Four is plenty; more is noise.',
               ],
             ]}
           />
@@ -234,7 +234,7 @@ export default {
             index="03"
             eyebrow="For the machine"
             title="The agent skill."
-            lede="Three markdown files: the rules, the token catalogue, and worked examples with their anti-patterns. Drop them where your assistant looks for skills and it will write BEAM without being reminded – and review its own diff against the same checklist you would use."
+            lede="Three markdown files: the rules, the token catalog, and worked examples with their anti-patterns. Drop them where your assistant looks for skills and it will write BEAM without being reminded – and review its own diff against the same checklist you would use."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="8">
@@ -460,8 +460,8 @@ vim.api.nvim_create_autocmd('FileType', {
 
           <div class="g_prose install_page-prose">
             <p>
-              Read it once more and notice what is absent. No colour. No breakpoint. No <code>dark:</code> anything. No margin
-              reaching out to push a neighbour around. The card describes itself and nothing else, which is why you can drop
+              Read it once more and notice what is absent. No color. No breakpoint. No <code>dark:</code> anything. No margin
+              reaching out to push a neighbor around. The card describes itself and nothing else, which is why you can drop
               it into a sidebar, a modal or an inverted footer and it will simply behave.
             </p>
           </div>

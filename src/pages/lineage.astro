@@ -14,7 +14,7 @@ const ANCESTORS = [
     name: 'OOCSS',
     author: 'Nicole Sullivan',
     body: [
-      'The first serious argument that CSS needed object-oriented thinking. Two rules: separate structure from skin, and separate container from content. A component should not care where it sits, and a shape should not carry a colour.',
+      'The first serious argument that CSS needed object-oriented thinking. Two rules: separate structure from skin, and separate container from content. A component should not care where it sits, and a shape should not carry a color.',
       'It was right, and it was twenty years early. The tooling to enforce it did not exist, so it survived as folklore rather than as a system.',
     ],
     keeps: [
@@ -51,7 +51,7 @@ const ANCESTORS = [
     name: 'SMACSS',
     author: 'Jonathan Snook',
     body: [
-      'Categorise before you write: base, layout, module, state, theme. The insight was that not all CSS is the same <em>kind</em> of CSS, and that mixing kinds in one file is why stylesheets become unnavigable.',
+      'Categorize before you write: base, layout, module, state, theme. The insight was that not all CSS is the same <em>kind</em> of CSS, and that mixing kinds in one file is why stylesheets become unnavigable.',
       'SMACSS asked you to hold the category in your head. BEAM puts it in the class name, where you cannot forget it.',
     ],
     keeps: [
@@ -104,11 +104,11 @@ const ANCESTORS = [
     author: 'Tailwind CSS, and Atomic CSS before it',
     body: [
       'The most successful CSS methodology ever shipped, and it earned that. Its real contribution was not short class names – it was proving that <strong>a constrained scale beats unlimited freedom</strong>. Given eight spacing steps instead of infinity, designs got more consistent, not less.',
-      'The cost is that appearance moved into the markup. Every colour is declared twice, once per theme. Every instance of a component repeats every decision. And the class attribute stops describing what a thing is, which is precisely the information a reader needs most.',
+      'The cost is that appearance moved into the markup. Every color is declared twice, once per theme. Every instance of a component repeats every decision. And the class attribute stops describing what a thing is, which is precisely the information a reader needs most.',
       'BEAM takes the constraint and puts it back where it can be named: in tokens.',
     ],
     keeps: [
-      'Constrained scales for space, type, radius and colour.',
+      'Constrained scales for space, type, radius and color.',
       'Design tokens as the single source of truth.',
       'The insistence that you should not be inventing values by hand.',
     ],
@@ -165,7 +165,7 @@ const MATRIX_ROWS = [
     concern: 'Theming',
     cells: [
       { text: 'Up to you', verdict: 'mixed' as const },
-      { text: 'Every colour declared twice', verdict: 'bad' as const },
+      { text: 'Every color declared twice', verdict: 'bad' as const },
       { text: 'JS theme context', verdict: 'mixed' as const },
       { text: 'Custom properties', verdict: 'good' as const },
       { text: 'Declared twice in total', verdict: 'good' as const },
@@ -320,9 +320,9 @@ const description =
                 </div>
                 <div class="g_prose lineage_page-claim_body">
                   <p>
-                    Everyone uses custom properties for theming. Almost nobody separates <em>what a colour is</em> from
+                    Everyone uses custom properties for theming. Almost nobody separates <em>what a color is</em> from
                     <em>what a context means</em> from <em>what a component asks for</em>. Three layers instead of one
-                    is the difference between “theming is possible” and “a colour is declared exactly twice in the
+                    is the difference between “theming is possible” and “a color is declared exactly twice in the
                     entire codebase.”
                   </p>
                   <p>
@@ -337,17 +337,17 @@ const description =
               <div class="l_switcher" data-threshold="4xl" data-gap="6" data-align="start">
                 <div class="lineage_page-claim_head">
                   <span class="lineage_page-claim_index">03</span>
-                  <h3 class="lineage_page-claim_title">Naming optimised for the cursor</h3>
+                  <h3 class="lineage_page-claim_title">Naming optimized for the cursor</h3>
                 </div>
                 <div class="g_prose lineage_page-claim_body">
                   <p>
-                    Every previous convention optimised for reading. BEAM optimises for <em>editing</em>:
+                    Every previous convention optimized for reading. BEAM optimizes for <em>editing</em>:
                     <code>snake_case</code> so one double-click takes the whole token, a single hyphen so the relationship
                     is unambiguous, and an outright ban on building names with the ampersand so that every class in your HTML
                     exists as a real string in your repository.
                   </p>
                   <p>
-                    It sounds like a micro-optimisation. It is the difference between a codebase you can refactor with
+                    It sounds like a micro-optimization. It is the difference between a codebase you can refactor with
                     confidence and one you can only add to.
                   </p>
                 </div>

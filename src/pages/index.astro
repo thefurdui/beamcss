@@ -57,7 +57,7 @@ const LINEAGE = [
   {
     year: '2011',
     name: 'SMACSS',
-    took: 'Categorise rules before you write them.',
+    took: 'Categorize rules before you write them.',
     kept: 'Became the prefix taxonomy: l_, u_, g_, and the block itself.',
   },
   {
@@ -137,7 +137,7 @@ const DIALECTS = [
       {
         file: 'the problem',
         lang: 'text' as const,
-        code: `Every colour is declared twice: once light, once dark.
+        code: `Every color is declared twice: once light, once dark.
 Every card repeats all fourteen classes.
 Renaming the component renames nothing.
 "Which of these 40 divs is the card?" – you, in March`,
@@ -180,7 +180,7 @@ Your CSS is now a JavaScript dependency.`,
     id: 'beam',
     label: 'BEAM',
     verdict:
-      'Identity in the class, state in the attribute, colour in the token layer, geometry in the wrapper. Nothing in this markup will lie to you when the design changes.',
+      'Identity in the class, state in the attribute, color in the token layer, geometry in the wrapper. Nothing in this markup will lie to you when the design changes.',
     samples: [
       {
         file: 'PromoCard.astro',
@@ -221,7 +221,7 @@ Your CSS is now a JavaScript dependency.`,
 ]
 
 const description =
-  'BEAM is a strict, browser-native CSS architecture. Four class types, one file per component, state in data attributes, and colour behind a four-layer firewall. No preprocessor, no runtime, no utility soup.'
+  'BEAM is a strict, browser-native CSS architecture. Four class types, one file per component, state in data attributes, and color behind a four-layer firewall. No preprocessor, no runtime, no utility soup.'
 ---
 
 <RootLayout title="BEAM CSS – Block. Element. Attribute. Module." description={description}>
@@ -236,7 +236,7 @@ const description =
 
           <p class="hero_section-lede u_pretty">
             BEAM is a strict, browser-native CSS architecture. Four kinds of class. One file per component. State in
-            <code class="g_code">data-*</code> attributes. Colour behind a firewall. No preprocessor, no runtime, and no
+            <code class="g_code">data-*</code> attributes. Color behind a firewall. No preprocessor, no runtime, and no
             <code class="g_code">div</code> wearing fourteen classes.
           </p>
 
@@ -282,7 +282,7 @@ const description =
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
           <PainMeter
-            question="Top pain points – colour"
+            question="Top pain points – color"
             respondents="573"
             items={[
               {
@@ -334,11 +334,11 @@ const description =
               theme selection, and duplicated theme definitions.”
             </p>
             <p class="home_section-quote_text">
-              “Managing colour palettes, tokens, variables and design-system scales is hard.”
+              “Managing color palettes, tokens, variables and design-system scales is hard.”
             </p>
             <footer class="home_section-quote_source">
               <a class="home_section-quote_link" href={SURVEY.url} rel="noreferrer noopener">
-                State of CSS {SURVEY.year} – colour pain points, summarised from free-form answers
+                State of CSS {SURVEY.year} – color pain points, summarized from free-form answers
               </a>
             </footer>
           </blockquote>
@@ -398,7 +398,7 @@ const description =
         <CalloutBlock tone="note" title="So what is actually new?">
           <p>
             Three things. State lives in attributes rather than classes. Themes route through a double-mapped
-            switchboard so a colour is declared exactly twice in the whole codebase. And every naming rule is chosen to
+            switchboard so a color is declared exactly twice in the whole codebase. And every naming rule is chosen to
             keep your editor's cursor happy. The rest is curation – deliberately.
           </p>
         </CalloutBlock>
@@ -434,7 +434,7 @@ const description =
             </p>
             <p>
               Why snake_case? Because <code>user_card</code> is one double-click and
-              <code>user-card</code> is two. You will select this token thousands of times over the life of the project. Optimise
+              <code>user-card</code> is two. You will select this token thousands of times over the life of the project. Optimize
               for the thousands.
             </p>
             <CodeBlock
@@ -532,7 +532,7 @@ const description =
       <div class="l_stack" data-gap="fluid-md">
         <SectionHead
           index="04"
-          eyebrow="Editor optimisation"
+          eyebrow="Editor optimization"
           title="The convention is designed around your cursor."
           lede="Here is a rule that sounds petty for about ten seconds: never use the ampersand to build a class name."
         />
@@ -610,7 +610,7 @@ const description =
           index="05"
           eyebrow="The 24 percent"
           title="Theming, solved. Not eased – solved."
-          lede="A quarter of developers named theming as a top colour pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
+          lede="A quarter of developers named theming as a top color pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
         />
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
@@ -673,7 +673,7 @@ const description =
           </p>
           <p>
             Semantics point <em>down</em> into the theme switchboard, never <em>sideways</em> at each other. If a component
-            genuinely needs its own colour, quarantine it locally as
+            genuinely needs its own color, quarantine it locally as
             <code>--c-*</code> and keep it out of <code>theme.css</code>.
           </p>
         </CalloutBlock>
@@ -852,12 +852,12 @@ const description =
             <ul>
               <li>
                 The class name is derivable from the filename. <code>UserCard.tsx</code> becomes
-                <code>.user_card</code>. No judgement call.
+                <code>.user_card</code>. No judgment call.
               </li>
               <li>
-                The file location is derivable from the block. One block, one file, co-located. No judgement call.
+                The file location is derivable from the block. One block, one file, co-located. No judgment call.
               </li>
-              <li>Colour has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
+              <li>Color has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
               <li>State has exactly one legal form. If it is a class, it is wrong.</li>
               <li>Layout has exactly one legal home. If it shares an element with a block, it is wrong.</li>
             </ul>
@@ -881,7 +881,7 @@ const description =
 Element          .block-part_name, always flat
 Attribute        data-*, never a state class
 Module           one block, one co-located file
-Colour           Layer 3 semantics only
+Color           Layer 3 semantics only
 Void             --space-* for margin/padding/gap
 Mass             raw rem for width/height/inset
 Layout           l_* on a wrapper, never the block
@@ -956,7 +956,7 @@ Ampersand        banned for name building`}
             <h3 class="objection_card-title">“Is this just BEM with extra steps?”</h3>
             <p class="objection_card-body">
               It is BEM with fewer steps, plus the two things BEM never had: state that lives in attributes, and a theme
-              engine that stops colour from being copy-pasted. If you already run disciplined BEM, migration is mostly a
+              engine that stops color from being copy-pasted. If you already run disciplined BEM, migration is mostly a
               find-and-replace.
             </p>
           </div>
@@ -973,7 +973,7 @@ Ampersand        banned for name building`}
           align="center"
           eyebrow="Begin"
           title="Name things for what they are. Everything else follows."
-          lede="Five stylesheets, an optional sixth for your fonts, one PostCSS plugin, and a set of rules short enough to memorise. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
+          lede="Five stylesheets, an optional sixth for your fonts, one PostCSS plugin, and a set of rules short enough to memorize. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
         />
 
         <div class="l_cluster" data-gap="3" data-justify="center">

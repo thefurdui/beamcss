@@ -2,10 +2,10 @@
  * A small, dependency-free syntax highlighter.
  *
  * Off-the-shelf highlighters paint with inline `style` attributes full of raw
- * hex codes. On a site that argues colours must pass through a token layer,
+ * hex codes. On a site that argues colors must pass through a token layer,
  * that would be an embarrassing exception, and it would break theme switching.
  *
- * So this emits semantic `data-token` attributes instead. Colour lives in
+ * So this emits semantic `data-token` attributes instead. Color lives in
  * theme.css as `--syntax-*`, which means code blocks re-theme for free, exactly
  * like every other component.
  */
@@ -44,7 +44,7 @@ const ATTRIBUTE_SELECTOR = /\[[^\]\n]*\]/y
 const CLASS_SELECTOR = /\.-?[_a-zA-Z][\w-]*/y
 const ID_SELECTOR = /#-?[_a-zA-Z][\w-]*/y
 const PSEUDO = /::?[\w-]+/y
-const HEX_COLOUR = /#[0-9a-fA-F]{3,8}\b/y
+const HEX_COLOR = /#[0-9a-fA-F]{3,8}\b/y
 const CALLEE = /[-\w]+(?=\()/y
 const NUMBER = /[+-]?(?:\d*\.\d+|\d+)(?:e[+-]?\d+)?(?:%|[a-zA-Z]+)?/y
 const IDENTIFIER = /-?[_a-zA-Z][\w-]*/y
@@ -192,7 +192,7 @@ function tokenizeCss(source: string): Piece[] {
       }
     }
 
-    const hex = at(HEX_COLOUR, source, index)
+    const hex = at(HEX_COLOR, source, index)
     if (hex) {
       push('number', hex)
       continue
@@ -239,7 +239,7 @@ const TAG_OPEN = /<\/?[a-zA-Z][\w.-]*/y
 const ATTRIBUTE_NAME = /[@:a-zA-Z_][\w:.-]*/y
 const TEXT_RUN = /[^<]+/y
 
-/** Class attributes get per-name colouring so markup and stylesheet visually rhyme. */
+/** Class attributes get per-name coloring so markup and stylesheet visually rhyme. */
 function pushClassList(pieces: Piece[], raw: string) {
   const quote = raw[0]
   const inner = raw.slice(1, -1)
