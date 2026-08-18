@@ -1,6 +1,6 @@
 # postcss-beam-fluid
 
-Point-to-point fluid interpolation for [BEAM CSS](https://beamcss.dev). Write `fluid(min, max)`, ship a plain `clamp()`.
+Point-to-point fluid interpolation for [BEAM CSS](https://beamcss.org). Write `fluid(min, max)`, ship a plain `clamp()`.
 
 ```bash
 pnpm add -D postcss-beam-fluid

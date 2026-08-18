@@ -1,4 +1,4 @@
-# beamcss.dev
+# beamcss.org
 
 The website for **BEAM** – Block, Element, Attribute, Module. A strict, browser-native CSS
 architecture.

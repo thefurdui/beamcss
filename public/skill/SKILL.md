@@ -2,7 +2,7 @@
 name: beam-css
 description: Apply and review BEAM (Block, Element, Attribute, Module) CSS architecture. Use when writing or changing CSS, styling components or pages, creating theme/layout/utils/generics files, configuring BEAM PostCSS fluid interpolation, reviewing class names, tokens or state, or when the user mentions BEAM, beamcss, semantic CSS, no Tailwind, no CSS-in-JS, or no SASS.
 version: 2026.1
-homepage: https://beamcss.dev
+homepage: https://beamcss.org
 ---
 
 # BEAM CSS Architecture
@@ -273,4 +273,4 @@ Each line is mechanical. If a check needs an opinion, it is written wrong.
 
 - Token catalogue, layout API, PostCSS setup: `reference.md`
 - Compliant examples and anti-pattern corrections: `examples.md`
-- Full specification: https://beamcss.dev/spec/
+- Full specification: https://beamcss.org/spec/

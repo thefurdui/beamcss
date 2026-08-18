@@ -85,7 +85,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
     <text x="58" y="252" fill="${ink}" font-size="132" font-weight="bold" letter-spacing="-6">beam</text>
     <text x="60" y="418" fill="${inkMuted}" font-size="27">Semantic CSS that survives contact</text>
     <text x="60" y="456" fill="${inkMuted}" font-size="27">with a design change.</text>
-    <text x="60" y="562" fill="${inkFaint}" font-size="21" letter-spacing="1.5">beamcss.dev</text>
+    <text x="60" y="562" fill="${inkFaint}" font-size="21" letter-spacing="1.5">beamcss.org</text>
   </g>
 
   <rect x="0.5" y="0.5" width="${WIDTH - 1}" height="${HEIGHT - 1}" stroke="${rule}" stroke-width="1" />

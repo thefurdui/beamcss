@@ -17,7 +17,7 @@ const FILES = ['reset.css', 'theme.css', 'layout.css', 'utils.css', 'generics.cs
 
 const BANNER = (name) => `/*
  * BEAM CSS – ${name}
- * https://beamcss.dev/spec/
+ * https://beamcss.org/spec/
  *
  * One of the five required global stylesheets. Import in this order:
  *   reset.css → theme.css → layout.css → utils.css → generics.css
