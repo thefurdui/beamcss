@@ -1,0 +1,854 @@
+---
+import ActionButton from '../../components/ActionButton/ActionButton.astro'
+import CalloutBlock from '../../components/CalloutBlock/CalloutBlock.astro'
+import CodeBlock from '../../components/CodeBlock/CodeBlock.astro'
+import SpecBlock from '../../components/SpecBlock/SpecBlock.astro'
+import SpecTable from '../../components/SpecTable/SpecTable.astro'
+import SpecToc from '../../components/SpecToc/SpecToc.astro'
+import RootLayout from '../../layouts/RootLayout.astro'
+import { SITE } from '../../lib/site'
+import './SpecPage.css'
+
+const TOC = [
+  {
+    title: 'Foundations',
+    entries: [
+      { id: 'principles', label: 'Principles' },
+      { id: 'taxonomy', label: 'Class taxonomy' },
+      { id: 'naming', label: 'Naming rules' },
+      { id: 'state', label: 'State and variation' },
+      { id: 'modules', label: 'Modules and file layout' },
+    ],
+  },
+  {
+    title: 'Variables',
+    entries: [
+      { id: 'radar', label: 'The variable radar' },
+      { id: 'firewall', label: 'The color firewall' },
+      { id: 'kernel', label: 'The kernel' },
+      { id: 'inverse', label: 'Contextual inverse' },
+    ],
+  },
+  {
+    title: 'Geometry',
+    entries: [
+      { id: 'space', label: 'Mass and void' },
+      { id: 'primitives', label: 'Layout primitives' },
+      { id: 'binary', label: 'The Binary Rule' },
+    ],
+  },
+  {
+    title: 'Authoring',
+    entries: [
+      { id: 'nesting', label: 'Nesting rules' },
+      { id: 'fluid', label: 'Fluid interpolation' },
+      { id: 'strata', label: 'Z-index and motion' },
+      { id: 'globals', label: 'Utilities and generics' },
+      { id: 'checklist', label: 'Review checklist' },
+    ],
+  },
+]
+
+const description =
+  'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer color firewall, layout primitives, mass versus void, nesting limits, and fluid interpolation.'
+---
+
+<RootLayout title="Specification – BEAM CSS" description={description}>
+  <div class="spec_page">
+    <div class="l_container" data-size="wide">
+      <header class="spec_page-masthead">
+        <div class="l_stack" data-gap="5" data-align="start">
+          <span class="g_tag" data-tone="accent">Normative · v{SITE.version}</span>
+          <h1 class="spec_page-title u_balance">The specification</h1>
+          <p class="spec_page-lede u_pretty">
+            Everything BEAM requires, in the order you will need it. Written as rules rather than suggestions, because
+            the value of a convention is proportional to how few exceptions it has.
+          </p>
+          <div class="l_cluster" data-gap="3">
+            <ActionButton href="/install/">Install it</ActionButton>
+            <ActionButton href="/skill/SKILL.md" tone="outline">Read the agent skill</ActionButton>
+          </div>
+        </div>
+      </header>
+
+      <div class="l_grid" data-layout="sidebar" data-gap="10">
+        <aside class="spec_page-aside">
+          <SpecToc groups={TOC} />
+        </aside>
+
+        <div class="spec_page-content">
+          {/* ------------------------------------------------------ 01 */}
+          <SpecBlock
+            id="principles"
+            index="01"
+            title="Principles"
+            lede="Four commitments. Every rule further down is a consequence of one of them."
+          >
+            <SpecTable
+              lead="wide"
+              head={['Principle', 'What it means in practice']}
+              rows={[
+                [
+                  'Identity over utility',
+                  'A component is named for what it is (<code>.user_card</code>), never for what it looks like (<code>.bg-white.rounded.p-4</code>). Appearance changes; identity does not.',
+                ],
+                [
+                  'Editor optimized',
+                  'Naming is chosen so that one double-click selects a whole token and one search finds every use. Nothing may exist only after string concatenation.',
+                ],
+                [
+                  'Browser native',
+                  'Custom properties, native nesting, container queries. No SASS, no LESS, no CSS-in-JS runtime. PostCSS is permitted for build-time math only.',
+                ],
+                [
+                  'State driven',
+                  'State and variation live in HTML attributes, not in class names.&nbsp;<code>data-*</code>&nbsp;for application state,&nbsp;<code>aria-*</code>&nbsp;where a role already exists.',
+                ],
+              ]}
+            />
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 02 */}
+          <SpecBlock
+            id="taxonomy"
+            index="02"
+            title="Class taxonomy"
+            lede="Five kinds of class exist. A class that fits none of them is a bug. This is the whole namespace, and it is deliberately small enough to recognize at a glance."
+          >
+            <SpecTable
+              head={['Type', 'Syntax', 'Owns', 'Example']}
+              rows={[
+                ['Block', '<code>snake_case</code>', 'Component or page identity', '<code>.user_card</code>'],
+                [
+                  'Element',
+                  '<code>block-part_name</code>',
+                  'A dependent part of exactly one block',
+                  '<code>.user_card-main_title</code>',
+                ],
+                ['Layout', '<code>l_*</code>', 'Spatial geometry and rhythm only', '<code>.l_stack</code>'],
+                ['Utility', '<code>u_*</code>', 'Single-purpose, state-free behavior', '<code>.u_reset_button</code>'],
+                [
+                  'Generic',
+                  '<code>g_*</code>',
+                  'Global visual objects too small to be components',
+                  '<code>.g_divider</code>',
+                ],
+              ]}
+            />
+
+            <CalloutBlock tone="law" title="Prefixes are a radar, not decoration">
+              <p>
+                You should be able to read any class in any file and know, without opening anything, whether it moves
+                things, resets things, draws something global, or belongs to one component. That is the entire purpose
+                of the prefixes.
+              </p>
+            </CalloutBlock>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 03 */}
+          <SpecBlock
+            id="naming"
+            index="03"
+            title="Naming rules"
+            lede="Three rules, and they are absolute. Most BEAM review comments are about this section."
+          >
+            <div class="g_prose">
+              <p>
+                <strong>1. Blocks derive from the component filename.</strong>&nbsp;<code>UserCard.tsx</code
+                >&nbsp;becomes&nbsp;<code>.user_card</code>.&nbsp;<code>RootLayout.astro</code>&nbsp;becomes&nbsp;<code
+                  >.root_layout</code
+                >. For framework route files with generic names –&nbsp;<code>index.astro</code>,&nbsp;<code
+                  >page.tsx</code
+                > – use the route's semantic identity instead:&nbsp;<code>.home_page</code>,&nbsp;<code
+                  >.settings_page</code
+                >.
+              </p>
+              <p>
+                <strong>2. One hyphen joins a block to its element.</strong> Underscores separate words inside either half.
+                The hyphen therefore means exactly one thing in the entire codebase: <em>belongs to</em>.
+              </p>
+              <p>
+                <strong>3. Element names are flat.</strong> They never encode DOM depth, and selectors never nest to reach
+                them. Depth changes; names should not.
+              </p>
+            </div>
+
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock
+                tone="right"
+                file="Correct"
+                lang="css"
+                code={`.nav_bar { }
+.nav_bar-list_item { }
+.nav_bar-action_button { }`}
+              />
+              <CodeBlock
+                tone="wrong"
+                file="Incorrect"
+                lang="css"
+                code={`/* hyphen now means two things */
+.nav_bar-list-item { }
+
+/* mirrors today's markup */
+.nav_bar .list_item { }
+
+/* the string does not exist */
+.nav_bar {
+  &-list_item { }
+}`}
+              />
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 04 */}
+          <SpecBlock
+            id="state"
+            index="04"
+            title="State and variation"
+            lede="Attributes replace BEM modifiers entirely. There are no state classes in BEAM – not one."
+          >
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock
+                file="markup"
+                lang="html"
+                code={`<article class="promo_card" data-featured="true" data-state="loading">
+  <button class="promo_card-action" data-variant="primary" aria-disabled="true">
+    Save
+  </button>
+</article>`}
+              />
+              <CodeBlock
+                file="PromoCard.css"
+                lang="css"
+                code={`.promo_card[data-featured='true'] {
+  border-color: var(--border-focus);
+}
+
+.promo_card[data-state='loading'] {
+  opacity: var(--opacity-disabled);
+}
+
+.promo_card-action[data-variant='primary'] {
+  background: var(--action-primary);
+}`}
+              />
+            </div>
+
+            <SpecTable
+              head={['Attribute', 'Use for']}
+              rows={[
+                [
+                  '<code>data-state</code>',
+                  'Mutually exclusive lifecycle:&nbsp;<code>idle</code>,&nbsp;<code>loading</code>,&nbsp;<code>error</code>.',
+                ],
+                ['<code>data-variant</code>', 'A named visual treatment chosen by the caller.'],
+                ['<code>data-size</code>', 'Discrete size steps.'],
+                [
+                  '<code>data-*</code>&nbsp;(boolean-ish)',
+                  'Independent flags, written as&nbsp;<code>"true"</code>&nbsp;or omitted entirely.',
+                ],
+                [
+                  '<code>aria-*</code>',
+                  'Anything the accessibility tree already models:&nbsp;<code>aria-expanded</code>,&nbsp;<code>aria-disabled</code>,&nbsp;<code>aria-current</code>. Style those directly rather than mirroring them.',
+                ],
+              ]}
+            />
+
+            <CalloutBlock tone="note" title="Omit, do not falsify">
+              <p>
+                Write&nbsp;<code>data-featured="true"</code>&nbsp;or leave the attribute off. Never&nbsp;<code
+                  >data-featured="false"</code
+                >, because&nbsp;<code>[data-featured]</code>&nbsp;then matches both states and the next person will
+                write the selector that way.
+              </p>
+            </CalloutBlock>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 05 */}
+          <SpecBlock
+            id="modules"
+            index="05"
+            title="Modules and file layout"
+            lede="One block, one file, next to the thing that renders it. Five global stylesheets carry every shared responsibility, plus an optional sixth that declares fonts and nothing else. There is no seventh."
+          >
+            <CodeBlock
+              file="src/"
+              lang="text"
+              code={`styles/            listed in import order
+  fonts.css       @font-face only – optional
+  reset.css       browser normalization, no classes
+  theme.css       foundations, themes, semantics
+  layout.css      l_* spatial primitives
+  utils.css       u_* zero-state behaviors
+  generics.css    g_* global visual objects
+
+components/
+  UserCard.tsx    renders .user_card
+  UserCard.css    styles .user_card and nothing else`}
+            />
+
+            <div class="g_prose">
+              <p>
+                Those five required files are the only place global responsibilities live. A component stylesheet must
+                never redefine a reset, a token, a layout primitive or a generic – if you find yourself wanting to, the
+                thing you want belongs in the global layer, or it is not as global as you think.
+              </p>
+              <p>
+                <code>fonts.css</code>&nbsp;is the one optional member, and it is optional for a reason: a project on
+                system fonts does not need it, and a project that has fonts should keep&nbsp;<code>@font-face</code
+                >&nbsp;out of&nbsp;<code>theme.css</code>. Loading an asset and naming a typeface are different jobs
+                –&nbsp;<code>fonts.css</code>&nbsp;declares the files,&nbsp;<code>--typeface-*</code>&nbsp;in&nbsp;<code
+                  >theme.css</code
+                >&nbsp;decides what they mean. Import it first, so the faces are known before anything asks for them.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 06 */}
+          <SpecBlock
+            id="radar"
+            index="06"
+            title="The variable radar"
+            lede="A custom property's prefix tells you where it is declared and who is allowed to read it. Numbered tiers are banned; responsibility is the only axis."
+          >
+            <SpecTable
+              lead="wide"
+              head={['Prefix', 'Layer', 'Declared in', 'Readable by components']}
+              rows={[
+                [
+                  '<code>--palette-*</code>,&nbsp;<code>--typeface-*</code>',
+                  'Foundations',
+                  '<code>theme.css</code>',
+                  'Never',
+                ],
+                ['<code>--theme-[context]-*</code>', 'Themes', '<code>theme.css</code>', 'Never'],
+                [
+                  '<code>--bg-*</code>,&nbsp;<code>--ink-*</code>,&nbsp;<code>--border-*</code>,&nbsp;<code>--action-*</code>,&nbsp;<code>--space-*</code>,&nbsp;<code>--text-*</code>,&nbsp;<code>--font-*</code>,&nbsp;<code>--radius-*</code>,&nbsp;<code>--z-*</code>,&nbsp;<code>--duration-*</code>,&nbsp;<code>--ease-*</code>',
+                  'Semantics',
+                  '<code>theme.css</code>',
+                  'Yes – this is the public contract',
+                ],
+                ['<code>--c-*</code>', 'Component', 'Local CSS, or inline as a prop', 'Yes, within the owning block'],
+                ['<code>--js-*</code>', 'Dynamic globals', 'Injected at runtime', 'Yes, read only'],
+              ]}
+            />
+
+            <CalloutBlock tone="law" title="--c-* is the component's public API">
+              <p>
+                The only legal use of the&nbsp;<code>style</code>&nbsp;attribute in BEAM is setting a custom property.
+                Pass design decisions in as&nbsp;<code>--c-*</code>&nbsp;values; never pass visual declarations.
+              </p>
+            </CalloutBlock>
+
+            <CodeBlock
+              file="UserProfile.tsx"
+              lang="tsx"
+              code={`export const UserProfile = ({ themeColor }: Props) => (
+  <article class="user_profile" style={{ '--c-card-bg': themeColor } as React.CSSProperties}>
+    ...
+  </article>
+)`}
+            />
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 07 */}
+          <SpecBlock
+            id="firewall"
+            index="07"
+            title="The color firewall"
+            lede="Color passes through four layers, in one direction. This is the rule that makes theming free rather than merely possible."
+          >
+            <CodeBlock
+              file="theme.css"
+              lang="css"
+              code={`/* 1. Foundations – raw materials. Never referenced by a component. */
+:root {
+  --palette-stone-900: oklch(21.6% 0.006 56.043);
+  --palette-white: oklch(1 0 0);
+}
+
+/* 2. Themes – what each context physically means. Routed, never read. */
+:root {
+  --theme-light-bg-surface: var(--palette-white);
+  --theme-dark-bg-surface: var(--palette-stone-900);
+}
+
+/* 3. Semantics – the only layer components may consume. */
+[data-theme='light'] {
+  --bg-surface: var(--theme-light-bg-surface);
+}
+
+[data-theme='dark'] {
+  --bg-surface: var(--theme-dark-bg-surface);
+}`}
+            />
+
+            <CodeBlock
+              file="HolidayPromo.css"
+              lang="css"
+              code={`/* 4. Component – genuine exceptions, quarantined locally. */
+.holiday_promo {
+  --c-magic-bg: oklch(0.55 0.24 300);
+
+  background: var(--c-magic-bg);
+  color: var(--ink-inverse);
+}`}
+            />
+
+            <div class="g_prose">
+              <p>The firewall has three rules and they are worth memorizing:</p>
+              <ul>
+                <li>Components read Layer 3 only. Reaching into Layers 1 or 2 is always a bug.</li>
+                <li>
+                  Semantics point <em>down</em> at the theme switchboard, never <em>sideways</em> at another semantic.&nbsp;<code
+                    >--button-bg: var(--bg-surface)</code
+                  >&nbsp;creates a token with no theme of its own.
+                </li>
+                <li>
+                  Anything reusable enters through&nbsp;<code>theme.css</code>&nbsp;and gets all three layers. Anything
+                  genuinely one-off stays local as&nbsp;<code>--c-*</code>.
+                </li>
+              </ul>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 08 */}
+          <SpecBlock
+            id="kernel"
+            index="08"
+            title="The kernel"
+            lede="Sixteen semantic colors cover a complete interface. Start here, extend only when a real design decision forces it."
+          >
+            <SpecTable
+              head={['Group', 'Tokens']}
+              rows={[
+                [
+                  'Canvas',
+                  '<code>--bg-page</code>,&nbsp;<code>--bg-surface</code>,&nbsp;<code>--bg-surface-hover</code>,&nbsp;<code>--bg-overlay</code>',
+                ],
+                [
+                  'Ink',
+                  '<code>--ink-main</code>,&nbsp;<code>--ink-muted</code>,&nbsp;<code>--ink-faint</code>,&nbsp;<code>--ink-inverse</code>',
+                ],
+                ['Chrome', '<code>--border-base</code>,&nbsp;<code>--border-focus</code>'],
+                [
+                  'Interactive',
+                  '<code>--action-primary</code>,&nbsp;<code>--action-primary-hover</code>,&nbsp;<code>--action-neutral</code>,&nbsp;<code>--action-neutral-hover</code>,&nbsp;<code>--action-danger</code>,&nbsp;<code>--action-danger-hover</code>',
+                ],
+              ]}
+            />
+
+            <div class="g_prose">
+              <p>
+                <strong>Extensions</strong> are bespoke interactive colors the design system genuinely needs – this site adds&nbsp;<code
+                  >--action-contrast</code
+                >. Every interactive extension must ship with a matching&nbsp;<code>-hover</code>&nbsp;pair; a color you
+                can click needs a color that says you clicked it.
+              </p>
+              <p>
+                <strong>Intents</strong> are static status colors, limited to three weights:&nbsp;<code>base</code
+                >,&nbsp;<code>subtle</code>,&nbsp;<code>strong</code>. Enough for a badge, a banner and a chart. Not
+                enough to reinvent the palette.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 09 */}
+          <SpecBlock
+            id="inverse"
+            index="09"
+            title="Contextual inverse"
+            lede="Because semantics are pointers, any subtree can be told to resolve against the opposite theme. No component participates."
+          >
+            <CodeBlock
+              file="theme.css"
+              lang="css"
+              code={`[data-theme='light'],
+[data-theme='dark'] [data-theme='inverse'] {
+  /* light pointers */
+}
+
+[data-theme='dark'],
+:root:not([data-theme='dark']) [data-theme='inverse'],
+[data-theme='light'] [data-theme='inverse'] {
+  color-scheme: dark;
+  /* dark pointers */
+}`}
+            />
+
+            <CodeBlock
+              file="usage"
+              lang="html"
+              code={`<section class="cta_section" data-theme="inverse">
+  <h2 class="cta_section-heading">Same CSS. Opposite palette.</h2>
+</section>`}
+            />
+
+            <CalloutBlock tone="warn" title="One flip deep">
+              <p>
+                <code>inverse</code>&nbsp;resolves against the nearest explicit theme, so nesting inverse inside inverse
+                does not flip twice. If you need that, pin the inner subtree with an explicit&nbsp;<code
+                  >data-theme="light"</code
+                >&nbsp;or&nbsp;<code>data-theme="dark"</code>.
+              </p>
+            </CalloutBlock>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 10 */}
+          <SpecBlock
+            id="space"
+            index="10"
+            title="Mass and void"
+            lede="Two kinds of number that happen to share a unit. Keeping them apart is what stops a design system from drifting."
+          >
+            <SpecTable
+              head={['Kind', 'Properties', 'Source', 'Why']}
+              rows={[
+                [
+                  'Void',
+                  '<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>',
+                  '<code>--space-*</code>, always',
+                  'Negative space is shared rhythm. It must move together across the whole product.',
+                ],
+                [
+                  'Mass',
+                  '<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,&nbsp;<code>translate</code>',
+                  'Raw&nbsp;<code>rem</code>&nbsp;or&nbsp;<code>px</code>',
+                  "An object's shape belongs to that object. Borrowing a rhythm token couples it to unrelated changes.",
+                ],
+              ]}
+            />
+
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock
+                tone="wrong"
+                file="Wrong"
+                lang="css"
+                code={`.avatar {
+  width: var(--space-12);
+  height: var(--space-12);
+}`}
+              />
+              <CodeBlock
+                tone="right"
+                file="Right"
+                lang="css"
+                code={`.avatar {
+  width: 3rem;
+  height: 3rem;
+}`}
+              />
+            </div>
+
+            <div class="g_prose">
+              <p>
+                The spacing scale runs on a 4px grid where&nbsp;<code>--space-4</code>&nbsp;equals&nbsp;<code>1rem</code
+                >. The number in the token is the grid step, not an arbitrary index, which is why the scale can be
+                extended without renumbering anything.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 11 */}
+          <SpecBlock
+            id="primitives"
+            index="11"
+            title="Layout primitives"
+            lede="Six primitives, configured with attributes. Flex and grid utility classes are not part of BEAM."
+          >
+            <SpecTable
+              lead="wide"
+              head={['Primitive', 'Behavior', 'Attributes']}
+              rows={[
+                [
+                  '<code>.l_stack</code>',
+                  'Vertical flex',
+                  '<code>data-gap</code>,&nbsp;<code>data-align</code>,&nbsp;<code>data-justify</code>',
+                ],
+                [
+                  '<code>.l_cluster</code>',
+                  'Horizontal wrapping flex',
+                  '<code>data-gap</code>,&nbsp;<code>data-align</code>,&nbsp;<code>data-justify</code>,&nbsp;<code>data-reverse</code>,&nbsp;<code>data-nowrap</code>',
+                ],
+                [
+                  '<code>.l_grid</code>',
+                  'Two-dimensional grid',
+                  '<code>data-cols</code>,&nbsp;<code>data-min</code>,&nbsp;<code>data-layout</code>,&nbsp;<code>data-gap</code>',
+                ],
+                ['<code>.l_container</code>', 'Page bounds and macro padding', '<code>data-size</code>'],
+                [
+                  '<code>.l_switcher</code>',
+                  'Container-query flex, stacked until the threshold',
+                  '<code>data-threshold</code>,&nbsp;<code>data-gap</code>',
+                ],
+                ['<code>.l_spacer</code>', 'Flex-grow spacer', '–'],
+              ]}
+            />
+
+            <CodeBlock
+              file="composition"
+              lang="html"
+              code={`<div class="l_container" data-size="page">
+  <div class="l_stack" data-gap="8">
+    <article class="promo_card">...</article>
+
+    <div class="l_switcher" data-threshold="3xl" data-gap="6">
+      <div class="promo_card">...</div>
+      <aside class="promo_aside">...</aside>
+    </div>
+  </div>
+</div>`}
+            />
+
+            <div class="g_prose">
+              <p>
+                <code>.l_switcher</code>&nbsp;is container-query driven, not viewport driven, so a component moved into
+                a sidebar rearranges itself without anyone editing a media query. Thresholds follow the standard
+                container scale from&nbsp;<code>3xs</code>&nbsp;to&nbsp;<code>7xl</code>.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 12 */}
+          <SpecBlock
+            id="binary"
+            index="12"
+            title="The Binary Rule"
+            lede="A layout class and a component class must never share a DOM element."
+          >
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock tone="wrong" file="Illegal" lang="html" code={`<div class="l_stack user_card">...</div>`} />
+              <CodeBlock
+                tone="right"
+                file="Legal"
+                lang="html"
+                code={`<div class="l_stack" data-gap="4">
+  <div class="user_card">...</div>
+</div>`}
+              />
+            </div>
+
+            <div class="g_prose">
+              <p>
+                Two classes on one element means two owners for&nbsp;<code>display</code>,&nbsp;<code>gap</code
+                >&nbsp;and&nbsp;<code>margin</code>, which is a specificity argument waiting to happen. Worse, the
+                component now knows how it is arranged, so it cannot be moved without editing it.
+              </p>
+              <p>
+                <strong>One exception.</strong> A block may set&nbsp;<code>position: relative</code>&nbsp;on a direct
+                child&nbsp;<code>.l_container</code>&nbsp;to establish a stacking anchor, provided it does not touch the
+                container's display model.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 13 */}
+          <SpecBlock
+            id="nesting"
+            index="13"
+            title="Nesting rules"
+            lede="Native nesting is welcome. Building names with it is not."
+          >
+            <SpecTable
+              head={['Nesting', 'Verdict']}
+              rows={[
+                [
+                  '<code>&amp;:hover</code>,&nbsp;<code>&amp;:focus-visible</code>',
+                  'Allowed – a condition, not a name',
+                ],
+                ["<code>&amp;[data-state='open']</code>", 'Allowed – a condition, not a name'],
+                ['<code>@container</code>,&nbsp;<code>@media</code>&nbsp;inside a rule', 'Allowed'],
+                ['<code>&amp;-title</code>', 'Banned – invents a string that exists nowhere'],
+                ['<code>.block .element</code>', 'Banned – encodes DOM depth'],
+                ['Two or more levels deep', 'Banned – flatten it'],
+              ]}
+            />
+
+            <CalloutBlock tone="law" title="The test">
+              <p>
+                Take any class in your rendered HTML, search the codebase for that exact string, and you must land on
+                the rule that styles it. If you cannot, the nesting was wrong.
+              </p>
+            </CalloutBlock>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 14 */}
+          <SpecBlock
+            id="fluid"
+            index="14"
+            title="Fluid interpolation"
+            lede="Point-to-point interpolation between two static tokens, resolved at build time by postcss-beam-fluid."
+          >
+            <CodeBlock
+              file="usage"
+              lang="css"
+              code={`/* Two tokens, project viewport bounds */
+padding: fluid(var(--space-4), var(--space-8));
+
+/* Literals are fine */
+font-size: fluid(2rem, 4rem);
+
+/* Per-call bounds: min, max, minViewport, maxViewport */
+font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
+            />
+
+            <SpecTable
+              head={['Rule', 'Reason']}
+              rows={[
+                [
+                  'Static&nbsp;<code>px</code>&nbsp;or&nbsp;<code>rem</code>&nbsp;only',
+                  '<code>em</code>,&nbsp;<code>%</code>&nbsp;and&nbsp;<code>vw</code>&nbsp;depend on context the build cannot see.',
+                ],
+                ['One unit per call', '<code>fluid(16px, 2rem)</code>&nbsp;is a mistake, not a shortcut.'],
+                ['Unresolved tokens fail the build', 'A silently wrong size is worse than a red build.'],
+                [
+                  'Output contains no&nbsp;<code>*</code>&nbsp;or&nbsp;<code>/</code>',
+                  'The slope is computed at build time, so the browser evaluates a two-term sum.',
+                ],
+              ]}
+            />
+
+            <div class="g_prose">
+              <p>
+                Verify it in CI. If a raw&nbsp;<code>fluid(</code>&nbsp;reaches your output, the plugin never ran:
+              </p>
+            </div>
+
+            <CodeBlock file="ci" lang="bash" code={`pnpm build && ! rg -q "fluid\\(" dist`} />
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 15 */}
+          <SpecBlock
+            id="strata"
+            index="15"
+            title="Z-index and motion"
+            lede="Two systems that exist purely so nobody ever types a magic number into a shared file again."
+          >
+            <SpecTable
+              head={['Stratum', 'Value', 'For']}
+              rows={[
+                ['<code>--z-sink</code>', '-1', 'Decorative layers behind content'],
+                ['<code>--z-pinned</code>', '100', 'Sticky headers and rails'],
+                ['<code>--z-dropdown</code>', '200', 'Menus, popovers, tooltips'],
+                ['<code>--z-overlay</code>', '300', 'Modals and scrims'],
+                ['<code>--z-toast</code>', '400', 'Transient notifications'],
+                ['<code>--z-max</code>', '9999', 'Skip links and debug affordances'],
+              ]}
+            />
+
+            <div class="g_prose">
+              <p>
+                Stack inside a stratum with delta math –&nbsp;<code>calc(var(--z-overlay) + 1)</code> – so the relationship
+                is visible in the value rather than implied by two numbers being near each other.
+              </p>
+              <p>
+                <strong>Transitions</strong> must use&nbsp;<code>--duration-*</code>&nbsp;and&nbsp;<code>--ease-*</code
+                >, because they respond to user input and must obey&nbsp;<code>prefers-reduced-motion</code
+                >&nbsp;centrally.
+                <strong>Named animations</strong> may use bespoke timings, because choreography is authored, not systematic.
+                Composable chunks like&nbsp;<code>--transition-pressable</code>&nbsp;exist so utilities can share
+                physics safely.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 16 */}
+          <SpecBlock
+            id="globals"
+            index="16"
+            title="Utilities and generics"
+            lede="Two small global layers with sharply different jobs."
+          >
+            <div class="g_prose">
+              <p>
+                <strong>Utilities (<code>u_*</code>)</strong> are single-purpose and state-free. Zero-state contracts – the
+                ones that strip user-agent styling – are wrapped in&nbsp;<code>:where()</code>&nbsp;so their specificity
+                is zero and a component class always wins without anyone reaching for&nbsp;<code>!important</code>.
+              </p>
+            </div>
+
+            <CodeBlock
+              file="utils.css"
+              lang="css"
+              code={`:where(.u_reset_button) {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}`}
+            />
+
+            <div class="g_prose">
+              <p>
+                <strong>Generics (<code>g_*</code>)</strong> are real visual objects that are too ubiquitous to deserve a
+                component file:&nbsp;<code>.g_divider</code>,&nbsp;<code>.g_spinner</code>,&nbsp;<code>.g_tag</code
+                >,&nbsp;<code>.g_kbd</code>. They follow every BEAM rule and may hold state.
+              </p>
+              <p>
+                <code>.g_prose</code>&nbsp;is the one sanctioned exception to the no-descendant-selectors rule. It is an
+                encapsulation zone for HTML you did not write – Markdown output, CMS bodies – where there are no classes
+                to target by design.
+              </p>
+            </div>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 17 */}
+          <SpecBlock
+            id="checklist"
+            index="17"
+            title="Review checklist"
+            lede="What to look for in a pull request. Every item is mechanical, which is the point – none of it is a matter of taste."
+          >
+            <SpecTable
+              head={['Check', 'Fails when']}
+              rows={[
+                [
+                  'Class taxonomy',
+                  'A class is not a block, element,&nbsp;<code>l_</code>,&nbsp;<code>u_</code>&nbsp;or&nbsp;<code>g_</code>.',
+                ],
+                ['Naming', 'A hyphen appears inside an element name, or a selector mirrors DOM depth.'],
+                ['State', 'A state or variant is expressed as a class instead of an attribute.'],
+                ['Binary Rule', 'An&nbsp;<code>l_*</code>&nbsp;class shares an element with a block.'],
+                [
+                  'Color firewall',
+                  'A component references a raw color, a&nbsp;<code>--palette-*</code>&nbsp;or a&nbsp;<code>--theme-*</code>.',
+                ],
+                [
+                  'Void',
+                  '<code>margin</code>,&nbsp;<code>padding</code>&nbsp;or&nbsp;<code>gap</code>&nbsp;uses a raw length.',
+                ],
+                [
+                  'Mass',
+                  '<code>width</code>,&nbsp;<code>height</code>&nbsp;or&nbsp;<code>inset</code>&nbsp;uses a&nbsp;<code>--space-*</code>&nbsp;token.',
+                ],
+                ['Nesting', 'An ampersand builds a name, or nesting goes deeper than one level.'],
+                ['Motion', 'A transition uses a literal duration or easing curve.'],
+                ['Z-index', 'A number appears where a stratum token belongs.'],
+                [
+                  'Inline styles',
+                  'The&nbsp;<code>style</code>&nbsp;attribute sets anything other than a custom property.',
+                ],
+                ['Build', 'A raw&nbsp;<code>fluid(</code>&nbsp;survives into the output.'],
+              ]}
+            />
+
+            <CalloutBlock tone="note" title="Hand it to the machine">
+              <p>
+                This checklist is the reason BEAM works well with coding agents: every line is checkable without
+                judgment. The packaged skill contains exactly these rules, so your assistant reviews its own diff
+                against the same list you would.
+              </p>
+            </CalloutBlock>
+
+            <div class="l_cluster" data-gap="3">
+              <ActionButton href="/install/#skill">Download the skill</ActionButton>
+              <ActionButton href="/lineage/" tone="outline">Compare with other approaches</ActionButton>
+            </div>
+          </SpecBlock>
+        </div>
+      </div>
+    </div>
+  </div>
+</RootLayout>
