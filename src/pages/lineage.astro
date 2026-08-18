@@ -322,8 +322,8 @@ const description =
                   <p>
                     Everyone uses custom properties for theming. Almost nobody separates <em>what a color is</em> from
                     <em>what a context means</em> from <em>what a component asks for</em>. Three layers instead of one
-                    is the difference between “theming is possible” and “a color is declared exactly twice in the
-                    entire codebase.”
+                    is the difference between “theming is possible” and “a color is declared exactly twice in the entire
+                    codebase.”
                   </p>
                   <p>
                     It also produces the contextual inverse for free, which is the trick nobody has because nobody
@@ -384,7 +384,8 @@ const description =
               file="From utility-first"
               lang="html"
               code={`<!-- Before -->
-<div class="flex flex-col gap-3 rounded-xl
+<div class="flex flex-col gap-3">
+     <article class="flex flex-col gap-2 rounded-xl
   border bg-white p-6 dark:bg-stone-900">
 
 <!-- After -->
