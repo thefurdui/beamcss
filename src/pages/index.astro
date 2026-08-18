@@ -91,7 +91,7 @@ const DIALECTS = [
     id: 'bem',
     label: 'BEM',
     verdict:
-      'The right instinct, taxed. Every name costs four extra characters, and <code class="g_code">&amp;__title</code> nesting means the string <code class="g_code">card__title</code> exists nowhere in your repo.',
+      'The right instinct, taxed. Every name costs four extra characters, and&nbsp;<code class="g_code">&amp;__title</code>&nbsp;nesting means the string&nbsp;<code class="g_code">card__title</code>&nbsp;exists nowhere in your repo.',
     samples: [
       {
         file: 'markup.html',
@@ -235,9 +235,10 @@ const description =
           <h1 class="hero_section-title u_balance">A browser-native CSS architecture for OCD-level determinism.</h1>
 
           <p class="hero_section-lede u_pretty">
-            Collision-proof namespaces. One file per component. State in&nbsp;
-            <code class="g_code">data-*</code> attributes. Color behind a firewall. No preprocessor, no runtime, and no&nbsp;
-            <code class="g_code">div</code> wearing fourteen classes.
+            Collision-proof namespaces. One file per component. State in&nbsp;<code class="g_code">data-*</code
+            >&nbsp;attributes. Color behind a firewall. No preprocessor, no runtime, and no&nbsp;<code class="g_code"
+              >div</code
+            >&nbsp;wearing fourteen classes.
           </p>
 
           <div class="l_cluster" data-gap="3">
@@ -345,8 +346,8 @@ const description =
 
           <div class="g_prose home_section-prose">
             <p>
-              Now read those complaints again and notice what is missing. Nobody said <code>color-mix()</code> is broken.
-              Nobody said custom properties don't work. Nobody is waiting on a browser.
+              Now read those complaints again and notice what is missing. Nobody said&nbsp;<code>color-mix()</code
+              >&nbsp;is broken. Nobody said custom properties don't work. Nobody is waiting on a browser.
             </p>
             <p>
               <strong>Duplicated theme definitions.</strong> Palettes and scales that are “hard to manage.” Cognitive overload
@@ -424,18 +425,20 @@ const description =
         <div class="l_stack" data-gap="0">
           <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
             <p>
-              A component is named for what it <em>is</em>, never for what it looks like. <code>.user_card</code>, not
-              <code>.bg-white.rounded-xl.p-4.shadow-sm</code>.
+              A component is named for what it <em>is</em>, never for what it looks like.&nbsp;<code>.user_card</code>,
+              not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>.
             </p>
             <p>
               That reads like taste until the design changes. The moment “white” becomes “white in light mode and
-              stone-900 in dark mode,” a class called <code>bg-white</code> is a lie – and it is a lie in forty files at once.
-              <code>.user_card</code> was never going to be wrong, because a card is still a card.
+              stone-900 in dark mode,” a class called&nbsp;<code>bg-white</code>&nbsp;is a lie – and it is a lie in
+              forty files at once.&nbsp;<code>.user_card</code>&nbsp;was never going to be wrong, because a card is
+              still a card.
             </p>
             <p>
-              Why snake_case? Because <code>user_card</code> is one double-click and
-              <code>user-card</code> is two. You will select this token thousands of times over the life of the project. Optimize
-              for the thousands.
+              Why snake_case? Because&nbsp;<code>user_card</code>&nbsp;is one double-click and&nbsp;<code
+                >user-card</code
+              >&nbsp;is two. You will select this token thousands of times over the life of the project. Optimize for
+              the thousands.
             </p>
             <CodeBlock
               slot="code"
@@ -481,10 +484,11 @@ const description =
               <strong>State is not a class. State is data.</strong>
             </p>
             <p>
-              Count the dialects you have shipped: <code>is-active</code>, <code>--active</code>,
-              <code>.button--loading</code>, <code>.open</code>, <code>.js-open</code>. Five codebases, five
-              conventions, and not one of them can be queried, typed, or read at a glance in devtools. Meanwhile the
-              platform has had a first-class answer since 2008, and <code>aria-*</code> has been using it the whole time.
+              Count the dialects you have shipped:&nbsp;<code>is-active</code>,&nbsp;<code>--active</code>,&nbsp;<code
+                >.button--loading</code
+              >,&nbsp;<code>.open</code>,&nbsp;<code>.js-open</code>. Five codebases, five conventions, and not one of
+              them can be queried, typed, or read at a glance in devtools. Meanwhile the platform has had a first-class
+              answer since 2008, and&nbsp;<code>aria-*</code>&nbsp;has been using it the whole time.
             </p>
             <p>
               You also stop concatenating class strings in JavaScript, which is where roughly half of all UI state bugs
@@ -502,13 +506,13 @@ const description =
 
           <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
             <p>
-              One block, one file, sitting next to the component that renders it.
-              <code>UserCard.tsx</code> and <code>UserCard.css</code> live and die together.
+              One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
+              >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
             </p>
             <p>
               Delete the component, delete the stylesheet. No orphan rules. No “is anything still using this?” No
-              four-thousand-line <code>components.css</code> that everyone appends to and nobody removes from. The file tree
-              becomes an index of your UI.
+              four-thousand-line&nbsp;<code>components.css</code>&nbsp;that everyone appends to and nobody removes from.
+              The file tree becomes an index of your UI.
             </p>
             <CodeBlock
               slot="code"
@@ -561,39 +565,39 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              In the first version, the string <code>user_card-title</code> exists nowhere. Not in the stylesheet, not in
-              your editor's search, not in
-              <code>rg</code>, not in your language server's index, not in the context window of whatever model you
-              asked to rename it. You created a class that is invisible to every tool you own, and you saved eleven
-              characters.
+              In the first version, the string&nbsp;<code>user_card-title</code>&nbsp;exists nowhere. Not in the
+              stylesheet, not in your editor's search, not in&nbsp;<code>rg</code>, not in your language server's index,
+              not in the context window of whatever model you asked to rename it. You created a class that is invisible
+              to every tool you own, and you saved eleven characters.
             </p>
             <p>
               In the second version, one search finds the markup and the style, and every tool that operates on strings
-              suddenly works. In VS Code or Cursor, <span class="g_kbd">⌘</span><span class="g_kbd">D</span> keeps selecting
-              occurrences until you have all of them. In Neovim, <span class="g_kbd">*</span> puts the name in the search
-              register, <span class="g_kbd">c</span><span class="g_kbd">g</span><span class="g_kbd">n</span>
-              changes the next match, and <span class="g_kbd">.</span> repeats that for the rest of the file. Rename it once,
-              correctly, everywhere.
+              suddenly works. In VS Code or Cursor,&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span
+              >&nbsp;keeps selecting occurrences until you have all of them. In Neovim,&nbsp;<span class="g_kbd">*</span
+              >&nbsp;puts the name in the search register,&nbsp;<span class="g_kbd">c</span><span class="g_kbd">g</span
+              ><span class="g_kbd">n</span>&nbsp;changes the next match, and&nbsp;<span class="g_kbd">.</span
+              >&nbsp;repeats that for the rest of the file. Rename it once, correctly, everywhere.
             </p>
             <p>
-              Notice that the Vim flow is not a shortcut for the same idea – it is the idea. <span class="g_kbd">*</span
-              >
-              searches for the word under the cursor, so it cannot search for a name the file does not contain. Write
-              <code>&amp;-title</code> and the keystroke has nothing to grab. The convention is what makes the tooling possible,
-              in either editor.
+              Notice that the Vim flow is not a shortcut for the same idea – it is the idea.&nbsp;<span class="g_kbd"
+                >*</span
+              >&nbsp;searches for the word under the cursor, so it cannot search for a name the file does not contain.
+              Write&nbsp;<code>&amp;-title</code>&nbsp;and the keystroke has nothing to grab. The convention is what
+              makes the tooling possible, in either editor.
             </p>
             <p>
-              BEM understood half of this and then made the names longer.
-              <code>.block__element--modifier</code> costs four extra characters per name and a mental parse every time you
-              read one – and <code>&amp;__element</code> has exactly the same invisibility problem.
+              BEM understood half of this and then made the names longer.&nbsp;<code>.block__element--modifier</code
+              >&nbsp;costs four extra characters per name and a mental parse every time you read one – and&nbsp;<code
+                >&amp;__element</code
+              >&nbsp;has exactly the same invisibility problem.
             </p>
           </div>
 
           <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
             <p>
-              Nest one level deep for state, pseudo-classes and queries – <code>&amp;:hover</code>,
-              <code>&amp;[data-state='open']</code>, <code>@container</code>. Those are conditions, not names, so
-              nothing becomes unsearchable.
+              Nest one level deep for state, pseudo-classes and queries –&nbsp;<code>&amp;:hover</code>,&nbsp;<code
+                >&amp;[data-state='open']</code
+              >,&nbsp;<code>@container</code>. Those are conditions, not names, so nothing becomes unsearchable.
             </p>
             <p>The line is simple: if nesting invents a string that does not appear in the file, it is banned.</p>
           </CalloutBlock>
@@ -649,8 +653,9 @@ const description =
         <div class="g_prose home_section-prose">
           <p>
             That is the whole engine. A semantic token is declared exactly twice in the codebase: once in the light
-            block, once in the dark block. Your components declare it <em>zero</em> times – they read
-            <code>var(--bg-surface)</code> and stop thinking.
+            block, once in the dark block. Your components declare it <em>zero</em> times – they read&nbsp;<code
+              >var(--bg-surface)</code
+            >&nbsp;and stop thinking.
           </p>
           <p>
             Adding a third theme is one more block. A high-contrast mode is one more block. A per-tenant brand is one
@@ -666,15 +671,14 @@ const description =
 
         <CalloutBlock tone="warn" title="The trap: semantic tokens pointing sideways">
           <p>
-            <code>--button-bg: var(--bg-surface)</code> looks tidy and quietly destroys the system. That token now has no
-            theme of its own; it inherits whatever
-            <code>--bg-surface</code> resolved to, so you can never give the button a different treatment in dark mode without
-            special-casing the component.
+            <code>--button-bg: var(--bg-surface)</code>&nbsp;looks tidy and quietly destroys the system. That token now
+            has no theme of its own; it inherits whatever&nbsp;<code>--bg-surface</code>&nbsp;resolved to, so you can
+            never give the button a different treatment in dark mode without special-casing the component.
           </p>
           <p>
             Semantics point <em>down</em> into the theme switchboard, never <em>sideways</em> at each other. If a component
-            genuinely needs its own color, quarantine it locally as
-            <code>--c-*</code> and keep it out of <code>theme.css</code>.
+            genuinely needs its own color, quarantine it locally as&nbsp;<code>--c-*</code>&nbsp;and keep it out
+            of&nbsp;<code>theme.css</code>.
           </p>
         </CalloutBlock>
       </div>
@@ -695,19 +699,23 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              <strong>Void</strong> is negative space – <code>margin</code>, <code>padding</code>, <code>gap</code>. It
-              is rhythm, it is shared across the entire product, and it must come from the
-              <code>--space-*</code> scale.
+              <strong>Void</strong> is negative space –&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code
+                >gap</code
+              >. It is rhythm, it is shared across the entire product, and it must come from the&nbsp;<code
+                >--space-*</code
+              >&nbsp;scale.
             </p>
             <p>
-              <strong>Mass</strong> is the physical shape of one object – <code>width</code>, <code>height</code>,
-              <code>inset</code>, <code>translate</code> distances. The avatar is
-              <code>3rem</code> because the avatar is 3rem. It is not <code>--space-12</code>; that is a numerical
+              <strong>Mass</strong> is the physical shape of one object –&nbsp;<code>width</code>,&nbsp;<code
+                >height</code
+              >,&nbsp;<code>inset</code>,&nbsp;<code>translate</code>&nbsp;distances. The avatar is&nbsp;<code
+                >3rem</code
+              >&nbsp;because the avatar is 3rem. It is not&nbsp;<code>--space-12</code>; that is a numerical
               coincidence, and coincidences drift.
             </p>
             <p>
-              When somebody tightens the vertical rhythm by nudging <code>--space-12</code> from 3rem to 2.75rem, your avatar
-              should not quietly become an oval.
+              When somebody tightens the vertical rhythm by nudging&nbsp;<code>--space-12</code>&nbsp;from 3rem to
+              2.75rem, your avatar should not quietly become an oval.
             </p>
           </div>
 
@@ -732,9 +740,9 @@ const description =
         <CalloutBlock tone="law" title="The Binary Rule">
           <p>
             A layout class and a component class must never share a DOM element. Geometry goes on a wrapper; the
-            component owns only itself. The moment <code>.l_stack</code> and <code>.user_card</code> land on the same node,
-            you are one specificity argument away from <code>!important</code>, and the card can no longer be moved
-            without breaking its surroundings.
+            component owns only itself. The moment&nbsp;<code>.l_stack</code>&nbsp;and&nbsp;<code>.user_card</code
+            >&nbsp;land on the same node, you are one specificity argument away from&nbsp;<code>!important</code>, and
+            the card can no longer be moved without breaking its surroundings.
           </p>
         </CalloutBlock>
 
@@ -792,14 +800,14 @@ const description =
 
         <div class="g_prose home_section-prose">
           <p>
-            Nobody reads the first one. Nobody audits it. Nobody notices when the second
-            <code>2.25rem</code> drifts out of sync with the first, so it gets copied once and then quietly stops matching
-            the type scale it was derived from.
+            Nobody reads the first one. Nobody audits it. Nobody notices when the second&nbsp;<code>2.25rem</code
+            >&nbsp;drifts out of sync with the first, so it gets copied once and then quietly stops matching the type
+            scale it was derived from.
           </p>
           <p>
-            <code>fluid()</code> resolves both tokens at build time and emits a plain
-            <code>clamp()</code> – two bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing
-            left for the browser to do. Drag the viewport below and watch it work.
+            <code>fluid()</code>&nbsp;resolves both tokens at build time and emits a plain&nbsp;<code>clamp()</code> – two
+            bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing left for the browser to do.
+            Drag the viewport below and watch it work.
           </p>
         </div>
 
@@ -851,8 +859,9 @@ const description =
             </p>
             <ul>
               <li>
-                The class name is derivable from the filename. <code>UserCard.tsx</code> becomes
-                <code>.user_card</code>. No judgment call.
+                The class name is derivable from the filename.&nbsp;<code>UserCard.tsx</code>&nbsp;becomes&nbsp;<code
+                  >.user_card</code
+                >. No judgment call.
               </li>
               <li>The file location is derivable from the block. One block, one file, co-located. No judgment call.</li>
               <li>Color has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
@@ -865,9 +874,10 @@ const description =
               a style guide and a specification.
             </p>
             <p>
-              It runs the other way too. Flat, searchable selectors mean an agent asked to touch
-              <code>.user_card-title</code> can find every occurrence on the first try. A codebase built from
-              <code>&amp;-title</code> fragments is, to a model reading it, a maze with the labels torn off.
+              It runs the other way too. Flat, searchable selectors mean an agent asked to touch&nbsp;<code
+                >.user_card-title</code
+              >&nbsp;can find every occurrence on the first try. A codebase built from&nbsp;<code>&amp;-title</code
+              >&nbsp;fragments is, to a model reading it, a maze with the labels torn off.
             </p>
           </div>
 
@@ -946,8 +956,9 @@ Ampersand        banned for name building`}
           <div class="objection_card">
             <h3 class="objection_card-title">“Will it stop me writing bad CSS?”</h3>
             <p class="objection_card-body">
-              No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an
-              <code class="g_code">l_</code> class riding a block. You stop arguing about taste and start pointing at rules.
+              No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an&nbsp;<code
+                class="g_code">l_</code
+              >&nbsp;class riding a block. You stop arguing about taste and start pointing at rules.
             </p>
           </div>
           <div class="objection_card">
@@ -981,9 +992,10 @@ Ampersand        banned for name building`}
         </div>
 
         <p class="closing_section-note">
-          Then open the inspector on this page. Every class you find is a Block, an Element, an
-          <code class="g_code">l_</code>, a <code class="g_code">u_</code>, or a <code class="g_code">g_</code>. That is
-          the whole vocabulary.
+          Then open the inspector on this page. Every class you find is a Block, an Element, an&nbsp;<code
+            class="g_code">l_</code
+          >, a&nbsp;<code class="g_code">u_</code>, or a&nbsp;<code class="g_code">g_</code>. That is the whole
+          vocabulary.
         </p>
       </div>
     </div>

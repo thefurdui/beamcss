@@ -32,7 +32,7 @@ const ANCESTORS = [
     author: 'Yandex',
     body: [
       'The most important idea in the history of CSS naming, and the direct parent of this project. BEM said: give every component a namespace, name its parts explicitly, and never write a descendant selector again. Twenty-odd years later that is still correct.',
-      'What went wrong was ergonomics. <code>.block__element--modifier</code> costs you four extra characters per name and a mental parse on every read. Then Sass gave everyone <code>&amp;__element</code>, and the class strings in your HTML stopped existing anywhere in your stylesheet.',
+      'What went wrong was ergonomics.&nbsp;<code>.block__element--modifier</code>&nbsp;costs you four extra characters per name and a mental parse on every read. Then Sass gave everyone&nbsp;<code>&amp;__element</code>, and the class strings in your HTML stopped existing anywhere in your stylesheet.',
       'BEAM is BEM with the tax removed and the two missing pieces added.',
     ],
     keeps: [
@@ -41,9 +41,9 @@ const ANCESTORS = [
       'One namespace per component.',
     ],
     drops: [
-      '<code>__</code> and <code>--</code>. One hyphen carries the relationship; underscores separate words.',
+      '<code>__</code>&nbsp;and&nbsp;<code>--</code>. One hyphen carries the relationship; underscores separate words.',
       'Modifiers as classes. Variation is data, so it belongs in an attribute.',
-      '<code>&amp;__</code> concatenation, which deletes your class names from your own codebase.',
+      '<code>&amp;__</code>&nbsp;concatenation, which deletes your class names from your own codebase.',
     ],
   },
   {
@@ -55,7 +55,7 @@ const ANCESTORS = [
       'SMACSS asked you to hold the category in your head. BEAM puts it in the class name, where you cannot forget it.',
     ],
     keeps: [
-      'Categories as a first-class concept – they became the <code>l_</code>, <code>u_</code>, <code>g_</code> prefixes.',
+      'Categories as a first-class concept – they became the&nbsp;<code>l_</code>,&nbsp;<code>u_</code>,&nbsp;<code>g_</code>&nbsp;prefixes.',
       'Layout as a separate category from components.',
     ],
     drops: [
@@ -69,7 +69,7 @@ const ANCESTORS = [
     author: 'Harry Roberts',
     body: [
       'Order the entire stylesheet by reach and specificity: settings, tools, generic, elements, objects, components, utilities. An inverted triangle where specificity only ever increases. Genuinely brilliant, and it made large legacy codebases tractable.',
-      'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, and <code>:where()</code> pins resets to zero.',
+      'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, and&nbsp;<code>:where()</code>&nbsp;pins resets to zero.',
     ],
     keeps: [
       'Ordered global layers – the global stylesheets are ITCSS with the arguing removed.',
@@ -86,7 +86,7 @@ const ANCESTORS = [
     author: 'styled-components, Emotion, and friends',
     body: [
       'The correct diagnosis: styles need scoping, and they should live next to the component that owns them. The prescription was to move CSS into JavaScript, and that is where the bill arrived – a runtime, hashed class names, styles in your JS bundle, and theme values delivered through a React context.',
-      'Open devtools on a CSS-in-JS app and you are looking at <code>hXlkjP</code>. You cannot search for it, an agent cannot reason about it, and neither can you in six months.',
+      'Open devtools on a CSS-in-JS app and you are looking at&nbsp;<code>hXlkjP</code>. You cannot search for it, an agent cannot reason about it, and neither can you in six months.',
     ],
     keeps: [
       'Co-location. One block, one file, next to the component – that is the <strong>M</strong>.',
@@ -115,7 +115,7 @@ const ANCESTORS = [
     drops: [
       'Appearance in the class attribute. Identity goes there instead.',
       'Per-instance repetition of every visual decision.',
-      '<code>dark:</code> variants, which are duplicated theme definitions by another name.',
+      '<code>dark:</code>&nbsp;variants, which are duplicated theme definitions by another name.',
     ],
   },
   {
@@ -123,11 +123,11 @@ const ANCESTORS = [
     name: 'CUBE CSS',
     author: 'Andy Bell',
     body: [
-      'Composition, Utility, Block, Exception. CUBE argued that layout should be <em>composed</em> from a small set of primitives rather than enumerated per component, and it is the reason the <code>l_*</code> primitives exist in this document.',
-      'CUBE also reached for <code>data-*</code> attributes to express exceptions, which is the same instinct that became the <strong>A</strong> in BEAM. Where the two part company is strictness: CUBE is a philosophy you interpret, and BEAM is a specification you comply with.',
+      'Composition, Utility, Block, Exception. CUBE argued that layout should be <em>composed</em> from a small set of primitives rather than enumerated per component, and it is the reason the&nbsp;<code>l_*</code>&nbsp;primitives exist in this document.',
+      'CUBE also reached for&nbsp;<code>data-*</code>&nbsp;attributes to express exceptions, which is the same instinct that became the <strong>A</strong> in BEAM. Where the two part company is strictness: CUBE is a philosophy you interpret, and BEAM is a specification you comply with.',
     ],
     keeps: [
-      'Composition over enumeration – <code>.l_stack</code>, <code>.l_cluster</code>, <code>.l_grid</code>, <code>.l_switcher</code>.',
+      'Composition over enumeration –&nbsp;<code>.l_stack</code>,&nbsp;<code>.l_cluster</code>,&nbsp;<code>.l_grid</code>,&nbsp;<code>.l_switcher</code>.',
       'Attributes as a styling hook.',
       'Global utilities kept deliberately tiny.',
     ],
@@ -184,7 +184,7 @@ const MATRIX_ROWS = [
   {
     concern: 'Find a class by name',
     cells: [
-      { text: 'Broken by <code>&amp;__</code>', verdict: 'mixed' as const },
+      { text: 'Broken by&nbsp;<code>&amp;__</code>', verdict: 'mixed' as const },
       { text: 'Nothing to search for', verdict: 'bad' as const },
       { text: 'Impossible', verdict: 'bad' as const },
       { text: 'Yes', verdict: 'good' as const },
@@ -209,7 +209,7 @@ const MATRIX_ROWS = [
       { text: 'Required', verdict: 'mixed' as const },
       { text: 'Optional', verdict: 'good' as const },
       {
-        text: 'Optional – only for <code>fluid()</code>',
+        text: 'Optional – only for&nbsp;<code>fluid()</code>',
         verdict: 'good' as const,
       },
     ],
@@ -341,10 +341,11 @@ const description =
                 </div>
                 <div class="g_prose lineage_page-claim_body">
                   <p>
-                    Every previous convention optimized for reading. BEAM optimizes for <em>editing</em>:
-                    <code>snake_case</code> so one double-click takes the whole token, a single hyphen so the relationship
-                    is unambiguous, and an outright ban on building names with the ampersand so that every class in your HTML
-                    exists as a real string in your repository.
+                    Every previous convention optimized for reading. BEAM optimizes for <em>editing</em>:&nbsp;<code
+                      >snake_case</code
+                    >&nbsp;so one double-click takes the whole token, a single hyphen so the relationship is
+                    unambiguous, and an outright ban on building names with the ampersand so that every class in your
+                    HTML exists as a real string in your repository.
                   </p>
                   <p>
                     It sounds like a micro-optimization. It is the difference between a codebase you can refactor with
@@ -396,9 +397,10 @@ const description =
 
           <CalloutBlock tone="note" title="BEAM coexists">
             <p>
-              Nothing about BEAM requires deleting your current stylesheet. The global files are additive, the
-              <code>l_*</code> primitives do not collide with utility names, and a BEAM component sitting next to a legacy
-              one is fine. Convert on contact.
+              Nothing about BEAM requires deleting your current stylesheet. The global files are additive, the&nbsp;<code
+                >l_*</code
+              >&nbsp;primitives do not collide with utility names, and a BEAM component sitting next to a legacy one is
+              fine. Convert on contact.
             </p>
           </CalloutBlock>
         </div>

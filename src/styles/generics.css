@@ -238,6 +238,8 @@
   color: var(--ink-main);
   font-family: var(--font-mono);
   font-size: 0.9em;
+  overflow-wrap: break-word;
+  white-space: nowrap;
 }
 
 .g_prose blockquote {

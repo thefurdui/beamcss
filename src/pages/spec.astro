@@ -102,7 +102,7 @@ const description =
                 ],
                 [
                   'State driven',
-                  'State and variation live in HTML attributes, not in class names. <code>data-*</code> for application state, <code>aria-*</code> where a role already exists.',
+                  'State and variation live in HTML attributes, not in class names.&nbsp;<code>data-*</code>&nbsp;for application state,&nbsp;<code>aria-*</code>&nbsp;where a role already exists.',
                 ],
               ]}
             />
@@ -154,12 +154,14 @@ const description =
           >
             <div class="g_prose">
               <p>
-                <strong>1. Blocks derive from the component filename.</strong>
-                <code>UserCard.tsx</code> becomes <code>.user_card</code>. <code>RootLayout.astro</code> becomes
-                <code>.root_layout</code>. For framework route files with generic names – <code>index.astro</code>,
-                <code>page.tsx</code> – use the route's semantic identity instead:
-                <code>.home_page</code>,
-                <code>.settings_page</code>.
+                <strong>1. Blocks derive from the component filename.</strong>&nbsp;<code>UserCard.tsx</code
+                >&nbsp;becomes&nbsp;<code>.user_card</code>.&nbsp;<code>RootLayout.astro</code>&nbsp;becomes&nbsp;<code
+                  >.root_layout</code
+                >. For framework route files with generic names –&nbsp;<code>index.astro</code>,&nbsp;<code
+                  >page.tsx</code
+                > – use the route's semantic identity instead:&nbsp;<code>.home_page</code>,&nbsp;<code
+                  >.settings_page</code
+                >.
               </p>
               <p>
                 <strong>2. One hyphen joins a block to its element.</strong> Underscores separate words inside either half.
@@ -237,26 +239,27 @@ const description =
               rows={[
                 [
                   '<code>data-state</code>',
-                  'Mutually exclusive lifecycle: <code>idle</code>, <code>loading</code>, <code>error</code>.',
+                  'Mutually exclusive lifecycle:&nbsp;<code>idle</code>,&nbsp;<code>loading</code>,&nbsp;<code>error</code>.',
                 ],
                 ['<code>data-variant</code>', 'A named visual treatment chosen by the caller.'],
                 ['<code>data-size</code>', 'Discrete size steps.'],
                 [
-                  '<code>data-*</code> (boolean-ish)',
-                  'Independent flags, written as <code>"true"</code> or omitted entirely.',
+                  '<code>data-*</code>&nbsp;(boolean-ish)',
+                  'Independent flags, written as&nbsp;<code>"true"</code>&nbsp;or omitted entirely.',
                 ],
                 [
                   '<code>aria-*</code>',
-                  'Anything the accessibility tree already models: <code>aria-expanded</code>, <code>aria-disabled</code>, <code>aria-current</code>. Style those directly rather than mirroring them.',
+                  'Anything the accessibility tree already models:&nbsp;<code>aria-expanded</code>,&nbsp;<code>aria-disabled</code>,&nbsp;<code>aria-current</code>. Style those directly rather than mirroring them.',
                 ],
               ]}
             />
 
             <CalloutBlock tone="note" title="Omit, do not falsify">
               <p>
-                Write <code>data-featured="true"</code> or leave the attribute off. Never
-                <code>data-featured="false"</code>, because <code>[data-featured]</code> then matches both states and the
-                next person will write the selector that way.
+                Write&nbsp;<code>data-featured="true"</code>&nbsp;or leave the attribute off. Never&nbsp;<code
+                  >data-featured="false"</code
+                >, because&nbsp;<code>[data-featured]</code>&nbsp;then matches both states and the next person will
+                write the selector that way.
               </p>
             </CalloutBlock>
           </SpecBlock>
@@ -291,11 +294,12 @@ components/
                 thing you want belongs in the global layer, or it is not as global as you think.
               </p>
               <p>
-                <code>fonts.css</code> is the one optional member, and it is optional for a reason: a project on system fonts
-                does not need it, and a project that has fonts should keep <code>@font-face</code> out of
-                <code>theme.css</code>. Loading an asset and naming a typeface are different jobs –
-                <code>fonts.css</code> declares the files, <code>--typeface-*</code> in <code>theme.css</code> decides what
-                they mean. Import it first, so the faces are known before anything asks for them.
+                <code>fonts.css</code>&nbsp;is the one optional member, and it is optional for a reason: a project on
+                system fonts does not need it, and a project that has fonts should keep&nbsp;<code>@font-face</code
+                >&nbsp;out of&nbsp;<code>theme.css</code>. Loading an asset and naming a typeface are different jobs
+                –&nbsp;<code>fonts.css</code>&nbsp;declares the files,&nbsp;<code>--typeface-*</code>&nbsp;in&nbsp;<code
+                  >theme.css</code
+                >&nbsp;decides what they mean. Import it first, so the faces are known before anything asks for them.
               </p>
             </div>
           </SpecBlock>
@@ -312,14 +316,14 @@ components/
               head={['Prefix', 'Layer', 'Declared in', 'Readable by components']}
               rows={[
                 [
-                  '<code>--palette-*</code>, <code>--typeface-*</code>',
+                  '<code>--palette-*</code>,&nbsp;<code>--typeface-*</code>',
                   'Foundations',
                   '<code>theme.css</code>',
                   'Never',
                 ],
                 ['<code>--theme-[context]-*</code>', 'Themes', '<code>theme.css</code>', 'Never'],
                 [
-                  '<code>--bg-*</code>, <code>--ink-*</code>, <code>--border-*</code>, <code>--action-*</code>, <code>--space-*</code>, <code>--text-*</code>, <code>--font-*</code>, <code>--radius-*</code>, <code>--z-*</code>, <code>--duration-*</code>, <code>--ease-*</code>',
+                  '<code>--bg-*</code>,&nbsp;<code>--ink-*</code>,&nbsp;<code>--border-*</code>,&nbsp;<code>--action-*</code>,&nbsp;<code>--space-*</code>,&nbsp;<code>--text-*</code>,&nbsp;<code>--font-*</code>,&nbsp;<code>--radius-*</code>,&nbsp;<code>--z-*</code>,&nbsp;<code>--duration-*</code>,&nbsp;<code>--ease-*</code>',
                   'Semantics',
                   '<code>theme.css</code>',
                   'Yes – this is the public contract',
@@ -331,8 +335,8 @@ components/
 
             <CalloutBlock tone="law" title="--c-* is the component's public API">
               <p>
-                The only legal use of the <code>style</code> attribute in BEAM is setting a custom property. Pass design decisions
-                in as <code>--c-*</code> values; never pass visual declarations.
+                The only legal use of the&nbsp;<code>style</code>&nbsp;attribute in BEAM is setting a custom property.
+                Pass design decisions in as&nbsp;<code>--c-*</code>&nbsp;values; never pass visual declarations.
               </p>
             </CalloutBlock>
 
@@ -396,12 +400,13 @@ components/
               <ul>
                 <li>Components read Layer 3 only. Reaching into Layers 1 or 2 is always a bug.</li>
                 <li>
-                  Semantics point <em>down</em> at the theme switchboard, never <em>sideways</em> at another semantic.
-                  <code>--button-bg: var(--bg-surface)</code> creates a token with no theme of its own.
+                  Semantics point <em>down</em> at the theme switchboard, never <em>sideways</em> at another semantic.&nbsp;<code
+                    >--button-bg: var(--bg-surface)</code
+                  >&nbsp;creates a token with no theme of its own.
                 </li>
                 <li>
-                  Anything reusable enters through <code>theme.css</code> and gets all three layers. Anything genuinely one-off
-                  stays local as <code>--c-*</code>.
+                  Anything reusable enters through&nbsp;<code>theme.css</code>&nbsp;and gets all three layers. Anything
+                  genuinely one-off stays local as&nbsp;<code>--c-*</code>.
                 </li>
               </ul>
             </div>
@@ -419,30 +424,31 @@ components/
               rows={[
                 [
                   'Canvas',
-                  '<code>--bg-page</code>, <code>--bg-surface</code>, <code>--bg-surface-hover</code>, <code>--bg-overlay</code>',
+                  '<code>--bg-page</code>,&nbsp;<code>--bg-surface</code>,&nbsp;<code>--bg-surface-hover</code>,&nbsp;<code>--bg-overlay</code>',
                 ],
                 [
                   'Ink',
-                  '<code>--ink-main</code>, <code>--ink-muted</code>, <code>--ink-faint</code>, <code>--ink-inverse</code>',
+                  '<code>--ink-main</code>,&nbsp;<code>--ink-muted</code>,&nbsp;<code>--ink-faint</code>,&nbsp;<code>--ink-inverse</code>',
                 ],
-                ['Chrome', '<code>--border-base</code>, <code>--border-focus</code>'],
+                ['Chrome', '<code>--border-base</code>,&nbsp;<code>--border-focus</code>'],
                 [
                   'Interactive',
-                  '<code>--action-primary</code>, <code>--action-primary-hover</code>, <code>--action-neutral</code>, <code>--action-neutral-hover</code>, <code>--action-danger</code>, <code>--action-danger-hover</code>',
+                  '<code>--action-primary</code>,&nbsp;<code>--action-primary-hover</code>,&nbsp;<code>--action-neutral</code>,&nbsp;<code>--action-neutral-hover</code>,&nbsp;<code>--action-danger</code>,&nbsp;<code>--action-danger-hover</code>',
                 ],
               ]}
             />
 
             <div class="g_prose">
               <p>
-                <strong>Extensions</strong> are bespoke interactive colors the design system genuinely needs – this site
-                adds <code>--action-contrast</code>. Every interactive extension must ship with a matching
-                <code>-hover</code> pair; a color you can click needs a color that says you clicked it.
+                <strong>Extensions</strong> are bespoke interactive colors the design system genuinely needs – this site adds&nbsp;<code
+                  >--action-contrast</code
+                >. Every interactive extension must ship with a matching&nbsp;<code>-hover</code>&nbsp;pair; a color you
+                can click needs a color that says you clicked it.
               </p>
               <p>
-                <strong>Intents</strong> are static status colors, limited to three weights:
-                <code>base</code>, <code>subtle</code>, <code>strong</code>. Enough for a badge, a banner and a chart.
-                Not enough to reinvent the palette.
+                <strong>Intents</strong> are static status colors, limited to three weights:&nbsp;<code>base</code
+                >,&nbsp;<code>subtle</code>,&nbsp;<code>strong</code>. Enough for a badge, a banner and a chart. Not
+                enough to reinvent the palette.
               </p>
             </div>
           </SpecBlock>
@@ -480,9 +486,10 @@ components/
 
             <CalloutBlock tone="warn" title="One flip deep">
               <p>
-                <code>inverse</code> resolves against the nearest explicit theme, so nesting inverse inside inverse does not
-                flip twice. If you need that, pin the inner subtree with an explicit
-                <code>data-theme="light"</code> or <code>data-theme="dark"</code>.
+                <code>inverse</code>&nbsp;resolves against the nearest explicit theme, so nesting inverse inside inverse
+                does not flip twice. If you need that, pin the inner subtree with an explicit&nbsp;<code
+                  >data-theme="light"</code
+                >&nbsp;or&nbsp;<code>data-theme="dark"</code>.
               </p>
             </CalloutBlock>
           </SpecBlock>
@@ -499,14 +506,14 @@ components/
               rows={[
                 [
                   'Void',
-                  '<code>margin</code>, <code>padding</code>, <code>gap</code>',
+                  '<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>',
                   '<code>--space-*</code>, always',
                   'Negative space is shared rhythm. It must move together across the whole product.',
                 ],
                 [
                   'Mass',
-                  '<code>width</code>, <code>height</code>, <code>inset</code>, <code>translate</code>',
-                  'Raw <code>rem</code> or <code>px</code>',
+                  '<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,&nbsp;<code>translate</code>',
+                  'Raw&nbsp;<code>rem</code>&nbsp;or&nbsp;<code>px</code>',
                   "An object's shape belongs to that object. Borrowing a rhythm token couples it to unrelated changes.",
                 ],
               ]}
@@ -535,9 +542,9 @@ components/
 
             <div class="g_prose">
               <p>
-                The spacing scale runs on a 4px grid where <code>--space-4</code> equals <code>1rem</code>. The number
-                in the token is the grid step, not an arbitrary index, which is why the scale can be extended without
-                renumbering anything.
+                The spacing scale runs on a 4px grid where&nbsp;<code>--space-4</code>&nbsp;equals&nbsp;<code>1rem</code
+                >. The number in the token is the grid step, not an arbitrary index, which is why the scale can be
+                extended without renumbering anything.
               </p>
             </div>
           </SpecBlock>
@@ -556,23 +563,23 @@ components/
                 [
                   '<code>.l_stack</code>',
                   'Vertical flex',
-                  '<code>data-gap</code>, <code>data-align</code>, <code>data-justify</code>',
+                  '<code>data-gap</code>,&nbsp;<code>data-align</code>,&nbsp;<code>data-justify</code>',
                 ],
                 [
                   '<code>.l_cluster</code>',
                   'Horizontal wrapping flex',
-                  '<code>data-gap</code>, <code>data-align</code>, <code>data-justify</code>, <code>data-reverse</code>, <code>data-nowrap</code>',
+                  '<code>data-gap</code>,&nbsp;<code>data-align</code>,&nbsp;<code>data-justify</code>,&nbsp;<code>data-reverse</code>,&nbsp;<code>data-nowrap</code>',
                 ],
                 [
                   '<code>.l_grid</code>',
                   'Two-dimensional grid',
-                  '<code>data-cols</code>, <code>data-min</code>, <code>data-layout</code>, <code>data-gap</code>',
+                  '<code>data-cols</code>,&nbsp;<code>data-min</code>,&nbsp;<code>data-layout</code>,&nbsp;<code>data-gap</code>',
                 ],
                 ['<code>.l_container</code>', 'Page bounds and macro padding', '<code>data-size</code>'],
                 [
                   '<code>.l_switcher</code>',
                   'Container-query flex, stacked until the threshold',
-                  '<code>data-threshold</code>, <code>data-gap</code>',
+                  '<code>data-threshold</code>,&nbsp;<code>data-gap</code>',
                 ],
                 ['<code>.l_spacer</code>', 'Flex-grow spacer', '–'],
               ]}
@@ -595,9 +602,9 @@ components/
 
             <div class="g_prose">
               <p>
-                <code>.l_switcher</code> is container-query driven, not viewport driven, so a component moved into a sidebar
-                rearranges itself without anyone editing a media query. Thresholds follow the standard container scale from
-                <code>3xs</code> to <code>7xl</code>.
+                <code>.l_switcher</code>&nbsp;is container-query driven, not viewport driven, so a component moved into
+                a sidebar rearranges itself without anyone editing a media query. Thresholds follow the standard
+                container scale from&nbsp;<code>3xs</code>&nbsp;to&nbsp;<code>7xl</code>.
               </p>
             </div>
           </SpecBlock>
@@ -623,14 +630,14 @@ components/
 
             <div class="g_prose">
               <p>
-                Two classes on one element means two owners for <code>display</code>, <code>gap</code> and
-                <code>margin</code>, which is a specificity argument waiting to happen. Worse, the component now knows
-                how it is arranged, so it cannot be moved without editing it.
+                Two classes on one element means two owners for&nbsp;<code>display</code>,&nbsp;<code>gap</code
+                >&nbsp;and&nbsp;<code>margin</code>, which is a specificity argument waiting to happen. Worse, the
+                component now knows how it is arranged, so it cannot be moved without editing it.
               </p>
               <p>
-                <strong>One exception.</strong> A block may set <code>position: relative</code> on a direct child
-                <code>.l_container</code> to establish a stacking anchor, provided it does not touch the container's display
-                model.
+                <strong>One exception.</strong> A block may set&nbsp;<code>position: relative</code>&nbsp;on a direct
+                child&nbsp;<code>.l_container</code>&nbsp;to establish a stacking anchor, provided it does not touch the
+                container's display model.
               </p>
             </div>
           </SpecBlock>
@@ -645,9 +652,12 @@ components/
             <SpecTable
               head={['Nesting', 'Verdict']}
               rows={[
-                ['<code>&amp;:hover</code>, <code>&amp;:focus-visible</code>', 'Allowed – a condition, not a name'],
+                [
+                  '<code>&amp;:hover</code>,&nbsp;<code>&amp;:focus-visible</code>',
+                  'Allowed – a condition, not a name',
+                ],
                 ["<code>&amp;[data-state='open']</code>", 'Allowed – a condition, not a name'],
-                ['<code>@container</code>, <code>@media</code> inside a rule', 'Allowed'],
+                ['<code>@container</code>,&nbsp;<code>@media</code>&nbsp;inside a rule', 'Allowed'],
                 ['<code>&amp;-title</code>', 'Banned – invents a string that exists nowhere'],
                 ['<code>.block .element</code>', 'Banned – encodes DOM depth'],
                 ['Two or more levels deep', 'Banned – flatten it'],
@@ -686,13 +696,13 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
               head={['Rule', 'Reason']}
               rows={[
                 [
-                  'Static <code>px</code> or <code>rem</code> only',
-                  '<code>em</code>, <code>%</code> and <code>vw</code> depend on context the build cannot see.',
+                  'Static&nbsp;<code>px</code>&nbsp;or&nbsp;<code>rem</code>&nbsp;only',
+                  '<code>em</code>,&nbsp;<code>%</code>&nbsp;and&nbsp;<code>vw</code>&nbsp;depend on context the build cannot see.',
                 ],
-                ['One unit per call', '<code>fluid(16px, 2rem)</code> is a mistake, not a shortcut.'],
+                ['One unit per call', '<code>fluid(16px, 2rem)</code>&nbsp;is a mistake, not a shortcut.'],
                 ['Unresolved tokens fail the build', 'A silently wrong size is worse than a red build.'],
                 [
-                  'Output contains no <code>*</code> or <code>/</code>',
+                  'Output contains no&nbsp;<code>*</code>&nbsp;or&nbsp;<code>/</code>',
                   'The slope is computed at build time, so the browser evaluates a two-term sum.',
                 ],
               ]}
@@ -700,7 +710,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
 
             <div class="g_prose">
               <p>
-                Verify it in CI. If a raw <code>fluid(</code> reaches your output, the plugin never ran:
+                Verify it in CI. If a raw&nbsp;<code>fluid(</code>&nbsp;reaches your output, the plugin never ran:
               </p>
             </div>
 
@@ -728,16 +738,16 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
 
             <div class="g_prose">
               <p>
-                Stack inside a stratum with delta math – <code>calc(var(--z-overlay) + 1)</code> – so the relationship is
-                visible in the value rather than implied by two numbers being near each other.
+                Stack inside a stratum with delta math –&nbsp;<code>calc(var(--z-overlay) + 1)</code> – so the relationship
+                is visible in the value rather than implied by two numbers being near each other.
               </p>
               <p>
-                <strong>Transitions</strong> must use <code>--duration-*</code> and
-                <code>--ease-*</code>, because they respond to user input and must obey <code
-                  >prefers-reduced-motion</code
-                > centrally.
+                <strong>Transitions</strong> must use&nbsp;<code>--duration-*</code>&nbsp;and&nbsp;<code>--ease-*</code
+                >, because they respond to user input and must obey&nbsp;<code>prefers-reduced-motion</code
+                >&nbsp;centrally.
                 <strong>Named animations</strong> may use bespoke timings, because choreography is authored, not systematic.
-                Composable chunks like <code>--transition-pressable</code> exist so utilities can share physics safely.
+                Composable chunks like&nbsp;<code>--transition-pressable</code>&nbsp;exist so utilities can share
+                physics safely.
               </p>
             </div>
           </SpecBlock>
@@ -752,9 +762,8 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
             <div class="g_prose">
               <p>
                 <strong>Utilities (<code>u_*</code>)</strong> are single-purpose and state-free. Zero-state contracts – the
-                ones that strip user-agent styling – are wrapped in <code>:where()</code> so their specificity is zero and
-                a component class always wins without anyone reaching for
-                <code>!important</code>.
+                ones that strip user-agent styling – are wrapped in&nbsp;<code>:where()</code>&nbsp;so their specificity
+                is zero and a component class always wins without anyone reaching for&nbsp;<code>!important</code>.
               </p>
             </div>
 
@@ -774,12 +783,13 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
             <div class="g_prose">
               <p>
                 <strong>Generics (<code>g_*</code>)</strong> are real visual objects that are too ubiquitous to deserve a
-                component file: <code>.g_divider</code>, <code>.g_spinner</code>, <code>.g_tag</code>,
-                <code>.g_kbd</code>. They follow every BEAM rule and may hold state.
+                component file:&nbsp;<code>.g_divider</code>,&nbsp;<code>.g_spinner</code>,&nbsp;<code>.g_tag</code
+                >,&nbsp;<code>.g_kbd</code>. They follow every BEAM rule and may hold state.
               </p>
               <p>
-                <code>.g_prose</code> is the one sanctioned exception to the no-descendant-selectors rule. It is an encapsulation
-                zone for HTML you did not write – Markdown output, CMS bodies – where there are no classes to target by design.
+                <code>.g_prose</code>&nbsp;is the one sanctioned exception to the no-descendant-selectors rule. It is an
+                encapsulation zone for HTML you did not write – Markdown output, CMS bodies – where there are no classes
+                to target by design.
               </p>
             </div>
           </SpecBlock>
@@ -796,25 +806,31 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
               rows={[
                 [
                   'Class taxonomy',
-                  'A class is not a block, element, <code>l_</code>, <code>u_</code> or <code>g_</code>.',
+                  'A class is not a block, element,&nbsp;<code>l_</code>,&nbsp;<code>u_</code>&nbsp;or&nbsp;<code>g_</code>.',
                 ],
                 ['Naming', 'A hyphen appears inside an element name, or a selector mirrors DOM depth.'],
                 ['State', 'A state or variant is expressed as a class instead of an attribute.'],
-                ['Binary Rule', 'An <code>l_*</code> class shares an element with a block.'],
+                ['Binary Rule', 'An&nbsp;<code>l_*</code>&nbsp;class shares an element with a block.'],
                 [
                   'Color firewall',
-                  'A component references a raw color, a <code>--palette-*</code> or a <code>--theme-*</code>.',
+                  'A component references a raw color, a&nbsp;<code>--palette-*</code>&nbsp;or a&nbsp;<code>--theme-*</code>.',
                 ],
-                ['Void', '<code>margin</code>, <code>padding</code> or <code>gap</code> uses a raw length.'],
+                [
+                  'Void',
+                  '<code>margin</code>,&nbsp;<code>padding</code>&nbsp;or&nbsp;<code>gap</code>&nbsp;uses a raw length.',
+                ],
                 [
                   'Mass',
-                  '<code>width</code>, <code>height</code> or <code>inset</code> uses a <code>--space-*</code> token.',
+                  '<code>width</code>,&nbsp;<code>height</code>&nbsp;or&nbsp;<code>inset</code>&nbsp;uses a&nbsp;<code>--space-*</code>&nbsp;token.',
                 ],
                 ['Nesting', 'An ampersand builds a name, or nesting goes deeper than one level.'],
                 ['Motion', 'A transition uses a literal duration or easing curve.'],
                 ['Z-index', 'A number appears where a stratum token belongs.'],
-                ['Inline styles', 'The <code>style</code> attribute sets anything other than a custom property.'],
-                ['Build', 'A raw <code>fluid(</code> survives into the output.'],
+                [
+                  'Inline styles',
+                  'The&nbsp;<code>style</code>&nbsp;attribute sets anything other than a custom property.',
+                ],
+                ['Build', 'A raw&nbsp;<code>fluid(</code>&nbsp;survives into the output.'],
               ]}
             />
 
