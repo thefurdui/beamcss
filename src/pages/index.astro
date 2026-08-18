@@ -140,7 +140,7 @@ const DIALECTS = [
         code: `Every colour is declared twice: once light, once dark.
 Every card repeats all fourteen classes.
 Renaming the component renames nothing.
-"Which of these 40 divs is the card?" — you, in March`,
+"Which of these 40 divs is the card?" – you, in March`,
       },
     ],
   },
@@ -224,7 +224,7 @@ const description =
   'BEAM is a strict, browser-native CSS architecture. Four class types, one file per component, state in data attributes, and colour behind a four-layer firewall. No preprocessor, no runtime, no utility soup.'
 ---
 
-<RootLayout title="BEAM CSS — Block. Element. Attribute. Module." description={description}>
+<RootLayout title="BEAM CSS – Block. Element. Attribute. Module." description={description}>
   {/* ---------------------------------------------------------------- HERO */}
   <section class="hero_section">
     <div class="l_container" data-size="page">
@@ -282,7 +282,7 @@ const description =
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
           <PainMeter
-            question="Top pain points — colour"
+            question="Top pain points – colour"
             respondents="573"
             items={[
               {
@@ -306,7 +306,7 @@ const description =
           />
 
           <PainMeter
-            question="Top pain points — CSS in general"
+            question="Top pain points – CSS in general"
             respondents="398"
             items={[
               {
@@ -338,7 +338,7 @@ const description =
             </p>
             <footer class="home_section-quote_source">
               <a class="home_section-quote_link" href={SURVEY.url} rel="noreferrer noopener">
-                State of CSS {SURVEY.year} — colour pain points, summarised from free-form answers
+                State of CSS {SURVEY.year} – colour pain points, summarised from free-form answers
               </a>
             </footer>
           </blockquote>
@@ -353,7 +353,7 @@ const description =
               as the single most-mentioned pain point in the entire survey. Maintenance climbing eighteen places in one year.
             </p>
             <p>
-              None of that is a language problem. All of it is an architecture problem — the part of this you actually
+              None of that is a language problem. All of it is an architecture problem – the part of this you actually
               control, and the part almost nobody has written down.
             </p>
             <p>So here it is, written down.</p>
@@ -399,7 +399,7 @@ const description =
           <p>
             Three things. State lives in attributes rather than classes. Themes route through a double-mapped
             switchboard so a colour is declared exactly twice in the whole codebase. And every naming rule is chosen to
-            keep your editor's cursor happy. The rest is curation — deliberately.
+            keep your editor's cursor happy. The rest is curation – deliberately.
           </p>
         </CalloutBlock>
 
@@ -418,7 +418,7 @@ const description =
           index="03"
           eyebrow="The tetrad"
           title="Four letters. That is the entire convention."
-          lede="You can hold all of BEAM in your head. That is a design goal, not an accident — a rule you have to look up is a rule you will break."
+          lede="You can hold all of BEAM in your head. That is a design goal, not an accident – a rule you have to look up is a rule you will break."
         />
 
         <div class="l_stack" data-gap="0">
@@ -429,7 +429,7 @@ const description =
             </p>
             <p>
               That reads like taste until the design changes. The moment “white” becomes “white in light mode and
-              stone-900 in dark mode,” a class called <code>bg-white</code> is a lie — and it is a lie in forty files at once.
+              stone-900 in dark mode,” a class called <code>bg-white</code> is a lie – and it is a lie in forty files at once.
               <code>.user_card</code> was never going to be wrong, because a card is still a card.
             </p>
             <p>
@@ -540,7 +540,7 @@ const description =
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
           <CodeBlock
             tone="wrong"
-            file="Wrong — the name does not exist"
+            file="Wrong – the name does not exist"
             lang="css"
             code={`.user_card {
   &-title {
@@ -550,7 +550,7 @@ const description =
           />
           <CodeBlock
             tone="right"
-            file="Right — the name is a real string"
+            file="Right – the name is a real string"
             lang="css"
             code={`.user_card-title {
   font-size: var(--text-2xl);
@@ -576,7 +576,7 @@ const description =
               correctly, everywhere.
             </p>
             <p>
-              Notice that the Vim flow is not a shortcut for the same idea — it is the idea. <span class="g_kbd">*</span
+              Notice that the Vim flow is not a shortcut for the same idea – it is the idea. <span class="g_kbd">*</span
               >
               searches for the word under the cursor, so it cannot search for a name the file does not contain. Write
               <code>&amp;-title</code> and the keystroke has nothing to grab. The convention is what makes the tooling possible,
@@ -585,13 +585,13 @@ const description =
             <p>
               BEM understood half of this and then made the names longer.
               <code>.block__element--modifier</code> costs four extra characters per name and a mental parse every time you
-              read one — and <code>&amp;__element</code> has exactly the same invisibility problem.
+              read one – and <code>&amp;__element</code> has exactly the same invisibility problem.
             </p>
           </div>
 
           <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
             <p>
-              Nest one level deep for state, pseudo-classes and queries — <code>&amp;:hover</code>,
+              Nest one level deep for state, pseudo-classes and queries – <code>&amp;:hover</code>,
               <code>&amp;[data-state='open']</code>, <code>@container</code>. Those are conditions, not names, so
               nothing becomes unsearchable.
             </p>
@@ -609,13 +609,13 @@ const description =
         <SectionHead
           index="05"
           eyebrow="The 24 percent"
-          title="Theming, solved. Not eased — solved."
+          title="Theming, solved. Not eased – solved."
           lede="A quarter of developers named theming as a top colour pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
         />
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
           <CodeBlock
-            file="theme.css — Layers 1 and 2"
+            file="theme.css – Layers 1 and 2"
             lang="css"
             code={`/* 1. Foundations. Raw materials. Never used in a component. */
 :root {
@@ -631,7 +631,7 @@ const description =
 }`}
           />
           <CodeBlock
-            file="theme.css — Layer 3, the public contract"
+            file="theme.css – Layer 3, the public contract"
             lang="css"
             code={`/* 3. Semantics. The only layer a component may read. */
 [data-theme='light'],
@@ -649,7 +649,7 @@ const description =
         <div class="g_prose home_section-prose">
           <p>
             That is the whole engine. A semantic token is declared exactly twice in the codebase: once in the light
-            block, once in the dark block. Your components declare it <em>zero</em> times — they read
+            block, once in the dark block. Your components declare it <em>zero</em> times – they read
             <code>var(--bg-surface)</code> and stop thinking.
           </p>
           <p>
@@ -695,12 +695,12 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              <strong>Void</strong> is negative space — <code>margin</code>, <code>padding</code>, <code>gap</code>. It
+              <strong>Void</strong> is negative space – <code>margin</code>, <code>padding</code>, <code>gap</code>. It
               is rhythm, it is shared across the entire product, and it must come from the
               <code>--space-*</code> scale.
             </p>
             <p>
-              <strong>Mass</strong> is the physical shape of one object — <code>width</code>, <code>height</code>,
+              <strong>Mass</strong> is the physical shape of one object – <code>width</code>, <code>height</code>,
               <code>inset</code>, <code>translate</code> distances. The avatar is
               <code>3rem</code> because the avatar is 3rem. It is not <code>--space-12</code>; that is a numerical
               coincidence, and coincidences drift.
@@ -741,7 +741,7 @@ const description =
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
           <CodeBlock
             tone="wrong"
-            file="Wrong — the card knows where it lives"
+            file="Wrong – the card knows where it lives"
             lang="html"
             code={`<article class="l_stack user_card" data-gap="4">
   ...
@@ -749,7 +749,7 @@ const description =
           />
           <CodeBlock
             tone="right"
-            file="Right — geometry is somebody else's job"
+            file="Right – geometry is somebody else's job"
             lang="html"
             code={`<div class="l_stack" data-gap="4">
   <article class="user_card">...</article>
@@ -798,7 +798,7 @@ const description =
           </p>
           <p>
             <code>fluid()</code> resolves both tokens at build time and emits a plain
-            <code>clamp()</code> — two bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing
+            <code>clamp()</code> – two bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing
             left for the browser to do. Drag the viewport below and watch it work.
           </p>
         </div>
@@ -832,7 +832,7 @@ const description =
           index="09"
           eyebrow="Machines"
           title="CSS is the language AI is worst at. That is not a coincidence."
-          lede="The 2026 survey puts AI-generated CSS at roughly 28 percent — the lowest share anywhere in the stack. Everybody has a theory. Mine is boring."
+          lede="The 2026 survey puts AI-generated CSS at roughly 28 percent – the lowest share anywhere in the stack. Everybody has a theory. Mine is boring."
         />
 
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
@@ -890,7 +890,7 @@ Ampersand        banned for name building`}
             />
             <CalloutBlock tone="note" title="Ship the rules with the repo">
               <p>
-                The full ruleset is packaged as an agent skill — one folder your assistant reads before it writes a line
+                The full ruleset is packaged as an agent skill – one folder your assistant reads before it writes a line
                 of CSS. Same rules for you and for it.
               </p>
             </CalloutBlock>
@@ -918,7 +918,7 @@ Ampersand        banned for name building`}
           <div class="objection_card">
             <h3 class="objection_card-title">“It's more typing than utilities.”</h3>
             <p class="objection_card-body">
-              Correct. A block plus a CSS file is slower than fourteen utilities — the first time. It is faster the
+              Correct. A block plus a CSS file is slower than fourteen utilities – the first time. It is faster the
               third time you touch that component, and dramatically faster the first time you rename it. If your
               component is genuinely one-off, utilities win. Most components are not one-off.
             </p>
@@ -933,7 +933,7 @@ Ampersand        banned for name building`}
           <div class="objection_card">
             <h3 class="objection_card-title">“I want mixins.”</h3>
             <p class="objection_card-body">
-              So does everyone — mixins have been in the survey's top missing features for years, and the platform is
+              So does everyone – mixins have been in the survey's top missing features for years, and the platform is
               finally building them. Until then, custom properties cover most of it and honest duplication covers the
               rest. That is a real cost, and it is smaller than a preprocessor.
             </p>
@@ -948,7 +948,7 @@ Ampersand        banned for name building`}
           <div class="objection_card">
             <h3 class="objection_card-title">“Will it stop me writing bad CSS?”</h3>
             <p class="objection_card-body">
-              No. Nothing will. What it does is make bad CSS <em>visible</em> — a raw hex code, a state class, an
+              No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an
               <code class="g_code">l_</code> class riding a block. You stop arguing about taste and start pointing at rules.
             </p>
           </div>

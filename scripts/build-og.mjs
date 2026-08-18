@@ -1,5 +1,5 @@
 /**
- * Renders public/og.png — the social card.
+ * Renders public/og.png – the social card.
  *
  * Run by hand (`pnpm og`) rather than on prebuild, and commit the result. A
  * brand asset that silently changes because a CI image swapped its default

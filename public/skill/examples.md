@@ -322,7 +322,7 @@ Prefer the attribute the platform already exposes. Do not mirror it into `data-*
 ## Component-Owned Internal Layout
 
 `l_*` primitives compose _between_ things. A component may still lay out its own parts in its own
-stylesheet — that is not a Binary Rule violation, because no layout class is involved.
+stylesheet – that is not a Binary Rule violation, because no layout class is involved.
 
 ```css
 .stat_row {

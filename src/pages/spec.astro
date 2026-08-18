@@ -53,7 +53,7 @@ const description =
   'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer colour firewall, layout primitives, mass versus void, nesting limits, and fluid interpolation.'
 ---
 
-<RootLayout title="Specification — BEAM CSS" description={description}>
+<RootLayout title="Specification – BEAM CSS" description={description}>
   <div class="spec_page">
     <div class="l_container" data-size="wide">
       <header class="spec_page-masthead">
@@ -156,8 +156,8 @@ const description =
               <p>
                 <strong>1. Blocks derive from the component filename.</strong>
                 <code>UserCard.tsx</code> becomes <code>.user_card</code>. <code>RootLayout.astro</code> becomes
-                <code>.root_layout</code>. For framework route files with generic names — <code>index.astro</code>,
-                <code>page.tsx</code> — use the route's semantic identity instead:
+                <code>.root_layout</code>. For framework route files with generic names – <code>index.astro</code>,
+                <code>page.tsx</code> – use the route's semantic identity instead:
                 <code>.home_page</code>,
                 <code>.settings_page</code>.
               </p>
@@ -203,7 +203,7 @@ const description =
             id="state"
             index="04"
             title="State and variation"
-            lede="Attributes replace BEM modifiers entirely. There are no state classes in BEAM — not one."
+            lede="Attributes replace BEM modifiers entirely. There are no state classes in BEAM – not one."
           >
             <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
               <CodeBlock
@@ -272,7 +272,7 @@ const description =
               file="src/"
               lang="text"
               code={`styles/            listed in import order
-  fonts.css       @font-face only — optional
+  fonts.css       @font-face only – optional
   reset.css       browser normalisation, no classes
   theme.css       foundations, themes, semantics
   layout.css      l_* spatial primitives
@@ -287,13 +287,13 @@ components/
             <div class="g_prose">
               <p>
                 Those five required files are the only place global responsibilities live. A component stylesheet must
-                never redefine a reset, a token, a layout primitive or a generic — if you find yourself wanting to, the
+                never redefine a reset, a token, a layout primitive or a generic – if you find yourself wanting to, the
                 thing you want belongs in the global layer, or it is not as global as you think.
               </p>
               <p>
                 <code>fonts.css</code> is the one optional member, and it is optional for a reason: a project on system fonts
                 does not need it, and a project that has fonts should keep <code>@font-face</code> out of
-                <code>theme.css</code>. Loading an asset and naming a typeface are different jobs —
+                <code>theme.css</code>. Loading an asset and naming a typeface are different jobs –
                 <code>fonts.css</code> declares the files, <code>--typeface-*</code> in <code>theme.css</code> decides what
                 they mean. Import it first, so the faces are known before anything asks for them.
               </p>
@@ -322,7 +322,7 @@ components/
                   '<code>--bg-*</code>, <code>--ink-*</code>, <code>--border-*</code>, <code>--action-*</code>, <code>--space-*</code>, <code>--text-*</code>, <code>--font-*</code>, <code>--radius-*</code>, <code>--z-*</code>, <code>--duration-*</code>, <code>--ease-*</code>',
                   'Semantics',
                   '<code>theme.css</code>',
-                  'Yes — this is the public contract',
+                  'Yes – this is the public contract',
                 ],
                 ['<code>--c-*</code>', 'Component', 'Local CSS, or inline as a prop', 'Yes, within the owning block'],
                 ['<code>--js-*</code>', 'Dynamic globals', 'Injected at runtime', 'Yes, read only'],
@@ -357,19 +357,19 @@ components/
             <CodeBlock
               file="theme.css"
               lang="css"
-              code={`/* 1. Foundations — raw materials. Never referenced by a component. */
+              code={`/* 1. Foundations – raw materials. Never referenced by a component. */
 :root {
   --palette-stone-900: oklch(21.6% 0.006 56.043);
   --palette-white: oklch(1 0 0);
 }
 
-/* 2. Themes — what each context physically means. Routed, never read. */
+/* 2. Themes – what each context physically means. Routed, never read. */
 :root {
   --theme-light-bg-surface: var(--palette-white);
   --theme-dark-bg-surface: var(--palette-stone-900);
 }
 
-/* 3. Semantics — the only layer components may consume. */
+/* 3. Semantics – the only layer components may consume. */
 [data-theme='light'] {
   --bg-surface: var(--theme-light-bg-surface);
 }
@@ -382,7 +382,7 @@ components/
             <CodeBlock
               file="HolidayPromo.css"
               lang="css"
-              code={`/* 4. Component — genuine exceptions, quarantined locally. */
+              code={`/* 4. Component – genuine exceptions, quarantined locally. */
 .holiday_promo {
   --c-magic-bg: oklch(0.55 0.24 300);
 
@@ -435,7 +435,7 @@ components/
 
             <div class="g_prose">
               <p>
-                <strong>Extensions</strong> are bespoke interactive colours the design system genuinely needs — this site
+                <strong>Extensions</strong> are bespoke interactive colours the design system genuinely needs – this site
                 adds <code>--action-contrast</code>. Every interactive extension must ship with a matching
                 <code>-hover</code> pair; a colour you can click needs a colour that says you clicked it.
               </p>
@@ -574,7 +574,7 @@ components/
                   'Container-query flex, stacked until the threshold',
                   '<code>data-threshold</code>, <code>data-gap</code>',
                 ],
-                ['<code>.l_spacer</code>', 'Flex-grow spacer', '—'],
+                ['<code>.l_spacer</code>', 'Flex-grow spacer', '–'],
               ]}
             />
 
@@ -645,12 +645,12 @@ components/
             <SpecTable
               head={['Nesting', 'Verdict']}
               rows={[
-                ['<code>&amp;:hover</code>, <code>&amp;:focus-visible</code>', 'Allowed — a condition, not a name'],
-                ["<code>&amp;[data-state='open']</code>", 'Allowed — a condition, not a name'],
+                ['<code>&amp;:hover</code>, <code>&amp;:focus-visible</code>', 'Allowed – a condition, not a name'],
+                ["<code>&amp;[data-state='open']</code>", 'Allowed – a condition, not a name'],
                 ['<code>@container</code>, <code>@media</code> inside a rule', 'Allowed'],
-                ['<code>&amp;-title</code>', 'Banned — invents a string that exists nowhere'],
-                ['<code>.block .element</code>', 'Banned — encodes DOM depth'],
-                ['Two or more levels deep', 'Banned — flatten it'],
+                ['<code>&amp;-title</code>', 'Banned – invents a string that exists nowhere'],
+                ['<code>.block .element</code>', 'Banned – encodes DOM depth'],
+                ['Two or more levels deep', 'Banned – flatten it'],
               ]}
             />
 
@@ -728,7 +728,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
 
             <div class="g_prose">
               <p>
-                Stack inside a stratum with delta maths — <code>calc(var(--z-overlay) + 1)</code> — so the relationship is
+                Stack inside a stratum with delta maths – <code>calc(var(--z-overlay) + 1)</code> – so the relationship is
                 visible in the value rather than implied by two numbers being near each other.
               </p>
               <p>
@@ -751,8 +751,8 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
           >
             <div class="g_prose">
               <p>
-                <strong>Utilities (<code>u_*</code>)</strong> are single-purpose and state-free. Zero-state contracts — the
-                ones that strip user-agent styling — are wrapped in <code>:where()</code> so their specificity is zero and
+                <strong>Utilities (<code>u_*</code>)</strong> are single-purpose and state-free. Zero-state contracts – the
+                ones that strip user-agent styling – are wrapped in <code>:where()</code> so their specificity is zero and
                 a component class always wins without anyone reaching for
                 <code>!important</code>.
               </p>
@@ -779,7 +779,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
               </p>
               <p>
                 <code>.g_prose</code> is the one sanctioned exception to the no-descendant-selectors rule. It is an encapsulation
-                zone for HTML you did not write — Markdown output, CMS bodies — where there are no classes to target by design.
+                zone for HTML you did not write – Markdown output, CMS bodies – where there are no classes to target by design.
               </p>
             </div>
           </SpecBlock>
@@ -789,7 +789,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
             id="checklist"
             index="17"
             title="Review checklist"
-            lede="What to look for in a pull request. Every item is mechanical, which is the point — none of it is a matter of taste."
+            lede="What to look for in a pull request. Every item is mechanical, which is the point – none of it is a matter of taste."
           >
             <SpecTable
               head={['Check', 'Fails when']}

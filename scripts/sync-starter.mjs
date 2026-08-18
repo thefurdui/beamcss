@@ -16,7 +16,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const FILES = ['reset.css', 'theme.css', 'layout.css', 'utils.css', 'generics.css']
 
 const BANNER = (name) => `/*
- * BEAM CSS — ${name}
+ * BEAM CSS – ${name}
  * https://beamcss.dev/spec/
  *
  * One of the five required global stylesheets. Import in this order:

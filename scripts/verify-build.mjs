@@ -54,7 +54,7 @@ const fail = (message) => {
 const sheets = (await walk(dist)).filter((file) => !EXEMPT.some((fragment) => file.includes(fragment)))
 
 if (sheets.length === 0) {
-  fail('no stylesheets found in dist/ — did the build run?')
+  fail('no stylesheets found in dist/ – did the build run?')
 }
 
 for (const sheet of sheets) {

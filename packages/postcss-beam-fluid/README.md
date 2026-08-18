@@ -29,7 +29,7 @@ At build time that becomes:
 font-size: clamp(2.25rem, -3.5rem + 14.375vw, 8rem);
 ```
 
-No runtime. No `calc()`. No multiplication or division left in the output — just two bounds and a pre-computed slope.
+No runtime. No `calc()`. No multiplication or division left in the output – just two bounds and a pre-computed slope.
 
 ## Setup
 
@@ -65,7 +65,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);
 /* Multiple calls in one shorthand. */
 padding: fluid(var(--space-4), var(--space-8)) fluid(var(--space-6), var(--space-12));
 
-/* Descending is fine — the clamp bounds are ordered for you. */
+/* Descending is fine – the clamp bounds are ordered for you. */
 letter-spacing: fluid(0.04rem, 0rem);
 ```
 

@@ -34,7 +34,7 @@ const description =
   'Install BEAM CSS: download the five required global stylesheets, add the postcss-beam-fluid plugin, and drop the agent skill into Cursor, Claude Code or Codex.'
 ---
 
-<RootLayout title="Install — BEAM CSS" description={description}>
+<RootLayout title="Install – BEAM CSS" description={description}>
   <div class="install_page">
     <div class="l_container" data-size="page">
       <header class="install_page-masthead">
@@ -44,7 +44,7 @@ const description =
           <p class="install_page-lede u_pretty">
             BEAM ships as plain CSS you own, one build-time plugin that does arithmetic, and a text file that teaches
             your coding agent the rules. There is no runtime, no config object, and nothing to keep up to date. If you
-            delete the plugin tomorrow, your stylesheets still work — you just have to write your own
+            delete the plugin tomorrow, your stylesheets still work – you just have to write your own
             <code>clamp()</code>.
           </p>
           <div class="l_cluster" data-gap="3">
@@ -61,7 +61,7 @@ const description =
             index="01"
             eyebrow="The global layer"
             title="Five files you need, and one you might."
-            lede="These are the exact stylesheets this website is wearing. Not a sanitised example — the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
+            lede="These are the exact stylesheets this website is wearing. Not a sanitised example – the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="8">
@@ -117,7 +117,7 @@ done`}
             <p>
               <code>fonts.css</code> holds <code>@font-face</code> and nothing else. It is not in the download because this
               site's copy imports Fontsource packages you probably do not want, and a stylesheet that fails to resolve is
-              a worse gift than no stylesheet. Write your own — declaring the files is your job, and deciding what they <em
+              a worse gift than no stylesheet. Write your own – declaring the files is your job, and deciding what they <em
                 >mean</em
               > is <code>theme.css</code>'s job via <code>--typeface-*</code>.
             </p>
@@ -128,7 +128,7 @@ done`}
             <p>
               The palette in <code>theme.css</code> is a warm neutral stone ramp and a refracted vermilion. Yours will be
               different. Change the <code>--palette-*</code> values, adjust the two
-              <code>--theme-*</code> blocks to taste, and leave Layer 3 alone — that is the contract every component you ever
+              <code>--theme-*</code> blocks to taste, and leave Layer 3 alone – that is the contract every component you ever
               write is going to read.
             </p>
           </CalloutBlock>
@@ -216,8 +216,8 @@ export default {
           <div class="g_prose install_page-prose">
             <p>
               Per-call bounds override the project defaults when a single element needs a different curve:
-              <code>fluid(2rem, 8rem, 20rem, 60rem)</code>. Anything the plugin cannot resolve statically —
-              <code>em</code>, <code>%</code>, a mixed-unit pair, a token that does not exist — throws and fails the
+              <code>fluid(2rem, 8rem, 20rem, 60rem)</code>. Anything the plugin cannot resolve statically –
+              <code>em</code>, <code>%</code>, a mixed-unit pair, a token that does not exist – throws and fails the
               build. That is deliberate. A wrong font size that nobody notices for three months is a worse outcome than
               a red pipeline.
             </p>
@@ -234,7 +234,7 @@ export default {
             index="03"
             eyebrow="For the machine"
             title="The agent skill."
-            lede="Three markdown files: the rules, the token catalogue, and worked examples with their anti-patterns. Drop them where your assistant looks for skills and it will write BEAM without being reminded — and review its own diff against the same checklist you would use."
+            lede="Three markdown files: the rules, the token catalogue, and worked examples with their anti-patterns. Drop them where your assistant looks for skills and it will write BEAM without being reminded – and review its own diff against the same checklist you would use."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="8">
@@ -312,7 +312,7 @@ done`}
 
           <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
             <CodeBlock
-              file="init.lua — Neovim"
+              file="init.lua – Neovim"
               lang="lua"
               code={`-- The css ftplugin already does iskeyword+=-, so
 -- user_card-main_title is one word in a stylesheet.
@@ -334,7 +334,7 @@ vim.api.nvim_create_autocmd('FileType', {
             />
 
             <CodeBlock
-              file="settings.json — VS Code"
+              file="settings.json – VS Code"
               lang="json"
               code={JSON.stringify(
                 {
@@ -349,7 +349,7 @@ vim.api.nvim_create_autocmd('FileType', {
           <div class="g_prose install_page-prose">
             <p>
               Both edits do one thing: remove the hyphen from the set of characters that end a word. The underscore is
-              already absent from both defaults, so <code>user_card</code> was never the problem —
+              already absent from both defaults, so <code>user_card</code> was never the problem –
               <code>user_card-main_title</code> was, because the seam between block and element is exactly where your editor
               wanted to stop.
             </p>
@@ -363,7 +363,7 @@ vim.api.nvim_create_autocmd('FileType', {
             </p>
             <p>
               There is a real trade-off here, so choose rather than drift. Leave the hyphen as a separator and
-              <code>ciw</code> renames the block or the element independently, which is lovely — but
+              <code>ciw</code> renames the block or the element independently, which is lovely – but
               <span class="g_kbd">*</span> can then only ever search one half, and a whole-name search costs a visual selection
               or typing it out. Add the hyphen and you get the reverse. Whole-name operations are the ones you do across files,
               so that is the default worth having, but a codebase that renames elements constantly might reasonably decide
@@ -406,7 +406,7 @@ vim.api.nvim_create_autocmd('FileType', {
             index="05"
             eyebrow="Ship something"
             title="Your first component."
-            lede="The whole architecture, in twenty lines. If this reads obvious to you, you already know BEAM — the rest of the specification is just the same idea applied consistently."
+            lede="The whole architecture, in twenty lines. If this reads obvious to you, you already know BEAM – the rest of the specification is just the same idea applied consistently."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="4">

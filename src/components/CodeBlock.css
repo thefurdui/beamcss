@@ -1,5 +1,5 @@
 /* ==========================================================================
-/* CodeBlock — syntax highlighting without a single inline style.
+/* CodeBlock – syntax highlighting without a single inline style.
 /* Colour arrives through the --syntax-* semantics, so code re-themes with
 /* everything else. See src/lib/highlight.ts for the tokenizer.
 /* ========================================================================== */

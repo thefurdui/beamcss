@@ -3,7 +3,7 @@
  *
  * The palette is authored in OKLCH because it is perceptually uniform. Neither
  * WCAG luminance nor a PNG encoder can read that, so both consumers need the
- * same conversion — and there is exactly one copy of it.
+ * same conversion – and there is exactly one copy of it.
  */
 
 const OKLCH = /^oklch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)\s*\)$/

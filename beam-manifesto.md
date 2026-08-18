@@ -24,15 +24,15 @@ BEAM uses specific casing and prefixes to visually separate logical entities. Th
 
 **B.E.A.M. Rules**
 
-- **B — Block (snake_case):** The root component. It defines the namespace. Must use snake_case.
-- **E — Element (-snake_case):** A dependent child of the Block.
+- **B – Block (snake_case):** The root component. It defines the namespace. Must use snake_case.
+- **E – Element (-snake_case):** A dependent child of the Block.
   - Rule: Connected to the Block by a single hyphen (`-`).
   - Rule: Words inside the element MUST be separated by an underscore (`_`). Hyphens are explicitly forbidden inside the element name.
   - Rule: Always Flat. Never mirror HTML nesting in class names.
   - `/* ✅ Correct */ .nav_bar-list_item { ... }`
   - `/* ❌ Incorrect */ .nav_bar-list-item { ... }`
-- **A — Attribute ([data-state]):** Represents State or Variation. Replaces BEM Modifiers. Use standard HTML `data-` attributes.
-- **M — Module (File Structure):** One Block = One File. The CSS file must be co-located with the Component logic.
+- **A – Attribute ([data-state]):** Represents State or Variation. Replaces BEM Modifiers. Use standard HTML `data-` attributes.
+- **M – Module (File Structure):** One Block = One File. The CSS file must be co-located with the Component logic.
 
 ### 3. The Variable Radar System
 

@@ -18,7 +18,7 @@ const ANCESTORS = [
       'It was right, and it was twenty years early. The tooling to enforce it did not exist, so it survived as folklore rather than as a system.',
     ],
     keeps: [
-      'Separate structure from skin — this became <strong>Mass vs Void</strong>.',
+      'Separate structure from skin – this became <strong>Mass vs Void</strong>.',
       'A component never knows where it lives, which is the Binary Rule with fewer words.',
     ],
     drops: [
@@ -55,7 +55,7 @@ const ANCESTORS = [
       'SMACSS asked you to hold the category in your head. BEAM puts it in the class name, where you cannot forget it.',
     ],
     keeps: [
-      'Categories as a first-class concept — they became the <code>l_</code>, <code>u_</code>, <code>g_</code> prefixes.',
+      'Categories as a first-class concept – they became the <code>l_</code>, <code>u_</code>, <code>g_</code> prefixes.',
       'Layout as a separate category from components.',
     ],
     drops: [
@@ -72,7 +72,7 @@ const ANCESTORS = [
       'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, and <code>:where()</code> pins resets to zero.',
     ],
     keeps: [
-      'Ordered global layers — the global stylesheets are ITCSS with the arguing removed.',
+      'Ordered global layers – the global stylesheets are ITCSS with the arguing removed.',
       'Resets must not compete with components.',
     ],
     drops: [
@@ -85,11 +85,11 @@ const ANCESTORS = [
     name: 'CSS-in-JS',
     author: 'styled-components, Emotion, and friends',
     body: [
-      'The correct diagnosis: styles need scoping, and they should live next to the component that owns them. The prescription was to move CSS into JavaScript, and that is where the bill arrived — a runtime, hashed class names, styles in your JS bundle, and theme values delivered through a React context.',
+      'The correct diagnosis: styles need scoping, and they should live next to the component that owns them. The prescription was to move CSS into JavaScript, and that is where the bill arrived – a runtime, hashed class names, styles in your JS bundle, and theme values delivered through a React context.',
       'Open devtools on a CSS-in-JS app and you are looking at <code>hXlkjP</code>. You cannot search for it, an agent cannot reason about it, and neither can you in six months.',
     ],
     keeps: [
-      'Co-location. One block, one file, next to the component — that is the <strong>M</strong>.',
+      'Co-location. One block, one file, next to the component – that is the <strong>M</strong>.',
       'Scoping as a non-negotiable.',
     ],
     drops: [
@@ -103,7 +103,7 @@ const ANCESTORS = [
     name: 'Utility-first',
     author: 'Tailwind CSS, and Atomic CSS before it',
     body: [
-      'The most successful CSS methodology ever shipped, and it earned that. Its real contribution was not short class names — it was proving that <strong>a constrained scale beats unlimited freedom</strong>. Given eight spacing steps instead of infinity, designs got more consistent, not less.',
+      'The most successful CSS methodology ever shipped, and it earned that. Its real contribution was not short class names – it was proving that <strong>a constrained scale beats unlimited freedom</strong>. Given eight spacing steps instead of infinity, designs got more consistent, not less.',
       'The cost is that appearance moved into the markup. Every colour is declared twice, once per theme. Every instance of a component repeats every decision. And the class attribute stops describing what a thing is, which is precisely the information a reader needs most.',
       'BEAM takes the constraint and puts it back where it can be named: in tokens.',
     ],
@@ -127,7 +127,7 @@ const ANCESTORS = [
       'CUBE also reached for <code>data-*</code> attributes to express exceptions, which is the same instinct that became the <strong>A</strong> in BEAM. Where the two part company is strictness: CUBE is a philosophy you interpret, and BEAM is a specification you comply with.',
     ],
     keeps: [
-      'Composition over enumeration — <code>.l_stack</code>, <code>.l_cluster</code>, <code>.l_grid</code>, <code>.l_switcher</code>.',
+      'Composition over enumeration – <code>.l_stack</code>, <code>.l_cluster</code>, <code>.l_grid</code>, <code>.l_switcher</code>.',
       'Attributes as a styling hook.',
       'Global utilities kept deliberately tiny.',
     ],
@@ -209,7 +209,7 @@ const MATRIX_ROWS = [
       { text: 'Required', verdict: 'mixed' as const },
       { text: 'Optional', verdict: 'good' as const },
       {
-        text: 'Optional — only for <code>fluid()</code>',
+        text: 'Optional – only for <code>fluid()</code>',
         verdict: 'good' as const,
       },
     ],
@@ -250,7 +250,7 @@ const description =
   'BEAM CSS in context: what OOCSS, BEM, SMACSS, ITCSS, CSS-in-JS, utility-first CSS and CUBE each got right, what they cost, and exactly which parts BEAM keeps and drops.'
 ---
 
-<RootLayout title="Lineage — BEAM CSS" description={description}>
+<RootLayout title="Lineage – BEAM CSS" description={description}>
   <div class="lineage_page">
     <div class="l_container" data-size="page">
       <header class="lineage_page-masthead">
@@ -275,7 +275,7 @@ const description =
           <SectionHead
             eyebrow="Scorecard"
             title="The comparison, without the marketing."
-            lede="Every column here has shipped real products at real scale. This is about trade-offs, not winners — but the trade-offs are not symmetric."
+            lede="Every column here has shipped real products at real scale. This is about trade-offs, not winners – but the trade-offs are not symmetric."
           />
 
           <CompareTable
@@ -306,7 +306,7 @@ const description =
                   <p>
                     CUBE reached for attributes. Others have flirted with them. BEAM makes it absolute: there is no such
                     thing as a state class, so there is nothing to decide and nothing to relitigate. That absoluteness
-                    is what turns a preference into something a linter — or an agent — can enforce.
+                    is what turns a preference into something a linter – or an agent – can enforce.
                   </p>
                 </div>
               </div>

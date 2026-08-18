@@ -14,7 +14,7 @@ around component identity, flat editor-searchable selectors, `data-*` state, and
 
 1. Read `reference.md` when you need token names, layout APIs, file ownership, or PostCSS setup.
 2. Read `examples.md` when generating or reviewing component and page code.
-3. If the host project has `src/styles/theme.css`, treat it as the source of truth for token names —
+3. If the host project has `src/styles/theme.css`, treat it as the source of truth for token names –
    it outranks anything in this skill.
 
 ## Non-Negotiable Rules
@@ -102,7 +102,7 @@ State and variation live in HTML attributes. There are no state classes in BEAM.
 | `data-variant` | A named visual treatment chosen by the caller                                                                                                             |
 | `data-size`    | Discrete size steps                                                                                                                                       |
 | `data-*` flags | Independent booleans, written as `"true"` or omitted entirely                                                                                             |
-| `aria-*`       | Anything the accessibility tree already models — style `aria-expanded`, `aria-disabled`, `aria-current` directly rather than mirroring them into `data-*` |
+| `aria-*`       | Anything the accessibility tree already models – style `aria-expanded`, `aria-disabled`, `aria-current` directly rather than mirroring them into `data-*` |
 
 Write `data-featured="true"` or omit the attribute. Never `data-featured="false"`, because
 `[data-featured]` would then match both states.
@@ -145,7 +145,7 @@ Components consume **Layer 3 semantics**. Never skip layers.
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------- |
 | 1 Foundations | `--palette-*`, `--typeface-*`                                                                                                           | `theme.css`                    | Never                     |
 | 2 Themes      | `--theme-light-*`, `--theme-dark-*`                                                                                                     | `theme.css`                    | Never                     |
-| 3 Semantics   | `--bg-*`, `--ink-*`, `--border-*`, `--action-*`, `--space-*`, `--text-*`, `--font-*`, `--radius-*`, `--z-*`, `--duration-*`, `--ease-*` | `theme.css`                    | Yes — the public contract |
+| 3 Semantics   | `--bg-*`, `--ink-*`, `--border-*`, `--action-*`, `--space-*`, `--text-*`, `--font-*`, `--radius-*`, `--z-*`, `--duration-*`, `--ease-*` | `theme.css`                    | Yes – the public contract |
 | 4 Component   | `--c-*`                                                                                                                                 | local CSS, or inline as a prop | Local API only            |
 
 Semantics point **down** at the theme switchboard, never **sideways** at another semantic.
@@ -166,9 +166,9 @@ attribute:
 
 ## Spacing: Void vs Mass
 
-- **Void** — `margin`, `padding`, `gap` — always uses numeric `--space-*` tokens. Negative space is
+- **Void** – `margin`, `padding`, `gap` – always uses numeric `--space-*` tokens. Negative space is
   shared rhythm and must move together across the product.
-- **Mass** — `width`, `height`, `inset`, `translate` — uses raw `rem` or `px`. An object's shape
+- **Mass** – `width`, `height`, `inset`, `translate` – uses raw `rem` or `px`. An object's shape
   belongs to that object.
 
 ```css
@@ -201,7 +201,7 @@ utility classes are not part of BEAM.
 ```
 
 Layout classes own display, direction, columns, wrapping and gap. Blocks own visuals and internals.
-A component may still lay out its own children inside its own stylesheet — the primitives are for
+A component may still lay out its own children inside its own stylesheet – the primitives are for
 composition _between_ things.
 
 ## CSS Authoring
@@ -224,7 +224,7 @@ Five required files, plus `fonts.css` as an optional sixth. Listed in import ord
 
 ```text
 src/styles/
-  fonts.css      # @font-face only — optional, omit on system fonts
+  fonts.css      # @font-face only – optional, omit on system fonts
   reset.css      # Browser normalisation; no classes
   theme.css      # Foundations, themes, semantic tokens
   layout.css     # l_* spatial primitives
@@ -235,7 +235,7 @@ src/styles/
 Component and page CSS owns exactly one block plus its elements. Never redefine a reset, a token, a
 layout primitive or a generic from a component file.
 
-`fonts.css` contains `@font-face` blocks and nothing else — no tokens, no classes, no `@import` of
+`fonts.css` contains `@font-face` blocks and nothing else – no tokens, no classes, no `@import` of
 another stylesheet in the layer. Conversely, never put `@font-face` in `theme.css`: that file names
 typefaces through `--typeface-*`, it does not load them.
 

@@ -1,11 +1,11 @@
 # BEAM Reference
 
 Exact token, layout and PostCSS details. If the host project defines different names, the host
-project wins — read its `src/styles/theme.css` first.
+project wins – read its `src/styles/theme.css` first.
 
 ## Token Layers
 
-### Layer 1 — Foundations
+### Layer 1 – Foundations
 
 Declared only in `theme.css`. Components never consume these.
 
@@ -22,7 +22,7 @@ Declared only in `theme.css`. Components never consume these.
 --typeface-jetbrains-mono
 ```
 
-### Layer 2 — Themes
+### Layer 2 – Themes
 
 Declared only in `theme.css`. Components never consume these. This layer exists so Layer 3 can be a
 pointer rather than a value.
@@ -32,7 +32,7 @@ Pattern: `--theme-{light|dark}-{category}-{name}`.
 Categories: `bg-*`, `ink-*`, `border-*`, `action-*`, `brand-*`, `shadow-*`, `intent-*-subtle`,
 `syntax-*`, `mix-contrast`.
 
-### Layer 3 — Semantics
+### Layer 3 – Semantics
 
 The public contract. This is the only layer a component may read.
 
@@ -46,7 +46,7 @@ The public contract. This is the only layer a component may read.
 | Intents | `--intent-success-base`, `--intent-success-strong`, `--intent-success-subtle`; same three for `warning` and `critical`                                                                 |
 | Shadows | `--shadow-close`, `--shadow-base`, `--shadow-far`                                                                                                                                      |
 | Syntax  | `--syntax-ink`, `--syntax-muted`, `--syntax-accent`, `--syntax-cool`                                                                                                                   |
-| Mixing  | `--mix-contrast` — resolves to `black` in light, `white` in dark                                                                                                                       |
+| Mixing  | `--mix-contrast` – resolves to `black` in light, `white` in dark                                                                                                                       |
 
 Theme routing:
 
@@ -108,7 +108,7 @@ Never use `--space-*` for width, height, inset or transform distance.
 
 `prefers-reduced-motion: reduce` sets every duration token to `0ms`, which is why transitions must
 use the tokens. Named `@keyframes` animations may use bespoke timings, because choreography is
-authored rather than systematic — guard those with a media query yourself.
+authored rather than systematic – guard those with a media query yourself.
 
 ### Z-Index
 
@@ -123,7 +123,7 @@ authored rather than systematic — guard those with a media query yourself.
 
 Stack inside a stratum with `calc(var(--z-overlay) + 1)`.
 
-### Layer 4 — Component Scope
+### Layer 4 – Component Scope
 
 `--c-*` for local exceptions and component APIs. `--js-*` for globals injected at runtime, read-only.
 
@@ -166,8 +166,8 @@ Two-dimensional layout.
 | Attribute     | Values                                                                                                          |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | `data-cols`   | `2`, `3`, `4`, `auto`                                                                                           |
-| `data-min`    | `xs` `10rem`, `sm` `13rem`, `md` `16rem`, `lg` `20rem`, `xl` `26rem` — the column floor when `data-cols="auto"` |
-| `data-layout` | `sidebar` — one column, becoming `fit-content(20rem)` plus fluid content at `64rem`                             |
+| `data-min`    | `xs` `10rem`, `sm` `13rem`, `md` `16rem`, `lg` `20rem`, `xl` `26rem` – the column floor when `data-cols="auto"` |
+| `data-layout` | `sidebar` – one column, becoming `fit-content(20rem)` plus fluid content at `64rem`                             |
 | `data-gap`    | Same as `.l_stack`                                                                                              |
 
 `data-cols="auto"` is an auto-fit grid whose floor is `--c-min-col-width`, defaulting to `16rem`. Set
@@ -185,7 +185,7 @@ Page bounds and macro padding. Default max width is `32rem`; padding is
 | `narrow`    | `44rem`                            |
 | `page`      | `72rem`                            |
 | `wide`      | `88rem`                            |
-| `fluid`     | `100%` — padding and centring only |
+| `fluid`     | `100%` – padding and centring only |
 
 A `.l_container` nested inside `data-size="fluid"` drops its own inline padding, so a full-bleed
 wrapper around a bounded container does not double up.
@@ -198,7 +198,7 @@ threshold, so a component moved into a sidebar rearranges itself with no media q
 | Attribute        | Values                                                                                                                                                                                       |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data-threshold` | `3xs` `16rem`, `2xs` `18rem`, `xs` `20rem`, `sm` `24rem`, `md` `28rem`, `lg` `32rem`, `xl` `36rem`, `2xl` `42rem`, `3xl` `48rem`, `4xl` `56rem`, `5xl` `64rem`, `6xl` `72rem`, `7xl` `80rem` |
-| `data-align`     | `start`, `center`, `end`, `stretch` — applies in both directions                                                                                                                             |
+| `data-align`     | `start`, `center`, `end`, `stretch` – applies in both directions                                                                                                                             |
 | `data-gap`       | Same as `.l_stack`                                                                                                                                                                           |
 
 Parent container behaviour is applied automatically via `*:has(> .l_switcher)`. Child sizing defaults

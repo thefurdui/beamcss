@@ -96,7 +96,7 @@ function buildClamp(rawArgs, options) {
 
   if (rawArgs.length !== 2 && rawArgs.length !== 4) {
     fail(
-      `${FN}() takes 2 or 4 arguments — ${FN}(min, max) or ${FN}(min, max, minViewport, maxViewport). Got ${rawArgs.length}.`,
+      `${FN}() takes 2 or 4 arguments – ${FN}(min, max) or ${FN}(min, max, minViewport, maxViewport). Got ${rawArgs.length}.`,
     )
   }
 
