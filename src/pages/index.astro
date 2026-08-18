@@ -276,8 +276,8 @@ const description =
         <SectionHead
           index="01"
           eyebrow="The evidence"
-          title="Every year we declare CSS solved. Every year the survey disagrees."
-          lede={`Devographics asked ${SURVEY.respondents} developers what hurts. Read the answers slowly, because there is a pattern in them.`}
+          title="CSS is more capable than ever, yet more confusing than ever."
+          lede={`Devographics asked ${SURVEY.respondents} developers what hurts. Here\'s the freshest data:`}
         />
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
@@ -337,7 +337,9 @@ const description =
               “Managing colour palettes, tokens, variables and design-system scales is hard.”
             </p>
             <footer class="home_section-quote_source">
-              State of CSS {SURVEY.year} — colour pain points, summarised from free-form answers
+              <a class="home_section-quote_link" href={SURVEY.url} rel="noreferrer noopener">
+                State of CSS {SURVEY.year} — colour pain points, summarised from free-form answers
+              </a>
             </footer>
           </blockquote>
 

@@ -102,6 +102,18 @@
   line-height: var(--leading-base);
 }
 
+.home_section-quote_link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: var(--transition-colors);
+}
+
+.home_section-quote_link:hover {
+  color: var(--ink-muted);
+}
+
 /* ----------------------------------------------------------- LINEAGE RAIL */
 .lineage_rail {
   display: flex;
