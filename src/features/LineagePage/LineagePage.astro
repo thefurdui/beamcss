@@ -69,7 +69,7 @@ const ANCESTORS = [
     author: 'Harry Roberts',
     body: [
       'Order the entire stylesheet by reach and specificity: settings, tools, generic, elements, objects, components, utilities. An inverted triangle where specificity only ever increases. Genuinely brilliant, and it made large legacy codebases tractable.',
-      'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, and&nbsp;<code>:where()</code>&nbsp;pins resets to zero.',
+      'It also required you to maintain a mental specificity graph forever. BEAM reaches the same outcome differently: flat single-class selectors have nothing to escalate against, IDs are forbidden as styling hooks, and&nbsp;<code>:where()</code>&nbsp;pins resets to zero.',
     ],
     keeps: [
       'Ordered global layers – the global stylesheets are ITCSS with the arguing removed.',
@@ -77,6 +77,7 @@ const ANCESTORS = [
     ],
     drops: [
       'The specificity graph as a thing humans maintain by hand.',
+      'IDs as a styling hook. Specificity&nbsp;<code>1,0,0</code>&nbsp;is how the inverted triangle explodes.',
       'Seven layers you assemble yourself. BEAM ships six fixed filenames, one of them optional.',
     ],
   },

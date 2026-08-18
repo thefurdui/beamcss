@@ -41,6 +41,7 @@ const TOC = [
     title: 'Authoring',
     entries: [
       { id: 'nesting', label: 'Nesting rules' },
+      { id: 'queries', label: 'Selectors and queries' },
       { id: 'fluid', label: 'Fluid interpolation' },
       { id: 'strata', label: 'Z-index and motion' },
       { id: 'globals', label: 'Utilities and generics' },
@@ -50,7 +51,7 @@ const TOC = [
 ]
 
 const description =
-  'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer color firewall, layout primitives, mass versus void, nesting limits, and fluid interpolation.'
+  'The complete BEAM CSS specification: class taxonomy, naming rules, attribute state, the four-layer color firewall, layout primitives, mass versus void, nesting limits, mobile-first queries, and fluid interpolation.'
 ---
 
 <RootLayout title="Specification – BEAM CSS" description={description}>
@@ -657,7 +658,10 @@ components/
                   'Allowed – a condition, not a name',
                 ],
                 ["<code>&amp;[data-state='open']</code>", 'Allowed – a condition, not a name'],
-                ['<code>@container</code>,&nbsp;<code>@media</code>&nbsp;inside a rule', 'Allowed'],
+                [
+                  '<code>@container</code>,&nbsp;<code>@media</code>&nbsp;inside a rule',
+                  'Allowed – conditions,&nbsp;<code>min-width</code>&nbsp;only',
+                ],
                 ['<code>&amp;-title</code>', 'Banned – invents a string that exists nowhere'],
                 ['<code>.block .element</code>', 'Banned – encodes DOM depth'],
                 ['Two or more levels deep', 'Banned – flatten it'],
@@ -674,8 +678,109 @@ components/
 
           {/* ------------------------------------------------------ 14 */}
           <SpecBlock
-            id="fluid"
+            id="queries"
             index="14"
+            title="Selectors and queries"
+            lede="Classes are the only identity CSS may use. The cascade only ever adds as the canvas grows."
+          >
+            <div class="g_prose">
+              <p>
+                <strong>Never select by ID.</strong> An ID selector is a second identity system with specificity&nbsp;<code
+                  >1,0,0</code
+                > – no class combination can override it without&nbsp;<code>!important</code>&nbsp;or another ID, and
+                the name cannot be reused. HTML&nbsp;<code>id</code>&nbsp;remains legal for skip links, fragment URLs
+                and JavaScript. Do not style those nodes by ID; give them a class.&nbsp;<code>:target</code>&nbsp;is a
+                condition, not an ID selector, and stays legal.
+              </p>
+            </div>
+
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock
+                tone="wrong"
+                file="Incorrect"
+                lang="css"
+                code={`#site_header { }
+[id='site_header'] { }`}
+              />
+              <CodeBlock tone="right" file="Correct" lang="css" code={`.site_header { }`} />
+            </div>
+
+            <div class="g_prose">
+              <p>
+                <strong>Width queries are mobile-first.</strong> The unqueried rule is the small canvas. Every&nbsp;<code
+                  >@media</code
+                >&nbsp;and&nbsp;<code>@container</code>&nbsp;query adds as the canvas grows, which means&nbsp;<code
+                  >min-width</code
+                >&nbsp;only.&nbsp;<code>max-width</code>&nbsp;queries – and ceiling ranges like&nbsp;<code
+                  >width &lt; 64rem</code
+                > – invert the cascade: you authored the large canvas and then undid it, so the small-screen stylesheet
+                is a pile of exceptions and the&nbsp;<code>63.999rem</code>&nbsp;off-by-one is waiting for you.
+              </p>
+            </div>
+
+            <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+              <CodeBlock
+                tone="wrong"
+                file="Incorrect – then undo"
+                lang="css"
+                code={`.toolbar {
+  flex-direction: row;
+}
+
+@media (max-width: 47.999rem) {
+  .toolbar {
+    flex-direction: column;
+  }
+}`}
+              />
+              <CodeBlock
+                tone="right"
+                file="Correct – then add"
+                lang="css"
+                code={`.toolbar {
+  flex-direction: column;
+}
+
+@media (min-width: 48rem) {
+  .toolbar {
+    flex-direction: row;
+  }
+}`}
+              />
+            </div>
+
+            <SpecTable
+              head={['Query', 'Verdict']}
+              rows={[
+                ['<code>@media (min-width: 48rem)</code>', 'Allowed – the canvas grew'],
+                ['<code>@container (min-width: 36rem)</code>', 'Allowed – same rule, local canvas'],
+                ['<code>@media (width &gt;= 48rem)</code>', 'Allowed – a floor range is still min-width'],
+                ['<code>@media (max-width: 47.999rem)</code>', 'Banned – the large canvas as default'],
+                ['<code>@container (width &lt; 36rem)</code>', 'Banned – a ceiling range wearing other clothes'],
+                [
+                  '<code>max-width: 32rem</code>&nbsp;as a property',
+                  'Allowed – a size constraint, not a query',
+                ],
+                [
+                  '<code>prefers-reduced-motion</code>,&nbsp;<code>hover</code>,&nbsp;<code>pointer</code>',
+                  'Allowed – not width queries',
+                ],
+              ]}
+            />
+
+            <CalloutBlock tone="law" title="The test">
+              <p>
+                Take the unqueried rule, shrink the window to 320px, and look. If the page is wrong until a&nbsp;<code
+                  >max-width</code
+                >&nbsp;query fires, you wrote it backwards.
+              </p>
+            </CalloutBlock>
+          </SpecBlock>
+
+          {/* ------------------------------------------------------ 15 */}
+          <SpecBlock
+            id="fluid"
+            index="15"
             title="Fluid interpolation"
             lede="Point-to-point interpolation between two static tokens, resolved at build time by postcss-beam-fluid."
           >
@@ -720,7 +825,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
           {/* ------------------------------------------------------ 15 */}
           <SpecBlock
             id="strata"
-            index="15"
+            index="16"
             title="Z-index and motion"
             lede="Two systems that exist purely so nobody ever types a magic number into a shared file again."
           >
@@ -755,7 +860,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
           {/* ------------------------------------------------------ 16 */}
           <SpecBlock
             id="globals"
-            index="16"
+            index="17"
             title="Utilities and generics"
             lede="Two small global layers with sharply different jobs."
           >
@@ -797,7 +902,7 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
           {/* ------------------------------------------------------ 17 */}
           <SpecBlock
             id="checklist"
-            index="17"
+            index="18"
             title="Review checklist"
             lede="What to look for in a pull request. Every item is mechanical, which is the point – none of it is a matter of taste."
           >
@@ -824,6 +929,11 @@ font-size: fluid(2rem, 8rem, 20rem, 60rem);`}
                   '<code>width</code>,&nbsp;<code>height</code>&nbsp;or&nbsp;<code>inset</code>&nbsp;uses a&nbsp;<code>--space-*</code>&nbsp;token.',
                 ],
                 ['Nesting', 'An ampersand builds a name, or nesting goes deeper than one level.'],
+                ['IDs', 'A&nbsp;<code>#</code>&nbsp;selector or&nbsp;<code>[id=…]</code>&nbsp;styles a node.'],
+                [
+                  'Queries',
+                  'A&nbsp;<code>@media</code>&nbsp;or&nbsp;<code>@container</code>&nbsp;uses&nbsp;<code>max-width</code>&nbsp;or a ceiling range.',
+                ],
                 ['Motion', 'A transition uses a literal duration or easing curve.'],
                 ['Z-index', 'A number appears where a stratum token belongs.'],
                 [

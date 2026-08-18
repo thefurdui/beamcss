@@ -28,6 +28,8 @@
 
 .spec_page-aside {
   min-width: 0;
+  padding-block-end: var(--space-8);
+  border-block-end: 1px solid var(--border-base);
 }
 
 .spec_page-content {
@@ -35,12 +37,12 @@
 }
 
 /*
- * Below the sidebar breakpoint the grid collapses to one column and the index
- * becomes a plain list above the content.
+ * Default is the stacked canvas. The divider goes away once the rail sits
+ * beside the spec.
  */
-@media (max-width: 63.999rem) {
+@media (min-width: 64rem) {
   .spec_page-aside {
-    padding-block-end: var(--space-8);
-    border-block-end: 1px solid var(--border-base);
+    padding-block-end: 0;
+    border-block-end: none;
   }
 }

@@ -1,6 +1,6 @@
 ---
 name: beam-css
-description: Apply and review BEAM (Block, Element, Attribute, Module) CSS architecture. Use when writing or changing CSS, styling components or pages, creating theme/layout/utils/generics files, configuring BEAM PostCSS fluid interpolation, reviewing class names, tokens or state, or when the user mentions BEAM, beamcss, semantic CSS, no Tailwind, no CSS-in-JS, or no SASS.
+description: Apply and review BEAM (Block, Element, Attribute, Module) CSS architecture. Use when writing or changing CSS, styling components or pages, creating theme/layout/utils/generics files, configuring BEAM PostCSS fluid interpolation, reviewing class names, tokens or state, or when the user mentions BEAM, beamcss, semantic CSS, no Tailwind, no CSS-in-JS, no SASS, no ID selectors, or mobile-first min-width queries.
 version: 2026.1
 homepage: https://beamcss.org
 ---
@@ -33,6 +33,8 @@ around component identity, flat editor-searchable selectors, `data-*` state, and
 | `l_*` and a block class on the same element        | Wrapper composition                                            |
 | `--space-*` on `width`, `height`, `inset`          | Raw `rem` or `px`                                              |
 | Literal durations or easings in a `transition`     | `--duration-*` and `--ease-*`                                  |
+| ID selectors like `#header`                        | Classes; HTML `id` is for the document, never for CSS          |
+| `@media` / `@container` with `max-width`           | Unqueried small-canvas default, then `min-width` only          |
 
 ## Class Taxonomy
 
@@ -209,6 +211,9 @@ composition _between_ things.
 - Prefer flat selectors. Keep component element selectors at the root level of the file.
 - Nest at most one level, and only for state, pseudo-classes, or queries.
 - Never use `&` to concatenate class names.
+- Never select by ID. HTML `id` is a document hook (fragments, skip links, JS), not a style hook.
+- Write mobile-first. `@media` and `@container` may use `min-width` only – never `max-width`, and
+  never ceiling ranges (`width <`, `width <=`). The `max-width` **property** is still legal.
 - Use `fluid(min, max)` rather than hand-written `clamp()`.
 - Run the project build after touching `fluid()`, PostCSS config, or token files.
 
@@ -217,6 +222,57 @@ composition _between_ things.
   font-size: fluid(var(--text-4xl), var(--text-9xl));
 }
 ```
+
+## Selectors and queries
+
+Classes are the identity system. An ID selector is a second one with specificity `1,0,0` – no class
+combination can override it without `!important` or another ID, and the name cannot be reused.
+
+```css
+/* Wrong */
+#site_header {
+}
+[id='site_header'] {
+}
+
+/* Correct */
+.site_header {
+}
+```
+
+`:target` is a condition, not an ID selector, and remains legal.
+
+The unqueried rule is the small canvas. Every width query **adds** as the canvas grows.
+
+```css
+/* Correct */
+.toolbar {
+  flex-direction: column;
+}
+
+@media (min-width: 48rem) {
+  .toolbar {
+    flex-direction: row;
+  }
+}
+
+/* Wrong – large-canvas default, then undo */
+.toolbar {
+  flex-direction: row;
+}
+
+@media (max-width: 47.999rem) {
+  .toolbar {
+    flex-direction: column;
+  }
+}
+```
+
+Banned in `@media` and `@container`: `max-width` as a feature, and ceiling ranges (`width <`,
+`width <=`). Allowed: `min-width`, floor ranges (`width >=`, `width >`), and non-width features
+(`prefers-reduced-motion`, `hover`, `pointer`, `prefers-color-scheme`).
+
+`.l_container { max-width: 32rem }` is a size constraint, not a query. That remains legal.
 
 ## File Ownership
 
@@ -244,11 +300,12 @@ typefaces through `--typeface-*`, it does not load them.
 1. Identify the block name from the component or route identity.
 2. Create or update the co-located CSS module for that block.
 3. Put external geometry in `l_*` wrappers; keep visuals on the block.
-4. Name child classes as flat `block_name-element_name`.
+4. Name child classes as flat `block_name-element_name`. Never select by ID.
 5. Express state and variants with `data-*`.
 6. Consume Layer 3 tokens; use `--c-*` only for local APIs and genuine exceptions.
 7. Use `fluid()` for responsive interpolation.
-8. Run the project build, then walk the review checklist below.
+8. Keep the unqueried rule as the small canvas; width queries use `min-width` only.
+9. Run the project build, then walk the review checklist below.
 
 ## Review Checklist
 
@@ -264,6 +321,8 @@ Each line is mechanical. If a check needs an opinion, it is written wrong.
 | Void          | `margin`, `padding` or `gap` uses a raw length                           |
 | Mass          | `width`, `height` or `inset` uses a `--space-*` token                    |
 | Nesting       | An ampersand builds a name, or nesting goes deeper than one level        |
+| IDs           | A `#` selector or `[id=…]` styles a node                                 |
+| Queries       | A `@media` or `@container` uses `max-width` or a ceiling range           |
 | Motion        | A transition uses a literal duration or easing curve                     |
 | Z-index       | A number appears where a stratum token belongs                           |
 | Inline styles | The `style` attribute sets anything other than a custom property         |

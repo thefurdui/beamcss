@@ -439,6 +439,14 @@ const description =
               >&nbsp;is two. You will select this token thousands of times over the life of the project. Optimize for
               the thousands.
             </p>
+            <p>
+              That identity lives on a class. HTML&nbsp;<code>id</code>&nbsp;is a document hook – skip links, fragment
+              URLs,&nbsp;<code>getElementById</code> – and it is not a styling API. An ID selector is
+              specificity&nbsp;<code>1,0,0</code>: no class combination can override it without reaching for&nbsp;<code
+                >!important</code
+              >&nbsp;or another ID. You do not need a second identity system, and you definitely do not need one that
+              cannot be reused.
+            </p>
             <CodeBlock
               slot="code"
               file="UserCard.css"
@@ -763,6 +771,17 @@ const description =
 </div>`}
           />
         </div>
+
+        <CalloutBlock tone="law" title="Queries only add">
+          <p>
+            The unqueried rule is the small canvas.&nbsp;<code>@media</code>&nbsp;and&nbsp;<code>@container</code>&nbsp;may
+            use&nbsp;<code>min-width</code>, never&nbsp;<code>max-width</code>. Ceiling ranges like&nbsp;<code
+              >width &lt; 64rem</code
+            >&nbsp;are the same inversion wearing different syntax. The&nbsp;<code>max-width</code>&nbsp;<em
+              >property</em
+            >&nbsp;on a container is a size, not a query – that one stays.
+          </p>
+        </CalloutBlock>
       </div>
     </div>
   </section>
@@ -866,9 +885,11 @@ const description =
               <li>Color has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
               <li>State has exactly one legal form. If it is a class, it is wrong.</li>
               <li>Layout has exactly one legal home. If it shares an element with a block, it is wrong.</li>
+              <li>Selectors have exactly one legal form. If it is an ID, it is wrong.</li>
+              <li>Width queries have exactly one direction. If it is&nbsp;<code>max-width</code>, it is wrong.</li>
             </ul>
             <p>
-              Notice what those last three have in common: they are <em>checkable</em>. An agent can review its own diff
+              Notice what those last five have in common: they are <em>checkable</em>. An agent can review its own diff
               before you ever see it, and you can review by pattern instead of by taste. That is the difference between
               a style guide and a specification.
             </p>
@@ -888,10 +909,12 @@ const description =
 Element          .block-part_name, always flat
 Attribute        data-*, never a state class
 Module           one block, one co-located file
-Color           Layer 3 semantics only
+Color            Layer 3 semantics only
 Void             --space-* for margin/padding/gap
 Mass             raw rem for width/height/inset
 Layout           l_* on a wrapper, never the block
+Selectors        classes only, never an ID
+Queries          min-width only, never max-width
 Nesting          one level, conditions only
 Ampersand        banned for name building`}
             />

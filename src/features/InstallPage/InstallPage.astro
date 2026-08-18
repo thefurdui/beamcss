@@ -379,8 +379,10 @@ vim.api.nvim_create_autocmd('FileType', {
               Beyond that, there is nothing to install. The names are plain strings, so&nbsp;<code>:grep</code>, the
               quickfix list, Telescope,&nbsp;<code>rg</code>&nbsp;and your language server's symbol list all already
               understand your stylesheet. For linting, BEAM does not ship a Stylelint plugin, because the rules worth
-              automating are expressible with&nbsp;<code>selector-class-pattern</code>&nbsp;and a grep in CI. Anything
-              more elaborate tends to fight you.
+              automating are expressible with&nbsp;<code>selector-class-pattern</code>,&nbsp;<code>selector-max-id</code
+              >, a disallowed&nbsp;<code>max-width</code>&nbsp;media feature, and a grep in CI. Anything more elaborate
+              tends to fight you. Ceiling ranges like&nbsp;<code>width &lt; 48rem</code>&nbsp;are the same ban wearing
+              different syntax – grep for those, because a feature-name list will not see them.
             </p>
           </div>
 
@@ -393,8 +395,10 @@ vim.api.nvim_create_autocmd('FileType', {
       "^(l_|u_|g_)?[a-z][a-z0-9_]*(-[a-z][a-z0-9_]*)?$",
       { "message": "Class must be snake_case, optionally block-element, optionally l_/u_/g_ prefixed" }
     ],
+    "selector-max-id": 0,
     "selector-max-specificity": "0,2,0",
     "selector-max-compound-selectors": 2,
+    "media-feature-name-disallowed-list": ["max-width"],
     "declaration-property-value-disallowed-list": {
       "/^(margin|padding|gap)/": ["/^[0-9]/"],
       "/^(width|height|inset)/": ["/--space-/"],

@@ -301,6 +301,15 @@ Five required files, plus `fonts.css` as an optional sixth. Import in the order 
 `fonts.css` loads font files; `theme.css` names them through `--typeface-*`. Keep the two jobs apart:
 no `@font-face` in `theme.css`, no tokens in `fonts.css`.
 
+## Selectors and Queries
+
+- Never write an ID selector (`#header`, `[id='header']`). HTML `id` is a document hook.
+- Width queries in `@media` and `@container` are `min-width` only. No `max-width` feature, no
+  ceiling ranges (`width <`, `width <=`).
+- The `max-width` **property** is a size constraint, not a query. Legal on containers.
+- Non-width features (`prefers-reduced-motion`, `hover`, `pointer`, `prefers-color-scheme`) are
+  unrestricted by this rule.
+
 ## Firewall Rules
 
 1. Components consume Layer 3 only.
@@ -308,3 +317,5 @@ no `@font-face` in `theme.css`, no tokens in `fonts.css`.
 3. New reusable colours enter through `theme.css` and get all three layers.
 4. Interactive colour extensions need hover pairs.
 5. One block owns one CSS module. Never mix unrelated blocks in one file.
+6. Never select by ID.
+7. Width queries only add: `min-width`, never `max-width`.

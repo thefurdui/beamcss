@@ -1,6 +1,6 @@
 # BEAM Examples
 
-Use these as patterns for generated code. Preserve the class taxonomy, Binary Rule, token layers, and `data-*` state model.
+Use these as patterns for generated code. Preserve the class taxonomy, Binary Rule, token layers, `data-*` state model, class-only selectors, and mobile-first queries.
 
 ## React Component
 
@@ -480,4 +480,75 @@ stylesheet – that is not a Binary Rule violation, because no layout class is i
 ```tsx
 // Correct
 <article className="promo_card" style={{ '--c-accent': accentColor } as React.CSSProperties} />
+```
+
+### ID Selectors
+
+```css
+/* Wrong */
+#promo_card {
+  padding: var(--space-4);
+}
+
+[id='promo_card'] {
+  padding: var(--space-4);
+}
+```
+
+```css
+/* Correct */
+.promo_card {
+  padding: var(--space-4);
+}
+```
+
+HTML `id` remains legal for skip links, fragment URLs, and JavaScript. Style those nodes with a
+class.
+
+### Desktop-First Queries
+
+```css
+/* Wrong – large canvas as the default, then undo */
+.toolbar {
+  flex-direction: row;
+}
+
+@media (max-width: 47.999rem) {
+  .toolbar {
+    flex-direction: column;
+  }
+}
+
+@container (width < 36rem) {
+  .toolbar {
+    flex-direction: column;
+  }
+}
+```
+
+```css
+/* Correct – small canvas as the default, then add */
+.toolbar {
+  flex-direction: column;
+}
+
+@media (min-width: 48rem) {
+  .toolbar {
+    flex-direction: row;
+  }
+}
+
+@container (min-width: 36rem) {
+  .toolbar {
+    flex-direction: row;
+  }
+}
+```
+
+The `max-width` **property** is a size, not a query, and remains legal:
+
+```css
+.l_container {
+  max-width: 32rem;
+}
 ```
