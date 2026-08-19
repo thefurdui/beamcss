@@ -93,12 +93,3 @@ a {
 ::selection {
   background: color-mix(in srgb, var(--brand-primary), transparent 75%);
 }
-
-/*
- * Fragment targets clear the sticky header.
- * Uses [id] rather than a class because it must hold for every anchorable node
- * in the document, including ones no component styles.
- */
-[id] {
-  scroll-margin-block-start: var(--space-24);
-}
