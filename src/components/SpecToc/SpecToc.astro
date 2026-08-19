@@ -13,7 +13,7 @@ interface Props {
 const { groups } = Astro.props
 ---
 
-<nav class="spec_toc" aria-label="On this page">
+<nav class="spec_toc" aria-label="On this page" data-beam-spec-toc>
   <div class="l_stack" data-gap="6">
     {
       groups.map((group) => (
@@ -33,3 +33,62 @@ const { groups } = Astro.props
     }
   </div>
 </nav>
+
+<script>
+  for (const nav of document.querySelectorAll<HTMLElement>('[data-beam-spec-toc]')) {
+    const links = [...nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]
+    const sections = links
+      .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+      .filter((section): section is HTMLElement => section !== null)
+
+    if (sections.length === 0) continue
+
+    let currentId = '—'
+
+    const setCurrent = (id: string) => {
+      if (id === currentId) return
+      currentId = id
+
+      for (const link of links) {
+        if (link.getAttribute('href') === `#${id}`) link.setAttribute('aria-current', 'location')
+        else link.removeAttribute('aria-current')
+      }
+
+      const active = nav.querySelector<HTMLElement>('[aria-current="location"]')
+      if (!active || nav.scrollHeight <= nav.clientHeight) return
+
+      const navBox = nav.getBoundingClientRect()
+      const linkBox = active.getBoundingClientRect()
+      if (linkBox.top < navBox.top) nav.scrollTop -= navBox.top - linkBox.top
+      else if (linkBox.bottom > navBox.bottom) nav.scrollTop += linkBox.bottom - navBox.bottom
+    }
+
+    const readingLine = () => {
+      const sticky = parseFloat(getComputedStyle(nav).insetBlockStart)
+      return Number.isFinite(sticky) && sticky > 0 ? sticky + 8 : 96
+    }
+
+    const sync = () => {
+      const line = readingLine()
+      let id = ''
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= line) id = section.id
+      }
+      setCurrent(id)
+    }
+
+    let frame = 0
+    const onScroll = () => {
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        frame = 0
+        sync()
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    window.addEventListener('hashchange', sync)
+    sync()
+  }
+</script>

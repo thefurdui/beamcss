@@ -31,6 +31,12 @@
   color: var(--ink-main);
 }
 
+.spec_toc-link[aria-current='location'] {
+  border-inline-start-color: var(--action-primary);
+  color: var(--ink-main);
+  font-weight: var(--weight-medium);
+}
+
 @media (min-width: 64rem) {
   .spec_toc {
     position: sticky;
