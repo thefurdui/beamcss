@@ -167,20 +167,20 @@ done`}
           <SectionHead
             index="02"
             eyebrow="The one dependency"
-            title="postcss-beam-fluid"
+            title="@beam-css/postcss-fluid"
             lede="It turns fluid(min, max) into a clamp() with the slope pre-computed. That is the entire scope of the package."
           />
 
           <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
-            <CopyCommand label="pnpm" command="pnpm add -D postcss-beam-fluid" />
-            <CopyCommand label="npm" command="npm install --save-dev postcss-beam-fluid" />
+            <CopyCommand label="pnpm" command="pnpm add -D @beam-css/postcss-fluid" />
+            <CopyCommand label="npm" command="npm install --save-dev @beam-css/postcss-fluid" />
           </div>
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="4">
             <CodeBlock
               file="postcss.config.mjs"
               lang="tsx"
-              code={`import postcssBeamFluid from 'postcss-beam-fluid'
+              code={`import postcssBeamFluid from '@beam-css/postcss-fluid'
 
 export default {
   plugins: [

@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@beam-css/postcss-fluid':
+        specifier: workspace:*
+        version: link:packages/postcss-beam-fluid
       astro:
         specifier: ^7.2.2
         version: 7.2.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)
-      postcss-beam-fluid:
-        specifier: workspace:*
-        version: link:packages/postcss-beam-fluid
     devDependencies:
       postcss:
         specifier: ^8.5.26

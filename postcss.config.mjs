@@ -1,4 +1,4 @@
-import postcssBeamFluid from 'postcss-beam-fluid'
+import postcssBeamFluid from '@beam-css/postcss-fluid'
 
 export default {
   plugins: [

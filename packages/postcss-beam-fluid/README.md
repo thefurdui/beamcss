@@ -1,9 +1,9 @@
-# postcss-beam-fluid
+# @beam-css/postcss-fluid
 
 Point-to-point fluid interpolation for [BEAM CSS](https://beamcss.org). Write `fluid(min, max)`, ship a plain `clamp()`.
 
 ```bash
-pnpm add -D postcss-beam-fluid
+pnpm add -D @beam-css/postcss-fluid
 ```
 
 ## Why
@@ -35,7 +35,7 @@ No runtime. No `calc()`. No multiplication or division left in the output – ju
 
 ```js
 // postcss.config.mjs
-import postcssBeamFluid from 'postcss-beam-fluid'
+import postcssBeamFluid from '@beam-css/postcss-fluid'
 
 export default {
   plugins: [

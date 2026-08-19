@@ -29,7 +29,7 @@ const BANNER = (name) => `/*
  *
  * theme.css and layout.css contain fluid() calls. Install the build-time
  * plugin, or replace each call with a static value:
- *   npm install --save-dev postcss-beam-fluid
+ *   npm install --save-dev @beam-css/postcss-fluid
  */
 
 `

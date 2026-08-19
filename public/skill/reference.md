@@ -244,12 +244,12 @@ is intentionally class-free.
 ## PostCSS Fluid Interpolation
 
 ```bash
-npm install --save-dev postcss-beam-fluid
+npm install --save-dev @beam-css/postcss-fluid
 ```
 
 ```js
 // postcss.config.mjs
-import postcssBeamFluid from 'postcss-beam-fluid'
+import postcssBeamFluid from '@beam-css/postcss-fluid'
 
 export default {
   plugins: [
