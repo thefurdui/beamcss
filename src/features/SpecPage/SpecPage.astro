@@ -56,7 +56,7 @@ const description =
 
 <RootLayout title="Specification – BEAM CSS" description={description}>
   <div class="spec_page">
-    <div class="l_container" data-size="wide">
+    <div class="l_container" data-size="page">
       <header class="spec_page-masthead">
         <div class="l_stack" data-gap="5" data-align="start">
           <span class="g_tag" data-tone="accent">Normative · v{SITE.version}</span>
@@ -290,19 +290,21 @@ components/
 
             <div class="g_prose">
               <p>
-                Those five files – reset, theme, layout, utils, generics – are the only place shared
-                visual responsibility lives. A component stylesheet must never redefine a reset, a token, a
-                layout primitive or a generic – if you find yourself wanting to, the
-                thing you want belongs in the global layer, or it is not as global as you think.
+                Those five files – reset, theme, layout, utils, generics – are the only place shared visual
+                responsibility lives. A component stylesheet must never redefine a reset, a token, a layout primitive or
+                a generic – if you find yourself wanting to, the thing you want belongs in the global layer, or it is
+                not as global as you think.
               </p>
               <p>
                 <code>fonts.css</code>&nbsp;is the sixth file, and it is skipped only when there is nothing for it to
-                declare: a project on system fonts, or one that already loads faces outside CSS – a Google
-                Fonts&nbsp;<code>&lt;link&gt;</code>&nbsp;in the document head, or a bundler import in an SPA. A project
-                that self-hosts must keep&nbsp;<code>@font-face</code>&nbsp;out of&nbsp;<code>theme.css</code>. Loading
-                an asset and naming a typeface are different jobs –&nbsp;<code>fonts.css</code>&nbsp;declares the
-                files,&nbsp;<code>--typeface-*</code>&nbsp;in&nbsp;<code>theme.css</code>&nbsp;decides what they mean.
-                Import it first, so the faces are known before anything asks for them.
+                declare: a project on system fonts, or one that already loads faces outside CSS – a Google Fonts&nbsp;<code
+                  >&lt;link&gt;</code
+                >&nbsp;in the document head, or a bundler import in an SPA. A project that self-hosts must keep&nbsp;<code
+                  >@font-face</code
+                >&nbsp;out of&nbsp;<code>theme.css</code>. Loading an asset and naming a typeface are different jobs
+                –&nbsp;<code>fonts.css</code>&nbsp;declares the files,&nbsp;<code>--typeface-*</code>&nbsp;in&nbsp;<code
+                  >theme.css</code
+                >&nbsp;decides what they mean. Import it first, so the faces are known before anything asks for them.
               </p>
             </div>
           </SpecBlock>
@@ -715,8 +717,8 @@ components/
                   >min-width</code
                 >&nbsp;only.&nbsp;<code>max-width</code>&nbsp;queries – and ceiling ranges like&nbsp;<code
                   >width &lt; 64rem</code
-                > – invert the cascade: you authored the large canvas and then undid it, so the small-screen stylesheet
-                is a pile of exceptions and the&nbsp;<code>63.999rem</code>&nbsp;off-by-one is waiting for you.
+                > – invert the cascade: you authored the large canvas and then undid it, so the small-screen stylesheet is
+                a pile of exceptions and the&nbsp;<code>63.999rem</code>&nbsp;off-by-one is waiting for you.
               </p>
             </div>
 
@@ -759,10 +761,7 @@ components/
                 ['<code>@media (width &gt;= 48rem)</code>', 'Allowed – a floor range is still min-width'],
                 ['<code>@media (max-width: 47.999rem)</code>', 'Banned – the large canvas as default'],
                 ['<code>@container (width &lt; 36rem)</code>', 'Banned – a ceiling range wearing other clothes'],
-                [
-                  '<code>max-width: 32rem</code>&nbsp;as a property',
-                  'Allowed – a size constraint, not a query',
-                ],
+                ['<code>max-width: 32rem</code>&nbsp;as a property', 'Allowed – a size constraint, not a query'],
                 [
                   '<code>prefers-reduced-motion</code>,&nbsp;<code>hover</code>,&nbsp;<code>pointer</code>',
                   'Allowed – not width queries',
