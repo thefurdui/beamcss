@@ -3,6 +3,7 @@
 /* ========================================================================== */
 
 .section_head {
+  --c-section-head-wrap: balance;
   max-width: 46rem;
 }
 
@@ -34,6 +35,7 @@
   font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
+  text-wrap: var(--c-section-head-wrap);
 }
 
 .section_head-lede {
