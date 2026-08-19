@@ -7,6 +7,8 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle.astro'
 import './SiteHeader.css'
 
 const path = Astro.url.pathname
+
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href))
 ---
 
 <header class="site_header">
@@ -24,7 +26,7 @@ const path = Astro.url.pathname
                 <a
                   class="site_header-nav_link"
                   href={item.href}
-                  aria-current={path.startsWith(item.href) ? 'page' : undefined}
+                  aria-current={isCurrent(item.href) ? 'page' : undefined}
                 >
                   {item.label}
                 </a>

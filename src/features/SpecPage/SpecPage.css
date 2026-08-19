@@ -7,8 +7,8 @@
 }
 
 .spec_page-masthead {
-  max-width: 44rem;
-  padding-block-end: fluid(var(--space-10), var(--space-16));
+  max-width: 52rem;
+  padding-block-end: fluid(var(--space-8), var(--space-12));
 }
 
 .spec_page-title {

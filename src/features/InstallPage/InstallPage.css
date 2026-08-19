@@ -7,17 +7,17 @@
 }
 
 .install_page-masthead {
-  max-width: 46rem;
+  max-width: 52rem;
   padding-block-end: fluid(var(--space-8), var(--space-12));
 }
 
 .install_page-title {
   color: var(--ink-main);
   font-family: var(--font-heading);
-  font-size: fluid(var(--text-5xl), var(--text-7xl));
+  font-size: fluid(var(--text-5xl), var(--text-8xl));
   font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-tighter);
-  line-height: 1;
+  line-height: 0.95;
 }
 
 .install_page-lede {
