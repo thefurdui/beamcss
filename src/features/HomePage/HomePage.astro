@@ -90,7 +90,7 @@ const DIALECTS = [
     id: 'bem',
     label: 'BEM',
     verdict:
-      'The right instinct, taxed. Every name costs four extra characters, and&nbsp;<code class="g_code">&amp;__title</code>&nbsp;nesting means the string&nbsp;<code class="g_code">card__title</code>&nbsp;exists nowhere in your repo.',
+      'Right instinct, four extra characters per name. Nest&nbsp;<code class="g_code">&amp;__title</code>&nbsp;and&nbsp;<code class="g_code">card__title</code>&nbsp;exists nowhere in the repo.',
     samples: [
       {
         file: 'markup.html',
@@ -120,8 +120,7 @@ const DIALECTS = [
   {
     id: 'utility',
     label: 'Utility-first',
-    verdict:
-      'Fast to write, expensive to read. The markup describes pixels, not purpose, and the same card in three places drifts three ways.',
+    verdict: 'Fast to write. The markup describes pixels. The same card in three places drifts three ways.',
     samples: [
       {
         file: 'markup.html',
@@ -147,7 +146,7 @@ Renaming the component renames nothing.
     id: 'cssinjs',
     label: 'CSS-in-JS',
     verdict:
-      'Solved scoping, then charged rent for it. Styles ship in your JS bundle, class names are hashes, and your stylesheet needs a JavaScript runtime to exist.',
+      'Solved scoping, then billed a runtime for it. Styles in the JS bundle, class names hashed, CSS needs JavaScript to exist.',
     samples: [
       {
         file: 'PromoCard.tsx',
@@ -178,8 +177,7 @@ Your CSS is now a JavaScript dependency.`,
   {
     id: 'beam',
     label: 'BEAM',
-    verdict:
-      'Identity in the class, state in the attribute, color in the token layer, geometry in the wrapper. Nothing in this markup will lie to you when the design changes.',
+    verdict: 'Identity in the class, state in the attribute, color in the token, geometry in the wrapper.',
     samples: [
       {
         file: 'PromoCard.astro',
@@ -345,18 +343,10 @@ const description =
 
           <div class="g_prose home_section-prose">
             <p>
-              Now read those complaints again and notice what is missing. Nobody said&nbsp;<code>color-mix()</code
-              >&nbsp;is broken. Nobody said custom properties don't work. Nobody is waiting on a browser.
+              Nobody is waiting on a browser anymore. The named causes are duplicated theme definitions, palettes that
+              are hard to manage, cognitive overload, and maintenance.
             </p>
-            <p>
-              <strong>Duplicated theme definitions.</strong> Palettes and scales that are “hard to manage.” Cognitive overload
-              as the single most-mentioned pain point in the entire survey. Maintenance climbing eighteen places in one year.
-            </p>
-            <p>
-              None of that is a language problem. All of it is an architecture problem – the part of this you actually
-              control, and the part almost nobody has written down.
-            </p>
-            <p>So here it is, written down.</p>
+            <p>That is an architecture problem. That's what we solve.</p>
           </div>
         </div>
       </div>
@@ -371,7 +361,7 @@ const description =
           index="02"
           eyebrow="Provenance"
           title="BEAM did not fall out of the sky."
-          lede="Almost every idea in here is borrowed, and that is the strongest thing about it. A convention nobody has seen before is a convention nobody will follow."
+          lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
         />
 
         <ol class="u_reset_list lineage_rail">
@@ -395,16 +385,15 @@ const description =
           }
         </ol>
 
-        <CalloutBlock tone="note" title="So what is actually new?">
+        <CalloutBlock tone="note" title="What is actually new">
           <p>
-            Three things. State lives in attributes rather than classes. Themes route through a double-mapped
-            switchboard so a color is declared exactly twice in the whole codebase. And every naming rule is chosen to
-            keep your editor's cursor happy. The rest is curation – deliberately.
+            State in attributes, not classes. A color declared twice in the whole codebase, never in a component. Naming
+            chosen to respect IDE-native word boundaries. The rest is curation.
           </p>
         </CalloutBlock>
 
         <div class="l_cluster" data-gap="4">
-          <ActionButton href="/lineage/" tone="ghost">The full comparison, approach by approach</ActionButton>
+          <ActionButton href="/lineage/" tone="ghost">Full comparison</ActionButton>
         </div>
       </div>
     </div>
@@ -417,41 +406,25 @@ const description =
         <SectionHead
           index="03"
           eyebrow="The tetrad"
-          title="Four letters. That is the entire convention."
-          lede="You can hold all of BEAM in your head. That is a design goal, not an accident – a rule you have to look up is a rule you will break."
+          title="Four letters. That's the entire principle."
+          lede="A rule you have to look up is a rule you will break."
         />
 
         <div class="l_stack" data-gap="0">
           <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
             <p>
-              A component is named for what it <em>is</em>, never for what it looks like.&nbsp;<code>.user_card</code>,
-              not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>.
+              Named for what it is.&nbsp;<code>.user_card</code>, not&nbsp;<code>.bg-white.rounded-xl.p-4</code>. When
+              the fill changes,&nbsp;<code>bg-white</code>&nbsp;is a lie in forty files. A card is still a card.
             </p>
             <p>
-              That reads like taste until the design changes. The moment “white” becomes “white in light mode and
-              stone-900 in dark mode,” a class called&nbsp;<code>bg-white</code>&nbsp;is a lie – and it is a lie in
-              forty files at once.&nbsp;<code>.user_card</code>&nbsp;was never going to be wrong, because a card is
-              still a card.
-            </p>
-            <p>
-              Why snake_case? Because&nbsp;<code>user_card</code>&nbsp;is one double-click and&nbsp;<code
-                >user-card</code
-              >&nbsp;is two. You will select this token thousands of times over the life of the project. Optimize for
-              the thousands.
-            </p>
-            <p>
-              That identity lives on a class. HTML&nbsp;<code>id</code>&nbsp;is a document hook – skip links, fragment
-              URLs,&nbsp;<code>getElementById</code> – and it is not a styling API. An ID selector is specificity&nbsp;<code
-                >1,0,0</code
-              >: no class combination can override it without reaching for&nbsp;<code>!important</code>&nbsp;or another
-              ID. You do not need a second identity system, and you definitely do not need one that cannot be reused.
+              snake_case because&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>id</code>&nbsp;is a
+              document hook, not a styling API – specificity&nbsp;<code>1,0,0</code>, not reusable.
             </p>
             <CodeBlock
               slot="code"
               file="UserCard.css"
               lang="css"
-              code={`/* The name survives every redesign. */
-.user_card {
+              code={`.user_card {
   padding: var(--space-5);
   border: 1px solid var(--border-base);
   background: var(--bg-surface);
@@ -461,12 +434,8 @@ const description =
 
           <LawPanel letter="E" name="Element" syntax=".block-part_name" id="law-element">
             <p>
-              One hyphen joins a block to its part. Underscores separate words inside each half. So the hyphen means
-              exactly one thing, everywhere, forever: <em>belongs to</em>.
-            </p>
-            <p>
-              And element names stay flat. They never mirror how deeply the markup happens to nest, because markup nests
-              differently next quarter and a class name that encoded the old shape is now actively misleading.
+              One hyphen joins a block to its part. Underscores inside each half. The hyphen means <em>belongs to</em>,
+              and nothing else. Names stay flat – they do not encode today's DOM.
             </p>
             <CodeBlock
               slot="code"
@@ -486,19 +455,10 @@ const description =
 
           <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
             <p>
-              This is the rule people argue about, and it is the one that pays off fastest.&nbsp;
-              <strong>State is not a class. State is data.</strong>
-            </p>
-            <p>
-              Count the dialects you have shipped:&nbsp;<code>is-active</code>,&nbsp;<code>--active</code>,&nbsp;<code
-                >.button--loading</code
-              >,&nbsp;<code>.open</code>,&nbsp;<code>.js-open</code>. Five codebases, five conventions, and not one of
-              them can be queried, typed, or read at a glance in devtools. Meanwhile the platform has had a first-class
-              answer since 2008, and&nbsp;<code>aria-*</code>&nbsp;has been using it the whole time.
-            </p>
-            <p>
-              You also stop concatenating class strings in JavaScript, which is where roughly half of all UI state bugs
-              come from.
+              <strong>State is data, not a class.</strong>&nbsp;<code>is-active</code>,&nbsp;<code>--active</code
+              >,&nbsp;<code>.button--loading</code>,&nbsp;<code>.js-open</code> – five codebases, five dialects. Attributes
+              have been around since 2008, and they are the best tool for the job. You also stop concatenating class strings
+              in JavaScript.
             </p>
             <CodeBlock
               slot="code"
@@ -512,13 +472,10 @@ const description =
 
           <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
             <p>
-              One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
-              >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
-            </p>
-            <p>
-              Delete the component, delete the stylesheet. No orphan rules. No “is anything still using this?” No
-              four-thousand-line&nbsp;<code>components.css</code>&nbsp;that everyone appends to and nobody removes from.
-              The file tree becomes an index of your UI.
+              One block, one file, next to the component.&nbsp;<code>UserCard.tsx</code>&nbsp;and&nbsp;<code
+                >UserCard.css</code
+              >&nbsp;live and die together. No orphans. No four-thousand-line&nbsp;<code>components.css</code>. The
+              exceptions are big components, implementing full pages, like&nbsp;<code>index.astro</code>&nbsp;
             </p>
             <CodeBlock
               slot="code"
@@ -544,7 +501,7 @@ const description =
           index="04"
           eyebrow="Editor optimization"
           title="The convention is designed around your cursor."
-          lede="Here is a rule that sounds petty for about ten seconds: never use the ampersand to build a class name."
+          lede="To make it work – never use the ampersand to build a class name."
         />
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
@@ -571,41 +528,28 @@ const description =
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              In the first version, the string&nbsp;<code>user_card-title</code>&nbsp;exists nowhere. Not in the
-              stylesheet, not in your editor's search, not in&nbsp;<code>rg</code>, not in your language server's index,
-              not in the context window of whatever model you asked to rename it. You created a class that is invisible
-              to every tool you own, and you saved eleven characters.
+              In the first version,&nbsp;<code>user_card-title</code>&nbsp;exists nowhere – not in search, not in&nbsp;<code
+                >rg</code
+              >, not in the language server, not in a model's context window. You saved eleven characters.
             </p>
             <p>
-              In the second version, one search finds the markup and the style, and every tool that operates on strings
-              suddenly works. In VS Code or Cursor,&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span
-              >&nbsp;keeps selecting occurrences until you have all of them. In Neovim,&nbsp;<span class="g_kbd">*</span
-              >&nbsp;puts the name in the search register,&nbsp;<span class="g_kbd">c</span><span class="g_kbd">g</span
-              ><span class="g_kbd">n</span>&nbsp;changes the next match, and&nbsp;<span class="g_kbd">.</span
-              >&nbsp;repeats that for the rest of the file. Rename it once, correctly, everywhere.
-            </p>
-            <p>
-              Notice that the Vim flow is not a shortcut for the same idea – it is the idea.&nbsp;<span class="g_kbd"
-                >*</span
-              >&nbsp;searches for the word under the cursor, so it cannot search for a name the file does not contain.
-              Write&nbsp;<code>&amp;-title</code>&nbsp;and the keystroke has nothing to grab. The convention is what
-              makes the tooling possible, in either editor.
-            </p>
-            <p>
-              BEM understood half of this and then made the names longer.&nbsp;<code>.block__element--modifier</code
-              >&nbsp;costs four extra characters per name and a mental parse every time you read one – and&nbsp;<code
+              In the second, one string is the markup and the style.&nbsp;<span class="g_kbd">⌘</span><span
+                class="g_kbd">D</span
+              >&nbsp;or&nbsp;<span class="g_kbd">*</span>&nbsp;<span class="g_kbd">c</span><span class="g_kbd">g</span
+              ><span class="g_kbd">n</span>&nbsp;<span class="g_kbd">.</span>&nbsp;can grab it because it is actually in
+              the file.&nbsp;<code>&amp;-title</code>&nbsp;gives those keystrokes nothing. BEM's&nbsp;<code
                 >&amp;__element</code
-              >&nbsp;has exactly the same invisibility problem.
+              >&nbsp;has the same hole.
             </p>
           </div>
 
           <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
             <p>
-              Nest one level deep for state, pseudo-classes and queries –&nbsp;<code>&amp;:hover</code>,&nbsp;<code
+              Nest one level for state, pseudos and queries –&nbsp;<code>&amp;:hover</code>,&nbsp;<code
                 >&amp;[data-state='open']</code
-              >,&nbsp;<code>@container</code>. Those are conditions, not names, so nothing becomes unsearchable.
+              >,&nbsp;<code>@container</code>. Those are conditions, not names.
             </p>
-            <p>The line is simple: if nesting invents a string that does not appear in the file, it is banned.</p>
+            <p>If nesting invents a string that does not appear in the file, it is banned.</p>
           </CalloutBlock>
         </div>
       </div>
@@ -619,7 +563,7 @@ const description =
         <SectionHead
           index="05"
           eyebrow="The 24 percent"
-          title="Theming, solved. Not eased – solved."
+          title="Theming, solved."
           lede="A quarter of developers named theming as a top color pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
         />
 
@@ -658,35 +602,16 @@ const description =
 
         <div class="g_prose home_section-prose">
           <p>
-            That is the whole engine. A semantic token is declared exactly twice in the codebase: once in the light
-            block, once in the dark block. Your components declare it <em>zero</em> times – they read&nbsp;<code
-              >var(--bg-surface)</code
-            >&nbsp;and stop thinking.
+            A semantic is declared twice: light block, dark block. Components read&nbsp;<code>var(--bg-surface)</code
+            >&nbsp;and stop.
           </p>
           <p>
-            Adding a third theme is one more block. A high-contrast mode is one more block. A per-tenant brand is one
-            more block. There is never any per-component work, because no component has ever heard the word “dark.”
-          </p>
-          <p>
-            And because the semantic layer is just a pointer, any subtree can be told to resolve against the opposite
-            theme. One attribute, no extra CSS anywhere:
+            A third theme is one more block. Inverse is one attribute on a subtree. No component has ever heard the word
+            “dark.”
           </p>
         </div>
 
         <ThemeLab />
-
-        <CalloutBlock tone="warn" title="The trap: semantic tokens pointing sideways">
-          <p>
-            <code>--button-bg: var(--bg-surface)</code>&nbsp;looks tidy and quietly destroys the system. That token now
-            has no theme of its own; it inherits whatever&nbsp;<code>--bg-surface</code>&nbsp;resolved to, so you can
-            never give the button a different treatment in dark mode without special-casing the component.
-          </p>
-          <p>
-            Semantics point <em>down</em> into the theme switchboard, never <em>sideways</em> at each other. If a component
-            genuinely needs its own color, quarantine it locally as&nbsp;<code>--c-*</code>&nbsp;and keep it out
-            of&nbsp;<code>theme.css</code>.
-          </p>
-        </CalloutBlock>
       </div>
     </div>
   </section>
@@ -698,30 +623,21 @@ const description =
         <SectionHead
           index="06"
           eyebrow="Space"
-          title="Space is two different things and you have been treating it as one."
-          lede="padding: 1rem and width: 1rem look like the same kind of number. They are not, and conflating them is why design systems drift."
+          title="Void and mass are different beasts."
+          lede="padding: 1rem and width: 1rem are not the same kind of 1rem."
         />
 
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
           <div class="g_prose home_section-prose">
             <p>
-              <strong>Void</strong> is negative space –&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code
-                >gap</code
-              >. It is rhythm, it is shared across the entire product, and it must come from the&nbsp;<code
-                >--space-*</code
-              >&nbsp;scale.
+              <strong>Void</strong> is&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>.
+              Shared rhythm. Always&nbsp;<code>--space-*</code>.
             </p>
             <p>
-              <strong>Mass</strong> is the physical shape of one object –&nbsp;<code>width</code>,&nbsp;<code
-                >height</code
-              >,&nbsp;<code>inset</code>,&nbsp;<code>translate</code>&nbsp;distances. The avatar is&nbsp;<code
-                >3rem</code
-              >&nbsp;because the avatar is 3rem. It is not&nbsp;<code>--space-12</code>; that is a numerical
-              coincidence, and coincidences drift.
-            </p>
-            <p>
-              When somebody tightens the vertical rhythm by nudging&nbsp;<code>--space-12</code>&nbsp;from 3rem to
-              2.75rem, your avatar should not quietly become an oval.
+              <strong>Mass</strong> is&nbsp;<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,
+              translate. The avatar is&nbsp;<code>3rem</code>&nbsp;because the avatar is 3rem, not because&nbsp;<code
+                >--space-12</code
+              >&nbsp;happens to equal that. If you tighten the scale – the avatar should not become an oval.
             </p>
           </div>
 
@@ -745,17 +661,18 @@ const description =
 
         <CalloutBlock tone="law" title="The Binary Rule">
           <p>
-            A layout class and a component class must never share a DOM element. Geometry goes on a wrapper; the
-            component owns only itself. The moment&nbsp;<code>.l_stack</code>&nbsp;and&nbsp;<code>.user_card</code
-            >&nbsp;land on the same node, you are one specificity argument away from&nbsp;<code>!important</code>, and
-            the card can no longer be moved without breaking its surroundings.
+            A layout class and a semantic component class never share a DOM element. A vertical&nbsp;<code
+              >.user_card</code
+            >&nbsp;doesn't just happen to be a vertical container - layout is its defining property, it should be
+            written down in CSS. Reserve the nameless&nbsp;<code>l_</code>&nbsp;layout classes for semantically
+            meaningless containers.
           </p>
         </CalloutBlock>
 
         <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
           <CodeBlock
             tone="wrong"
-            file="Wrong – the card knows where it lives"
+            file="Wrong – the card relies on the generic layout"
             lang="html"
             code={`<article class="l_stack user_card" data-gap="4">
   ...
@@ -763,22 +680,20 @@ const description =
           />
           <CodeBlock
             tone="right"
-            file="Right – geometry is somebody else's job"
+            file="Right – the card owns its own layout in CSS"
             lang="html"
-            code={`<div class="l_stack" data-gap="4">
-  <article class="user_card">...</article>
-</div>`}
+            code={`<article class="user_card">
+  ...
+</article>
+`}
           />
         </div>
 
-        <CalloutBlock tone="law" title="Queries only add">
+        <CalloutBlock tone="law" title="Mobile-first layout">
           <p>
-            The unqueried rule is the small canvas.&nbsp;<code>@media</code>&nbsp;and&nbsp;<code>@container</code
-            >&nbsp;may use&nbsp;<code>min-width</code>, never&nbsp;<code>max-width</code>. Ceiling ranges like&nbsp;<code
-              >width &lt; 64rem</code
-            >&nbsp;are the same inversion wearing different syntax. The&nbsp;<code>max-width</code>&nbsp;<em
-              >property</em
-            >&nbsp;on a container is a size, not a query – that one stays.
+            In 2026 it should be a non-negotiable. Unqueried CSS is the mobile view. In media queries we define &nbsp;<code
+              >min-width</code
+            >&nbsp;only – never&nbsp;<code>max-width</code>&nbsp;or&nbsp;<code>width &lt; 64rem</code>.
           </p>
         </CalloutBlock>
       </div>
@@ -792,7 +707,7 @@ const description =
         <SectionHead
           index="07"
           eyebrow="Interpolation"
-          title="The formula nobody reads, deleted."
+          title="No bloated fluid formula."
           lede="The State of CSS missing-features list asked for “simpler fluid typography primitives.” It turns out to be about forty lines of PostCSS."
         />
 
@@ -817,14 +732,9 @@ const description =
 
         <div class="g_prose home_section-prose">
           <p>
-            Nobody reads the first one. Nobody audits it. Nobody notices when the second&nbsp;<code>2.25rem</code
-            >&nbsp;drifts out of sync with the first, so it gets copied once and then quietly stops matching the type
-            scale it was derived from.
-          </p>
-          <p>
-            <code>fluid()</code>&nbsp;resolves both tokens at build time and emits a plain&nbsp;<code>clamp()</code> – two
-            bounds and a pre-computed slope. No multiplication, no division, no runtime, nothing left for the browser to do.
-            Drag the viewport below and watch it work.
+            Nobody audits the first one. The two&nbsp;<code>2.25rem</code>s drift.&nbsp;<code>fluid()</code>&nbsp;, on
+            the other hand, resolves both tokens at build and emits a&nbsp;<code>clamp()</code>&nbsp;with the slope
+            already computed.
           </p>
         </div>
 
@@ -841,7 +751,7 @@ const description =
           index="08"
           eyebrow="Rosetta stone"
           title="One card, four dialects."
-          lede="Same component, same design, four philosophies. Read each one and ask the only question that matters: what happens to this in eighteen months, when the person maintaining it has never met you?"
+          lede="Same component, same design, four philosophies. Read each one and ask the only question that matters: what happens to this in eighteen months, when the person working on it has never met you?"
         />
 
         <DialectTabs dialects={DIALECTS} label="Compare CSS approaches" />
@@ -857,7 +767,7 @@ const description =
           index="09"
           eyebrow="Machines"
           title="CSS is the language AI is worst at. That is not a coincidence."
-          lede="The 2026 survey puts AI-generated CSS at roughly 28 percent – the lowest share anywhere in the stack. Everybody has a theory. Mine is boring."
+          lede="The 2026 survey puts AI-generated CSS at roughly 28 percent – the lowest share anywhere in the stack. Here is my theory."
         />
 
         <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
@@ -872,31 +782,8 @@ const description =
               because nothing told it what the sixth was.
             </p>
             <p>
-              BEAM's rules are the kind machines are actually good at, because they are mechanical rather than tasteful:
-            </p>
-            <ul>
-              <li>
-                The class name is derivable from the filename.&nbsp;<code>UserCard.tsx</code>&nbsp;becomes&nbsp;<code
-                  >.user_card</code
-                >. No judgment call.
-              </li>
-              <li>The file location is derivable from the block. One block, one file, co-located. No judgment call.</li>
-              <li>Color has exactly one legal source. If it is not a Layer 3 token, it is wrong.</li>
-              <li>State has exactly one legal form. If it is a class, it is wrong.</li>
-              <li>Layout has exactly one legal home. If it shares an element with a block, it is wrong.</li>
-              <li>Selectors have exactly one legal form. If it is an ID, it is wrong.</li>
-              <li>Width queries have exactly one direction. If it is&nbsp;<code>max-width</code>, it is wrong.</li>
-            </ul>
-            <p>
-              Notice what those last five have in common: they are <em>checkable</em>. An agent can review its own diff
-              before you ever see it, and you can review by pattern instead of by taste. That is the difference between
-              a style guide and a specification.
-            </p>
-            <p>
-              It runs the other way too. Flat, searchable selectors mean an agent asked to touch&nbsp;<code
-                >.user_card-title</code
-              >&nbsp;can find every occurrence on the first try. A codebase built from&nbsp;<code>&amp;-title</code
-              >&nbsp;fragments is, to a model reading it, a maze with the labels torn off.
+              BEAM's rules are the kind machines are actually good at, because they are mechanical, strict and
+              deterministic rather than tasteful.
             </p>
           </div>
 
@@ -917,12 +804,6 @@ Queries          min-width only, never max-width
 Nesting          one level, conditions only
 Ampersand        banned for name building`}
             />
-            <CalloutBlock tone="note" title="Ship the rules with the repo">
-              <p>
-                The full ruleset is packaged as an agent skill – one folder your assistant reads before it writes a line
-                of CSS. Same rules for you and for it.
-              </p>
-            </CalloutBlock>
             <div class="l_cluster" data-gap="3">
               <ActionButton href="/install/#skill">Get the skill</ActionButton>
             </div>
