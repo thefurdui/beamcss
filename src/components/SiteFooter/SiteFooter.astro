@@ -15,17 +15,17 @@ const columns = [
   {
     title: 'Use',
     links: [
-      { href: '/install/', label: 'Install BEAM' },
       { href: '/install/#skill', label: 'Agent skill' },
+      { href: '/install/', label: 'Install BEAM' },
       { href: '/install/#plugin', label: 'postcss-beam-fluid' },
     ],
   },
   {
-    title: 'Elsewhere',
+    title: 'More',
     links: [
-      { href: SITE.repo, label: 'GitHub', external: true },
       { href: SITE.npm, label: 'npm', external: true },
-      { href: SITE.authorUrl, label: SITE.author, external: true },
+      { href: SITE.repo, label: 'GitHub', external: true },
+      { href: SITE.authorUrl, label: 'Author', external: true },
     ],
   },
 ]
@@ -38,10 +38,7 @@ const columns = [
         <div class="site_footer-brand">
           <div class="l_stack" data-gap="4" data-align="start">
             <BeamMark />
-            <p class="site_footer-blurb">
-              A strict, browser-native CSS architecture. Collision-proof namespaces. State in attributes. Semantic
-              tokens.
-            </p>
+            <p class="site_footer-blurb">A strict, semantic CSS architecture with a fully deterministic model.</p>
             <span class="g_tag">v{SITE.version}</span>
           </div>
         </div>
