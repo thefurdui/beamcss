@@ -96,7 +96,8 @@
   --theme-light-syntax-accent: var(--palette-beam-700);
   --theme-light-syntax-cool: var(--palette-cyan-700);
 
-  --theme-light-mix-contrast: black;
+  --theme-light-mix-contrast: var(--palette-black);
+  --theme-light-mix-main: var(--palette-white);
 
   /* DARK CONSTANTS */
   --theme-dark-bg-page: var(--palette-stone-950);
@@ -136,7 +137,8 @@
   --theme-dark-syntax-accent: var(--palette-beam-400);
   --theme-dark-syntax-cool: var(--palette-cyan-400);
 
-  --theme-dark-mix-contrast: white;
+  --theme-dark-mix-contrast: var(--palette-white);
+  --theme-dark-mix-main: var(--palette-black);
 
   /* ========================================================= */
   /* 3. SEMANTICS (The Public Contract)                        */
@@ -324,6 +326,7 @@
   --syntax-cool: var(--theme-light-syntax-cool);
 
   --mix-contrast: var(--theme-light-mix-contrast);
+  --mix-main: var(--theme-light-mix-main);
 }
 
 /* Dark theme */
@@ -370,6 +373,7 @@
   --syntax-cool: var(--theme-dark-syntax-cool);
 
   --mix-contrast: var(--theme-dark-mix-contrast);
+  --mix-main: var(--theme-dark-mix-main);
 }
 
 /* ========================================================= */
