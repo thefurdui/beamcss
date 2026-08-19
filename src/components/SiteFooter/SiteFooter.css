@@ -3,7 +3,7 @@
 /* ========================================================================== */
 
 .site_footer {
-  margin-block-start: var(--space-24);
+  margin-block-start: fluid(var(--space-12), var(--space-24));
   padding-block: fluid(var(--space-12), var(--space-20));
   border-block-start: 1px solid var(--border-base);
   background: var(--bg-page);
@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: start;
   align-self: stretch;
-  max-width: 26rem;
+  gap: var(--space-4);
 }
 
 .site_footer-blurb {
@@ -27,7 +27,6 @@
 
 .site_footer-columns {
   flex-grow: 1;
-  text-align: end;
 }
 
 .site_footer-link_list {
@@ -37,6 +36,8 @@
 }
 
 .site_footer-link {
+  display: block;
+  padding-block: var(--space-1);
   color: var(--ink-muted);
   font-size: var(--text-sm);
   transition: var(--transition-colors);
@@ -52,4 +53,19 @@
   font-size: var(--text-xs);
   line-height: var(--leading-base);
   text-wrap: pretty;
+}
+
+/*
+  4xl switcher threshold. Unqueried rules are the stacked canvas: start-aligned
+  nav, full-width blurb. End-align and the brand rail only once brand and
+  columns sit in a row.
+*/
+@container (min-width: 56rem) {
+  .site_footer-brand {
+    max-width: 26rem;
+  }
+
+  .site_footer-columns {
+    text-align: end;
+  }
 }
