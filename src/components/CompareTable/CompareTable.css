@@ -69,5 +69,5 @@
 }
 
 .compare_table-cell[data-self='true'] {
-  background: color-mix(in srgb, var(--action-primary), transparent 94%);
+  background: color-mix(in srgb, var(--brand-primary), transparent 97%);
 }
