@@ -6,6 +6,7 @@ import CompareTable from '../../components/CompareTable/CompareTable.astro'
 import LineageCard from '../../components/LineageCard/LineageCard.astro'
 import SectionHead from '../../components/SectionHead/SectionHead.astro'
 import RootLayout from '../../layouts/RootLayout.astro'
+import { SITE } from '../../lib/site'
 import './LineagePage.css'
 
 const ANCESTORS = [
@@ -256,7 +257,7 @@ const description =
     <div class="l_container" data-size="page">
       <header class="lineage_page-masthead">
         <div class="l_stack" data-gap="5" data-align="start">
-          <span class="g_tag" data-tone="accent">Provenance</span>
+          <span class="g_tag" data-tone="accent">v{SITE.version}</span>
           <h1 class="lineage_page-title u_balance">Standing on the shoulders of giants.</h1>
           <p class="lineage_page-lede u_pretty">
             BEAM is not a rejection of what came before it. It is a reading of eighteen years of CSS methodology,
