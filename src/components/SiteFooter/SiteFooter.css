@@ -10,6 +10,11 @@
 }
 
 .site_footer-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  align-self: stretch;
   max-width: 26rem;
 }
 
@@ -22,6 +27,7 @@
 
 .site_footer-columns {
   flex-grow: 1;
+  text-align: end;
 }
 
 .site_footer-link_list {
