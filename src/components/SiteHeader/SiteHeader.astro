@@ -13,7 +13,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
 
 <header class="site_header">
   <div class="l_container" data-size="page">
-    <div class="l_cluster" data-gap="4" data-justify="between" data-nowrap>
+    <div class="l_cluster" data-gap="2" data-justify="between" data-nowrap>
       <a class="site_header-home" href="/" aria-label={`${SITE.name} home`}>
         <BeamMark interactive />
       </a>
@@ -26,6 +26,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
                 <a
                   class="site_header-nav_link"
                   href={item.href}
+                  data-home={item.href === '/' ? 'true' : undefined}
                   aria-current={isCurrent(item.href) ? 'page' : undefined}
                 >
                   {item.label}

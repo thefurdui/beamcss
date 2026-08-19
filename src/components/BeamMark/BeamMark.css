@@ -47,6 +47,7 @@
 }
 
 .beam_mark-wordmark {
+  display: var(--c-label-display, inline);
   font-family: var(--font-mono);
   font-size: var(--text-base);
   font-weight: var(--weight-bold);

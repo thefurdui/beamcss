@@ -13,6 +13,10 @@
 }
 
 .site_header-home {
+  /* Compact mark: the glyph is home. The wordmark waits until the row can pay. */
+  --c-label-display: none;
+
+  flex-shrink: 0;
   border-radius: var(--radius-sm);
   transition: var(--transition-colors);
 }
@@ -39,6 +43,10 @@
   transition: var(--transition-colors);
 }
 
+.site_header-nav_link[data-home='true'] {
+  display: none;
+}
+
 .site_header-nav_link:hover {
   background: var(--bg-surface-hover);
   color: var(--ink-main);
@@ -50,7 +58,7 @@
 }
 
 .site_header-icon_link {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 2.25rem;
@@ -65,9 +73,22 @@
   color: var(--ink-main);
 }
 
-/* Roomier inline padding once the wordmark is not competing for width. */
 @media (min-width: 30rem) {
   .site_header-nav_link {
     padding-inline: var(--space-3);
+  }
+
+  .site_header-nav_link[data-home='true'] {
+    display: block;
+  }
+}
+
+@media (min-width: 40rem) {
+  .site_header-home {
+    --c-label-display: inline;
+  }
+
+  .site_header-icon_link {
+    display: inline-flex;
   }
 }
