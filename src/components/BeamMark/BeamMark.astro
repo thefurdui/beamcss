@@ -18,6 +18,6 @@ const { label = true, class: className, interactive } = Astro.props
   data-labeled={label ? 'true' : undefined}
   data-interactive={interactive ? 'true' : undefined}
 >
-  <RawSvg class="beam_mark-glyph" content={glyph} aria-hidden="true" />
+  <RawSvg class="beam_mark-glyph" content={glyph} aria-hidden="true" data-theme="light" />
   {label && <span class="beam_mark-wordmark">beam</span>}
 </span>
