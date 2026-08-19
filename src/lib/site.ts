@@ -16,8 +16,8 @@ export const SITE = {
 
 export const NAV = [
   { href: '/spec/', label: 'Spec' },
-  { href: '/lineage/', label: 'Lineage' },
   { href: '/install/', label: 'Install' },
+  { href: '/lineage/', label: 'Lineage' },
 ] as const
 
 /** State of CSS 2026, run by Sacha Greif and Devographics. 4,902 respondents. */
