@@ -10,7 +10,7 @@ export const SITE = {
   fontsFontsourceCss: 'https://github.com/thefurdui/beamcss/blob/v0.1.0/src/styles/fonts.css',
   npm: 'https://www.npmjs.com/package/@beam-css/postcss-fluid',
   author: 'Andrei Furdui',
-  authorUrl: 'https://github.com/thefurdui',
+  authorUrl: 'https://thefurdui.com',
   version: '2026.1',
 } as const
 
