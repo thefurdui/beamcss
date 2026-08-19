@@ -26,11 +26,11 @@ const STARTER_FILES: { file: string; owns: string; href?: string }[] = [
 ]
 
 const AGENTS = [
-  { tool: 'Cursor', path: '.cursor/skills/beam-css/' },
-  { tool: 'Claude Code', path: '.claude/skills/beam-css/' },
+  { tool: 'Claude', path: '.claude/skills/beam-css/' },
   { tool: 'Codex', path: '.codex/skills/beam-css/' },
+  { tool: 'Cursor', path: '.cursor/skills/beam-css/' },
   {
-    tool: 'Anything else',
+    tool: 'Others',
     path: 'Point it at the three files, or paste SKILL.md into your system prompt.',
   },
 ]
@@ -45,13 +45,10 @@ const description =
       <header class="install_page-masthead">
         <div class="l_stack" data-gap="5" data-align="start">
           <span class="g_tag" data-tone="accent">v{SITE.version}</span>
-          <h1 class="install_page-title u_balance">Three things to install. None of them is a framework.</h1>
+          <h1 class="install_page-title">Pure stylesheets.<br />No required depencencies.</h1>
           <p class="install_page-lede u_pretty">
-            BEAM ships as plain CSS you own, one build-time plugin that does arithmetic, and a text file that teaches
-            your coding agent the rules. There is no runtime, no config object, and nothing to keep up to date. If you
-            delete the plugin tomorrow, your stylesheets still work – you just have to write your own&nbsp;<code
-              >clamp()</code
-            >.
+            BEAM ships as plain CSS you own, one optional build-time plugin for fluid styling, and a skill for your
+            agents. Nothing else.
           </p>
           <div class="l_cluster" data-gap="3">
             <ActionButton href="#stylesheets">Start with the stylesheets</ActionButton>
@@ -171,7 +168,7 @@ done`}
             index="02"
             eyebrow="The one dependency"
             title="postcss-beam-fluid"
-            lede="It turns fluid(min, max) into a clamp() with the slope pre-computed. That is the entire scope of the package, and it will never grow."
+            lede="It turns fluid(min, max) into a clamp() with the slope pre-computed. That is the entire scope of the package."
           />
 
           <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
@@ -197,7 +194,7 @@ export default {
             />
 
             <CodeBlock
-              file="What you write, what ships"
+              file="What you write / what ships"
               lang="css"
               code={`/* authored */
 .hero_title {
