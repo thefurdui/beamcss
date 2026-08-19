@@ -27,7 +27,7 @@
 /* ----------------------------------------------------------- TETRAD STRIP */
 .tetrad_strip {
   padding-block: var(--space-10);
-  border-block: 1px solid var(--border-base);
+  border-block-start: 1px solid var(--border-base);
   background: color-mix(in srgb, var(--bg-surface), transparent 40%);
 }
 
