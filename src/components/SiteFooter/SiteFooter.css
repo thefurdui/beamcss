@@ -3,8 +3,11 @@
 /* ========================================================================== */
 
 .site_footer {
+  --c-safe-bottom: env(safe-area-inset-bottom, 0px);
+
   margin-block-start: fluid(var(--space-12), var(--space-24));
-  padding-block: fluid(var(--space-12), var(--space-20));
+  padding-block-start: fluid(var(--space-12), var(--space-20));
+  padding-block-end: calc(fluid(var(--space-12), var(--space-20)) + var(--c-safe-bottom));
   border-block-start: 1px solid var(--border-base);
   background: var(--bg-page);
 }

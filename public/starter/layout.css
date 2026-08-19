@@ -211,8 +211,9 @@
   max-width: 32rem;
   margin-inline: auto;
 
-  /* Responsive macro padding: 16px mobile → 32px desktop */
-  padding-inline: fluid(var(--space-4), var(--space-8));
+  /* Responsive macro padding: 16px mobile → 32px desktop, plus hardware insets. */
+  padding-inline-start: calc(fluid(var(--space-4), var(--space-8)) + env(safe-area-inset-left, 0px));
+  padding-inline-end: calc(fluid(var(--space-4), var(--space-8)) + env(safe-area-inset-right, 0px));
 }
 
 /* Container Variants (Because a blog post isn't a dashboard) */

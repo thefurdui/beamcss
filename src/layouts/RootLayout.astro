@@ -34,7 +34,8 @@ const FONT_PRELOADS = [
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- viewport-fit=cover is what makes env(safe-area-inset-*) resolve. Without it the insets are 0. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     {
       FONT_PRELOADS.map((href) => (
         <link rel="preload" href={href} as="font" type="font/woff2" crossorigin="anonymous" />

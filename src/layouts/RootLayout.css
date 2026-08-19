@@ -3,9 +3,14 @@
 /* Owns the page canvas, the root stacking context, and the background texture.
 /* ========================================================================== */
 
+html {
+  background-color: var(--bg-page);
+}
+
 .root_layout {
   --c-grid-size: 4rem;
   --c-grid-line: color-mix(in srgb, var(--ink-main), transparent 94%);
+  --c-safe-top: env(safe-area-inset-top, 0px);
 
   isolation: isolate;
   display: flex;
@@ -39,11 +44,25 @@
 }
 
 .root_layout-skip_link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.root_layout-skip_link:focus-visible {
   position: fixed;
   /* Mass: an offset from the viewport edge, not shared rhythm. */
-  inset-block-start: 0.5rem;
-  inset-inline-start: 0.5rem;
+  inset-block-start: calc(var(--space-2) + var(--c-safe-top));
+  inset-inline-start: calc(var(--space-2) + var(--c-safe-top));
   z-index: var(--z-max);
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
@@ -52,10 +71,4 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   box-shadow: var(--shadow-far);
-  transform: translateY(-200%);
-  transition: transform var(--duration-fast) var(--ease-enter);
-}
-
-.root_layout-skip_link:focus-visible {
-  transform: translateY(0);
 }
