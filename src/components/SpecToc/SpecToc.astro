@@ -14,10 +14,10 @@ const { groups } = Astro.props
 ---
 
 <nav class="spec_toc" aria-label="On this page" data-beam-spec-toc>
-  <div class="l_stack" data-gap="6">
+  <div class="spec_toc-groups">
     {
       groups.map((group) => (
-        <div class="l_stack" data-gap="3">
+        <div class="spec_toc-group">
           <h2 class="g_eyebrow">{group.title}</h2>
           <ul class="u_reset_list spec_toc-list">
             {group.entries.map((entry) => (
@@ -36,6 +36,17 @@ const { groups } = Astro.props
 
 <script>
   for (const nav of document.querySelectorAll<HTMLElement>('[data-beam-spec-toc]')) {
+    const panel = nav.closest('details')
+    const scroller = nav.closest<HTMLElement>('.spec_page-aside') ?? nav
+    const layout = window.matchMedia('(min-width: 64rem)')
+
+    const syncPanel = () => {
+      if (panel instanceof HTMLDetailsElement) panel.open = layout.matches
+    }
+
+    layout.addEventListener('change', syncPanel)
+    syncPanel()
+
     const links = [...nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]
     const sections = links
       .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
@@ -55,16 +66,16 @@ const { groups } = Astro.props
       }
 
       const active = nav.querySelector<HTMLElement>('[aria-current="location"]')
-      if (!active || nav.scrollHeight <= nav.clientHeight) return
+      if (!active || scroller.scrollHeight <= scroller.clientHeight) return
 
-      const navBox = nav.getBoundingClientRect()
+      const scrollerBox = scroller.getBoundingClientRect()
       const linkBox = active.getBoundingClientRect()
-      if (linkBox.top < navBox.top) nav.scrollTop -= navBox.top - linkBox.top
-      else if (linkBox.bottom > navBox.bottom) nav.scrollTop += linkBox.bottom - navBox.bottom
+      if (linkBox.top < scrollerBox.top) scroller.scrollTop -= scrollerBox.top - linkBox.top
+      else if (linkBox.bottom > scrollerBox.bottom) scroller.scrollTop += linkBox.bottom - scrollerBox.bottom
     }
 
     const readingLine = () => {
-      const sticky = parseFloat(getComputedStyle(nav).insetBlockStart)
+      const sticky = parseFloat(getComputedStyle(scroller).insetBlockStart)
       return Number.isFinite(sticky) && sticky > 0 ? sticky + 8 : 96
     }
 

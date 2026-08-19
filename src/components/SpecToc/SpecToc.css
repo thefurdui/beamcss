@@ -6,45 +6,66 @@
   font-size: var(--text-sm);
 }
 
-.spec_toc-list {
-  /* One rail, two owners: the list draws it, each link covers its own slice. */
-  --c-rail: 1px;
+.spec_toc-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  align-items: start;
+  gap: var(--space-5) var(--space-4);
+}
 
+.spec_toc-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.spec_toc-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  border-inline-start: var(--c-rail) solid var(--border-base);
 }
 
 .spec_toc-link {
   display: block;
-  padding: var(--space-1) var(--space-3);
-  margin-inline-start: calc(-1 * var(--c-rail));
-  border-inline-start: var(--c-rail) solid transparent;
+  padding-block: var(--space-1);
   color: var(--ink-muted);
   line-height: var(--leading-snug);
   transition: var(--transition-colors);
 }
 
 .spec_toc-link:hover {
-  border-inline-start-color: var(--action-primary);
   color: var(--ink-main);
 }
 
 .spec_toc-link[aria-current='location'] {
-  border-inline-start-color: var(--action-primary);
   color: var(--ink-main);
   font-weight: var(--weight-medium);
 }
 
 @media (min-width: 64rem) {
-  .spec_toc {
-    position: sticky;
-    /* Mass, not void: this clears the sticky header, so it tracks the header's
-       height rather than the spacing scale. */
-    inset-block-start: 5rem;
-    max-height: calc(100dvh - 8rem);
-    overflow-y: auto;
-    scrollbar-width: thin;
+  .spec_toc-groups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .spec_toc-list {
+    /* One rail, two owners: the list draws it, each link covers its own slice. */
+    --c-rail: 1px;
+
+    border-inline-start: var(--c-rail) solid var(--border-base);
+  }
+
+  .spec_toc-link {
+    padding-inline: var(--space-3);
+    margin-inline-start: calc(-1 * var(--c-rail));
+    border-inline-start: var(--c-rail) solid transparent;
+  }
+
+  .spec_toc-link:hover {
+    border-inline-start-color: var(--action-primary);
+  }
+
+  .spec_toc-link[aria-current='location'] {
+    border-inline-start-color: var(--action-primary);
   }
 }

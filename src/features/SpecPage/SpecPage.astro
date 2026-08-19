@@ -72,9 +72,14 @@ const description =
         </div>
       </header>
 
-      <div class="l_grid" data-layout="sidebar" data-gap="10">
+      <div class="l_grid" data-layout="sidebar" data-gap="fluid-md">
         <aside class="spec_page-aside">
-          <SpecToc groups={TOC} />
+          <details class="spec_page-index">
+            <summary class="spec_page-index_summary">On this page</summary>
+            <div class="spec_page-index_panel">
+              <SpecToc groups={TOC} />
+            </div>
+          </details>
         </aside>
 
         <div class="spec_page-content">

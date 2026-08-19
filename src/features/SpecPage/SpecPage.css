@@ -28,8 +28,57 @@
 
 .spec_page-aside {
   min-width: 0;
-  padding-block-end: var(--space-8);
+  padding-block-end: var(--space-4);
   border-block-end: 1px solid var(--border-base);
+}
+
+.spec_page-index {
+  --c-marker-turn: 45deg;
+  --c-summary-gap: 0;
+}
+
+.spec_page-index[open] {
+  --c-marker-turn: -135deg;
+  --c-summary-gap: var(--space-5);
+}
+
+.spec_page-index_summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-block-end: var(--c-summary-gap);
+  padding-block: var(--space-3);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-none);
+  list-style: none;
+  cursor: pointer;
+}
+
+.spec_page-index_summary::-webkit-details-marker {
+  display: none;
+}
+
+.spec_page-index_summary::marker {
+  content: '';
+}
+
+.spec_page-index_summary:hover {
+  color: var(--ink-main);
+}
+
+.spec_page-index_summary::after {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-inline-end: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  rotate: var(--c-marker-turn);
+  transition: rotate var(--duration-fast) var(--ease-standard);
+  content: '';
 }
 
 .spec_page-content {
@@ -37,12 +86,29 @@
 }
 
 /*
- * Default is the stacked canvas. The divider goes away once the rail sits
- * beside the spec.
- */
+  Default is the stacked canvas: a disclosure, not a stretched rail.
+  At the sidebar primitive's breakpoint the aside is the sticky subject —
+  it must be content-height (`align-self: start`) so it can travel inside
+  the tall grid row. Stretching it to the spec's height leaves nowhere to stick.
+*/
 @media (min-width: 64rem) {
   .spec_page-aside {
+    position: sticky;
+    align-self: start;
+    /* Mass: clears the sticky header, not a spacing-scale step. */
+    inset-block-start: 5rem;
+    max-height: calc(100dvh - 8rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
     padding-block-end: 0;
     border-block-end: none;
+  }
+
+  .spec_page-index_summary {
+    display: none;
+  }
+
+  .spec_page-index > .spec_page-index_panel {
+    display: block;
   }
 }
