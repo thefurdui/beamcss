@@ -336,13 +336,11 @@ done`}
               file="ProfileCard.astro"
               lang="html"
               code={`<article class="profile_card" data-featured="true">
-  <div class="l_cluster" data-gap="4">
-    <img class="profile_card-avatar" src={src} alt="" />
+  <img class="profile_card-avatar" src={src} alt="" />
 
-    <div class="l_stack" data-gap="1">
-      <h3 class="profile_card-name">{name}</h3>
-      <p class="profile_card-role">{role}</p>
-    </div>
+  <div class="l_stack" data-gap="1">
+    <h3 class="profile_card-name">{name}</h3>
+    <p class="profile_card-role">{role}</p>
   </div>
 </article>`}
             />
@@ -351,6 +349,8 @@ done`}
               file="ProfileCard.css"
               lang="css"
               code={`.profile_card {
+  display: flex;
+  gap: var(--space-4);
   padding: var(--space-4);
   border: 1px solid var(--border-base);
   border-radius: var(--radius-lg);
