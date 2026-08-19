@@ -286,12 +286,13 @@ npm run build && ! rg -q "fluid\(" dist
 
 ## File Ownership
 
-Five required files, plus `fonts.css` as an optional sixth. Import in the order listed.
+Five required files, plus `fonts.css` as a sixth. Skip `fonts.css` only when faces come from
+the system, or are already loaded outside CSS. Import in the order listed.
 
-| File                            | Owns                                        |
-| ------------------------------- | ------------------------------------------- |
-| `fonts.css`                     | `@font-face` only. Optional                 |
-| `reset.css`                     | Browser normalisation only; no classes      |
+| File                            | Owns                                                                        |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| `fonts.css`                     | `@font-face` only. Skip on system fonts, or when faces load in the head     |
+| `reset.css`                     | Browser normalisation only; no classes                                      |
 | `theme.css`                     | `--palette-*`, `--theme-*`, semantic tokens |
 | `layout.css`                    | `l_*` primitives                            |
 | `utils.css`                     | `u_*` utilities                             |

@@ -3,25 +3,26 @@
 The website for **BEAM** – Block, Element, Attribute, Module. A strict, browser-native CSS
 architecture.
 
-The site is also the reference implementation. The five required stylesheets in `src/styles/` are the
-ones offered for download on `/install`, copied at build time so the documentation and the artifact
-cannot drift apart. `fonts.css` – BEAM's optional sixth file – stays out of that download because it
-imports Fontsource packages a fresh project will not have.
+The site is also the reference implementation. The five stylesheets offered for download on
+`/install` are copied from `src/styles/` at build time so the documentation and the artifact cannot
+drift apart. `fonts.css` stays out of that download because the faces you load are yours – this
+site's copy points at files in `public/fonts/` that a fresh project will not have.
 
 ## Stack
 
 - **Astro** – static output, zero client JS except two small inline scripts (theme resolution and
   clipboard).
 - **PostCSS** with one local plugin, `postcss-beam-fluid`, which compiles `fluid()` to `clamp()`.
-- **Fontsource** – Instrument Serif for display, Instrument Sans for body, JetBrains Mono for code.
-  Self-hosted, no third-party font requests.
+- **Fonts** – Instrument Serif for display, Instrument Sans for body, JetBrains Mono for code.
+  Self-hosted latin woff2 in `public/fonts/`, declared in `fonts.css`, preloaded from `RootLayout`.
+  No third-party font requests.
 - No Tailwind, no SASS, no CSS-in-JS. That would be a slightly awkward look for this particular site.
 
 ## Layout
 
 ```text
 src/
-  styles/            The global layer: five required files plus fonts.css.
+  styles/            The global layer: five downloadable files plus fonts.css.
   components/        One block per component, CSS co-located.
   layouts/           RootLayout: head, theme boot, skip link, chrome.
   pages/             /, /spec, /lineage, /install – each with co-located CSS.

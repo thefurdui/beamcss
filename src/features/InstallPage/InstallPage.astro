@@ -9,7 +9,12 @@ import RootLayout from '../../layouts/RootLayout.astro'
 import { SITE } from '../../lib/site'
 import './InstallPage.css'
 
-const STARTER_FILES = [
+const STARTER_FILES: { file: string; owns: string; href?: string }[] = [
+  {
+    file: 'fonts.css',
+    owns: '@font-face or stylesheet imports and nothing else.',
+    href: SITE.fontsManualCss,
+  },
   { file: 'reset.css', owns: 'Browser normalization. No classes, by rule.' },
   {
     file: 'theme.css',
@@ -61,7 +66,7 @@ const description =
           <SectionHead
             index="01"
             eyebrow="The global layer"
-            title="Five files you need, and one you might."
+            title="Six files. That's it."
             lede="These are the exact stylesheets this website is wearing. Not a sanitized example – the real ones, copied out of src/styles at build time so they cannot drift from what you are looking at."
           />
 
@@ -76,10 +81,16 @@ const description =
               <div class="l_cluster" data-gap="2">
                 {
                   STARTER_FILES.map((entry) => (
-                    <a class="install_page-file_link" href={`/starter/${entry.file}`} download>
+                    <a
+                      class="install_page-file_link"
+                      href={entry.href ?? `/starter/${entry.file}`}
+                      download={entry.href ? undefined : true}
+                      target={entry.href ? '_blank' : undefined}
+                      rel={entry.href ? 'noreferrer noopener' : undefined}
+                    >
                       <span class="install_page-file_name">{entry.file}</span>
                       <span class="install_page-file_hint" aria-hidden="true">
-                        ↓
+                        {entry.href ? '↗' : '↓'}
                       </span>
                     </a>
                   ))
@@ -104,7 +115,7 @@ done`}
                 code={`/* Order is load-bearing: faces before anything
    asks for them, resets before tokens, tokens
    before anything that reads them. */
-@import './fonts.css'; /* optional */
+@import './fonts.css'; /* skip on system fonts, or when faces load in the head */
 @import './reset.css';
 @import './theme.css';
 @import './layout.css';
@@ -113,18 +124,6 @@ done`}
               />
             </div>
           </div>
-
-          <CalloutBlock tone="note" title="The optional sixth file">
-            <p>
-              <code>fonts.css</code>&nbsp;holds&nbsp;<code>@font-face</code>&nbsp;and nothing else. It is not in the
-              download because this site's copy imports Fontsource packages you probably do not want, and a stylesheet
-              that fails to resolve is a worse gift than no stylesheet. Write your own – declaring the files is your
-              job, and deciding what they
-              <em>mean</em> is&nbsp;<code>theme.css</code>'s job via&nbsp;<code>--typeface-*</code>.
-            </p>
-            <p>On system fonts, skip it entirely. Five files is a complete BEAM setup.</p>
-          </CalloutBlock>
-
           <CalloutBlock tone="note" title="Now make them yours">
             <p>
               The palette in&nbsp;<code>theme.css</code>&nbsp;is a warm neutral stone ramp and a refracted vermilion.
@@ -132,6 +131,34 @@ done`}
                 >--theme-*</code
               >&nbsp;blocks to taste, and leave Layer 3 alone – that is the contract every component you ever write is
               going to read.
+            </p>
+          </CalloutBlock>
+
+          <CalloutBlock tone="note" title="When to skip fonts.css">
+            <p>
+              <code>fonts.css</code>&nbsp;holds&nbsp;<code>@font-face</code>&nbsp; or font imports and nothing else. It
+              is not in the five-file download because the faces you load are yours, and a stylesheet that 404s is a
+              worse gift than no stylesheet. Declaring the files is this file's job; deciding what they <em>mean</em> is&nbsp;<code
+                >theme.css</code
+              >'s job via&nbsp;<code>--typeface-*</code>.
+            </p>
+            <p>
+              Skip it only in two cases: the product is on system fonts, or the faces are already loaded outside CSS – a
+              Google Fonts&nbsp;<code>&lt;link&gt;</code>&nbsp;in the document head, for example.
+            </p>
+            <p>
+              If you self-host and care about FOUC, write&nbsp;<code>@font-face</code>&nbsp;here and preload the files
+              so the first paint is already typeset. That is what this site does.&nbsp;<a
+                href={SITE.fontsManualCss}
+                target="_blank">This fonts.css</a
+              >&nbsp;is a worked example of that path: the files are imported by hand so they can be preloaded.
+            </p>
+            <p>
+              If FOUC is not a problem for you and you don't need to preload the font-faces, you can go the easier way
+              and import the stylesheets from Fontsource packages.&nbsp;<a
+                href={SITE.fontsFontsourceCss}
+                target="_blank">This fonts.css</a
+              >&nbsp; version shows this approach.
             </p>
           </CalloutBlock>
         </div>

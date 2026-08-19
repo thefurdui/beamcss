@@ -441,11 +441,10 @@ const description =
             </p>
             <p>
               That identity lives on a class. HTML&nbsp;<code>id</code>&nbsp;is a document hook – skip links, fragment
-              URLs,&nbsp;<code>getElementById</code> – and it is not a styling API. An ID selector is
-              specificity&nbsp;<code>1,0,0</code>: no class combination can override it without reaching for&nbsp;<code
-                >!important</code
-              >&nbsp;or another ID. You do not need a second identity system, and you definitely do not need one that
-              cannot be reused.
+              URLs,&nbsp;<code>getElementById</code> – and it is not a styling API. An ID selector is specificity&nbsp;<code
+                >1,0,0</code
+              >: no class combination can override it without reaching for&nbsp;<code>!important</code>&nbsp;or another
+              ID. You do not need a second identity system, and you definitely do not need one that cannot be reused.
             </p>
             <CodeBlock
               slot="code"
@@ -774,8 +773,8 @@ const description =
 
         <CalloutBlock tone="law" title="Queries only add">
           <p>
-            The unqueried rule is the small canvas.&nbsp;<code>@media</code>&nbsp;and&nbsp;<code>@container</code>&nbsp;may
-            use&nbsp;<code>min-width</code>, never&nbsp;<code>max-width</code>. Ceiling ranges like&nbsp;<code
+            The unqueried rule is the small canvas.&nbsp;<code>@media</code>&nbsp;and&nbsp;<code>@container</code
+            >&nbsp;may use&nbsp;<code>min-width</code>, never&nbsp;<code>max-width</code>. Ceiling ranges like&nbsp;<code
               >width &lt; 64rem</code
             >&nbsp;are the same inversion wearing different syntax. The&nbsp;<code>max-width</code>&nbsp;<em
               >property</em
@@ -1004,7 +1003,7 @@ Ampersand        banned for name building`}
           align="center"
           eyebrow="Begin"
           title="Name things for what they are. Everything else follows."
-          lede="Five stylesheets, an optional sixth for your fonts, one PostCSS plugin, and a set of rules short enough to memorize. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
+          lede="Six stylesheets, one PostCSS plugin, and a set of rules short enough to memorize. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
         />
 
         <div class="l_cluster" data-gap="3" data-justify="center">

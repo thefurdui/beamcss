@@ -6,6 +6,8 @@ export const SITE = {
   name: 'BEAM CSS',
   tagline: 'Block. Element. Attribute. Module.',
   repo: 'https://github.com/thefurdui/beamcss',
+  fontsManualCss: 'https://github.com/thefurdui/beamcss/blob/main/src/styles/fonts.css',
+  fontsFontsourceCss: 'https://github.com/thefurdui/beamcss/blob/v0.1.0/src/styles/fonts.css',
   npm: 'https://www.npmjs.com/package/postcss-beam-fluid',
   author: 'Andrei Furdui',
   authorUrl: 'https://github.com/thefurdui',

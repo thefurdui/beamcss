@@ -3,9 +3,9 @@
  * on /install is literally the CSS this page is wearing. One source of truth
  * means the starter kit cannot drift from the reference implementation.
  *
- * fonts.css is deliberately excluded: it imports Fontsource packages that a
- * fresh project will not have installed, and a download that fails to compile
- * is worse than no download.
+ * fonts.css is deliberately excluded: the faces you load are yours, and a
+ * download that 404s is worse than no download. Write your own and import it
+ * first, or skip it on system fonts / when faces already load in the head.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
@@ -22,9 +22,10 @@ const BANNER = (name) => `/*
  * One of the five required global stylesheets. Import in this order:
  *   reset.css → theme.css → layout.css → utils.css → generics.css
  *
- * BEAM also defines an optional sixth file, fonts.css, holding @font-face and
- * nothing else. It is not part of this download because it would reference
- * font packages you have not installed. Write your own and import it first.
+ * BEAM also defines a sixth file, fonts.css, holding @font-face and
+ * nothing else. Skip it on system fonts, or when faces already load in the
+ * document head. It is not part of this download because the files it
+ * would reference are yours. Write your own and import it first.
  *
  * theme.css and layout.css contain fluid() calls. Install the build-time
  * plugin, or replace each call with a static value:

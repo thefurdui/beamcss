@@ -176,7 +176,7 @@ To implement BEAM, your global style folder must look exactly like this. DO NOT 
   ├── layout.css       # .l_ classes (Spatial Geometry)
   ├── utils.css        # .u_ classes (Zero-state contracts, behaviors)
   ├── generics.css     # .g_ classes (Global visual UI assets)
-  └── fonts.css        # @font-face declarations (Optional)
+  └── fonts.css        # @font-face declarations (skip on system fonts, or when faces load in the head)
 ```
 
 - **Utilities (`utils.css`):** Use `:where()` for The Zero State Contract to strip UA styles without specificity wars. `:where(.u_reset_button) { ... }`
