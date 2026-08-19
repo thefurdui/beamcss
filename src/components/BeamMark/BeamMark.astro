@@ -7,12 +7,17 @@ interface Props {
   /** Renders the wordmark next to the glyph. */
   label?: boolean
   class?: string
+  interactive?: boolean
 }
 
-const { label = true, class: className } = Astro.props
+const { label = true, class: className, interactive } = Astro.props
 ---
 
-<span class:list={['beam_mark', className]} data-labeled={label ? 'true' : undefined}>
+<span
+  class:list={['beam_mark', className]}
+  data-labeled={label ? 'true' : undefined}
+  data-interactive={interactive ? 'true' : undefined}
+>
   <RawSvg class="beam_mark-glyph" content={glyph} aria-hidden="true" />
   {label && <span class="beam_mark-wordmark">beam</span>}
 </span>

@@ -1,20 +1,18 @@
 /* ==========================================================================
 /* BeamMark – the identity glyph.
-/* A prism: undifferentiated light enters, four ordered rays leave.
+/* A steel I-beam in dimetric projection: structural backbone of every layout.
 /* ========================================================================== */
 
 .beam_mark {
-  /* Hover travels down as data, not as a descendant selector. */
-  --c-spectrum-play: paused;
-
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   color: var(--ink-main);
+  pointer-events: none;
 }
 
-.beam_mark:hover {
-  --c-spectrum-play: running;
+.beam_mark[data-interactive] {
+  pointer-events: auto;
 }
 
 .beam_mark-glyph {
@@ -22,22 +20,30 @@
   height: 1.5rem;
   flex-shrink: 0;
   overflow: visible;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
-.beam_mark-prism {
-  stroke-width: 2;
+/* I-beam face shading.
+ * Physical lighting model: light comes from upper-left in both themes.
+ * We mix with literal black so the shading direction never inverts. */
+
+/* Front face: the I-profile hero. Pure brand. */
+.beam_mark-face_front {
+  fill: var(--brand-primary);
 }
 
-.beam_mark-source {
-  stroke: var(--ink-faint);
+/* Top surfaces: brightest — faces the light source. */
+.beam_mark-face_lit {
+  fill: var(--brand-glow);
 }
 
-.beam_mark-spectrum {
-  stroke: var(--brand-primary);
+/* Recessed surfaces (web side, inner ledge): moderate shadow. */
+.beam_mark-face_shade {
+  fill: color-mix(in oklch, var(--brand-primary) 80%, black);
+}
+
+/* Outer side surfaces (flange depth): deepest shadow. */
+.beam_mark-face_shadow {
+  fill: color-mix(in oklch, var(--brand-primary) 65%, black);
 }
 
 .beam_mark-wordmark {
@@ -48,33 +54,28 @@
   line-height: var(--leading-none);
 }
 
-/* Hovering the mark walks the spectrum, one ray at a time. */
+/* Hover: ambient light intensifies on the steel. */
 @media (prefers-reduced-motion: no-preference) {
-  .beam_mark-ray {
-    animation: beam_mark_pulse 1.2s var(--ease-standard) infinite;
-    animation-play-state: var(--c-spectrum-play);
-    animation-delay: calc(0.1s * var(--c-ray-index, 0));
+  .beam_mark-face_front,
+  .beam_mark-face_lit,
+  .beam_mark-face_shade,
+  .beam_mark-face_shadow {
+    transition: fill var(--duration-fast) var(--ease-standard);
   }
 
-  .beam_mark-ray:nth-child(2) {
-    --c-ray-index: 1;
+  .beam_mark:hover .beam_mark-face_lit {
+    fill: oklch(from var(--brand-glow) calc(l + 0.1) c h);
   }
 
-  .beam_mark-ray:nth-child(3) {
-    --c-ray-index: 2;
+  .beam_mark:hover .beam_mark-face_front {
+    fill: oklch(from var(--brand-primary) calc(l + 0.13) c h);
   }
 
-  .beam_mark-ray:nth-child(4) {
-    --c-ray-index: 3;
+  .beam_mark:hover .beam_mark-face_shade {
+    fill: color-mix(in oklch, var(--brand-primary) 90%, black);
   }
-}
 
-@keyframes beam_mark_pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.25;
+  .beam_mark:hover .beam_mark-face_shadow {
+    fill: color-mix(in oklch, var(--brand-primary) 78%, black);
   }
 }

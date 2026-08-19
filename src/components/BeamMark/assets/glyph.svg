@@ -1,10 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <path class="beam_mark-source" d="M0 17H8" />
-  <g class="beam_mark-spectrum">
-    <path class="beam_mark-ray" d="M20 11H31" />
-    <path class="beam_mark-ray" d="M22 15H31" />
-    <path class="beam_mark-ray" d="M24 19H31" />
-    <path class="beam_mark-ray" d="M26 23H31" />
+  <!--
+    Steel I-beam · true dimetric projection.
+    Viewer is above-left, looking down-right.
+    Every back vertex = front vertex + (11, −5).
+    Front face = classic I-profile cross-section.
+
+    Front I-profile (width 14, height 20):
+      Flanges x: 3–17, Web x: 7–13
+      Top flange y: 7–12, Web y: 12–22, Bottom flange y: 22–27
+
+    Painter's order (back → front):
+      1. Top of top flange      (farthest, faces up)
+      2. Right side of web      (recessed between flanges)
+      3. Bottom flange ledge    (inner shelf, faces up)
+      4. Right side top flange  (closer, occludes part of web)
+      5. Right side bot flange  (closer)
+      6. Front I-profile        (nearest to viewer)
+
+    Canvas: bbox is 25×25 from (3,2) to (28,27). Translate (0.5, 1.5)
+    so padding is equal on a 32×32 viewBox. Geometry stays integer.
+  -->
+
+  <g transform="translate(0.5 1.5)">
+    <!-- 1. Top of top flange – catches the most light -->
+    <path class="beam_mark-face_lit" d="M3 7 L14 2 L28 2 L17 7 Z" />
+
+    <!-- 2. Right side of web – in shadow, recessed -->
+    <path class="beam_mark-face_shade" d="M13 12 L24 7 L24 17 L13 22 Z" />
+
+    <!-- 3. Bottom flange inner ledge – partially lit shelf -->
+    <path class="beam_mark-face_shade" d="M13 22 L24 17 L28 17 L17 22 Z" />
+
+    <!-- 4. Right side of top flange – in shadow -->
+    <path class="beam_mark-face_shadow" d="M17 7 L28 2 L28 7 L17 12 Z" />
+
+    <!-- 5. Right side of bottom flange – in shadow -->
+    <path class="beam_mark-face_shadow" d="M17 22 L28 17 L28 22 L17 27 Z" />
+
+    <!-- 6. Front I-profile – the hero face -->
+    <path class="beam_mark-face_front" d="M3 7 H17 V12 H13 V22 H17 V27 H3 V22 H7 V12 H3 Z" />
   </g>
-  <path class="beam_mark-prism" d="M15 4 L27 26 H3 Z" />
 </svg>
