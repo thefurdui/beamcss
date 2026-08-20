@@ -2,7 +2,7 @@
 /* DialectTabs – the same component, written four ways.
 /* ========================================================================== */
 
-.dialect_tabs-rail {
+.convention_tabs-rail {
   display: flex;
   gap: var(--space-1);
   padding: var(--space-1);
@@ -13,7 +13,7 @@
   scrollbar-width: none;
 }
 
-.dialect_tabs-tab {
+.convention_tabs-tab {
   flex-shrink: 0;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
@@ -25,21 +25,21 @@
   transition: var(--transition-colors);
 }
 
-.dialect_tabs-tab:hover {
+.convention_tabs-tab:hover {
   color: var(--ink-main);
 }
 
-.dialect_tabs-tab[aria-selected='true'] {
+.convention_tabs-tab[aria-selected='true'] {
   background: var(--action-contrast);
   color: var(--ink-inverse);
   font-weight: var(--weight-medium);
 }
 
-.dialect_tabs-panel:focus-visible {
+.convention_tabs-panel:focus-visible {
   outline-offset: 4px;
 }
 
-.dialect_tabs-verdict {
+.convention_tabs-verdict {
   color: var(--ink-muted);
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);

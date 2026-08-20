@@ -1,7 +1,7 @@
 ---
 import CodeBlock from '../CodeBlock/CodeBlock.astro'
 import type { Language } from '../../lib/highlight'
-import './DialectTabs.css'
+import './ConventionTabs.css'
 
 interface Sample {
   file: string
@@ -24,13 +24,13 @@ interface Props {
 const { dialects, label } = Astro.props
 ---
 
-<div class="dialect_tabs" data-beam-tabs>
+<div class="convention_tabs" data-beam-tabs>
   <div class="l_stack" data-gap="5">
-    <div class="dialect_tabs-rail" role="tablist" aria-label={label}>
+    <div class="convention_tabs-rail" role="tablist" aria-label={label}>
       {
         dialects.map((dialect, position) => (
           <button
-            class="u_reset_button dialect_tabs-tab"
+            class="u_reset_button convention_tabs-tab"
             type="button"
             role="tab"
             id={`tab-${dialect.id}`}
@@ -47,7 +47,7 @@ const { dialects, label } = Astro.props
     {
       dialects.map((dialect, position) => (
         <div
-          class="dialect_tabs-panel"
+          class="convention_tabs-panel"
           role="tabpanel"
           id={`panel-${dialect.id}`}
           aria-labelledby={`tab-${dialect.id}`}
@@ -55,7 +55,7 @@ const { dialects, label } = Astro.props
           tabindex="0"
         >
           <div class="l_stack" data-gap="4">
-            <p class="dialect_tabs-verdict" set:html={dialect.verdict} />
+            <p class="convention_tabs-verdict" set:html={dialect.verdict} />
             <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
               {dialect.samples.map((sample) => (
                 <CodeBlock file={sample.file} lang={sample.lang} code={sample.code} />
