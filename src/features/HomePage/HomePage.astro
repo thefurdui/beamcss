@@ -90,7 +90,7 @@ const CONVENTIONS = [
     id: 'bem',
     label: 'BEM',
     verdict:
-      'Right instinct, four extra characters per name. Nest&nbsp;<code class="g_code">&amp;__title</code>&nbsp;and&nbsp;<code class="g_code">card__title</code>&nbsp;exists nowhere in the repo.',
+      'Right instinct, four extra characters per name. Nest <code class="g_code">&amp;__title</code> and <code class="g_code">card__title</code> exists nowhere in the repo.',
     samples: [
       {
         file: 'markup.html',
@@ -233,10 +233,9 @@ const description =
             <h1 class="home_page-title u_balance">CSS architecture for<br />OCD-grade determinism.</h1>
 
             <p class="home_page-lede u_pretty">
-              Collision-proof namespaces. One CSS file per component. State in&nbsp;<code class="g_code">data-*</code
-              >&nbsp;attributes. Locked-down semantic tokens. No required preprocessor, no runtime, and no&nbsp;<code
-                class="g_code">div</code
-              >&nbsp;wearing fourteen classes.
+              Collision-proof namespaces. One CSS file per component. State in <code class="g_code">data-*</code> attributes.
+              Locked-down semantic tokens. No required preprocessor, no runtime, and no <code class="g_code">div</code> wearing
+              fourteen classes.
             </p>
 
             <div class="l_cluster" data-gap="3">
@@ -368,29 +367,25 @@ const description =
           <div class="l_stack" data-gap="0">
             <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
               <p>
-                A component is named for what it&nbsp;<em>is</em>, never for what it looks like.&nbsp;<code
-                  >.user_card</code
-                >, not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>&nbsp;. That may save you time when you first
-                write the component, but maintaining it becomes a nightmare. For a dark theme, you need to define dark
-                colors for every component. The second it changes, you have to update all your components. That's&nbsp;<code
-                  >O(n)</code
-                >&nbsp;complexity for a simple color swap.
+                A component is named for what it <em>is</em>, never for what it looks like.
+                <code>.user_card</code>, not <code>.bg-white.rounded-xl.p-4.shadow-sm</code>. That may save you time
+                when you first write the component, but maintaining it becomes a nightmare. For a dark theme, you need
+                to define dark colors for every component. The second it changes, you have to update all your
+                components. That's <code>O(n)</code> complexity for a simple color swap.
               </p>
               <p>
-                With BEAM, your component always stays&nbsp;<code>.user_card</code>. And after you import <code
-                  >theme.css</code
-                >, you get a dark theme automatically as you create any component, with <code>O(1)</code
-                >&nbsp;complexity for swapping colors.
+                With BEAM, your component always stays <code>.user_card</code>. And after you import
+                <code>theme.css</code>, you get a dark theme automatically as you create any component, with
+                <code>O(1)</code> complexity for swapping colors.
               </p>
               <p>
-                Why snake_case?&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>user-card</code
-                >&nbsp;is two. You will select this token thousands of times. Optimize for the thousands.
+                Why snake_case? <code>user_card</code> is one double-click. <code>user-card</code> is two. You will select
+                this token thousands of times. Optimize for the thousands.
               </p>
               <p>
-                HTML&nbsp;<code>id</code>&nbsp;is a document hook, not a styling API. In BEAM, we never use it in CSS.
-                An ID selector has a specificity of&nbsp;<code>1,0,0</code>. You can never override it with classes
-                without using another
-                <code>id</code>&nbsp;or&nbsp;<code>!important</code>, so we get rid of it.
+                HTML <code>id</code> is a document hook, not a styling API. In BEAM, we never use it in CSS. An ID selector
+                has a specificity of <code>1,0,0</code>. You can never override it with classes without using another
+                <code>id</code> or <code>!important</code>, so we get rid of it.
               </p>
               <CodeBlock
                 slot="code"
@@ -432,20 +427,18 @@ const description =
 
             <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
               <p>
-                This one will make you forget ugly string concatenations with dozens of classes.&nbsp;<strong
-                  >State is not a class. State is data.</strong
-                >
+                This one will make you forget ugly string concatenations with dozens of classes.
+                <strong>State is not a class. State is data.</strong>
               </p>
               <p>
-                You've been writing &nbsp;<code>button--outline</code>,&nbsp;<code>button--primary</code>,&nbsp;<code
-                  >button--small</code
-                >,&nbsp;<code>button--rounded</code>,&nbsp;<code>button--loading</code> for years. Or, worse, the same conditional
-                approach, but with Tailwind's 2-5 classes per state. A single class definition can easily take 5–10 lines
-                of code this way.
+                You've been writing <code>button--outline</code>, <code>button--primary</code>,
+                <code>button--small</code>, <code>button--rounded</code>, <code>button--loading</code> for years. Or, worse,
+                the same conditional approach, but with Tailwind's 2-5 classes per state. A single class definition can easily
+                take 5–10 lines of code this way.
               </p>
               <p>
                 Stop it, get some help. CSS has had attribute selectors since 1998. It's long overdue that we make it a
-                convention. Put state in&nbsp;<code>data-*</code>&nbsp;attributes, not classes.
+                convention. Put state in <code>data-*</code> attributes, not classes.
               </p>
               <CodeBlock
                 slot="code"
@@ -459,13 +452,13 @@ const description =
 
             <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
               <p>
-                One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
-                >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
+                One block, one file, sitting next to the component that renders it. <code>UserCard.tsx</code> and
+                <code>UserCard.css</code> live and die together.
               </p>
               <p>
-                Delete the component, delete the stylesheet. No orphan rules. No four-thousand-line&nbsp;<code
-                  >components.css</code
-                >&nbsp;that everyone appends to and nobody removes from. The file tree is an index of your UI.
+                Delete the component, delete the stylesheet. No orphan rules. No four-thousand-line
+                <code>components.css</code> that everyone appends to and nobody removes from. The file tree is an index of
+                your UI.
               </p>
               <CodeBlock
                 slot="code"
@@ -495,9 +488,8 @@ const description =
                 <a class="home_page-scope_link" href="#theming">
                   <span class="home_page-scope_name">Themes</span>
                   <span class="home_page-scope_gloss">
-                    Declared once, never in a component. Components read&nbsp;<code class="g_code">--bg-surface</code>.
-                    <code class="g_code">theme.css</code>&nbsp;defines what&nbsp;<code class="g_code">--bg-surface</code
-                    >&nbsp;is.
+                    Declared once, never in a component. Components read <code class="g_code">--bg-surface</code>.
+                    <code class="g_code">theme.css</code> defines what <code class="g_code">--bg-surface</code> is.
                   </span>
                 </a>
               </li>
@@ -505,10 +497,9 @@ const description =
                 <a class="home_page-scope_link" href="#space">
                   <span class="home_page-scope_name">Layout</span>
                   <span class="home_page-scope_gloss">
-                    Composed from&nbsp;<code class="g_code">l_*</code>&nbsp;primitives – because naming is one of the two
-                    hardest things in programming, and we don't want names like&nbsp;<code class="g_code"
-                      >.user_card-inner_left_wrapper</code
-                    >.
+                    Composed from <code class="g_code">l_*</code> primitives – because naming is one of the two hardest things
+                    in programming, and we don't want names like
+                    <code class="g_code">.user_card-inner_left_wrapper</code>.
                   </span>
                 </a>
               </li>
@@ -516,9 +507,8 @@ const description =
                 <a class="home_page-scope_link" href="#fluid">
                   <span class="home_page-scope_name">Interpolation</span>
                   <span class="home_page-scope_gloss">
-                    <code class="g_code">fluid()</code>&nbsp;turns two tokens into a&nbsp;<code class="g_code"
-                      >clamp()</code
-                    >&nbsp;at build time. Nice, easy, and flexible.
+                    <code class="g_code">fluid()</code> turns two tokens into a <code class="g_code">clamp()</code> at build
+                    time. Nice, easy, and flexible.
                   </span>
                 </a>
               </li>
@@ -596,24 +586,23 @@ const description =
 
           <div class="g_prose home_page-prose">
             <p>
-              In VS Code, a double-click or&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span>&nbsp;treats a
-              dash as a break and an underscore as part of the word. Neovim does the same:&nbsp;<span class="g_kbd"
-                >c</span
-              ><span class="g_kbd">i</span><span class="g_kbd">w</span>&nbsp;and&nbsp;<span class="g_kbd">*</span
-              >&nbsp;eat&nbsp;<code>user_card</code>&nbsp;whole, and stop at the hyphen in&nbsp;<code>user-card</code>.
+              In VS Code, a double-click or <span class="g_kbd">⌘</span><span class="g_kbd">D</span> treats a dash as a break
+              and an underscore as part of the word. Neovim does the same:
+              <span class="g_kbd">c</span><span class="g_kbd">i</span><span class="g_kbd">w</span> and
+              <span class="g_kbd">*</span> eat <code>user_card</code> whole, and stop at the hyphen in
+              <code>user-card</code>.
             </p>
             <p>
-              That is the whole reason for snake_case inside each half.&nbsp;<code>user_card-title</code>&nbsp;is two
-              motions, not four. You will select these names thousands of times. Make the motion cheap.
+              That is the whole reason for snake_case inside each half. <code>user_card-title</code> is two motions, not four.
+              You will select these names thousands of times. Make the motion cheap.
             </p>
           </div>
 
           <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
             <p>
-              Write&nbsp;<code>.user_card-title</code>, not&nbsp;<code>&amp;-title</code>. Concatenation never puts the
-              real string in the file, so search has nothing to find. Nest for&nbsp;<code>:hover</code>,&nbsp;<code
-                >[data-state]</code
-              >, and queries – those are conditions, not names.
+              Write <code>.user_card-title</code>, not <code>&amp;-title</code>. Concatenation never puts the real
+              string in the file, so search has nothing to find. Nest for <code>:hover</code>,
+              <code>[data-state]</code>, and queries – those are conditions, not names.
             </p>
           </CalloutBlock>
         </div>
@@ -666,8 +655,8 @@ const description =
 
           <div class="g_prose home_page-prose">
             <p>
-              Semantic tokens are declared once per theme, in a single&nbsp;<code>theme.css</code>&nbsp;file. Components
-              just read&nbsp;<code>var(--bg-surface)</code>.
+              Semantic tokens are declared once per theme, in a single <code>theme.css</code> file. Components just read
+              <code>var(--bg-surface)</code>.
             </p>
             <p>
               A third theme is one more CSS block. Inverse is one attribute on a subtree. No component has ever heard
@@ -694,14 +683,14 @@ const description =
           <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
             <div class="g_prose home_page-prose">
               <p>
-                <strong>Void</strong> is&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>.
-                Shared rhythm. Always&nbsp;<code>--space-*</code>.
+                <strong>Void</strong> is <code>margin</code>, <code>padding</code>, <code>gap</code>. Shared rhythm.
+                Always <code>--space-*</code>.
               </p>
               <p>
-                <strong>Mass</strong> is&nbsp;<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,
-                &nbsp;<code>translate()</code>. The avatar is&nbsp;<code>3rem</code>&nbsp;because the avatar is 3rem,
-                not because&nbsp;<code>--space-12</code>&nbsp;happens to equal that. If you tighten the scale – the
-                avatar should not become an oval.
+                <strong>Mass</strong> is <code>width</code>, <code>height</code>, <code>inset</code>,
+                <code>translate()</code>. The avatar is <code>3rem</code> because the avatar is 3rem, not because
+                <code>--space-12</code> happens to equal that. If you tighten the scale – the avatar should not become an
+                oval.
               </p>
             </div>
 
@@ -725,11 +714,10 @@ const description =
 
           <CalloutBlock tone="law" title="The Binary Rule">
             <p>
-              A layout class and a semantic component class never share a DOM element. A vertical&nbsp;<code
-                >.user_card</code
-              >&nbsp;doesn't just happen to be a vertical container - layout is its defining property, it should be
-              written down in CSS. Reserve the nameless&nbsp;<code>l_</code>&nbsp;layout classes for semantically
-              meaningless containers.
+              A layout class and a semantic component class never share a DOM element. A vertical
+              <code>.user_card</code> doesn't just happen to be a vertical container - layout is its defining property, it
+              should be written down in CSS. Reserve the nameless <code>l_</code> layout classes for semantically meaningless
+              containers.
             </p>
           </CalloutBlock>
 
@@ -755,9 +743,8 @@ const description =
 
           <CalloutBlock tone="law" title="Mobile-first layout">
             <p>
-              In 2026 it should be a non-negotiable. Unqueried CSS is the mobile view. In media queries we define &nbsp;<code
-                >min-width</code
-              >&nbsp;only – never&nbsp;<code>max-width</code>&nbsp;or&nbsp;<code>width &lt; 64rem</code>.
+              In 2026 it should be a non-negotiable. Unqueried CSS is the mobile view. In media queries we define
+              <code>min-width</code> only – never <code>max-width</code> or <code>width &lt; 64rem</code>.
             </p>
           </CalloutBlock>
         </div>
@@ -796,9 +783,8 @@ const description =
 
           <div class="g_prose home_page-prose">
             <p>
-              Nobody audits the first one. The two&nbsp;<code>2.25rem</code>s drift.&nbsp;<code>fluid()</code>&nbsp;, on
-              the other hand, resolves both tokens at build and emits a&nbsp;<code>clamp()</code>&nbsp;with the slope
-              already computed.
+              Nobody audits the first one. The two <code>2.25rem</code>s drift. <code>fluid()</code>, on the other hand,
+              resolves both tokens at build and emits a <code>clamp()</code> with the slope already computed.
             </p>
           </div>
 
@@ -922,9 +908,8 @@ Ampersand        banned for name building`}
             <div class="home_page-objection">
               <h3 class="home_page-objection_title">“Will it stop me writing bad CSS?”</h3>
               <p class="home_page-objection_body">
-                No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an&nbsp;<code
-                  class="g_code">l_</code
-                >&nbsp;class riding a block. You stop arguing about taste and start pointing at rules.
+                No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an
+                <code class="g_code">l_</code> class riding a block. You stop arguing about taste and start pointing at rules.
               </p>
             </div>
             <div class="home_page-objection">
@@ -959,10 +944,9 @@ Ampersand        banned for name building`}
           </div>
 
           <p class="home_page-closing_note">
-            Then open the inspector on this page. Every class you find is a Block, an Element, an&nbsp;<code
-              class="g_code">l_</code
-            >, a&nbsp;<code class="g_code">u_</code>, or a&nbsp;<code class="g_code">g_</code>. That is the whole
-            vocabulary.
+            Then open the inspector on this page. Every class you find is a Block, an Element, an
+            <code class="g_code">l_</code>, a <code class="g_code">u_</code>, or a <code class="g_code">g_</code>. That
+            is the whole vocabulary.
           </p>
         </div>
       </div>

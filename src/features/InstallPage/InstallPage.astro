@@ -123,39 +123,34 @@ done`}
           </div>
           <CalloutBlock tone="note" title="Now make them yours">
             <p>
-              The palette in&nbsp;<code>theme.css</code>&nbsp;is a warm neutral stone ramp and a refracted vermilion.
-              Yours will be different. Change the&nbsp;<code>--palette-*</code>&nbsp;values, adjust the two&nbsp;<code
-                >--theme-*</code
-              >&nbsp;blocks to taste, and leave Layer 3 alone – that is the contract every component you ever write is
-              going to read.
+              The palette in <code>theme.css</code> is a warm neutral stone ramp and a refracted vermilion. Yours will be
+              different. Change the <code>--palette-*</code> values, adjust the two <code>--theme-*</code> blocks to taste,
+              and leave Layer 3 alone – that is the contract every component you ever write is going to read.
             </p>
           </CalloutBlock>
 
           <CalloutBlock tone="note" title="When to skip fonts.css">
             <p>
-              <code>fonts.css</code>&nbsp;holds&nbsp;<code>@font-face</code>&nbsp; or font imports and nothing else. It
-              is not in the five-file download because the faces you load are yours, and a stylesheet that 404s is a
-              worse gift than no stylesheet. Declaring the files is this file's job; deciding what they <em>mean</em> is&nbsp;<code
-                >theme.css</code
-              >'s job via&nbsp;<code>--typeface-*</code>.
+              <code>fonts.css</code> holds <code>@font-face</code> or font imports and nothing else. It is not in the five-file
+              download because the faces you load are yours, and a stylesheet that 404s is a worse gift than no stylesheet.
+              Declaring the files is this file's job; deciding what they <em>mean</em> is <code>theme.css</code>'s job
+              via <code>--typeface-*</code>.
             </p>
             <p>
               Skip it only in two cases: the product is on system fonts, or the faces are already loaded outside CSS – a
-              Google Fonts&nbsp;<code>&lt;link&gt;</code>&nbsp;in the document head, for example.
+              Google Fonts <code>&lt;link&gt;</code> in the document head, for example.
             </p>
             <p>
-              If you self-host and care about FOUC, write&nbsp;<code>@font-face</code>&nbsp;here and preload the files
-              so the first paint is already typeset. That is what this site does.&nbsp;<a
-                href={SITE.fontsManualCss}
-                target="_blank">This fonts.css</a
-              >&nbsp;is a worked example of that path: the files are imported by hand so they can be preloaded.
+              If you self-host and care about FOUC, write <code>@font-face</code> here and preload the files so the first
+              paint is already typeset. That is what this site does.
+              <a href={SITE.fontsManualCss} target="_blank">This fonts.css</a>
+              is a worked example of that path: the files are imported by hand so they can be preloaded.
             </p>
             <p>
               If FOUC is not a problem for you and you don't need to preload the font-faces, you can go the easier way
-              and import the stylesheets from Fontsource packages.&nbsp;<a
-                href={SITE.fontsFontsourceCss}
-                target="_blank">This fonts.css</a
-              >&nbsp; version shows this approach.
+              and import the stylesheets from Fontsource packages.
+              <a href={SITE.fontsFontsourceCss} target="_blank">This fonts.css</a>
+              version shows this approach.
             </p>
           </CalloutBlock>
         </div>
@@ -224,12 +219,12 @@ export default {
               [
                 '<code>tokenFiles</code>',
                 '<code>[]</code>',
-                'Stylesheets to scan for&nbsp;<code>--custom-property</code>&nbsp;declarations, so&nbsp;<code>fluid(var(--space-4), var(--space-8))</code>&nbsp;resolves.',
+                'Stylesheets to scan for <code>--custom-property</code> declarations, so <code>fluid(var(--space-4), var(--space-8))</code> resolves.',
               ],
               [
                 '<code>tokens</code>',
                 '<code>{}</code>',
-                'Inline token map. Wins over&nbsp;<code>tokenFiles</code>, which is handy in tests.',
+                'Inline token map. Wins over <code>tokenFiles</code>, which is handy in tests.',
               ],
               [
                 '<code>precision</code>',
@@ -241,11 +236,11 @@ export default {
 
           <div class="g_prose install_page-prose">
             <p>
-              Per-call bounds override the project defaults when a single element needs a different curve:&nbsp;<code
-                >fluid(2rem, 8rem, 20rem, 60rem)</code
-              >. Anything the plugin cannot resolve statically –&nbsp;<code>em</code>,&nbsp;<code>%</code>, a mixed-unit
-              pair, a token that does not exist – throws and fails the build. That is deliberate. A wrong font size that
-              nobody notices for three months is a worse outcome than a red pipeline.
+              Per-call bounds override the project defaults when a single element needs a different curve:
+              <code>fluid(2rem, 8rem, 20rem, 60rem)</code>. Anything the plugin cannot resolve statically –
+              <code>em</code>, <code>%</code>, a mixed-unit pair, a token that does not exist – throws and fails the
+              build. That is deliberate. A wrong font size that nobody notices for three months is a worse outcome than
+              a red pipeline.
             </p>
           </div>
 
@@ -379,10 +374,9 @@ done`}
 
           <div class="g_prose install_page-prose">
             <p>
-              Read it once more and notice what is absent. No color. No breakpoint. No&nbsp;<code>dark:</code
-              >&nbsp;anything. No margin reaching out to push a neighbor around. The card describes itself and nothing
-              else, which is why you can drop it into a sidebar, a modal or an inverted footer and it will simply
-              behave.
+              Read it once more and notice what is absent. No color. No breakpoint. No <code>dark:</code> anything. No margin
+              reaching out to push a neighbor around. The card describes itself and nothing else, which is why you can drop
+              it into a sidebar, a modal or an inverted footer and it will simply behave.
             </p>
           </div>
 

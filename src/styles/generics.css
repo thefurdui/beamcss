@@ -146,8 +146,15 @@
   margin-inline-start: var(--space-1);
 }
 
-/* INLINE CODE */
-.g_code {
+/* INLINE CODE
+ *
+ * Running prose, not a chip. `nowrap` turns the tag into an atomic box, so the
+ * next character – usually a period or comma – wraps onto its own line. Let
+ * the token wrap at spaces or overflow-wrap; clone the padding if it splits.
+ * Word Joiner after the element glues following punctuation without an &nbsp;
+ * the formatter is free to shove onto the next line. */
+.g_code,
+.g_prose :not(pre) > code {
   padding: var(--space-1);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--ink-main), transparent 92%);
@@ -156,12 +163,19 @@
   font-size: 0.9em;
   font-weight: var(--weight-medium);
   overflow-wrap: break-word;
-  white-space: nowrap;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .g_code[data-tone='accent'] {
   background: color-mix(in srgb, var(--action-primary), transparent 90%);
   color: var(--action-primary);
+}
+
+.g_code::after,
+.g_prose :is(a, em, strong)::after,
+.g_prose :not(pre) > code::after {
+  content: '\2060';
 }
 
 /* -------------------------------------------------------------------------- */
@@ -240,17 +254,6 @@
 
 .g_prose li::marker {
   color: var(--ink-faint);
-}
-
-.g_prose code {
-  padding: var(--space-1);
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--ink-main), transparent 92%);
-  color: var(--ink-main);
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  overflow-wrap: break-word;
-  white-space: nowrap;
 }
 
 .g_prose blockquote {
