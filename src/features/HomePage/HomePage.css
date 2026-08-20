@@ -1,19 +1,16 @@
 /* ==========================================================================
 /* Home page – the argument.
-/* The feature owns its page-level blocks: hero_section, tetrad_strip,
-/* home_section, objection_card, lineage_rail, closing_section.
 /* ========================================================================== */
 
-/* ------------------------------------------------------------------- HERO */
-.hero_section {
+.home_page-hero {
   padding-block: fluid(var(--space-12), var(--space-24));
 }
 
-.hero_section-copy {
+.home_page-masthead {
   max-width: 52rem;
 }
 
-.hero_section-title {
+.home_page-title {
   color: var(--ink-main);
   font-family: var(--font-heading);
   font-size: fluid(var(--text-5xl), var(--text-8xl));
@@ -22,67 +19,69 @@
   line-height: 0.95;
 }
 
-.hero_section-lede {
+.home_page-lede {
   color: var(--ink-muted);
   font-size: fluid(var(--text-lg), var(--text-xl));
   line-height: var(--leading-relaxed);
 }
 
 /* ----------------------------------------------------------- TETRAD STRIP */
-.tetrad_strip {
+
+.home_page-tetrad {
   padding-block: var(--space-10);
   border-block-start: 1px solid var(--border-base);
   background: color-mix(in srgb, var(--bg-surface), transparent 40%);
 }
 
-.tetrad_strip-cell {
+.home_page-tetrad_cell {
   padding: var(--space-4) fluid(var(--space-4), var(--space-6));
   border-inline-start: 1px solid var(--border-base);
 }
 
-.tetrad_strip-cell:first-child {
+.home_page-tetrad_cell:first-child {
   border-inline-start-color: transparent;
 }
 
-.tetrad_strip-letter {
+.home_page-tetrad_letter {
   color: var(--action-primary);
   font-family: var(--font-heading);
   font-size: var(--text-3xl);
   line-height: var(--leading-none);
 }
 
-.tetrad_strip-name {
+.home_page-tetrad_name {
   color: var(--ink-main);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-tight);
 }
 
-.tetrad_strip-syntax {
+.home_page-tetrad_syntax {
   color: var(--ink-muted);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
 }
 
-.tetrad_strip-gloss {
+.home_page-tetrad_gloss {
   color: var(--ink-faint);
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
   text-wrap: pretty;
 }
 
-/* --------------------------------------------------------- SHARED SECTION */
-.home_section {
+/* --------------------------------------------------------------- SECTIONS */
+
+.home_page-section {
   padding-block: fluid(var(--space-16), var(--space-32));
   border-block-start: 1px solid var(--border-base);
 }
 
-.home_section-prose {
+.home_page-prose {
   max-width: 40rem;
   flex-grow: 1;
 }
 
-.home_section-quote {
+.home_page-quote {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -91,7 +90,7 @@
   border-inline-start: 2px solid var(--action-primary);
 }
 
-.home_section-quote_text {
+.home_page-quote_text {
   color: var(--ink-main);
   font-family: var(--font-heading);
   font-size: fluid(var(--text-xl), var(--text-2xl));
@@ -99,14 +98,14 @@
   text-wrap: pretty;
 }
 
-.home_section-quote_source {
+.home_page-quote_source {
   color: var(--ink-faint);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   line-height: var(--leading-base);
 }
 
-.home_section-quote_link {
+.home_page-quote_link {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -114,50 +113,51 @@
   transition: var(--transition-colors);
 }
 
-.home_section-quote_link:hover {
+.home_page-quote_link:hover {
   color: var(--ink-muted);
 }
 
-/* ----------------------------------------------------------- LINEAGE RAIL */
-.lineage_rail {
+/* ---------------------------------------------------------- LINEAGE RAIL */
+
+.home_page-lineage {
   display: flex;
   flex-direction: column;
 }
 
-.lineage_rail-row {
+.home_page-lineage_row {
   padding-block: var(--space-5);
   border-block-start: 1px solid var(--border-base);
 }
 
-.lineage_rail-marker {
+.home_page-lineage_marker {
   flex-shrink: 0;
 }
 
-.lineage_rail-year {
+.home_page-lineage_year {
   color: var(--ink-faint);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
-.lineage_rail-name {
+.home_page-lineage_name {
   color: var(--ink-main);
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-tight);
 }
 
-.lineage_rail-detail {
+.home_page-lineage_detail {
   flex-grow: 1;
   min-width: 0;
 }
 
-.lineage_rail-took {
+.home_page-lineage_took {
   color: var(--ink-main);
   font-size: var(--text-base);
   line-height: var(--leading-snug);
 }
 
-.lineage_rail-kept {
+.home_page-lineage_kept {
   color: var(--ink-muted);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
@@ -165,13 +165,14 @@
 }
 
 @media (min-width: 64rem) {
-  .lineage_rail-marker {
+  .home_page-lineage_marker {
     width: 16rem;
   }
 }
 
-/* --------------------------------------------------------- OBJECTION CARD */
-.objection_card {
+/* -------------------------------------------------------------- OBJECTIONS */
+
+.home_page-objection {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -181,7 +182,7 @@
   background: var(--bg-surface);
 }
 
-.objection_card-title {
+.home_page-objection_title {
   color: var(--ink-main);
   font-family: var(--font-heading);
   font-size: var(--text-xl);
@@ -189,15 +190,16 @@
   text-wrap: balance;
 }
 
-.objection_card-body {
+.home_page-objection_body {
   color: var(--ink-muted);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   text-wrap: pretty;
 }
 
-/* --------------------------------------------------------------- CLOSING */
-.closing_section {
+/* ---------------------------------------------------------------- CLOSING */
+
+.home_page-closing {
   padding-block: fluid(var(--space-20), var(--space-32));
   border-block-start: 1px solid var(--border-base);
   background:
@@ -209,7 +211,7 @@
     var(--bg-page);
 }
 
-.closing_section-note {
+.home_page-closing_note {
   max-width: 34rem;
   color: var(--ink-faint);
   font-size: var(--text-sm);

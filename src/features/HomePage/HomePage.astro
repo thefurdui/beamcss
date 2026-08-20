@@ -222,248 +222,249 @@ const description =
 ---
 
 <RootLayout title="BEAM CSS – Block. Element. Attribute. Module." description={description}>
-  {/* ---------------------------------------------------------------- HERO */}
-  <section class="hero_section">
-    <div class="l_container" data-size="page">
-      <div class="hero_section-copy">
-        <div class="l_stack" data-gap="5" data-align="start">
-          <span class="g_tag" data-tone="accent">v{SITE.version}</span>
+  <div class="home_page">
+    {/* ---------------------------------------------------------------- HERO */}
+    <section class="home_page-hero">
+      <div class="l_container" data-size="page">
+        <header class="home_page-masthead">
+          <div class="l_stack" data-gap="5" data-align="start">
+            <span class="g_tag" data-tone="accent">v{SITE.version}</span>
 
-          <h1 class="hero_section-title u_balance">CSS architecture for<br />OCD-grade determinism.</h1>
+            <h1 class="home_page-title u_balance">CSS architecture for<br />OCD-grade determinism.</h1>
 
-          <p class="hero_section-lede u_pretty">
-            Collision-proof namespaces. One CSS file per component. State in&nbsp;<code class="g_code">data-*</code
-            >&nbsp;attributes. Locked-down semantic tokens. No required preprocessor, no runtime, and no&nbsp;<code
-              class="g_code">div</code
-            >&nbsp;wearing fourteen classes.
-          </p>
+            <p class="home_page-lede u_pretty">
+              Collision-proof namespaces. One CSS file per component. State in&nbsp;<code class="g_code">data-*</code
+              >&nbsp;attributes. Locked-down semantic tokens. No required preprocessor, no runtime, and no&nbsp;<code
+                class="g_code">div</code
+              >&nbsp;wearing fourteen classes.
+            </p>
 
-          <div class="l_cluster" data-gap="3">
-            <ActionButton href="#the-numbers">Why?</ActionButton>
-            <ActionButton href="/spec/" tone="outline">Read the spec</ActionButton>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* -------------------------------------------------------- TETRAD STRIP */}
-  <section class="tetrad_strip" aria-label="The four class types">
-    <div class="l_container" data-size="page">
-      <div class="l_grid" data-cols="auto" data-min="xs" data-gap="0">
-        {
-          TETRAD.map((law) => (
-            <div class="tetrad_strip-cell">
-              <div class="l_stack" data-gap="2" data-align="start">
-                <span class="tetrad_strip-letter">{law.letter}</span>
-                <span class="tetrad_strip-name">{law.name}</span>
-                <code class="tetrad_strip-syntax">{law.syntax}</code>
-                <span class="tetrad_strip-gloss">{law.gloss}</span>
-              </div>
+            <div class="l_cluster" data-gap="3">
+              <ActionButton href="#the-numbers">Why?</ActionButton>
+              <ActionButton href="/spec/" tone="outline">Read the spec</ActionButton>
             </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  {/* ------------------------------------------------------- 01 THE NUMBERS */}
-  <section class="home_section" id="the-numbers">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="01"
-          eyebrow="The problem"
-          title="CSS is more capable than ever, yet more confusing than ever."
-          lede={`Devographics asked ${SURVEY.respondents} developers what hurts. Here\'s the freshest data:`}
-        />
-
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
-          <PainMeter
-            question="Top pain points – color"
-            respondents="573"
-            items={[
-              {
-                label: 'Accessibility',
-                share: 27,
-                note: 'Contrast, by hand, forever.',
-              },
-              {
-                label: 'Theming',
-                share: 24,
-                note: 'Named cause: duplicated theme definitions.',
-                solved: true,
-              },
-              { label: 'Cognitive overload', share: 17 },
-              {
-                label: 'Custom properties',
-                share: 7,
-                note: 'The tool meant to fix the above.',
-              },
-            ]}
-          />
-
-          <PainMeter
-            question="Top pain points – CSS in general"
-            respondents="398"
-            items={[
-              {
-                label: 'Cognitive overload',
-                share: 22,
-                note: 'The number one complaint, overall.',
-                solved: true,
-              },
-              { label: 'Tooling', share: 13 },
-              {
-                label: 'Maintenance',
-                share: 9,
-                note: 'Up 18 places from last year.',
-                solved: true,
-              },
-              { label: 'Cascade management', share: 5 },
-            ]}
-          />
-        </div>
-
-        <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
-          <blockquote class="home_section-quote">
-            <p class="home_section-quote_text">
-              “Supporting light/dark mode is difficult; developers struggle to work with system preferences, manual
-              theme selection, and duplicated theme definitions.”
-            </p>
-            <p class="home_section-quote_text">
-              “Managing color palettes, tokens, variables and design-system scales is hard.”
-            </p>
-            <footer class="home_section-quote_source">
-              <a class="home_section-quote_link" href={SURVEY.url} rel="noreferrer noopener">
-                State of CSS {SURVEY.year} – color pain points, summarized from free-form answers
-              </a>
-            </footer>
-          </blockquote>
-
-          <div class="g_prose home_section-prose">
-            <p>
-              Nobody is waiting on a browser anymore. The named causes are duplicated theme definitions, palettes that
-              are hard to manage, cognitive overload, and maintenance.
-            </p>
-            <p>That is an architecture problem. That's what we solve.</p>
           </div>
-        </div>
+        </header>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* ------------------------------------------------------- 02 THE LINEAGE */}
-  <section class="home_section" id="lineage">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="02"
-          eyebrow="Origin"
-          title="BEAM did not fall out of the sky."
-          lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
-        />
-
-        <ol class="u_reset_list lineage_rail">
+    {/* -------------------------------------------------------- TETRAD STRIP */}
+    <section class="home_page-tetrad" aria-label="The four class types">
+      <div class="l_container" data-size="page">
+        <div class="l_grid" data-cols="auto" data-min="xs" data-gap="0">
           {
-            LINEAGE.map((entry) => (
-              <li class="lineage_rail-row">
-                <div class="l_switcher" data-threshold="3xl" data-gap="4" data-align="start">
-                  <div class="lineage_rail-marker">
-                    <div class="l_cluster" data-gap="3" data-nowrap>
-                      <span class="lineage_rail-year u_tabular">{entry.year}</span>
-                      <span class="lineage_rail-name">{entry.name}</span>
-                    </div>
-                  </div>
-                  <div class="lineage_rail-detail">
-                    <p class="lineage_rail-took">{entry.took}</p>
-                    <p class="lineage_rail-kept">{entry.kept}</p>
-                  </div>
+            TETRAD.map((law) => (
+              <div class="home_page-tetrad_cell">
+                <div class="l_stack" data-gap="2" data-align="start">
+                  <span class="home_page-tetrad_letter">{law.letter}</span>
+                  <span class="home_page-tetrad_name">{law.name}</span>
+                  <code class="home_page-tetrad_syntax">{law.syntax}</code>
+                  <span class="home_page-tetrad_gloss">{law.gloss}</span>
                 </div>
-              </li>
+              </div>
             ))
           }
-        </ol>
-
-        <CalloutBlock tone="note" title="What is actually new">
-          <p>
-            State in attributes, not classes. A color declared twice in the whole codebase, never in a component. Naming
-            chosen to respect IDE-native word boundaries. The rest is curation.
-          </p>
-        </CalloutBlock>
-
-        <div class="l_cluster" data-gap="4">
-          <ActionButton href="/lineage/" tone="ghost">Full comparison</ActionButton>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* --------------------------------------------------------- 03 FOUR LAWS */}
-  <section class="home_section" id="four-laws">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="03"
-          eyebrow="Overview"
-          title="BEAM in a nutshell."
-          lede="BEAM takes BEM as its foundation, cleans it up, and builds a house out of the best bricks from 17 years of CSS conventions. This is the antidote to Atomic CSS and CSS-in-JS that our web community has needed for a long time."
-        />
+    {/* ------------------------------------------------------- 01 THE NUMBERS */}
+    <section class="home_page-section" id="the-numbers">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="01"
+            eyebrow="The problem"
+            title="CSS is more capable than ever, yet more confusing than ever."
+            lede={`Devographics asked ${SURVEY.respondents} developers what hurts. Here\'s the freshest data:`}
+          />
 
-        <div class="l_stack" data-gap="0">
-          <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
+          <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
+            <PainMeter
+              question="Top pain points – color"
+              respondents="573"
+              items={[
+                {
+                  label: 'Accessibility',
+                  share: 27,
+                  note: 'Contrast, by hand, forever.',
+                },
+                {
+                  label: 'Theming',
+                  share: 24,
+                  note: 'Named cause: duplicated theme definitions.',
+                  solved: true,
+                },
+                { label: 'Cognitive overload', share: 17 },
+                {
+                  label: 'Custom properties',
+                  share: 7,
+                  note: 'The tool meant to fix the above.',
+                },
+              ]}
+            />
+
+            <PainMeter
+              question="Top pain points – CSS in general"
+              respondents="398"
+              items={[
+                {
+                  label: 'Cognitive overload',
+                  share: 22,
+                  note: 'The number one complaint, overall.',
+                  solved: true,
+                },
+                { label: 'Tooling', share: 13 },
+                {
+                  label: 'Maintenance',
+                  share: 9,
+                  note: 'Up 18 places from last year.',
+                  solved: true,
+                },
+                { label: 'Cascade management', share: 5 },
+              ]}
+            />
+          </div>
+
+          <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
+            <blockquote class="home_page-quote">
+              <p class="home_page-quote_text">
+                “Supporting light/dark mode is difficult; developers struggle to work with system preferences, manual
+                theme selection, and duplicated theme definitions.”
+              </p>
+              <p class="home_page-quote_text">
+                “Managing color palettes, tokens, variables and design-system scales is hard.”
+              </p>
+              <footer class="home_page-quote_source">
+                <a class="home_page-quote_link" href={SURVEY.url} rel="noreferrer noopener">
+                  State of CSS {SURVEY.year} – color pain points, summarized from free-form answers
+                </a>
+              </footer>
+            </blockquote>
+
+            <div class="g_prose home_page-prose">
+              <p>
+                Nobody is waiting on a browser anymore. The named causes are duplicated theme definitions, palettes that
+                are hard to manage, cognitive overload, and maintenance.
+              </p>
+              <p>That is an architecture problem. That's what we solve.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------- 02 THE LINEAGE */}
+    <section class="home_page-section" id="lineage">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="02"
+            eyebrow="Origin"
+            title="BEAM did not fall out of the sky."
+            lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
+          />
+
+          <ol class="u_reset_list home_page-lineage">
+            {
+              LINEAGE.map((entry) => (
+                <li class="home_page-lineage_row">
+                  <div class="l_switcher" data-threshold="3xl" data-gap="4" data-align="start">
+                    <div class="home_page-lineage_marker">
+                      <div class="l_cluster" data-gap="3" data-nowrap>
+                        <span class="home_page-lineage_year u_tabular">{entry.year}</span>
+                        <span class="home_page-lineage_name">{entry.name}</span>
+                      </div>
+                    </div>
+                    <div class="home_page-lineage_detail">
+                      <p class="home_page-lineage_took">{entry.took}</p>
+                      <p class="home_page-lineage_kept">{entry.kept}</p>
+                    </div>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <CalloutBlock tone="note" title="What is actually new">
             <p>
-              A component is named for what it&nbsp;<em>is</em>, never for what it looks like.&nbsp;<code
-                >.user_card</code
-              >, not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>&nbsp;. That may save you time when you first
-              write the component, but maintaining it becomes a nightmare. For a dark theme, you need to define dark
-              colors for every component. The second it changes, you have to update all your components. That's&nbsp;<code
-                >O(n)</code
-              >&nbsp;complexity for a simple color swap.
+              State in attributes, not classes. A color declared twice in the whole codebase, never in a component.
+              Naming chosen to respect IDE-native word boundaries. The rest is curation.
             </p>
-            <p>
-              With BEAM, your component always stays&nbsp;<code>.user_card</code>. And after you import <code
-                >theme.css</code
-              >, you get a dark theme automatically as you create any component, with <code>O(1)</code>&nbsp;complexity
-              for swapping colors.
-            </p>
-            <p>
-              Why snake_case?&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>user-card</code>&nbsp;is
-              two. You will select this token thousands of times. Optimize for the thousands.
-            </p>
-            <p>
-              HTML&nbsp;<code>id</code>&nbsp;is a document hook, not a styling API. In BEAM, we never use it in CSS. An
-              ID selector has a specificity of&nbsp;<code>1,0,0</code>. You can never override it with classes without
-              using another
-              <code>id</code>&nbsp;or&nbsp;<code>!important</code>, so we get rid of it.
-            </p>
-            <CodeBlock
-              slot="code"
-              file="UserCard.css"
-              lang="css"
-              code={`/* The name survives every redesign. */
+          </CalloutBlock>
+
+          <div class="l_cluster" data-gap="4">
+            <ActionButton href="/lineage/" tone="ghost">Full comparison</ActionButton>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* --------------------------------------------------------- 03 FOUR LAWS */}
+    <section class="home_page-section" id="four-laws">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="03"
+            eyebrow="Overview"
+            title="BEAM in a nutshell."
+            lede="BEAM takes BEM as its foundation, cleans it up, and builds a house out of the best bricks from 17 years of CSS conventions. This is the antidote to Atomic CSS and CSS-in-JS that our web community has needed for a long time."
+          />
+
+          <div class="l_stack" data-gap="0">
+            <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
+              <p>
+                A component is named for what it&nbsp;<em>is</em>, never for what it looks like.&nbsp;<code
+                  >.user_card</code
+                >, not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>&nbsp;. That may save you time when you first
+                write the component, but maintaining it becomes a nightmare. For a dark theme, you need to define dark
+                colors for every component. The second it changes, you have to update all your components. That's&nbsp;<code
+                  >O(n)</code
+                >&nbsp;complexity for a simple color swap.
+              </p>
+              <p>
+                With BEAM, your component always stays&nbsp;<code>.user_card</code>. And after you import <code
+                  >theme.css</code
+                >, you get a dark theme automatically as you create any component, with <code>O(1)</code
+                >&nbsp;complexity for swapping colors.
+              </p>
+              <p>
+                Why snake_case?&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>user-card</code
+                >&nbsp;is two. You will select this token thousands of times. Optimize for the thousands.
+              </p>
+              <p>
+                HTML&nbsp;<code>id</code>&nbsp;is a document hook, not a styling API. In BEAM, we never use it in CSS.
+                An ID selector has a specificity of&nbsp;<code>1,0,0</code>. You can never override it with classes
+                without using another
+                <code>id</code>&nbsp;or&nbsp;<code>!important</code>, so we get rid of it.
+              </p>
+              <CodeBlock
+                slot="code"
+                file="UserCard.css"
+                lang="css"
+                code={`/* The name survives every redesign. */
 .user_card {
   padding: var(--space-5);
   border: 1px solid var(--border-base);
   background: var(--bg-surface);
 }`}
-            />
-          </LawPanel>
+              />
+            </LawPanel>
 
-          <LawPanel letter="E" name="Element" syntax=".block-part_name" id="law-element">
-            <p>
-              One hyphen joins a block to its part. Underscores separate words inside each half. The hyphen means one
-              thing, everywhere: <em>belongs to</em>.
-            </p>
-            <p>
-              Element names stay flat. They never encode how deeply the markup nests – next quarter it will nest
-              differently, and a class that encoded the old shape is now a lie.
-            </p>
-            <CodeBlock
-              slot="code"
-              file="NavBar.css"
-              lang="css"
-              code={`/* Correct: flat, one hyphen, searchable */
+            <LawPanel letter="E" name="Element" syntax=".block-part_name" id="law-element">
+              <p>
+                One hyphen joins a block to its part. Underscores separate words inside each half. The hyphen means one
+                thing, everywhere: <em>belongs to</em>.
+              </p>
+              <p>
+                Element names stay flat. They never encode how deeply the markup nests – next quarter it will nest
+                differently, and a class that encoded the old shape is now a lie.
+              </p>
+              <CodeBlock
+                slot="code"
+                file="NavBar.css"
+                lang="css"
+                code={`/* Correct: flat, one hyphen, searchable */
 .nav_bar-list_item { }
 .nav_bar-action_button { }
 
@@ -472,117 +473,117 @@ const description =
 
 /* Wrong: encodes today's DOM into tomorrow's selector */
 .nav_bar .list_item { }`}
-            />
-          </LawPanel>
+              />
+            </LawPanel>
 
-          <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
-            <p>
-              This one will make you forget ugly string concatenations with dozens of classes.&nbsp;<strong
-                >State is not a class. State is data.</strong
-              >
-            </p>
-            <p>
-              You've been writing &nbsp;<code>button--outline</code>,&nbsp;<code>button--primary</code>,&nbsp;<code
-                >button--small</code
-              >,&nbsp;<code>button--rounded</code>,&nbsp;<code>button--loading</code> for years. Or, worse, the same conditional
-              approach, but with Tailwind's 2-5 classes per state. A single class definition can easily take 5–10 lines of
-              code this way.
-            </p>
-            <p>
-              Stop it, get some help. CSS has had attribute selectors since 1998. It's long overdue that we make it a
-              convention. Put state in&nbsp;<code>data-*</code>&nbsp;attributes, not classes.
-            </p>
-            <CodeBlock
-              slot="code"
-              file="Button.html"
-              lang="html"
-              code={`<button class="button" data-variant="outline" data-color="primary" data-size='sm' data-shape='rounded' data-state="loading">
+            <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
+              <p>
+                This one will make you forget ugly string concatenations with dozens of classes.&nbsp;<strong
+                  >State is not a class. State is data.</strong
+                >
+              </p>
+              <p>
+                You've been writing &nbsp;<code>button--outline</code>,&nbsp;<code>button--primary</code>,&nbsp;<code
+                  >button--small</code
+                >,&nbsp;<code>button--rounded</code>,&nbsp;<code>button--loading</code> for years. Or, worse, the same conditional
+                approach, but with Tailwind's 2-5 classes per state. A single class definition can easily take 5–10 lines
+                of code this way.
+              </p>
+              <p>
+                Stop it, get some help. CSS has had attribute selectors since 1998. It's long overdue that we make it a
+                convention. Put state in&nbsp;<code>data-*</code>&nbsp;attributes, not classes.
+              </p>
+              <CodeBlock
+                slot="code"
+                file="Button.html"
+                lang="html"
+                code={`<button class="button" data-variant="outline" data-color="primary" data-size='sm' data-shape='rounded' data-state="loading">
   Save
 </button>`}
-            />
-          </LawPanel>
+              />
+            </LawPanel>
 
-          <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
-            <p>
-              One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
-              >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
-            </p>
-            <p>
-              Delete the component, delete the stylesheet. No orphan rules. No four-thousand-line&nbsp;<code
-                >components.css</code
-              >&nbsp;that everyone appends to and nobody removes from. The file tree is an index of your UI.
-            </p>
-            <CodeBlock
-              slot="code"
-              file="tree"
-              lang="text"
-              code={`src/components/
+            <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
+              <p>
+                One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
+                >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
+              </p>
+              <p>
+                Delete the component, delete the stylesheet. No orphan rules. No four-thousand-line&nbsp;<code
+                  >components.css</code
+                >&nbsp;that everyone appends to and nobody removes from. The file tree is an index of your UI.
+              </p>
+              <CodeBlock
+                slot="code"
+                file="tree"
+                lang="text"
+                code={`src/components/
   UserCard/
     UserCard.tsx     -> renders .user_card
     UserCard.css     -> styles .user_card and nothing else
   PromoBanner/
     PromoBanner.tsx
     PromoBanner.css`}
-            />
-          </LawPanel>
+              />
+            </LawPanel>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* ------------------------------------------------------- 04 THE CURSOR */}
-  <section class="home_section" id="editor">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="04"
-          eyebrow="Editor optimization"
-          title="The naming convention is optimized for easy search and select."
-          lede="A dash is always treated like a word separator. This is why we use underscores within blocks."
-        />
+    {/* ------------------------------------------------------- 04 THE CURSOR */}
+    <section class="home_page-section" id="editor">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="04"
+            eyebrow="Editor optimization"
+            title="The naming convention is optimized for easy search and select."
+            lede="A dash is always treated like a word separator. This is why we use underscores within blocks."
+          />
 
-        <div class="g_prose home_section-prose">
-          <p>
-            In VS Code, a double-click or&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span>&nbsp;treats a
-            dash as a break and an underscore as part of the word. Neovim does the same:&nbsp;<span class="g_kbd"
-              >c</span
-            ><span class="g_kbd">i</span><span class="g_kbd">w</span>&nbsp;and&nbsp;<span class="g_kbd">*</span
-            >&nbsp;eat&nbsp;<code>user_card</code>&nbsp;whole, and stop at the hyphen in&nbsp;<code>user-card</code>.
-          </p>
-          <p>
-            That is the whole reason for snake_case inside each half.&nbsp;<code>user_card-title</code>&nbsp;is two
-            motions, not four. You will select these names thousands of times. Make the motion cheap.
-          </p>
+          <div class="g_prose home_page-prose">
+            <p>
+              In VS Code, a double-click or&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span>&nbsp;treats a
+              dash as a break and an underscore as part of the word. Neovim does the same:&nbsp;<span class="g_kbd"
+                >c</span
+              ><span class="g_kbd">i</span><span class="g_kbd">w</span>&nbsp;and&nbsp;<span class="g_kbd">*</span
+              >&nbsp;eat&nbsp;<code>user_card</code>&nbsp;whole, and stop at the hyphen in&nbsp;<code>user-card</code>.
+            </p>
+            <p>
+              That is the whole reason for snake_case inside each half.&nbsp;<code>user_card-title</code>&nbsp;is two
+              motions, not four. You will select these names thousands of times. Make the motion cheap.
+            </p>
+          </div>
+
+          <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
+            <p>
+              Write&nbsp;<code>.user_card-title</code>, not&nbsp;<code>&amp;-title</code>. Concatenation never puts the
+              real string in the file, so search has nothing to find. Nest for&nbsp;<code>:hover</code>,&nbsp;<code
+                >[data-state]</code
+              >, and queries – those are conditions, not names.
+            </p>
+          </CalloutBlock>
         </div>
-
-        <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
-          <p>
-            Write&nbsp;<code>.user_card-title</code>, not&nbsp;<code>&amp;-title</code>. Concatenation never puts the
-            real string in the file, so search has nothing to find. Nest for&nbsp;<code>:hover</code>,&nbsp;<code
-              >[data-state]</code
-            >, and queries – those are conditions, not names.
-          </p>
-        </CalloutBlock>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* -------------------------------------------------------- 05 THEMING */}
-  <section class="home_section" id="theming">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="05"
-          eyebrow="The 24 percent"
-          title="Theming, solved."
-          lede="A quarter of developers named theming as a top color pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
-        />
+    {/* -------------------------------------------------------- 05 THEMING */}
+    <section class="home_page-section" id="theming">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="05"
+            eyebrow="The 24 percent"
+            title="Theming, solved."
+            lede="A quarter of developers named theming as a top color pain point, and the survey recorded the specific cause: duplicated theme definitions. So let's remove the duplication instead of managing it."
+          />
 
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
-          <CodeBlock
-            file="theme.css – Layers 1 and 2"
-            lang="css"
-            code={`/* 1. Foundations. Raw materials. Never used in a component. */
+          <div class="l_grid" data-cols="auto" data-min="lg" data-gap="6">
+            <CodeBlock
+              file="theme.css – Layers 1 and 2"
+              lang="css"
+              code={`/* 1. Foundations. Raw materials. Never used in a component. */
 :root {
   --palette-white: oklch(1 0 0);
   --palette-stone-900: oklch(21.6% 0.006 56.043);
@@ -594,11 +595,11 @@ const description =
   --theme-light-bg-surface: var(--palette-white);
   --theme-dark-bg-surface: var(--palette-stone-900);
 }`}
-          />
-          <CodeBlock
-            file="theme.css – Layer 3, the public contract"
-            lang="css"
-            code={`/* 3. Semantics. The only layer a component may read. */
+            />
+            <CodeBlock
+              file="theme.css – Layer 3, the public contract"
+              lang="css"
+              code={`/* 3. Semantics. The only layer a component may read. */
 [data-theme='light'],
 [data-theme='dark'] [data-theme='inverse'] {
   --bg-surface: var(--theme-light-bg-surface);
@@ -608,54 +609,54 @@ const description =
 [data-theme='light'] [data-theme='inverse'] {
   --bg-surface: var(--theme-dark-bg-surface);
 }`}
-          />
-        </div>
+            />
+          </div>
 
-        <div class="g_prose home_section-prose">
-          <p>
-            A semantic is declared twice: light block, dark block. Components read&nbsp;<code>var(--bg-surface)</code
-            >&nbsp;and stop.
-          </p>
-          <p>
-            A third theme is one more block. Inverse is one attribute on a subtree. No component has ever heard the word
-            “dark.”
-          </p>
-        </div>
-
-        <ThemeLab />
-      </div>
-    </div>
-  </section>
-
-  {/* ---------------------------------------------------- 06 MASS AND VOID */}
-  <section class="home_section" id="space">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="06"
-          eyebrow="Space"
-          title="Void and mass are different beasts."
-          lede="padding: 1rem and width: 1rem are not the same kind of 1rem."
-        />
-
-        <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
-          <div class="g_prose home_section-prose">
+          <div class="g_prose home_page-prose">
             <p>
-              <strong>Void</strong> is&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>.
-              Shared rhythm. Always&nbsp;<code>--space-*</code>.
+              A semantic is declared twice: light block, dark block. Components read&nbsp;<code>var(--bg-surface)</code
+              >&nbsp;and stop.
             </p>
             <p>
-              <strong>Mass</strong> is&nbsp;<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,
-              &nbsp;<code>translate()</code>. The avatar is&nbsp;<code>3rem</code>&nbsp;because the avatar is 3rem, not
-              because&nbsp;<code>--space-12</code>&nbsp;happens to equal that. If you tighten the scale – the avatar
-              should not become an oval.
+              A third theme is one more block. Inverse is one attribute on a subtree. No component has ever heard the
+              word “dark.”
             </p>
           </div>
 
-          <CodeBlock
-            file="Avatar.css"
-            lang="css"
-            code={`.profile_card {
+          <ThemeLab />
+        </div>
+      </div>
+    </section>
+
+    {/* ---------------------------------------------------- 06 MASS AND VOID */}
+    <section class="home_page-section" id="space">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="06"
+            eyebrow="Space"
+            title="Void and mass are different beasts."
+            lede="padding: 1rem and width: 1rem are not the same kind of 1rem."
+          />
+
+          <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
+            <div class="g_prose home_page-prose">
+              <p>
+                <strong>Void</strong> is&nbsp;<code>margin</code>,&nbsp;<code>padding</code>,&nbsp;<code>gap</code>.
+                Shared rhythm. Always&nbsp;<code>--space-*</code>.
+              </p>
+              <p>
+                <strong>Mass</strong> is&nbsp;<code>width</code>,&nbsp;<code>height</code>,&nbsp;<code>inset</code>,
+                &nbsp;<code>translate()</code>. The avatar is&nbsp;<code>3rem</code>&nbsp;because the avatar is 3rem,
+                not because&nbsp;<code>--space-12</code>&nbsp;happens to equal that. If you tighten the scale – the
+                avatar should not become an oval.
+              </p>
+            </div>
+
+            <CodeBlock
+              file="Avatar.css"
+              lang="css"
+              code={`.profile_card {
   /* Void: shared rhythm, always a token */
   padding: var(--space-5);
   gap: var(--space-3);
@@ -667,142 +668,142 @@ const description =
   height: 3rem;
   border-radius: var(--radius-full);
 }`}
-          />
-        </div>
+            />
+          </div>
 
-        <CalloutBlock tone="law" title="The Binary Rule">
-          <p>
-            A layout class and a semantic component class never share a DOM element. A vertical&nbsp;<code
-              >.user_card</code
-            >&nbsp;doesn't just happen to be a vertical container - layout is its defining property, it should be
-            written down in CSS. Reserve the nameless&nbsp;<code>l_</code>&nbsp;layout classes for semantically
-            meaningless containers.
-          </p>
-        </CalloutBlock>
+          <CalloutBlock tone="law" title="The Binary Rule">
+            <p>
+              A layout class and a semantic component class never share a DOM element. A vertical&nbsp;<code
+                >.user_card</code
+              >&nbsp;doesn't just happen to be a vertical container - layout is its defining property, it should be
+              written down in CSS. Reserve the nameless&nbsp;<code>l_</code>&nbsp;layout classes for semantically
+              meaningless containers.
+            </p>
+          </CalloutBlock>
 
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
-          <CodeBlock
-            tone="wrong"
-            file="Wrong – the card relies on the generic layout"
-            lang="html"
-            code={`<article class="l_stack user_card" data-gap="4">
+          <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+            <CodeBlock
+              tone="wrong"
+              file="Wrong – the card relies on the generic layout"
+              lang="html"
+              code={`<article class="l_stack user_card" data-gap="4">
   ...
 </article>`}
-          />
-          <CodeBlock
-            tone="right"
-            file="Right – the card owns its own layout in CSS"
-            lang="html"
-            code={`<article class="user_card">
+            />
+            <CodeBlock
+              tone="right"
+              file="Right – the card owns its own layout in CSS"
+              lang="html"
+              code={`<article class="user_card">
   ...
 </article>
 `}
-          />
+            />
+          </div>
+
+          <CalloutBlock tone="law" title="Mobile-first layout">
+            <p>
+              In 2026 it should be a non-negotiable. Unqueried CSS is the mobile view. In media queries we define &nbsp;<code
+                >min-width</code
+              >&nbsp;only – never&nbsp;<code>max-width</code>&nbsp;or&nbsp;<code>width &lt; 64rem</code>.
+            </p>
+          </CalloutBlock>
         </div>
-
-        <CalloutBlock tone="law" title="Mobile-first layout">
-          <p>
-            In 2026 it should be a non-negotiable. Unqueried CSS is the mobile view. In media queries we define &nbsp;<code
-              >min-width</code
-            >&nbsp;only – never&nbsp;<code>max-width</code>&nbsp;or&nbsp;<code>width &lt; 64rem</code>.
-          </p>
-        </CalloutBlock>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* ------------------------------------------------------------ 07 FLUID */}
-  <section class="home_section" id="fluid">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="07"
-          eyebrow="Interpolation"
-          title="No bloated fluid formula."
-          lede="The State of CSS missing-features list asked for “simpler fluid typography primitives.” It turns out to be about forty lines of PostCSS."
-        />
+    {/* ------------------------------------------------------------ 07 FLUID */}
+    <section class="home_page-section" id="fluid">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="07"
+            eyebrow="Interpolation"
+            title="No bloated fluid formula."
+            lede="The State of CSS missing-features list asked for “simpler fluid typography primitives.” It turns out to be about forty lines of PostCSS."
+          />
 
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
-          <CodeBlock
-            tone="wrong"
-            file="What we all copy-paste"
-            lang="css"
-            code={`font-size: clamp(
+          <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+            <CodeBlock
+              tone="wrong"
+              file="What we all copy-paste"
+              lang="css"
+              code={`font-size: clamp(
   2.25rem,
   calc(2.25rem + (8 - 2.25) * ((100vw - 40rem) / (80 - 40))),
   8rem
 );`}
-          />
-          <CodeBlock
-            tone="right"
-            file="What you actually meant"
-            lang="css"
-            code={`font-size: fluid(var(--text-4xl), var(--text-9xl));`}
-          />
-        </div>
+            />
+            <CodeBlock
+              tone="right"
+              file="What you actually meant"
+              lang="css"
+              code={`font-size: fluid(var(--text-4xl), var(--text-9xl));`}
+            />
+          </div>
 
-        <div class="g_prose home_section-prose">
-          <p>
-            Nobody audits the first one. The two&nbsp;<code>2.25rem</code>s drift.&nbsp;<code>fluid()</code>&nbsp;, on
-            the other hand, resolves both tokens at build and emits a&nbsp;<code>clamp()</code>&nbsp;with the slope
-            already computed.
-          </p>
-        </div>
-
-        <FluidLab />
-      </div>
-    </div>
-  </section>
-
-  {/* ----------------------------------------------------------- 08 ROSETTA */}
-  <section class="home_section" id="rosetta">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="08"
-          eyebrow="Rosetta stone"
-          title="One card, four conventions."
-          lede="Same component, same design, four philosophies. Read each one and ask the only question that matters: what happens to this in eighteen months, when the person working on it has never met you?"
-        />
-
-        <DialectTabs dialects={CONVENTIONS} label="Compare CSS approaches" />
-      </div>
-    </div>
-  </section>
-
-  {/* ---------------------------------------------------------------- 09 AI */}
-  <section class="home_section" id="agents">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="09"
-          eyebrow="Machines"
-          title="CSS is the language AI is worst at. That is not a coincidence."
-          lede="The 2026 survey puts AI-generated CSS at roughly 28 percent – the lowest share anywhere in the stack. Here is my theory."
-        />
-
-        <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
-          <div class="g_prose home_section-prose">
+          <div class="g_prose home_page-prose">
             <p>
-              <strong>There is no ground truth to generate against.</strong> A model writing Go has a compiler. Writing SQL,
-              a schema. Writing TypeScript, types. Writing CSS, it has vibes.
-            </p>
-            <p>
-              Ask five senior engineers to name and structure a card component and you will get five answers, all
-              defensible. A model trained on all five produces a sixth. Then it produces a seventh in the next file,
-              because nothing told it what the sixth was.
-            </p>
-            <p>
-              BEAM's rules are the kind machines are actually good at, because they are mechanical, strict and
-              deterministic rather than tasteful.
+              Nobody audits the first one. The two&nbsp;<code>2.25rem</code>s drift.&nbsp;<code>fluid()</code>&nbsp;, on
+              the other hand, resolves both tokens at build and emits a&nbsp;<code>clamp()</code>&nbsp;with the slope
+              already computed.
             </p>
           </div>
 
-          <div class="l_stack" data-gap="4">
-            <CodeBlock
-              file="What the agent is told"
-              lang="text"
-              code={`Block            snake_case, from the filename
+          <FluidLab />
+        </div>
+      </div>
+    </section>
+
+    {/* ----------------------------------------------------------- 08 ROSETTA */}
+    <section class="home_page-section" id="rosetta">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="08"
+            eyebrow="Rosetta stone"
+            title="One card, four conventions."
+            lede="Same component, same design, four philosophies. Read each one and ask the only question that matters: what happens to this in eighteen months, when the person working on it has never met you?"
+          />
+
+          <DialectTabs dialects={CONVENTIONS} label="Compare CSS approaches" />
+        </div>
+      </div>
+    </section>
+
+    {/* ---------------------------------------------------------------- 09 AI */}
+    <section class="home_page-section" id="agents">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="09"
+            eyebrow="Machines"
+            title="CSS is the language AI is worst at. That is not a coincidence."
+            lede="The 2026 survey puts AI-generated CSS at roughly 28 percent – the lowest share anywhere in the stack. Here is my theory."
+          />
+
+          <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
+            <div class="g_prose home_page-prose">
+              <p>
+                <strong>There is no ground truth to generate against.</strong> A model writing Go has a compiler. Writing
+                SQL, a schema. Writing TypeScript, types. Writing CSS, it has vibes.
+              </p>
+              <p>
+                Ask five senior engineers to name and structure a card component and you will get five answers, all
+                defensible. A model trained on all five produces a sixth. Then it produces a seventh in the next file,
+                because nothing told it what the sixth was.
+              </p>
+              <p>
+                BEAM's rules are the kind machines are actually good at, because they are mechanical, strict and
+                deterministic rather than tasteful.
+              </p>
+            </div>
+
+            <div class="l_stack" data-gap="4">
+              <CodeBlock
+                file="What the agent is told"
+                lang="text"
+                code={`Block            snake_case, from the filename
 Element          .block-part_name, always flat
 Attribute        data-*, never a state class
 Module           one block, one co-located file
@@ -814,104 +815,105 @@ Selectors        classes only, never an ID
 Queries          min-width only, never max-width
 Nesting          one level, conditions only
 Ampersand        banned for name building`}
-            />
-            <div class="l_cluster" data-gap="3">
-              <ActionButton href="/install/#skill">Get the skill</ActionButton>
+              />
+              <div class="l_cluster" data-gap="3">
+                <ActionButton href="/install/#skill">Get the skill</ActionButton>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* ------------------------------------------------------ 10 THE HONEST BIT */}
-  <section class="home_section" id="objections">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="fluid-md">
-        <SectionHead
-          index="10"
-          eyebrow="Full disclosure"
-          title="What you are going to hate about it."
-          lede="Every architecture doc ends with a triumphant list of benefits. Here is the other list, because you are going to find it anyway and I would rather you heard it from me."
-        />
+    {/* ------------------------------------------------------ 10 THE HONEST BIT */}
+    <section class="home_page-section" id="objections">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="10"
+            eyebrow="Full disclosure"
+            title="What you are going to hate about it."
+            lede="Every architecture doc ends with a triumphant list of benefits. Here is the other list, because you are going to find it anyway and I would rather you heard it from me."
+          />
 
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
-          <div class="objection_card">
-            <h3 class="objection_card-title">“It's more typing than utilities.”</h3>
-            <p class="objection_card-body">
-              Correct. A block plus a CSS file is slower than fourteen utilities – the first time. It is faster the
-              third time you touch that component, and dramatically faster the first time you rename it. If your
-              component is genuinely one-off, utilities win. Most components are not one-off.
-            </p>
-          </div>
-          <div class="objection_card">
-            <h3 class="objection_card-title">“snake_case looks strange.”</h3>
-            <p class="objection_card-body">
-              For about a day. Then double-clicking a class name and getting the whole class name stops feeling like a
-              trick and starts feeling like the baseline. Nobody has ever asked to go back.
-            </p>
-          </div>
-          <div class="objection_card">
-            <h3 class="objection_card-title">“I want mixins.”</h3>
-            <p class="objection_card-body">
-              So does everyone – mixins have been in the survey's top missing features for years, and the platform is
-              finally building them. Until then, custom properties cover most of it and honest duplication covers the
-              rest. That is a real cost, and it is smaller than a preprocessor.
-            </p>
-          </div>
-          <div class="objection_card">
-            <h3 class="objection_card-title">“It's rigid to the point of rude.”</h3>
-            <p class="objection_card-body">
-              That part is load-bearing. A convention with exceptions is a convention that gets quietly abandoned in
-              month three. The rules are absolute so that nobody has to relitigate them in a pull request at 6pm.
-            </p>
-          </div>
-          <div class="objection_card">
-            <h3 class="objection_card-title">“Will it stop me writing bad CSS?”</h3>
-            <p class="objection_card-body">
-              No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an&nbsp;<code
-                class="g_code">l_</code
-              >&nbsp;class riding a block. You stop arguing about taste and start pointing at rules.
-            </p>
-          </div>
-          <div class="objection_card">
-            <h3 class="objection_card-title">“Is this just BEM with extra steps?”</h3>
-            <p class="objection_card-body">
-              It is BEM with fewer steps, plus the two things BEM never had: state that lives in attributes, and a theme
-              engine that stops color from being copy-pasted. If you already run disciplined BEM, migration is mostly a
-              find-and-replace.
-            </p>
+          <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“It's more typing than utilities.”</h3>
+              <p class="home_page-objection_body">
+                Correct. A block plus a CSS file is slower than fourteen utilities – the first time. It is faster the
+                third time you touch that component, and dramatically faster the first time you rename it. If your
+                component is genuinely one-off, utilities win. Most components are not one-off.
+              </p>
+            </div>
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“snake_case looks strange.”</h3>
+              <p class="home_page-objection_body">
+                For about a day. Then double-clicking a class name and getting the whole class name stops feeling like a
+                trick and starts feeling like the baseline. Nobody has ever asked to go back.
+              </p>
+            </div>
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“I want mixins.”</h3>
+              <p class="home_page-objection_body">
+                So does everyone – mixins have been in the survey's top missing features for years, and the platform is
+                finally building them. Until then, custom properties cover most of it and honest duplication covers the
+                rest. That is a real cost, and it is smaller than a preprocessor.
+              </p>
+            </div>
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“It's rigid to the point of rude.”</h3>
+              <p class="home_page-objection_body">
+                That part is load-bearing. A convention with exceptions is a convention that gets quietly abandoned in
+                month three. The rules are absolute so that nobody has to relitigate them in a pull request at 6pm.
+              </p>
+            </div>
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“Will it stop me writing bad CSS?”</h3>
+              <p class="home_page-objection_body">
+                No. Nothing will. What it does is make bad CSS <em>visible</em> – a raw hex code, a state class, an&nbsp;<code
+                  class="g_code">l_</code
+                >&nbsp;class riding a block. You stop arguing about taste and start pointing at rules.
+              </p>
+            </div>
+            <div class="home_page-objection">
+              <h3 class="home_page-objection_title">“Is this just BEM with extra steps?”</h3>
+              <p class="home_page-objection_body">
+                It is BEM with fewer steps, plus the two things BEM never had: state that lives in attributes, and a
+                theme engine that stops color from being copy-pasted. If you already run disciplined BEM, migration is
+                mostly a find-and-replace.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* -------------------------------------------------------------- CLOSING */}
-  <section class="closing_section" id="start">
-    <div class="l_container" data-size="page">
-      <div class="l_stack" data-gap="8" data-align="center">
-        <SectionHead
-          align="center"
-          wrap="pretty"
-          eyebrow="Begin"
-          title="Name things for what they are. Everything else follows."
-          lede="Six stylesheets, one PostCSS plugin, and a set of rules short enough to memorize. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
-        />
+    {/* -------------------------------------------------------------- CLOSING */}
+    <section class="home_page-closing" id="start">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="8" data-align="center">
+          <SectionHead
+            align="center"
+            wrap="pretty"
+            eyebrow="Begin"
+            title="Name things for what they are. Everything else follows."
+            lede="Six stylesheets, one PostCSS plugin, and a set of rules short enough to memorize. You can convert one component this afternoon and keep the rest of your codebase exactly as it is."
+          />
 
-        <div class="l_cluster" data-gap="3" data-justify="center">
-          <ActionButton href="/install/">Install BEAM</ActionButton>
-          <ActionButton href="/spec/" tone="outline">Read the specification</ActionButton>
-          <ActionButton href={SITE.repo} tone="outline" external>Source</ActionButton>
+          <div class="l_cluster" data-gap="3" data-justify="center">
+            <ActionButton href="/install/">Install BEAM</ActionButton>
+            <ActionButton href="/spec/" tone="outline">Read the specification</ActionButton>
+            <ActionButton href={SITE.repo} tone="outline" external>Source</ActionButton>
+          </div>
+
+          <p class="home_page-closing_note">
+            Then open the inspector on this page. Every class you find is a Block, an Element, an&nbsp;<code
+              class="g_code">l_</code
+            >, a&nbsp;<code class="g_code">u_</code>, or a&nbsp;<code class="g_code">g_</code>. That is the whole
+            vocabulary.
+          </p>
         </div>
-
-        <p class="closing_section-note">
-          Then open the inspector on this page. Every class you find is a Block, an Element, an&nbsp;<code
-            class="g_code">l_</code
-          >, a&nbsp;<code class="g_code">u_</code>, or a&nbsp;<code class="g_code">g_</code>. That is the whole
-          vocabulary.
-        </p>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </RootLayout>
