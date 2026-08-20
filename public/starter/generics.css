@@ -68,6 +68,17 @@
   height: 1.25em;
 }
 
+/*
+ * reset.css sets svg { max-width: 100% } for illustrations. Inside a flex box
+ * with no width/height on the svg itself, iOS Safari resolves that percentage
+ * as 0 and the glyph vanishes while the button remains.
+ */
+.g_icon_box svg {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
 .g_icon_box[data-size='sm'] {
   width: 1em;
   height: 1em;
