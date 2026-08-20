@@ -260,7 +260,7 @@ export default {
             index="03"
             eyebrow="For the machine"
             title="The agent skill."
-            lede="Three markdown files: the rules, the token catalog, and worked examples with their anti-patterns. Drop them where your assistant looks for skills and it will write BEAM without being reminded – and review its own diff against the same checklist you would use."
+            lede="Three markdown files: the rules, the token catalog, and worked examples with their anti-patterns. Drop them where your agent looks for skills and it will write BEAM without being reminded – and review its own diff against the same checklist you would use."
           />
 
           <div class="l_grid" data-cols="auto" data-min="xl" data-gap="8">
@@ -310,7 +310,7 @@ done`}
 
               <SpecTable
                 lead="wide"
-                head={['Assistant', 'Where it goes']}
+                head={['Agent', 'Where it goes']}
                 rows={AGENTS.map((entry) => [entry.tool, `<code>${entry.path}</code>`])}
               />
             </div>
