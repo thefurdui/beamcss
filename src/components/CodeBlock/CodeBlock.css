@@ -7,6 +7,8 @@
 .code_block {
   --c-rule: var(--border-base);
 
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--c-rule);
   border-radius: var(--radius-md);
@@ -50,6 +52,7 @@
 
 .code_block-pre {
   margin: 0;
+  flex-grow: 1;
   padding: var(--space-4);
   overflow-x: auto;
   scrollbar-width: thin;
