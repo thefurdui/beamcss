@@ -85,7 +85,7 @@ const LINEAGE = [
   },
 ]
 
-const DIALECTS = [
+const CONVENTIONS = [
   {
     id: 'bem',
     label: 'BEM',
@@ -359,7 +359,7 @@ const description =
       <div class="l_stack" data-gap="fluid-md">
         <SectionHead
           index="02"
-          eyebrow="Provenance"
+          eyebrow="Origin"
           title="BEAM did not fall out of the sky."
           lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
         />
@@ -405,26 +405,44 @@ const description =
       <div class="l_stack" data-gap="fluid-md">
         <SectionHead
           index="03"
-          eyebrow="The tetrad"
-          title="Four letters. That's the entire principle."
-          lede="A rule you have to look up is a rule you will break."
+          eyebrow="Overview"
+          title="BEAM in a nutshell."
+          lede="BEAM takes BEM as its foundation, cleans it up, and builds a house out of the best bricks from 17 years of CSS conventions. This is the antidote to Atomic CSS and CSS-in-JS that our web community has needed for a long time."
         />
 
         <div class="l_stack" data-gap="0">
           <LawPanel letter="B" name="Block" syntax=".snake_case" id="law-block">
             <p>
-              Named for what it is.&nbsp;<code>.user_card</code>, not&nbsp;<code>.bg-white.rounded-xl.p-4</code>. When
-              the fill changes,&nbsp;<code>bg-white</code>&nbsp;is a lie in forty files. A card is still a card.
+              A component is named for what it&nbsp;<em>is</em>, never for what it looks like.&nbsp;<code
+                >.user_card</code
+              >, not&nbsp;<code>.bg-white.rounded-xl.p-4.shadow-sm</code>&nbsp;. That may save you time when you first
+              write the component, but maintaining it becomes a nightmare. For a dark theme, you need to define dark
+              colors for every component. The second it changes, you have to update all your components. That's&nbsp;<code
+                >O(n)</code
+              >&nbsp;complexity for a simple color swap.
             </p>
             <p>
-              snake_case because&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>id</code>&nbsp;is a
-              document hook, not a styling API – specificity&nbsp;<code>1,0,0</code>, not reusable.
+              With BEAM, your component always stays&nbsp;<code>.user_card</code>. And after you import <code
+                >theme.css</code
+              >, you get a dark theme automatically as you create any component, with <code>O(1)</code>&nbsp;complexity
+              for swapping colors.
+            </p>
+            <p>
+              Why snake_case?&nbsp;<code>user_card</code>&nbsp;is one double-click.&nbsp;<code>user-card</code>&nbsp;is
+              two. You will select this token thousands of times. Optimize for the thousands.
+            </p>
+            <p>
+              HTML&nbsp;<code>id</code>&nbsp;is a document hook, not a styling API. In BEAM, we never use it in CSS. An
+              ID selector has a specificity of&nbsp;<code>1,0,0</code>. You can never override it with classes without
+              using another
+              <code>id</code>&nbsp;or&nbsp;<code>!important</code>, so we get rid of it.
             </p>
             <CodeBlock
               slot="code"
               file="UserCard.css"
               lang="css"
-              code={`.user_card {
+              code={`/* The name survives every redesign. */
+.user_card {
   padding: var(--space-5);
   border: 1px solid var(--border-base);
   background: var(--bg-surface);
@@ -434,8 +452,12 @@ const description =
 
           <LawPanel letter="E" name="Element" syntax=".block-part_name" id="law-element">
             <p>
-              One hyphen joins a block to its part. Underscores inside each half. The hyphen means <em>belongs to</em>,
-              and nothing else. Names stay flat – they do not encode today's DOM.
+              One hyphen joins a block to its part. Underscores separate words inside each half. The hyphen means one
+              thing, everywhere: <em>belongs to</em>.
+            </p>
+            <p>
+              Element names stay flat. They never encode how deeply the markup nests – next quarter it will nest
+              differently, and a class that encoded the old shape is now a lie.
             </p>
             <CodeBlock
               slot="code"
@@ -455,16 +477,26 @@ const description =
 
           <LawPanel letter="A" name="Attribute" syntax="[data-state]" id="law-attribute">
             <p>
-              <strong>State is data, not a class.</strong>&nbsp;<code>is-active</code>,&nbsp;<code>--active</code
-              >,&nbsp;<code>.button--loading</code>,&nbsp;<code>.js-open</code> – five codebases, five dialects. Attributes
-              have been around since 2008, and they are the best tool for the job. You also stop concatenating class strings
-              in JavaScript.
+              This one will make you forget ugly string concatenations with dozens of classes.&nbsp;<strong
+                >State is not a class. State is data.</strong
+              >
+            </p>
+            <p>
+              You've been writing &nbsp;<code>button--outline</code>,&nbsp;<code>button--primary</code>,&nbsp;<code
+                >button--small</code
+              >,&nbsp;<code>button--rounded</code>,&nbsp;<code>button--loading</code> for years. Or, worse, the same conditional
+              approach, but with Tailwind's 2-5 classes per state. A single class definition can easily take 5–10 lines of
+              code this way.
+            </p>
+            <p>
+              Stop it, get some help. CSS has had attribute selectors since 1998. It's long overdue that we make it a
+              convention. Put state in&nbsp;<code>data-*</code>&nbsp;attributes, not classes.
             </p>
             <CodeBlock
               slot="code"
               file="Button.html"
               lang="html"
-              code={`<button class="button" data-variant="primary" data-state="loading">
+              code={`<button class="button" data-variant="outline" data-color="primary" data-size='sm' data-shape='rounded' data-state="loading">
   Save
 </button>`}
             />
@@ -472,20 +504,25 @@ const description =
 
           <LawPanel letter="M" name="Module" syntax="UserCard.css" id="law-module">
             <p>
-              One block, one file, next to the component.&nbsp;<code>UserCard.tsx</code>&nbsp;and&nbsp;<code
-                >UserCard.css</code
-              >&nbsp;live and die together. No orphans. No four-thousand-line&nbsp;<code>components.css</code>. The
-              exceptions are big components, implementing full pages, like&nbsp;<code>index.astro</code>&nbsp;
+              One block, one file, sitting next to the component that renders it.&nbsp;<code>UserCard.tsx</code
+              >&nbsp;and&nbsp;<code>UserCard.css</code>&nbsp;live and die together.
+            </p>
+            <p>
+              Delete the component, delete the stylesheet. No orphan rules. No four-thousand-line&nbsp;<code
+                >components.css</code
+              >&nbsp;that everyone appends to and nobody removes from. The file tree is an index of your UI.
             </p>
             <CodeBlock
               slot="code"
               file="tree"
               lang="text"
               code={`src/components/
-  UserCard.tsx     -> renders .user_card
-  UserCard.css     -> styles .user_card and nothing else
-  PromoBanner.tsx
-  PromoBanner.css`}
+  UserCard/
+    UserCard.tsx     -> renders .user_card
+    UserCard.css     -> styles .user_card and nothing else
+  PromoBanner/
+    PromoBanner.tsx
+    PromoBanner.css`}
             />
           </LawPanel>
         </div>
@@ -500,58 +537,32 @@ const description =
         <SectionHead
           index="04"
           eyebrow="Editor optimization"
-          title="The convention is designed around your cursor."
-          lede="To make it work – never use the ampersand to build a class name."
+          title="The naming convention is optimized for easy search and select."
+          lede="A dash is always treated like a word separator. This is why we use underscores within blocks."
         />
 
-        <div class="l_grid" data-cols="auto" data-min="lg" data-gap="4">
-          <CodeBlock
-            tone="wrong"
-            file="Wrong – the name does not exist"
-            lang="css"
-            code={`.user_card {
-  &-title {
-    font-size: var(--text-2xl);
-  }
-}`}
-          />
-          <CodeBlock
-            tone="right"
-            file="Right – the name is a real string"
-            lang="css"
-            code={`.user_card-title {
-  font-size: var(--text-2xl);
-}`}
-          />
+        <div class="g_prose home_section-prose">
+          <p>
+            In VS Code, a double-click or&nbsp;<span class="g_kbd">⌘</span><span class="g_kbd">D</span>&nbsp;treats a
+            dash as a break and an underscore as part of the word. Neovim does the same:&nbsp;<span class="g_kbd"
+              >c</span
+            ><span class="g_kbd">i</span><span class="g_kbd">w</span>&nbsp;and&nbsp;<span class="g_kbd">*</span
+            >&nbsp;eat&nbsp;<code>user_card</code>&nbsp;whole, and stop at the hyphen in&nbsp;<code>user-card</code>.
+          </p>
+          <p>
+            That is the whole reason for snake_case inside each half.&nbsp;<code>user_card-title</code>&nbsp;is two
+            motions, not four. You will select these names thousands of times. Make the motion cheap.
+          </p>
         </div>
 
-        <div class="l_switcher" data-threshold="4xl" data-gap="8" data-align="start">
-          <div class="g_prose home_section-prose">
-            <p>
-              In the first version,&nbsp;<code>user_card-title</code>&nbsp;exists nowhere – not in search, not in&nbsp;<code
-                >rg</code
-              >, not in the language server, not in a model's context window. You saved eleven characters.
-            </p>
-            <p>
-              In the second, one string is the markup and the style.&nbsp;<span class="g_kbd">⌘</span><span
-                class="g_kbd">D</span
-              >&nbsp;or&nbsp;<span class="g_kbd">*</span>&nbsp;<span class="g_kbd">c</span><span class="g_kbd">g</span
-              ><span class="g_kbd">n</span>&nbsp;<span class="g_kbd">.</span>&nbsp;can grab it because it is actually in
-              the file.&nbsp;<code>&amp;-title</code>&nbsp;gives those keystrokes nothing. BEM's&nbsp;<code
-                >&amp;__element</code
-              >&nbsp;has the same hole.
-            </p>
-          </div>
-
-          <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
-            <p>
-              Nest one level for state, pseudos and queries –&nbsp;<code>&amp;:hover</code>,&nbsp;<code
-                >&amp;[data-state='open']</code
-              >,&nbsp;<code>@container</code>. Those are conditions, not names.
-            </p>
-            <p>If nesting invents a string that does not appear in the file, it is banned.</p>
-          </CalloutBlock>
-        </div>
+        <CalloutBlock tone="law" title="Nesting is allowed. Concatenation is not.">
+          <p>
+            Write&nbsp;<code>.user_card-title</code>, not&nbsp;<code>&amp;-title</code>. Concatenation never puts the
+            real string in the file, so search has nothing to find. Nest for&nbsp;<code>:hover</code>,&nbsp;<code
+              >[data-state]</code
+            >, and queries – those are conditions, not names.
+          </p>
+        </CalloutBlock>
       </div>
     </div>
   </section>
@@ -750,11 +761,11 @@ const description =
         <SectionHead
           index="08"
           eyebrow="Rosetta stone"
-          title="One card, four dialects."
+          title="One card, four conventions."
           lede="Same component, same design, four philosophies. Read each one and ask the only question that matters: what happens to this in eighteen months, when the person working on it has never met you?"
         />
 
-        <DialectTabs dialects={DIALECTS} label="Compare CSS approaches" />
+        <DialectTabs dialects={CONVENTIONS} label="Compare CSS approaches" />
       </div>
     </div>
   </section>
