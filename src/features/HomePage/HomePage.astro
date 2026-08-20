@@ -354,61 +354,15 @@ const description =
       </div>
     </section>
 
-    {/* ------------------------------------------------------- 02 ORIGIN */}
-    <section class="home_page-section" id="origin">
-      <div class="l_container" data-size="page">
-        <div class="l_stack" data-gap="fluid-md">
-          <SectionHead
-            index="02"
-            eyebrow="Origin"
-            title="BEAM did not fall out of the sky."
-            lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
-          />
-
-          <ol class="u_reset_list home_page-lineage">
-            {
-              LINEAGE.map((entry) => (
-                <li class="home_page-lineage_row">
-                  <div class="l_switcher" data-threshold="3xl" data-gap="4" data-align="start">
-                    <div class="home_page-lineage_marker">
-                      <div class="l_cluster" data-gap="3" data-nowrap>
-                        <span class="home_page-lineage_year u_tabular">{entry.year}</span>
-                        <span class="home_page-lineage_name">{entry.name}</span>
-                      </div>
-                    </div>
-                    <div class="home_page-lineage_detail">
-                      <p class="home_page-lineage_took">{entry.took}</p>
-                      <p class="home_page-lineage_kept">{entry.kept}</p>
-                    </div>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-
-          <CalloutBlock tone="note" title="What is actually new">
-            <p>
-              State in attributes, not classes. A color declared twice in the whole codebase, never in a component.
-              Naming chosen to respect IDE-native word boundaries. The rest is curation.
-            </p>
-          </CalloutBlock>
-
-          <div class="l_cluster" data-gap="4">
-            <ActionButton href="/lineage/" tone="ghost">Full comparison</ActionButton>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* --------------------------------------------------------- 03 BEAM OVERVIEW */}
+    {/* --------------------------------------------------------- 02 BEAM OVERVIEW */}
     <section class="home_page-section" id="overview">
       <div class="l_container" data-size="page">
         <div class="l_stack" data-gap="fluid-md">
           <SectionHead
-            index="03"
+            index="02"
             eyebrow="Overview"
             title="BEAM in a nutshell."
-            lede="BEAM takes BEM as its foundation, cleans it up, and builds a house out of the best bricks from 17 years of CSS conventions. This is the antidote to Atomic CSS and CSS-in-JS that our web community has needed for a long time."
+            lede="BEAM takes BEM as its foundation, cleans it up, and builds a house out of the best bricks from 17 years of CSS conventions. This is the antidote to Atomic CSS and CSS-in-JS that adopts the features that made them popular, without paying their architecture tax."
           />
 
           <div class="l_stack" data-gap="0">
@@ -526,6 +480,52 @@ const description =
     PromoBanner.css`}
               />
             </LawPanel>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------- 03 ORIGIN */}
+    <section class="home_page-section" id="origin">
+      <div class="l_container" data-size="page">
+        <div class="l_stack" data-gap="fluid-md">
+          <SectionHead
+            index="03"
+            eyebrow="Origin"
+            title="BEAM did not fall out of the sky."
+            lede="Almost every idea here is borrowed. A convention nobody has seen before is a convention nobody will follow."
+          />
+
+          <ol class="u_reset_list home_page-lineage">
+            {
+              LINEAGE.map((entry) => (
+                <li class="home_page-lineage_row">
+                  <div class="l_switcher" data-threshold="3xl" data-gap="4" data-align="start">
+                    <div class="home_page-lineage_marker">
+                      <div class="l_cluster" data-gap="3" data-nowrap>
+                        <span class="home_page-lineage_year u_tabular">{entry.year}</span>
+                        <span class="home_page-lineage_name">{entry.name}</span>
+                      </div>
+                    </div>
+                    <div class="home_page-lineage_detail">
+                      <p class="home_page-lineage_took">{entry.took}</p>
+                      <p class="home_page-lineage_kept">{entry.kept}</p>
+                    </div>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <CalloutBlock tone="note" title="What is actually new">
+            <p>
+              State in attributes, not classes. A color declared twice in the whole codebase, never in a component.
+              Naming chosen to respect IDE-native word boundaries. The rest is curation.
+            </p>
+          </CalloutBlock>
+
+          <div class="l_cluster" data-gap="4">
+            <ActionButton href="/lineage/" tone="ghost">Full comparison</ActionButton>
           </div>
         </div>
       </div>
