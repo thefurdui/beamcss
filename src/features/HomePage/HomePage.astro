@@ -135,7 +135,7 @@ const CONVENTIONS = [
       {
         file: 'the problem',
         lang: 'text' as const,
-        code: `Every color is declared twice: once light, once dark.
+        code: `Every color is declared once per theme.
 Every card repeats all fourteen classes.
 Renaming the component renames nothing.
 "Which of these 40 divs is the card?" – you, in March`,
@@ -481,6 +481,58 @@ const description =
               />
             </LawPanel>
           </div>
+
+          <div class="l_stack" data-gap="5">
+            <div class="l_stack" data-gap="3">
+              <h3 class="home_page-scope_title">What the letters don't name</h3>
+              <div class="g_prose home_page-prose">
+                <p>The four letters are the foundation. Here come the bricks.</p>
+              </div>
+            </div>
+
+            <ol class="u_reset_list home_page-scope">
+              <li class="home_page-scope_item">
+                <a class="home_page-scope_link" href="#theming">
+                  <span class="home_page-scope_name">Themes</span>
+                  <span class="home_page-scope_gloss">
+                    Declared once, never in a component. Components read&nbsp;<code class="g_code">--bg-surface</code>.
+                    <code class="g_code">theme.css</code>&nbsp;defines what&nbsp;<code class="g_code">--bg-surface</code
+                    >&nbsp;is.
+                  </span>
+                </a>
+              </li>
+              <li class="home_page-scope_item">
+                <a class="home_page-scope_link" href="#space">
+                  <span class="home_page-scope_name">Layout</span>
+                  <span class="home_page-scope_gloss">
+                    Composed from&nbsp;<code class="g_code">l_*</code>&nbsp;primitives – because naming is one of the two
+                    hardest things in programming, and we don't want names like&nbsp;<code class="g_code"
+                      >.user_card-inner_left_wrapper</code
+                    >.
+                  </span>
+                </a>
+              </li>
+              <li class="home_page-scope_item">
+                <a class="home_page-scope_link" href="#fluid">
+                  <span class="home_page-scope_name">Interpolation</span>
+                  <span class="home_page-scope_gloss">
+                    <code class="g_code">fluid()</code>&nbsp;turns two tokens into a&nbsp;<code class="g_code"
+                      >clamp()</code
+                    >&nbsp;at build time. Nice, easy, and flexible.
+                  </span>
+                </a>
+              </li>
+              <li class="home_page-scope_item">
+                <a class="home_page-scope_link" href="/spec/">
+                  <span class="home_page-scope_name">The spec</span>
+                  <span class="home_page-scope_gloss">
+                    Six global stylesheets, four layers of CSS variables, and a fully deterministic set of rules that
+                    tell you what goes where.
+                  </span>
+                </a>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -519,7 +571,7 @@ const description =
 
           <CalloutBlock tone="note" title="What is actually new">
             <p>
-              State in attributes, not classes. A color declared twice in the whole codebase, never in a component.
+              State in attributes, not classes. Theme colors declared once in the whole codebase, never in a component.
               Naming chosen to respect IDE-native word boundaries. The rest is curation.
             </p>
           </CalloutBlock>
@@ -614,12 +666,12 @@ const description =
 
           <div class="g_prose home_page-prose">
             <p>
-              A semantic is declared twice: light block, dark block. Components read&nbsp;<code>var(--bg-surface)</code
-              >&nbsp;and stop.
+              Semantic tokens are declared once per theme, in a single&nbsp;<code>theme.css</code>&nbsp;file. Components
+              just read&nbsp;<code>var(--bg-surface)</code>.
             </p>
             <p>
-              A third theme is one more block. Inverse is one attribute on a subtree. No component has ever heard the
-              word “dark.”
+              A third theme is one more CSS block. Inverse is one attribute on a subtree. No component has ever heard
+              the word “dark.”
             </p>
           </div>
 
