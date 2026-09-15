@@ -96,14 +96,9 @@ const description =
             </div>
 
             <div class="l_stack" data-gap="5">
-              <CodeBlock
-                file="Grab all five"
-                lang="bash"
-                code={`mkdir -p src/styles && cd src/styles
-
-for f in reset theme layout utils generics; do
-  curl -sO https://beamcss.org/starter/$f.css
-done`}
+              <CopyCommand
+                label="Download all five · run from your project root"
+                command='curl -fsSL --fail-early --create-dirs -o "src/styles/#1.css" "https://beamcss.org/starter/{reset,theme,layout,utils,generics}.css"'
               />
 
               <CodeBlock
